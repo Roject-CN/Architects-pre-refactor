@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dr118rjdjwq0k"]
+
+[ext_resource type="Script" uid="uid://dor0vyggilti8" path="res://codes/craftsmen/mvp_accountant.gd" id="1_crgxt"]
+
+[node name="MvpAccountant" type="Node2D" unique_id=1647957349]
+script = ExtResource("1_crgxt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1930267132]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=652231053]

@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://cv4hin2mnfixg"]
+
+[ext_resource type="Script" uid="uid://bu55nsxxshtl2" path="res://codes/buildings/building_attributes.gd" id="1_ibpcl"]
+
+[node name="BuildingAttributes" type="Node2D" unique_id=1309801516]
+script = ExtResource("1_ibpcl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1625997927]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=825151703]
+offset_right = 40.0
+offset_bottom = 104.0
+
+[node name="FengShui" type="Label" parent="VBoxContainer" unique_id=1142343438]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Button" type="TextureButton" parent="VBoxContainer/FengShui" unique_id=809045584]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 4.0
+offset_right = 82.0
+offset_bottom = 20.0
+
+[node name="Design" type="Label" parent="VBoxContainer" unique_id=681630736]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Button" type="TextureButton" parent="VBoxContainer/Design" unique_id=1205789843]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 4.0
+offset_right = 82.0
+offset_bottom = 20.0
+
+[node name="Artisan" type="Label" parent="VBoxContainer" unique_id=1039945710]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Button" type="TextureButton" parent="VBoxContainer/Artisan" unique_id=93969553]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 4.0
+offset_right = 82.0
+offset_bottom = 20.0
+
+[node name="Money" type="Label" parent="VBoxContainer" unique_id=144954043]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Button" type="TextureButton" parent="VBoxContainer/Money" unique_id=59787175]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 4.0
+offset_right = 82.0
+offset_bottom = 20.0

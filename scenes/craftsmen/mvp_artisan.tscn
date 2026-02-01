@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://qemd68n7vmp1"]
+
+[ext_resource type="Script" uid="uid://tmghxj0ax2ld" path="res://codes/craftsmen/mvp_artisan.gd" id="1_xxi53"]
+
+[node name="MvpArtisan" type="Node2D" unique_id=995296253]
+script = ExtResource("1_xxi53")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1722903571]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1298051232]

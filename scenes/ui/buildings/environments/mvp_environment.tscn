@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bplnjqdlip5af"]
+
+[ext_resource type="Script" uid="uid://d4k0rrysexqlf" path="res://codes/environments/environment.gd" id="1_wu512"]
+
+[node name="MvpEnvironment" type="Node2D" unique_id=1244913720]
+script = ExtResource("1_wu512")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1959117215]
