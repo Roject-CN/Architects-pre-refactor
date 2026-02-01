@@ -2,8 +2,11 @@
 ### 项目规范
 #### 命名
 命名规范与godot规范基本保持一致
+
 [GDscript风格指南](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html#doc-gdscript-styleguide)
+
 文件命名使用**下划线**命名法
+
 节点命名使用**大驼峰**命名法
 #### 提交
 消息中应写有说明文本
@@ -13,9 +16,10 @@
 存放所有代码文件，其中base_class为基类代码
 #### scenes
 存放所有非UI的场景文件
+
 在该部分中，buildings存放
-- [ ] 为玩家设计好的每个建筑 1
-- [ ] 玩家自行建造的每个建筑 2
+- [ ] 为玩家设计好的每个建筑
+- [ ] 玩家自行建造的每个建筑
 ##### craftsmen
 存放所有工匠，类似角色列表
 ##### division
@@ -28,8 +32,9 @@
 #### ui
 ##### buildings
 building_attributes用以显示每个建筑的详细属性，并
-- [ ] 提供按钮以便用户安排工匠 1
-- [ ] 由其他节点在界面其他位置提供按钮 2
+- [ ] 提供按钮以便用户安排工匠
+- [ ] 由其他节点在界面其他位置提供按钮
+
 division_list用以显示所有可供选择的“三分”模块
 ##### craftsmen
 显示所有可供选择的工匠
