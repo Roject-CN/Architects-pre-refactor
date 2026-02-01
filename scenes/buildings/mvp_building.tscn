@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://vi2ktm4rx1n1"]
 
 [ext_resource type="Script" uid="uid://cgw0irjsbwgpf" path="res://codes/buildings/mvp_building.gd" id="1_mogpk"]
-[ext_resource type="PackedScene" uid="uid://bplnjqdlip5af" path="res://scenes/ui/buildings/environments/mvp_environment.tscn" id="2_c4fct"]
+[ext_resource type="PackedScene" uid="uid://bplnjqdlip5af" path="res://scenes/environments/mvp_environment.tscn" id="2_c4fct"]
 [ext_resource type="PackedScene" uid="uid://cv4hin2mnfixg" path="res://scenes/ui/buildings/building_attributes.tscn" id="3_5awth"]
 
 [node name="MvpBuilding" type="Node2D" unique_id=267276308]
