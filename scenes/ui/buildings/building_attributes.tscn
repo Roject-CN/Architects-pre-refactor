@@ -11,22 +11,22 @@ script = ExtResource("1_ibpcl")
 offset_right = 40.0
 offset_bottom = 104.0
 
-[node name="FengShui" type="Label" parent="VBoxContainer" unique_id=1142343438]
+[node name="Geomancer" type="Label" parent="VBoxContainer" unique_id=1142343438]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="Button" type="TextureButton" parent="VBoxContainer/FengShui" unique_id=809045584]
+[node name="Geomancer" type="TextureButton" parent="VBoxContainer/Geomancer" unique_id=809045584]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 4.0
 offset_right = 82.0
 offset_bottom = 20.0
 
-[node name="Design" type="Label" parent="VBoxContainer" unique_id=681630736]
+[node name="Designer" type="Label" parent="VBoxContainer" unique_id=681630736]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="Button" type="TextureButton" parent="VBoxContainer/Design" unique_id=1205789843]
+[node name="Designer" type="TextureButton" parent="VBoxContainer/Designer" unique_id=1205789843]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 4.0
@@ -37,20 +37,25 @@ offset_bottom = 20.0
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="Button" type="TextureButton" parent="VBoxContainer/Artisan" unique_id=93969553]
+[node name="Artisan" type="TextureButton" parent="VBoxContainer/Artisan" unique_id=93969553]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 4.0
 offset_right = 82.0
 offset_bottom = 20.0
 
-[node name="Money" type="Label" parent="VBoxContainer" unique_id=144954043]
+[node name="Accountant" type="Label" parent="VBoxContainer" unique_id=144954043]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="Button" type="TextureButton" parent="VBoxContainer/Money" unique_id=59787175]
+[node name="Accountant" type="TextureButton" parent="VBoxContainer/Accountant" unique_id=59787175]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 4.0
 offset_right = 82.0
 offset_bottom = 20.0
+
+[connection signal="pressed" from="VBoxContainer/Geomancer/Geomancer" to="." method="_on_geomancer_pressed"]
+[connection signal="pressed" from="VBoxContainer/Designer/Designer" to="." method="_on_designer_pressed"]
+[connection signal="pressed" from="VBoxContainer/Artisan/Artisan" to="." method="_on_artisan_pressed"]
+[connection signal="pressed" from="VBoxContainer/Accountant/Accountant" to="." method="_on_accountant_pressed"]

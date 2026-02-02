@@ -4,3 +4,5 @@
 
 [node name="Main" type="Node2D" unique_id=1844897695]
 script = ExtResource("1_o5qli")
+
+[node name="Buildings" type="Node" parent="." unique_id=647540716]
