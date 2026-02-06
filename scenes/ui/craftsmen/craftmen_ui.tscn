@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://5fkp6mfhsu0w"]
+
+[ext_resource type="PackedScene" uid="uid://l0lthvl61vfr" path="res://scenes/ui/base_ui/base_ui.tscn" id="1_3mpx6"]
+[ext_resource type="Script" uid="uid://dlsuruow0auqd" path="res://codes/base_ui/craftmen_ui.gd" id="2_dwsy7"]
+[ext_resource type="Script" uid="uid://bcfvld13usfs" path="res://codes/craftsmen/craftman_resource.gd" id="3_2gwvx"]
+[ext_resource type="Texture2D" uid="uid://do77yn4lfgps7" path="res://sprits/tile_0099.png" id="3_dwsy7"]
+[ext_resource type="Resource" uid="uid://0midcg5svrxq" path="res://Resource/test.tres" id="4_0gq66"]
+[ext_resource type="Resource" uid="uid://bq1f4gk7ydlvw" path="res://Resource/test2.tres" id="5_0gq66"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c7lko"]
+font_size = 12
+
+[node name="CraftmenUi" unique_id=1059655934 instance=ExtResource("1_3mpx6")]
+script = ExtResource("2_dwsy7")
+craftmen = Array[ExtResource("3_2gwvx")]([ExtResource("4_0gq66"), ExtResource("5_0gq66")])
+text = "招聘界面"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Visual" parent_id_path=PackedInt32Array(1787408497) index="0" unique_id=1004532354]
+layout_mode = 2
+
+[node name="Introduction" type="Label" parent="Visual/VBoxContainer" index="0" unique_id=1954015154]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+text = "你老豆 罗智毅"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level" type="Label" parent="Visual/VBoxContainer" index="1" unique_id=1442849338]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+text = "Level x"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Texturect" type="TextureRect" parent="Visual/VBoxContainer" index="2" unique_id=1395171087]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("3_dwsy7")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Description" type="Label" parent="Visual/VBoxContainer" index="3" unique_id=1511456203]
+layout_mode = 2
+text = "相信我，我会好好工作的"
+label_settings = SubResource("LabelSettings_c7lko")
+horizontal_alignment = 1
+
+[node name="Back" type="Button" parent="Button" parent_id_path=PackedInt32Array(883134600) index="0" unique_id=1469069294]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_right = 0.2
+offset_right = 8.0
+offset_bottom = 8.0
+text = "取消"
+
+[node name="Assure" type="Button" parent="Button" parent_id_path=PackedInt32Array(883134600) index="1" unique_id=388805995]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_right = 0.4
+offset_right = 8.0
+offset_bottom = 8.0
+text = "招聘"
+
+[node name="Next" type="Button" parent="Button" parent_id_path=PackedInt32Array(883134600) index="2" unique_id=397307005]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.6
+anchor_right = 0.6
+offset_right = 8.0
+offset_bottom = 8.0
+text = "下一个"
+
+[connection signal="pressed" from="Button/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Button/Assure" to="." method="_on_assure_pressed"]
+[connection signal="pressed" from="Button/Next" to="." method="_on_next_pressed"]

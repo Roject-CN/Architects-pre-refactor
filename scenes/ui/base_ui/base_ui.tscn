@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://l0lthvl61vfr"]
+
+[ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://global_theme.tres" id="1_6qa4x"]
+[ext_resource type="Script" uid="uid://yv3fr4cktftv" path="res://codes/base_ui/base_ui.gd" id="2_cimg7"]
+[ext_resource type="PackedScene" uid="uid://pt2vkxbbndy0" path="res://scenes/ui/base_ui/information_ui.tscn" id="3_mjsx3"]
+[ext_resource type="Texture2D" uid="uid://bb1llwn0kn1pm" path="res://icon.svg" id="4_02ph7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mjsx3"]
+font_size = 24
+
+[node name="BaseUi" type="Control" unique_id=1059655934]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6qa4x")
+script = ExtResource("2_cimg7")
+
+[node name="Panel" type="Panel" parent="." unique_id=30616347]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.15
+anchor_right = 0.85
+anchor_bottom = 0.85
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=1667586695]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.15
+anchor_right = 0.5
+anchor_bottom = 0.15
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "显示标题"
+label_settings = SubResource("LabelSettings_mjsx3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Information" type="Control" parent="." unique_id=1915760024]
+layout_mode = 1
+anchor_left = 0.6
+anchor_top = 0.25
+anchor_right = 0.6
+anchor_bottom = 0.25
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Information" unique_id=149977005]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+theme_override_constants/separation = 40
+
+[node name="InformationUi" parent="Information/VBoxContainer" unique_id=206980941 instance=ExtResource("3_mjsx3")]
+layout_mode = 2
+texture = ExtResource("4_02ph7")
+text = "风水值"
+
+[node name="InformationUi2" parent="Information/VBoxContainer" unique_id=677147166 instance=ExtResource("3_mjsx3")]
+layout_mode = 2
+texture = ExtResource("4_02ph7")
+text = "设计值"
+
+[node name="InformationUi3" parent="Information/VBoxContainer" unique_id=2102896876 instance=ExtResource("3_mjsx3")]
+layout_mode = 2
+texture = ExtResource("4_02ph7")
+text = "匠心值"
+
+[node name="InformationUi4" parent="Information/VBoxContainer" unique_id=2068865586 instance=ExtResource("3_mjsx3")]
+layout_mode = 2
+texture = ExtResource("4_02ph7")
+text = "工料值"
+
+[node name="Visual" type="CenterContainer" parent="." unique_id=1787408497]
+custom_minimum_size = Vector2(200, 170)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+
+[node name="Button" type="Control" parent="." unique_id=883134600]
+layout_mode = 1
+anchor_left = 0.15
+anchor_top = 0.75
+anchor_right = 0.85
+anchor_bottom = 0.85
+grow_vertical = 2

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://pt2vkxbbndy0"]
+
+[ext_resource type="Texture2D" uid="uid://bb1llwn0kn1pm" path="res://icon.svg" id="1_bmy5i"]
+[ext_resource type="Script" uid="uid://b2xlfl41dap5f" path="res://codes/base_ui/information_ui.gd" id="1_ev873"]
+
+[node name="InformationUi" type="Control" unique_id=206980941]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ev873")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1796071847]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=669225251]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("1_bmy5i")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Value" type="Label" parent="HBoxContainer" unique_id=1795977458]
+layout_mode = 2
+text = "数值 : xxx"
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer" unique_id=937068799]
+layout_mode = 2
+
+[node name="Animation" type="Container" parent="HBoxContainer/CenterContainer" unique_id=2060529596]
+layout_mode = 2

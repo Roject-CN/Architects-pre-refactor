@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bplnjqdlip5af"]
 
 [ext_resource type="Script" uid="uid://d4k0rrysexqlf" path="res://codes/environments/mvp_environment.gd" id="1_wu512"]
-[ext_resource type="Texture2D" uid="uid://bjw7o1xjs0pn7" path="res://sprits/mvp_environment.png" id="2_cj6hq"]
+[ext_resource type="Texture2D" uid="uid://cc5jylbfkkcip" path="res://sprits/mvp_environment.png" id="2_cj6hq"]
 
 [node name="MvpEnvironment" type="Node2D" unique_id=1244913720]
 script = ExtResource("1_wu512")

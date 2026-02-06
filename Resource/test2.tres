@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CraftManResource" format=3 uid="uid://bq1f4gk7ydlvw"]
+
+[ext_resource type="Script" uid="uid://bcfvld13usfs" path="res://codes/craftsmen/craftman_resource.gd" id="1_hekrh"]
+[ext_resource type="Texture2D" uid="uid://do77yn4lfgps7" path="res://sprits/tile_0099.png" id="2_d4bqi"]
+
+[resource]
+script = ExtResource("1_hekrh")
+name = "思棋"
+profession = 1
+values = {
+&"匠心值": 1,
+&"工料值": 1,
+&"设计值": 1,
+&"风水值": 1
+}
+level = 2
+cost = 1
+texture = ExtResource("2_d4bqi")
+description = "我是你老豆"
+metadata/_custom_type_script = "uid://bcfvld13usfs"
