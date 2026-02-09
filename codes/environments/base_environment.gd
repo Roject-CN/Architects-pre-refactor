@@ -11,6 +11,6 @@ extends Node2D
 @export var factor_geology :int = 5		#地质，指土质、自然灾害区域等
 
 # 基于环境因素计算value_geomancer，堪舆师可以设一乘数，对该值进行加成
-func calculate_value() -> int:
+func calculate_value_geomancer(multiply_geomancer : float = 1.0) -> int:
 	var temp = factor_terrain + factor_rain + factor_wind + factor_sunlight + factor_water + factor_association + factor_geology
-	return temp * 1.43
+	return int(round(temp * 1.43 * multiply_geomancer))

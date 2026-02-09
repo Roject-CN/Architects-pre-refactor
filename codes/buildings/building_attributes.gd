@@ -1,20 +1,14 @@
 class_name BuildingAttributes
-extends BaseBuilding
+extends Node2D
 
-func show_update():
-	$VBoxContainer/FengShui.text = value_geomancer
-	$VBoxContainer/Design.text = value_designer
-	$VBoxContainer/Artisan.text = value_artisan
-	$VBoxContainer/Money.text = super.calculate_accountant()
+@export var building : Building = null
 
-func _on_geomancer_pressed() -> void:
-	pass # Replace with function body.
+func _ready() -> void:
+	show_attributes()
 
-func _on_designer_pressed() -> void:
-	pass # Replace with function body.
-
-func _on_artisan_pressed() -> void:
-	pass # Replace with function body.
-
-func _on_accountant_pressed() -> void:
-	pass # Replace with function body.
+# 更新显示的所有建筑属性，在属性有更改时调用或置于物理帧循环中持续调用
+func show_attributes():
+	$HBoxContainer/Geomancer.text = "堪舆值：" + str(building.value_geomancer)
+	$HBoxContainer/Designer.text = "设计值：" + str(building.value_designer)
+	$HBoxContainer/Artisan.text = "匠心值：" + str(building.value_artisan)
+	$HBoxContainer/Accountant.text = "收益值：" + str(building.value_accountant)

@@ -1,9 +1,10 @@
+class_name CraftsmenUi
 extends BaseUi
-class_name CraftmenUi
+
 
 #后续可以讲craftman 的属性值和信息打包成resource之类的东西搭载到Ui上读取
 #然后在进一步读取
-@export var craftmen : Array[CraftManResource]
+@export var craftmen : Array[CraftsmanResource]
 const intro_text_temp : String = "%s %s"
 const level_text_temp : String = "Level %d"
 var array_size : int = 0
@@ -24,7 +25,7 @@ func _ready() -> void:
 	read_craftman_resource(craftmen[index])
 	#执行BaseUi的ready()
 
-func read_craftman_resource(resource : CraftManResource) -> void:
+func read_craftman_resource(resource : CraftsmanResource) -> void:
 	#visual部分
 	var introduction_text = intro_text_temp
 	var level_text = level_text_temp

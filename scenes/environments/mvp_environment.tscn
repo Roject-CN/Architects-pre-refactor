@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://bplnjqdlip5af"]
 
-[ext_resource type="Script" uid="uid://d4k0rrysexqlf" path="res://codes/environments/mvp_environment.gd" id="1_wu512"]
-[ext_resource type="Texture2D" uid="uid://cc5jylbfkkcip" path="res://sprits/mvp_environment.png" id="2_cj6hq"]
+[ext_resource type="Script" uid="uid://dn8fd826h67yp" path="res://codes/environments/base_environment.gd" id="1_cj6hq"]
+[ext_resource type="Texture2D" uid="uid://4tpgutvtsohq" path="res://sprits/environments/environment_attribute.png" id="2_cj6hq"]
 
-[node name="MvpEnvironment" type="Node2D" unique_id=1244913720]
-script = ExtResource("1_wu512")
-factor_terrain = 4
-factor_rain = 7
+[node name="Mvp_Environment" type="Node2D" unique_id=1244913720]
+script = ExtResource("1_cj6hq")
+factor_terrain = 7
+factor_rain = 4
 factor_wind = 6
-factor_sunlight = 8
-factor_water = 8
+factor_sunlight = 6
+factor_water = 7
 factor_association = 6
-factor_geology = 8
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1959117215]
+position = Vector2(360, 640)
 texture = ExtResource("2_cj6hq")

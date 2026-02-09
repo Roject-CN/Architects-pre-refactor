@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc5jylbfkkcip"
-path="res://.godot/imported/mvp_environment.png-26183b43848cce7cfb60842004c1f111.ctex"
+uid="uid://dgtixauss5w7j"
+path="res://.godot/imported/attribute_texture.png-988724c050d5a04715229c96d05b4177.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprits/mvp_environment.png"
-dest_files=["res://.godot/imported/mvp_environment.png-26183b43848cce7cfb60842004c1f111.ctex"]
+source_file="res://sprits/buildings/building_attributes/attribute_texture.png"
+dest_files=["res://.godot/imported/attribute_texture.png-988724c050d5a04715229c96d05b4177.ctex"]
 
 [params]
 

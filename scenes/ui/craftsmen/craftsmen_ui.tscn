@@ -1,18 +1,22 @@
 [gd_scene format=3 uid="uid://5fkp6mfhsu0w"]
 
-[ext_resource type="PackedScene" uid="uid://l0lthvl61vfr" path="res://scenes/ui/base_ui/base_ui.tscn" id="1_3mpx6"]
-[ext_resource type="Script" uid="uid://dlsuruow0auqd" path="res://codes/base_ui/craftmen_ui.gd" id="2_dwsy7"]
-[ext_resource type="Script" uid="uid://bcfvld13usfs" path="res://codes/craftsmen/craftman_resource.gd" id="3_2gwvx"]
-[ext_resource type="Texture2D" uid="uid://do77yn4lfgps7" path="res://sprits/tile_0099.png" id="3_dwsy7"]
-[ext_resource type="Resource" uid="uid://0midcg5svrxq" path="res://Resource/test.tres" id="4_0gq66"]
-[ext_resource type="Resource" uid="uid://bq1f4gk7ydlvw" path="res://Resource/test2.tres" id="5_0gq66"]
+[ext_resource type="PackedScene" uid="uid://l0lthvl61vfr" path="res://scenes/ui/base_ui/base_ui.tscn" id="1_m7yh4"]
+[ext_resource type="Script" uid="uid://dlsuruow0auqd" path="res://codes/ui/craftsmen_ui.gd" id="2_2o5a0"]
+[ext_resource type="Script" uid="uid://bcfvld13usfs" path="res://codes/craftsmen/craftsman_resource.gd" id="3_al16r"]
+[ext_resource type="Resource" uid="uid://0midcg5svrxq" path="res://Resource/test.tres" id="4_6v44l"]
+[ext_resource type="Resource" uid="uid://bq1f4gk7ydlvw" path="res://Resource/test2.tres" id="5_n0ikj"]
+[ext_resource type="Texture2D" uid="uid://do77yn4lfgps7" path="res://sprits/tile_0099.png" id="6_fe5w2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c7lko"]
 font_size = 12
 
-[node name="CraftmenUi" unique_id=1059655934 instance=ExtResource("1_3mpx6")]
-script = ExtResource("2_dwsy7")
-craftmen = Array[ExtResource("3_2gwvx")]([ExtResource("4_0gq66"), ExtResource("5_0gq66")])
+[node name="CraftmenUi" unique_id=1059655934 instance=ExtResource("1_m7yh4")]
+offset_left = -1.0
+offset_top = -1.0
+offset_right = -1.0
+offset_bottom = -1.0
+script = ExtResource("2_2o5a0")
+craftmen = Array[ExtResource("3_al16r")]([ExtResource("4_6v44l"), ExtResource("5_n0ikj")])
 text = "招聘界面"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Visual" parent_id_path=PackedInt32Array(1787408497) index="0" unique_id=1004532354]
@@ -35,7 +39,7 @@ vertical_alignment = 1
 [node name="Texturect" type="TextureRect" parent="Visual/VBoxContainer" index="2" unique_id=1395171087]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-texture = ExtResource("3_dwsy7")
+texture = ExtResource("6_fe5w2")
 expand_mode = 2
 stretch_mode = 5
 

@@ -1,5 +1,6 @@
+class_name CraftsmanResource
 extends Resource
-class_name CraftManResource
+
 
 enum PROFESSION {
 	GEOMANCER,

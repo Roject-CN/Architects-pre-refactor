@@ -1,61 +1,98 @@
 [gd_scene format=3 uid="uid://cv4hin2mnfixg"]
 
 [ext_resource type="Script" uid="uid://bu55nsxxshtl2" path="res://codes/buildings/building_attributes.gd" id="1_ibpcl"]
+[ext_resource type="Texture2D" uid="uid://de7a317l3chfx" path="res://sprits/buildings/building_attributes/attribute.png" id="2_8wsp1"]
+[ext_resource type="Texture2D" uid="uid://dgtixauss5w7j" path="res://sprits/buildings/building_attributes/attribute_texture.png" id="3_sohpe"]
 
 [node name="BuildingAttributes" type="Node2D" unique_id=1309801516]
 script = ExtResource("1_ibpcl")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1625997927]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1272585016]
+rotation = 1.5707964
+scale = Vector2(1, 2)
+texture = ExtResource("2_8wsp1")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=825151703]
-offset_right = 40.0
-offset_bottom = 104.0
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1203043150]
+custom_minimum_size = Vector2(1000, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1206.0
+offset_right = 1206.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
 
-[node name="Geomancer" type="Label" parent="VBoxContainer" unique_id=1142343438]
+[node name="Geomancer" type="Label" parent="HBoxContainer" unique_id=1142343438]
+custom_minimum_size = Vector2(600, 300)
 layout_mode = 2
+theme_override_font_sizes/font_size = 100
 horizontal_alignment = 1
+vertical_alignment = 1
+text_direction = 1
 
-[node name="Geomancer" type="TextureButton" parent="VBoxContainer/Geomancer" unique_id=809045584]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 4.0
-offset_right = 82.0
-offset_bottom = 20.0
-
-[node name="Designer" type="Label" parent="VBoxContainer" unique_id=681630736]
+[node name="Designer" type="Label" parent="HBoxContainer" unique_id=681630736]
+custom_minimum_size = Vector2(600, 300)
 layout_mode = 2
+theme_override_font_sizes/font_size = 100
 horizontal_alignment = 1
+vertical_alignment = 1
+text_direction = 1
 
-[node name="Designer" type="TextureButton" parent="VBoxContainer/Designer" unique_id=1205789843]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 4.0
-offset_right = 82.0
-offset_bottom = 20.0
-
-[node name="Artisan" type="Label" parent="VBoxContainer" unique_id=1039945710]
+[node name="Artisan" type="Label" parent="HBoxContainer" unique_id=1039945710]
+custom_minimum_size = Vector2(600, 300)
 layout_mode = 2
+theme_override_font_sizes/font_size = 100
 horizontal_alignment = 1
+vertical_alignment = 1
+text_direction = 1
 
-[node name="Artisan" type="TextureButton" parent="VBoxContainer/Artisan" unique_id=93969553]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 4.0
-offset_right = 82.0
-offset_bottom = 20.0
-
-[node name="Accountant" type="Label" parent="VBoxContainer" unique_id=144954043]
+[node name="Accountant" type="Label" parent="HBoxContainer" unique_id=144954043]
+custom_minimum_size = Vector2(600, 300)
 layout_mode = 2
+theme_override_font_sizes/font_size = 100
 horizontal_alignment = 1
+vertical_alignment = 1
+text_direction = 1
 
-[node name="Accountant" type="TextureButton" parent="VBoxContainer/Accountant" unique_id=59787175]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 4.0
-offset_right = 82.0
-offset_bottom = 20.0
+[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=1416909723]
+custom_minimum_size = Vector2(1000, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1206.0
+offset_top = -300.0
+offset_right = 1206.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/Geomancer/Geomancer" to="." method="_on_geomancer_pressed"]
-[connection signal="pressed" from="VBoxContainer/Designer/Designer" to="." method="_on_designer_pressed"]
-[connection signal="pressed" from="VBoxContainer/Artisan/Artisan" to="." method="_on_artisan_pressed"]
-[connection signal="pressed" from="VBoxContainer/Accountant/Accountant" to="." method="_on_accountant_pressed"]
+[node name="Geomancer" type="TextureRect" parent="HBoxContainer2" unique_id=103741239]
+clip_contents = true
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+texture = ExtResource("3_sohpe")
+expand_mode = 4
+stretch_mode = 3
+
+[node name="Designer" type="TextureRect" parent="HBoxContainer2" unique_id=15283470]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+texture = ExtResource("3_sohpe")
+expand_mode = 4
+stretch_mode = 3
+
+[node name="Artisan" type="TextureRect" parent="HBoxContainer2" unique_id=1002092248]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+texture = ExtResource("3_sohpe")
+expand_mode = 4
+stretch_mode = 3
+
+[node name="Accountant" type="TextureRect" parent="HBoxContainer2" unique_id=710187631]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+texture = ExtResource("3_sohpe")
+expand_mode = 4
+stretch_mode = 3
