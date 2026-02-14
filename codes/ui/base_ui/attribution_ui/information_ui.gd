@@ -17,7 +17,6 @@ func _ready() -> void:
 	label.text = text + " : " + str(value)
 	var plus_node : AnimationUi = plus.instantiate()
 	animation.custom_minimum_size = plus_node.size
-	
 
 func set_texture(new_value : Texture) -> void:
 	texture = new_value
@@ -40,3 +39,6 @@ func return_size_y() -> int:
 	for i : Control in h_box_container.get_children():
 		size_y += int(i.size.y)
 	return size_y
+
+func _on_button_pressed() -> void:
+	update_value()

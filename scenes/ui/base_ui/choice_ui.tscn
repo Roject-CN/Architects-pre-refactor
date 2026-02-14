@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dcr83n0wniq2n"]
+
+[ext_resource type="PackedScene" uid="uid://4ucl0ub4d5ij" path="res://scenes/ui/base_ui/base_ui.tscn" id="1_ocntn"]
+[ext_resource type="Script" uid="uid://b0rdfu4vdxtb8" path="res://codes/ui/base_ui/choice_ui/choice_ui.gd" id="2_xarj7"]
+
+[node name="ChoiceUi" unique_id=1059655934 instance=ExtResource("1_ocntn")]
+script = ExtResource("2_xarj7")

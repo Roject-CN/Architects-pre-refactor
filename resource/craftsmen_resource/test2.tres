@@ -14,7 +14,7 @@ values = {
 &"风水值": 1
 }
 level = 2
-cost = 1
+cost = 110
 texture = ExtResource("2_d4bqi")
 description = "我是你老豆"
 metadata/_custom_type_script = "uid://bcfvld13usfs"

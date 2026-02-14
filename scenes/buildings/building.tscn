@@ -2,16 +2,15 @@
 
 [ext_resource type="Script" uid="uid://cgw0irjsbwgpf" path="res://codes/buildings/building.gd" id="1_mogpk"]
 [ext_resource type="PackedScene" uid="uid://bplnjqdlip5af" path="res://scenes/environments/mvp_environment.tscn" id="2_c4fct"]
-[ext_resource type="PackedScene" uid="uid://cv4hin2mnfixg" path="res://scenes/ui/buildings/building_attributes.tscn" id="3_5awth"]
 [ext_resource type="PackedScene" uid="uid://dd34iq1476qff" path="res://scenes/division/bottom_division/mvp_bottom_division.tscn" id="3_f6oyp"]
 [ext_resource type="PackedScene" uid="uid://c5txbvhupteal" path="res://scenes/division/middle_division/mvp_middle_division.tscn" id="4_oalqm"]
 [ext_resource type="PackedScene" uid="uid://bems7wdx4vf5a" path="res://scenes/division/top_division/mvp_top_division.tscn" id="5_vnr05"]
-[ext_resource type="Texture2D" uid="uid://dgtixauss5w7j" path="res://sprits/buildings/building_attributes/attribute_texture.png" id="7_oalqm"]
-[ext_resource type="Script" uid="uid://2c1yp6wfhfbt" path="res://codes/ui/building_control.gd" id="7_vnr05"]
+[ext_resource type="Script" uid="uid://dmrd6gubt6e3e" path="res://codes/buildings/flow/base/flow_manager.gd" id="6_f6oyp"]
+[ext_resource type="PackedScene" uid="uid://cse16dtqs0vd6" path="res://scenes/buildings/flow/flow_test.tscn" id="7_oalqm"]
+[ext_resource type="PackedScene" uid="uid://b4u2lax1uwiu2" path="res://scenes/buildings/flow/flow_test2.tscn" id="8_vnr05"]
 
-[node name="Building" type="Node2D" unique_id=267276308 node_paths=PackedStringArray("attribute", "parent_environments", "parent_divisions")]
+[node name="Building" type="Node2D" unique_id=267276308 node_paths=PackedStringArray("parent_environments", "parent_divisions")]
 script = ExtResource("1_mogpk")
-attribute = NodePath("BuildingAttributes")
 folder_environments = Array[PackedScene]([ExtResource("2_c4fct")])
 parent_environments = NodePath("Environment")
 folder_divisions_bottom = Array[PackedScene]([ExtResource("3_f6oyp")])
@@ -26,127 +25,11 @@ layer = -1
 
 [node name="Divisions" type="Node" parent="." unique_id=2138797582]
 
-[node name="BuildingAttributes" parent="." unique_id=1309801516 node_paths=PackedStringArray("building") instance=ExtResource("3_5awth")]
-top_level = true
-position = Vector2(0, -539.00006)
-scale = Vector2(0.281, 0.281)
-building = NodePath("..")
+[node name="FlowManager" type="Node" parent="." unique_id=2028062571 node_paths=PackedStringArray("initial_flow")]
+script = ExtResource("6_f6oyp")
+initial_flow = NodePath("FlowTest")
+metadata/_custom_type_script = "uid://dmrd6gubt6e3e"
 
-[node name="Control" type="Control" parent="." unique_id=917990045]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("7_vnr05")
+[node name="FlowTest" parent="FlowManager" unique_id=1680525982 instance=ExtResource("7_oalqm")]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=373325655]
-layout_mode = 0
-offset_left = -310.0
-offset_top = 406.0
-offset_right = 310.0
-offset_bottom = 610.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer" unique_id=1373754342]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-
-[node name="Button1" type="TextureButton" parent="Control/VBoxContainer/HBoxContainer" unique_id=1116535589]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture_normal = ExtResource("7_oalqm")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Button2" type="TextureButton" parent="Control/VBoxContainer/HBoxContainer" unique_id=1356087197]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture_normal = ExtResource("7_oalqm")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Button3" type="TextureButton" parent="Control/VBoxContainer/HBoxContainer" unique_id=1671498859]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture_normal = ExtResource("7_oalqm")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Button4" type="TextureButton" parent="Control/VBoxContainer/HBoxContainer" unique_id=844425369]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture_normal = ExtResource("7_oalqm")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Button5" type="TextureButton" parent="Control/VBoxContainer/HBoxContainer" unique_id=80814188]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture_normal = ExtResource("7_oalqm")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Button6" type="TextureButton" parent="Control/VBoxContainer/HBoxContainer" unique_id=2038721112]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture_normal = ExtResource("7_oalqm")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Control/VBoxContainer" unique_id=1921289173]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-
-[node name="Button7" type="TextureButton" parent="Control/VBoxContainer/HBoxContainer2" unique_id=1086746038]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture_normal = ExtResource("7_oalqm")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Button8" type="TextureButton" parent="Control/VBoxContainer/HBoxContainer2" unique_id=753750728]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture_normal = ExtResource("7_oalqm")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Button9" type="TextureButton" parent="Control/VBoxContainer/HBoxContainer2" unique_id=1658086223]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Button10" type="TextureButton" parent="Control/VBoxContainer/HBoxContainer2" unique_id=1695824425]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Button11" type="TextureButton" parent="Control/VBoxContainer/HBoxContainer2" unique_id=1576635151]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Button12" type="TextureButton" parent="Control/VBoxContainer/HBoxContainer2" unique_id=201153328]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1240665154]
-
-[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/Button1" to="Control" method="_on_button_1_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/Button2" to="Control" method="_on_button_2_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/Button3" to="Control" method="_on_button_3_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/Button4" to="Control" method="_on_button_4_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/Button5" to="Control" method="_on_button_5_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/Button6" to="Control" method="_on_button_6_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer2/Button7" to="Control" method="_on_button_7_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer2/Button8" to="Control" method="_on_button_8_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer2/Button9" to="Control" method="_on_button_9_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer2/Button10" to="Control" method="_on_button_10_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer2/Button11" to="Control" method="_on_button_11_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer2/Button12" to="Control" method="_on_button_12_pressed"]
+[node name="FlowTest2" parent="FlowManager" unique_id=1946062692 instance=ExtResource("8_vnr05")]

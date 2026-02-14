@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dnr70qpy5itnb"]
+
+[ext_resource type="PackedScene" uid="uid://l0lthvl61vfr" path="res://scenes/ui/base_ui/attribution_ui.tscn" id="1_ugt2l"]
+[ext_resource type="Script" uid="uid://p860guxlbun8" path="res://codes/ui/building_ui.gd" id="2_h2rjj"]
+[ext_resource type="Texture2D" uid="uid://bb1llwn0kn1pm" path="res://icon.svg" id="3_7menp"]
+[ext_resource type="Curve" uid="uid://c735f8cwhf5gy" path="res://resource/Others/new_curve.tres" id="3_by1ni"]
+
+[node name="BuildingUi" unique_id=1059655934 instance=ExtResource("1_ugt2l")]
+script = ExtResource("2_h2rjj")
+progress_curve = ExtResource("3_by1ni")
+time = 5.0
+
+[node name="TextureRect" type="TextureRect" parent="Left/VBoxContainer" parent_id_path=PackedInt32Array(153279391) index="0" unique_id=325473575]
+layout_mode = 2
+texture = ExtResource("3_7menp")
+
+[node name="ProgressBar" type="ProgressBar" parent="Left/VBoxContainer" parent_id_path=PackedInt32Array(153279391) index="1" unique_id=1429125484]
+layout_mode = 2
+max_value = 1.0
+
+[node name="Assure" type="Button" parent="Button" parent_id_path=PackedInt32Array(883134600) index="0" unique_id=1230296730]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -15.5
+offset_right = 30.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "确认"
+
+[connection signal="pressed" from="Button/Assure" to="." method="_on_assure_pressed"]

@@ -1,5 +1,5 @@
-extends Control
-class_name BaseUi
+extends BaseUi
+class_name AttributionUi
 
 @export var separation_rate : float = 0.7 :
 	set(value):
@@ -7,16 +7,22 @@ class_name BaseUi
 		if is_inside_tree():
 			override_separation()
 
-@export var text : String = "测试标题"
-
 #引用节点
-@onready var v_box_container: VBoxContainer = $Information/VBoxContainer
-@onready var label: Label = $Label
+@onready var v_box_container: VBoxContainer = $Right/VBoxContainer
 
 # 初始化
 func _ready() -> void:	
-	label.text = text
+	super()
 	override_separation()
+	
+func ui_exit() -> void:
+	super()
+
+func ui_enter() -> void:
+	super()
+
+func ui_process(delta: float) -> void:
+	super(delta)
 
 #覆盖VBoxContainer的间距距离 为infromation_ui的尺寸 * separation_rate
 func override_separation() -> void:

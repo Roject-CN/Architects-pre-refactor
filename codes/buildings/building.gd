@@ -1,24 +1,15 @@
 class_name Building
 extends Node2D
 
+@export var building_resource : BuildingResource
+
 
 func _ready() -> void:
 	_load_environment()	#加载预设环境
 
 
-var timer_money_increase = 0.0	#建筑赚钱专用计时器
-
-func _physics_process(delta: float) -> void:
-	# 基于value_accountant赚钱
-	timer_money_increase += delta
-	if timer_money_increase >= 1.0:
-		_money_increase()
-		timer_money_increase -= 1
-
 
 ## 属性部分
-# 属性显示器
-@export var attribute : BuildingAttributes = null
 
 # 显示于building_attributes,range[0,100]
 var value_geomancer :int = 0	#堪舆值
@@ -37,9 +28,6 @@ func _calculate_accountant():
 	value_accountant = value_geomancer + value_designer + value_artisan
 	value_accountant = int(round(value_accountant * multiply_accountant))
 
-# 赚钱，增加global中money数。在物理帧循环中调用
-func _money_increase():
-	Global.money += value_accountant
 
 
 # 修改各项属性。method为ADD时，该属性值增加value；为DELETE时，该属性值减少value；为REPLACE时，该属性值替换为value
@@ -65,7 +53,6 @@ func change_value_geomancer(value:int,method:METHOD = METHOD.REPLACE):
 	multiply_geomancer = value
 	value_geomancer = environment_instance.calculate_value_geomancer(multiply_geomancer)
 	_calculate_accountant()
-	attribute.show_attributes()
 
 func change_value_designer(value:int,method:METHOD = METHOD.ADD):
 	var v = value_designer
@@ -81,7 +68,6 @@ func change_value_designer(value:int,method:METHOD = METHOD.ADD):
 		push_error("value_designer属性操作异常，attribute值应不小于0")
 	value_designer = v
 	_calculate_accountant()
-	attribute.show_attributes()
 
 func change_value_artisan(value:int,method:METHOD = METHOD.ADD):
 	var v = value_artisan
@@ -97,7 +83,6 @@ func change_value_artisan(value:int,method:METHOD = METHOD.ADD):
 		push_error("value_artisan属性操作异常，attribute值应不小于0")
 	value_artisan = v
 	_calculate_accountant()
-	attribute.show_attributes()
 
 func change_value_accountant(value:float,method:METHOD = METHOD.REPLACE):
 	if not method == METHOD.REPLACE:
@@ -108,7 +93,6 @@ func change_value_accountant(value:float,method:METHOD = METHOD.REPLACE):
 		push_error("multiply_accountant属性操作异常，multiply值应不小于1")
 	multiply_accountant = value
 	_calculate_accountant()
-	attribute.show_attributes()
 
 
 

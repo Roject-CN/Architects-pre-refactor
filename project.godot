@@ -22,7 +22,7 @@ Global="*uid://pq8f3wqvu64v"
 [display]
 
 window/size/viewport_width=720
-window/size/viewport_height=1280
+window/size/viewport_height=480
 window/size/window_width_override=1280
 window/size/window_height_override=760
 window/stretch/mode="viewport"

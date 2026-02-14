@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://jyoxd75b8pl1"]
 
-[ext_resource type="Script" uid="uid://dgqmuq4a7th8t" path="res://codes/ui/animation_ui.gd" id="1_ams32"]
+[ext_resource type="Script" uid="uid://dgqmuq4a7th8t" path="res://codes/ui/base_ui/attribution_ui/animation_ui.gd" id="1_ams32"]
 
 [sub_resource type="Animation" id="Animation_27oaa"]
 resource_name = "Plus"

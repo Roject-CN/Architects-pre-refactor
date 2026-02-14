@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://5fkp6mfhsu0w"]
 
-[ext_resource type="PackedScene" uid="uid://l0lthvl61vfr" path="res://scenes/ui/base_ui/base_ui.tscn" id="1_m7yh4"]
+[ext_resource type="PackedScene" uid="uid://l0lthvl61vfr" path="res://scenes/ui/base_ui/attribution_ui.tscn" id="1_m7yh4"]
 [ext_resource type="Script" uid="uid://dlsuruow0auqd" path="res://codes/ui/craftsmen_ui.gd" id="2_2o5a0"]
 [ext_resource type="Script" uid="uid://bcfvld13usfs" path="res://codes/craftsmen/craftsman_resource.gd" id="3_al16r"]
-[ext_resource type="Resource" uid="uid://0midcg5svrxq" path="res://Resource/test.tres" id="4_6v44l"]
-[ext_resource type="Resource" uid="uid://bq1f4gk7ydlvw" path="res://Resource/test2.tres" id="5_n0ikj"]
+[ext_resource type="Resource" uid="uid://0midcg5svrxq" path="res://resource/craftsmen_resource/test.tres" id="4_6v44l"]
+[ext_resource type="Resource" uid="uid://bq1f4gk7ydlvw" path="res://resource/craftsmen_resource/test2.tres" id="5_n0ikj"]
 [ext_resource type="Texture2D" uid="uid://do77yn4lfgps7" path="res://sprits/tile_0099.png" id="6_fe5w2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c7lko"]
@@ -17,7 +17,12 @@ offset_right = -1.0
 offset_bottom = -1.0
 script = ExtResource("2_2o5a0")
 craftmen = Array[ExtResource("3_al16r")]([ExtResource("4_6v44l"), ExtResource("5_n0ikj")])
+separation_rate = 0.75
 text = "招聘界面"
+
+[node name="Information" parent="." index="2" unique_id=1915760024]
+anchor_top = 0.3
+anchor_bottom = 0.3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Visual" parent_id_path=PackedInt32Array(1787408497) index="0" unique_id=1004532354]
 layout_mode = 2
@@ -67,14 +72,14 @@ anchor_left = 0.4
 anchor_right = 0.4
 offset_right = 8.0
 offset_bottom = 8.0
-text = "招聘"
+text = "招聘 xxxx"
 
 [node name="Next" type="Button" parent="Button" parent_id_path=PackedInt32Array(883134600) index="2" unique_id=397307005]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.6
-anchor_right = 0.6
+anchor_left = 0.65
+anchor_right = 0.65
 offset_right = 8.0
 offset_bottom = 8.0
 text = "下一个"

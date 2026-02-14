@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b4u2lax1uwiu2"]
+
+[ext_resource type="Script" uid="uid://c3rojk5d107ck" path="res://codes/buildings/flow/flow_test2.gd" id="1_yqtmj"]
+[ext_resource type="PackedScene" uid="uid://dnr70qpy5itnb" path="res://scenes/ui/base_ui/building_ui.tscn" id="2_dg3pg"]
+
+[node name="FlowTest2" type="Node" unique_id=1680525982 node_paths=PackedStringArray("building_ui", "initial_ui")]
+script = ExtResource("1_yqtmj")
+building_ui = NodePath("BuildingUi")
+initial_ui = NodePath("BuildingUi")
+metadata/_custom_type_script = "uid://dyklyrgbryvql"
+
+[node name="BuildingUi" parent="." unique_id=1059655934 instance=ExtResource("2_dg3pg")]
+text = "2流程A步骤"
+
+[connection signal="assure_pressed" from="BuildingUi" to="." method="_on_building_ui_assure_pressed"]

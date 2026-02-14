@@ -13,7 +13,7 @@ values = {
 &"风水值": 1
 }
 level = 1
-cost = 1
+cost = 211
 texture = ExtResource("2_uhslf")
 description = "相信我，我会好好工作的"
 metadata/_custom_type_script = "uid://bcfvld13usfs"
