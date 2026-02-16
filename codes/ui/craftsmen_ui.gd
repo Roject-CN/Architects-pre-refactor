@@ -1,5 +1,6 @@
+extends AttributionUi
 class_name CraftsmenUi
-extends BaseUi
+
 
 
 #后续可以讲craftman 的属性值和信息打包成resource之类的东西搭载到Ui上读取
@@ -11,12 +12,14 @@ const assure_text_temp : String = "招聘 %d$"
 var array_size : int = 0
 var index : int = 0
 
-@onready var introduction: Label = $Visual/VBoxContainer/Introduction
-@onready var texturect: TextureRect = $Visual/VBoxContainer/Texturect
-@onready var description: Label = $Visual/VBoxContainer/Description
-@onready var level: Label = $Visual/VBoxContainer/Level
+
+@onready var introduction: Label = $Left/VBoxContainer/Introduction
+@onready var texturect: TextureRect = $Left/VBoxContainer/Texturect
+@onready var description: Label = $Left/VBoxContainer/Description
+@onready var level: Label = $Left/VBoxContainer/Level
 @onready var assure: Button = $Button/Assure
 @onready var next: Button = $Button/Next
+
 
 func _ready() -> void:
 	super()
@@ -43,8 +46,7 @@ func read_craftman_resource(resource : CraftsmanResource) -> void:
 	description.text = resource.description
 	
 	#attribution部分
-	for node : InformationUI in v_box_container.get_children():
-		node.set_value(resource.values[node.text]) 
+	show_craftman_attribution(resource)
 	
 func craftmen_ui_hide() -> void:
 	hide()

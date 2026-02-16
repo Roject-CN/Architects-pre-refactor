@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="CraftManResource" format=3 uid="uid://bq1f4gk7ydlvw"]
+[gd_resource type="Resource" script_class="CraftsmanResource" format=3 uid="uid://bq1f4gk7ydlvw"]
 
 [ext_resource type="Script" uid="uid://bcfvld13usfs" path="res://codes/craftsmen/craftsman_resource.gd" id="1_hekrh"]
 [ext_resource type="Texture2D" uid="uid://do77yn4lfgps7" path="res://sprits/tile_0099.png" id="2_d4bqi"]
 
 [resource]
 script = ExtResource("1_hekrh")
-name = "思棋"
+name = "方现充"
 profession = 1
 values = {
 &"匠心值": 1,

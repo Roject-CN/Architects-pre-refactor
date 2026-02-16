@@ -5,3 +5,6 @@
 
 [node name="ChoiceUi" unique_id=1059655934 instance=ExtResource("1_ocntn")]
 script = ExtResource("2_xarj7")
+l_separation_rate = 0.75
+r_separation_rate = 0.7
+text = "测试标题"

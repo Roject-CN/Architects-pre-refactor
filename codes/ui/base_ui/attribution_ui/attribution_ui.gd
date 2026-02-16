@@ -7,8 +7,7 @@ class_name AttributionUi
 		if is_inside_tree():
 			override_separation()
 
-#引用节点
-@onready var v_box_container: VBoxContainer = $Right/VBoxContainer
+
 
 # 初始化
 func _ready() -> void:	
@@ -24,8 +23,13 @@ func ui_enter() -> void:
 func ui_process(delta: float) -> void:
 	super(delta)
 
+func show_craftman_attribution(resource : CraftsmanResource) -> void:
+	#attribution部分
+	for node : InformationUI in r_container.get_children():
+		node.set_value(resource.values[node.text]) 
+
 #覆盖VBoxContainer的间距距离 为infromation_ui的尺寸 * separation_rate
 func override_separation() -> void:
-	var information_ui :InformationUI= v_box_container.get_child(0)
+	var information_ui :InformationUI= r_container.get_child(0)
 	var constant_override = information_ui.return_size_y()
-	v_box_container.add_theme_constant_override("separation", constant_override * separation_rate)
+	r_container.add_theme_constant_override("separation", constant_override * separation_rate)

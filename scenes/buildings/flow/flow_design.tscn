@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b4u2lax1uwiu2"]
+
+[ext_resource type="Script" uid="uid://c3rojk5d107ck" path="res://codes/buildings/flow/flow_design.gd" id="1_yqtmj"]
+[ext_resource type="PackedScene" uid="uid://dnr70qpy5itnb" path="res://scenes/ui/base_ui/building_ui.tscn" id="2_dg3pg"]
+[ext_resource type="PackedScene" uid="uid://j5cttypyt3xd" path="res://scenes/ui/buildings/flow/confirm_ui.tscn" id="2_uarsl"]
+[ext_resource type="PackedScene" uid="uid://f6lypbf2mgxn" path="res://scenes/ui/buildings/flow/flow_design_theme_ui.tscn" id="3_26jsf"]
+
+[node name="FlowDesign" type="Node" unique_id=1680525982 node_paths=PackedStringArray("initial_ui")]
+script = ExtResource("1_yqtmj")
+flow_name = "设计建筑"
+flow_index = 1
+initial_ui = NodePath("ConfirmUi")
+metadata/_custom_type_script = "uid://dyklyrgbryvql"
+
+[node name="ConfirmUi" parent="." unique_id=1059655934 instance=ExtResource("2_uarsl")]
+flow_index = 1
+text = "确认设计师的人选"
+
+[node name="DesignThemeUi" parent="." unique_id=82361328 instance=ExtResource("3_26jsf")]
+text = "选择建筑主题"
+
+[node name="BuildingUi" parent="." unique_id=936105036 instance=ExtResource("2_dg3pg")]
+text = "设计建筑中"

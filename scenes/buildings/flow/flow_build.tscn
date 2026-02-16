@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b03ije2qdgaa5"]
+
+[ext_resource type="Script" uid="uid://dyklyrgbryvql" path="res://codes/buildings/flow/base/base_flow.gd" id="1_gtcqb"]
+[ext_resource type="PackedScene" uid="uid://j5cttypyt3xd" path="res://scenes/ui/buildings/flow/confirm_ui.tscn" id="2_0bcly"]
+[ext_resource type="PackedScene" uid="uid://dnr70qpy5itnb" path="res://scenes/ui/base_ui/building_ui.tscn" id="3_01wli"]
+
+[node name="FlowBuild" type="Node" unique_id=251271722 node_paths=PackedStringArray("initial_ui")]
+script = ExtResource("1_gtcqb")
+flow_name = "建造装饰"
+flow_index = 2
+initial_ui = NodePath("ConfirmUi")
+metadata/_custom_type_script = "uid://dyklyrgbryvql"
+
+[node name="ConfirmUi" parent="." unique_id=1059655934 instance=ExtResource("2_0bcly")]
+flow_index = 2
+text = "确认建造装饰人选"
+
+[node name="BuildingUi" parent="." unique_id=1450294534 instance=ExtResource("3_01wli")]
+text = "建造装饰建筑中"

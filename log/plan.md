@@ -1,6 +1,8 @@
 # 营造司物语游戏计划
 
-BaseUi
+# Ui
+
+BaseUi()
 ![alt text](plan_resource/BaseUi.png)
 BaseAttributionUi
 ![alt text](plan_resource/BaseAttributionUi.png)

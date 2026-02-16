@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://j5cttypyt3xd"]
+
+[ext_resource type="PackedScene" uid="uid://l0lthvl61vfr" path="res://scenes/ui/base_ui/attribution_ui.tscn" id="1_7fb5s"]
+[ext_resource type="Script" uid="uid://deupds61wuu7g" path="res://codes/ui/flow_ui/confirm_ui.gd" id="2_jmthm"]
+[ext_resource type="Script" uid="uid://bcfvld13usfs" path="res://codes/craftsmen/craftsman_resource.gd" id="3_nklcw"]
+
+[node name="ConfirmUi" unique_id=1059655934 instance=ExtResource("1_7fb5s")]
+script = ExtResource("2_jmthm")
+flow_index = 0
+separation_rate = 0.7
+craftsmen_resource = Array[ExtResource("3_nklcw")]([])
+plan_craftsmen = Array[ExtResource("3_nklcw")]([])
+text = "确认人选"
+metadata/_edit_lock_ = true
+
+[node name="Panel" parent="." index="0" unique_id=30616347]
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Left/VBoxContainer" parent_id_path=PackedInt32Array(153279391) index="0" unique_id=1542238446]
+layout_mode = 2
+text = "员工列表"
+horizontal_alignment = 1
+
+[node name="Scroll" type="ScrollContainer" parent="Left/VBoxContainer" parent_id_path=PackedInt32Array(153279391) index="1" unique_id=607796990]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Left/VBoxContainer/Scroll" index="0" unique_id=1179354919]
+layout_mode = 2
+alignment = 1
+
+[node name="Assure" type="Button" parent="Button" parent_id_path=PackedInt32Array(883134600) index="0" unique_id=46696744]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "确认"
+
+[connection signal="pressed" from="Button/Assure" to="." method="_on_assure_pressed"]

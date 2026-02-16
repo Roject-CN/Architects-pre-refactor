@@ -3,7 +3,10 @@ class_name BuildingUi
 
 @onready var assure: Button = $Button/Assure
 @onready var progress_bar: ProgressBar = $Left/VBoxContainer/ProgressBar
+@onready var craftsman_label: Label = $Left/VBoxContainer/craftsman_label
+
 @export var progress_curve : Curve
+
 
 signal assure_pressed()
 var value_pecent : float = 0.0 : 
@@ -24,6 +27,7 @@ func ui_exit() -> void:
 	super()
 
 func ui_enter() -> void:
+	craftsman_label.text = craftsman.name + "正在努力中"
 	super()
 
 func ui_process(delta: float) -> void:
@@ -33,4 +37,5 @@ func ui_process(delta: float) -> void:
 
 func _on_assure_pressed() -> void:
 	ui_exit()
-	ui_changed.emit()
+	request_next()
+	

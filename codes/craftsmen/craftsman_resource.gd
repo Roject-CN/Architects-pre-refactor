@@ -10,6 +10,7 @@ enum PROFESSION {
 } 
 
 var profession_name: Array[String] = ["风水师","设计师","工匠师","会计师"]
+var values_name : Array[String] = ["风水值","设计值","匠心值","工料值"]
 
 @export_group("Attribution")
 @export var name : String

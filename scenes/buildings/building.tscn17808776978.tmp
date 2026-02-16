@@ -11,8 +11,6 @@
 [ext_resource type="Resource" uid="uid://bq1f4gk7ydlvw" path="res://resource/craftsmen_resource/test2.tres" id="8_0krn8"]
 [ext_resource type="PackedScene" uid="uid://cse16dtqs0vd6" path="res://scenes/buildings/flow/flow_detection.tscn" id="8_vnr05"]
 [ext_resource type="Resource" uid="uid://0midcg5svrxq" path="res://resource/craftsmen_resource/test.tres" id="9_ofkw7"]
-[ext_resource type="PackedScene" uid="uid://b4u2lax1uwiu2" path="res://scenes/buildings/flow/flow_design.tscn" id="12_0krn8"]
-[ext_resource type="PackedScene" uid="uid://b03ije2qdgaa5" path="res://scenes/buildings/flow/flow_build.tscn" id="13_ofkw7"]
 
 [node name="Building" type="Node2D" unique_id=267276308 node_paths=PackedStringArray("parent_environments", "parent_divisions")]
 script = ExtResource("1_mogpk")
@@ -38,8 +36,4 @@ metadata/_custom_type_script = "uid://dmrd6gubt6e3e"
 
 [node name="FlowTotalConfirm" parent="FlowManager" unique_id=810954611 instance=ExtResource("7_oalqm")]
 
-[node name="FlowDetection" parent="FlowManager" unique_id=1680525982 instance=ExtResource("8_vnr05")]
-
-[node name="FlowDesign" parent="FlowManager" unique_id=1948397131 instance=ExtResource("12_0krn8")]
-
-[node name="FlowBuild" parent="FlowManager" unique_id=251271722 instance=ExtResource("13_ofkw7")]
+[node name="FlowTest" parent="FlowManager" unique_id=1680525982 instance=ExtResource("8_vnr05")]
