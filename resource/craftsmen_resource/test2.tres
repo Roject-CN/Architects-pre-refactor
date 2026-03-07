@@ -7,14 +7,14 @@
 script = ExtResource("1_hekrh")
 name = "方现充"
 profession = 1
-values = {
-&"匠心值": 1,
-&"工料值": 1,
-&"设计值": 1,
-&"风水值": 1
-}
+cost = 212
 level = 2
-cost = 110
 texture = ExtResource("2_d4bqi")
-description = "我是你老豆"
+description = "除了我之外我想不到有谁是现充了"
+values = {
+"匠心类": 1,
+"工料类": 1,
+"设计类": 2,
+"风水类": 1
+}
 metadata/_custom_type_script = "uid://bcfvld13usfs"

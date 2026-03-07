@@ -1,19 +1,22 @@
 [gd_scene format=3 uid="uid://l0lthvl61vfr"]
 
 [ext_resource type="PackedScene" uid="uid://4ucl0ub4d5ij" path="res://scenes/ui/base_ui/base_ui.tscn" id="1_5v4cq"]
+[ext_resource type="Script" uid="uid://yv3fr4cktftv" path="res://codes/ui/base_ui/attribution_ui/attribution_ui.gd" id="2_djrfl"]
 [ext_resource type="PackedScene" uid="uid://pt2vkxbbndy0" path="res://scenes/ui/base_ui/information_ui.tscn" id="3_084wr"]
 [ext_resource type="Texture2D" uid="uid://bb1llwn0kn1pm" path="res://icon.svg" id="4_mhn1y"]
 
 [node name="AttributionUi" unique_id=1059655934 instance=ExtResource("1_5v4cq")]
-craftsmen_resource = null
-plan_craftsmen = null
+script = ExtResource("2_djrfl")
+separation_rate = 0.7
 
 [node name="Left" parent="." index="2" unique_id=1915760024]
 anchor_top = 0.3
 anchor_bottom = 0.3
 
 [node name="Right" parent="." index="3" unique_id=2119368726]
+anchor_left = 0.55
 anchor_top = 0.3
+anchor_right = 0.55
 anchor_bottom = 0.3
 
 [node name="VBoxContainer" parent="Right" index="0" unique_id=486877482]

@@ -2,14 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://l0lthvl61vfr" path="res://scenes/ui/base_ui/attribution_ui.tscn" id="1_7fb5s"]
 [ext_resource type="Script" uid="uid://deupds61wuu7g" path="res://codes/ui/flow_ui/confirm_ui.gd" id="2_jmthm"]
-[ext_resource type="Script" uid="uid://bcfvld13usfs" path="res://codes/craftsmen/craftsman_resource.gd" id="3_nklcw"]
 
 [node name="ConfirmUi" unique_id=1059655934 instance=ExtResource("1_7fb5s")]
 script = ExtResource("2_jmthm")
-flow_index = 0
-separation_rate = 0.7
-craftsmen_resource = Array[ExtResource("3_nklcw")]([])
-plan_craftsmen = Array[ExtResource("3_nklcw")]([])
 text = "确认人选"
 metadata/_edit_lock_ = true
 
@@ -30,6 +25,15 @@ size_flags_vertical = 4
 [node name="VBoxContainer" type="VBoxContainer" parent="Left/VBoxContainer/Scroll" index="0" unique_id=1179354919]
 layout_mode = 2
 alignment = 1
+
+[node name="InformationUi2" parent="Right/VBoxContainer" parent_id_path=PackedInt32Array(486877482) index="1" unique_id=2043124674]
+property = 1
+
+[node name="InformationUi3" parent="Right/VBoxContainer" parent_id_path=PackedInt32Array(486877482) index="2" unique_id=472957691]
+property = 2
+
+[node name="InformationUi4" parent="Right/VBoxContainer" parent_id_path=PackedInt32Array(486877482) index="3" unique_id=1441741558]
+property = 3
 
 [node name="Assure" type="Button" parent="Button" parent_id_path=PackedInt32Array(883134600) index="0" unique_id=46696744]
 custom_minimum_size = Vector2(100, 0)

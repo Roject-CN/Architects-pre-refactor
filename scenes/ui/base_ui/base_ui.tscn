@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://4ucl0ub4d5ij"]
 
 [ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://global_theme.tres" id="1_6qa4x"]
-[ext_resource type="Script" uid="uid://yv3fr4cktftv" path="res://codes/ui/base_ui/attribution_ui/attribution_ui.gd" id="2_cimg7"]
+[ext_resource type="Script" uid="uid://bcu47gmfix0f5" path="res://codes/ui/base_ui/base_ui.gd" id="2_8ej6i"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mjsx3"]
 font_size = 24
@@ -14,9 +14,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_6qa4x")
-script = ExtResource("2_cimg7")
-separation_rate = null
-text = null
+script = ExtResource("2_8ej6i")
 
 [node name="Panel" type="Panel" parent="." unique_id=30616347]
 layout_mode = 1

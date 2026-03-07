@@ -1,17 +1,14 @@
 extends AttributionUi
 class_name CraftsmenUi
 
-
-
-#后续可以讲craftman 的属性值和信息打包成resource之类的东西搭载到Ui上读取
-#然后在进一步读取
-@export var craftmen : Array[CraftsmanResource]
+var current_craftmen : CraftsmanResource
+#craftmen是人才市场，暂且作为测试使用
+@export var craftsmen : Array[CraftsmanResource]
 const intro_text_temp : String = "%s %s"
 const level_text_temp : String = "Level %d"
 const assure_text_temp : String = "招聘 %d$"
 var array_size : int = 0
 var index : int = 0
-
 
 @onready var introduction: Label = $Left/VBoxContainer/Introduction
 @onready var texturect: TextureRect = $Left/VBoxContainer/Texturect
@@ -23,11 +20,36 @@ var index : int = 0
 
 func _ready() -> void:
 	super()
-	array_size = craftmen.size()
+	
+	assert(not craftsmen.is_empty(), str(self) + "'s craftsmen(Array[CraftmanResource] is empty)")
+		
+	array_size = craftsmen.size()
 	if array_size < 2:
 		next.disabled = true
-	read_craftman_resource(craftmen[index])
+	current_craftmen  = craftsmen[index]
+	read_craftman_resource(current_craftmen)
 	#执行BaseUi的ready()
+
+func ui_exit() -> void:
+	super()
+
+func ui_enter() -> void:
+	super()
+
+func _on_back_pressed() -> void:
+	ui_exit()
+	call_deferred("queue_free") #消除自己
+
+func _on_assure_pressed() -> void:
+	craftsman_manager.append_new_craftsman(current_craftmen)
+	craftsmen.erase(current_craftmen)
+	array_size = craftsmen.size()
+	if array_size == 0:
+		_on_back_pressed()
+	else:
+		_on_next_pressed()
+
+
 
 func read_craftman_resource(resource : CraftsmanResource) -> void:
 	#visual部分
@@ -46,23 +68,16 @@ func read_craftman_resource(resource : CraftsmanResource) -> void:
 	description.text = resource.description
 	
 	#attribution部分
-	show_craftman_attribution(resource)
+	show_resouce_attribution(resource)
 	
-func craftmen_ui_hide() -> void:
-	hide()
-
-func craftmen_ui_show() -> void:
-	show()
-
-func _on_back_pressed() -> void:
-	craftmen_ui_hide()
-
-func _on_assure_pressed() -> void:
-	craftmen_ui_hide()
-
 func _on_next_pressed() -> void:
-	if index == (array_size - 1):
+	array_size = craftsmen.size()
+	if array_size < 2:
+		next.disabled = true
+	
+	if index >= (array_size - 1):
 		index = 0
 	else:
 		index += 1
-	read_craftman_resource(craftmen[index])
+	current_craftmen = craftsmen[index]
+	read_craftman_resource(current_craftmen)

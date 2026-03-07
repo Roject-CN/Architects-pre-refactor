@@ -5,7 +5,6 @@
 
 [node name="FlowTotalConfirm" type="Node" unique_id=810954611 node_paths=PackedStringArray("initial_ui")]
 script = ExtResource("1_ll2am")
-flow_name = "确定大致人选"
 initial_ui = NodePath("TotalConfirmUi")
 metadata/_custom_type_script = "uid://dyklyrgbryvql"
 

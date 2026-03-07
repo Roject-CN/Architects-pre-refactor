@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CraftsmanResource" format=3 uid="uid://h8qv1lopkc10"]
+
+[ext_resource type="Script" uid="uid://bcfvld13usfs" path="res://codes/craftsmen/craftsman_resource.gd" id="1_vuwss"]
+[ext_resource type="Texture2D" uid="uid://do77yn4lfgps7" path="res://sprits/tile_0099.png" id="2_uwlb3"]
+
+[resource]
+script = ExtResource("1_vuwss")
+name = "张二楼"
+profession = 2
+cost = 110
+level = 2
+texture = ExtResource("2_uwlb3")
+description = "我是你老豆"
+values = {
+"匠心类": 1,
+"工料类": 3,
+"设计类": 1,
+"风水类": 1
+}
+metadata/_custom_type_script = "uid://bcfvld13usfs"

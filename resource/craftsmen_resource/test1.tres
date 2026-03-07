@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CraftsmanResource" format=3 uid="uid://cpahilhgnqvb0"]
+
+[ext_resource type="Script" uid="uid://bcfvld13usfs" path="res://codes/craftsmen/craftsman_resource.gd" id="2_fc5go"]
+[ext_resource type="Texture2D" uid="uid://do77yn4lfgps7" path="res://sprits/tile_0099.png" id="3_fc5go"]
+
+[resource]
+script = ExtResource("2_fc5go")
+name = "罗注意"
+cost = 211
+texture = ExtResource("3_fc5go")
+description = "我会好好工作的"
+metadata/_custom_type_script = "uid://bcfvld13usfs"

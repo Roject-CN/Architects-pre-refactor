@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://vi2ktm4rx1n1"]
+
+[ext_resource type="Script" uid="uid://cgw0irjsbwgpf" path="res://codes/buildings/building.gd" id="1_mogpk"]
+[ext_resource type="Resource" uid="uid://sc11tsvp7e8g" path="res://resource/building_resource/building_test.tres" id="2_0krn8"]
+[ext_resource type="PackedScene" uid="uid://bplnjqdlip5af" path="res://scenes/environments/mvp_environment.tscn" id="2_c4fct"]
+[ext_resource type="Script" uid="uid://dmrd6gubt6e3e" path="res://codes/buildings/flow/base_flow/flow_manager.gd" id="6_f6oyp"]
+[ext_resource type="Script" uid="uid://bcfvld13usfs" path="res://codes/craftsmen/craftsman_resource.gd" id="7_1x723"]
+[ext_resource type="PackedScene" uid="uid://dj7jf3tdvghai" path="res://scenes/buildings/flow/flow_total_confirm.tscn" id="7_oalqm"]
+[ext_resource type="Resource" uid="uid://bq1f4gk7ydlvw" path="res://resource/craftsmen_resource/test2.tres" id="8_0krn8"]
+[ext_resource type="PackedScene" uid="uid://cse16dtqs0vd6" path="res://scenes/buildings/flow/flow_detection.tscn" id="8_vnr05"]
+[ext_resource type="Resource" uid="uid://0midcg5svrxq" path="res://resource/craftsmen_resource/test.tres" id="9_ofkw7"]
+[ext_resource type="PackedScene" uid="uid://cvisp8vihuruy" path="res://scenes/buildings/flow/flow_account.tscn" id="11_1x723"]
+[ext_resource type="PackedScene" uid="uid://b4u2lax1uwiu2" path="res://scenes/buildings/flow/flow_design.tscn" id="12_0krn8"]
+[ext_resource type="PackedScene" uid="uid://b03ije2qdgaa5" path="res://scenes/buildings/flow/flow_build.tscn" id="13_ofkw7"]
+
+[node name="Building" type="Node2D" unique_id=267276308]
+script = ExtResource("1_mogpk")
+building_resource = ExtResource("2_0krn8")
+folder_environments = Array[PackedScene]([ExtResource("2_c4fct")])
+
+[node name="FlowManager" type="Node" parent="." unique_id=2028062571 node_paths=PackedStringArray("initial_flow")]
+script = ExtResource("6_f6oyp")
+craftsmen_resource = Array[ExtResource("7_1x723")]([ExtResource("8_0krn8"), ExtResource("9_ofkw7")])
+initial_flow = NodePath("FlowTotalConfirm")
+metadata/_custom_type_script = "uid://dmrd6gubt6e3e"
+
+[node name="FlowTotalConfirm" parent="FlowManager" unique_id=810954611 instance=ExtResource("7_oalqm")]
+
+[node name="FlowDetection" parent="FlowManager" unique_id=1680525982 instance=ExtResource("8_vnr05")]
+
+[node name="FlowDesign" parent="FlowManager" unique_id=1948397131 instance=ExtResource("12_0krn8")]
+
+[node name="FlowBuild" parent="FlowManager" unique_id=251271722 instance=ExtResource("13_ofkw7")]
+
+[node name="FlowAccount" parent="FlowManager" unique_id=1920986823 instance=ExtResource("11_1x723")]

@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://dd34iq1476qff"]
-
-[node name="MvpBottomDivision" type="Node2D" unique_id=1388682193]
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=82771674]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=307775372]

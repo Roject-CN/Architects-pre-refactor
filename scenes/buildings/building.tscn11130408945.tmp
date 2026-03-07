@@ -1,22 +1,19 @@
 [gd_scene format=3 uid="uid://vi2ktm4rx1n1"]
 
 [ext_resource type="Script" uid="uid://cgw0irjsbwgpf" path="res://codes/buildings/building.gd" id="1_mogpk"]
+[ext_resource type="Resource" uid="uid://sc11tsvp7e8g" path="res://resource/building_resource/building_test.tres" id="2_0krn8"]
 [ext_resource type="PackedScene" uid="uid://bplnjqdlip5af" path="res://scenes/environments/mvp_environment.tscn" id="2_c4fct"]
-[ext_resource type="Script" uid="uid://wguvxiry36og" path="res://codes/buildings/building_resource.gd" id="3_w2b1x"]
-[ext_resource type="Texture2D" uid="uid://bb1llwn0kn1pm" path="res://icon.svg" id="4_4hstu"]
 [ext_resource type="Script" uid="uid://dmrd6gubt6e3e" path="res://codes/buildings/flow/base_flow/flow_manager.gd" id="6_f6oyp"]
 [ext_resource type="Script" uid="uid://bq1ky4cg1v3i7" path="res://resource/structure/build_prop_config.gd" id="7_hhebf"]
 [ext_resource type="PackedScene" uid="uid://cse16dtqs0vd6" path="res://scenes/buildings/flow/flow_detection.tscn" id="8_vnr05"]
+[ext_resource type="Script" uid="uid://d0c0rulwp1lhg" path="res://codes/main/craftsman_manager.gd" id="11_0krn8"]
 [ext_resource type="PackedScene" uid="uid://cvisp8vihuruy" path="res://scenes/buildings/flow/flow_account.tscn" id="11_1x723"]
 [ext_resource type="PackedScene" uid="uid://b4u2lax1uwiu2" path="res://scenes/buildings/flow/flow_design.tscn" id="12_0krn8"]
+[ext_resource type="Script" uid="uid://bcfvld13usfs" path="res://codes/craftsmen/craftsman_resource.gd" id="12_xl0vr"]
 [ext_resource type="PackedScene" uid="uid://b03ije2qdgaa5" path="res://scenes/buildings/flow/flow_build.tscn" id="13_ofkw7"]
-
-[sub_resource type="Resource" id="Resource_78n4u"]
-script = ExtResource("3_w2b1x")
-name = "测试建筑"
-texture = ExtResource("4_4hstu")
-description = "这是一栋用于游戏开发当中测试的建筑"
-metadata/_custom_type_script = "uid://wguvxiry36og"
+[ext_resource type="Resource" uid="uid://cpahilhgnqvb0" path="res://resource/craftsmen_resource/test1.tres" id="13_u6fk5"]
+[ext_resource type="Resource" uid="uid://bq1f4gk7ydlvw" path="res://resource/craftsmen_resource/test2.tres" id="14_w2b1x"]
+[ext_resource type="Resource" uid="uid://h8qv1lopkc10" path="res://resource/craftsmen_resource/test3.tres" id="15_4hstu"]
 
 [sub_resource type="Resource" id="Resource_1x723"]
 script = ExtResource("7_hhebf")
@@ -55,15 +52,14 @@ script = ExtResource("7_hhebf")
 prop = 3
 metadata/_custom_type_script = "uid://bq1ky4cg1v3i7"
 
-[node name="Building" type="Node2D" unique_id=267276308]
+[node name="Building" type="Node2D" unique_id=267276308 node_paths=PackedStringArray("craftsman_manager")]
 script = ExtResource("1_mogpk")
-building_resource = SubResource("Resource_78n4u")
+building_resource = ExtResource("2_0krn8")
+craftsman_manager = NodePath("CraftsmanManager")
 folder_environments = Array[PackedScene]([ExtResource("2_c4fct")])
 
-[node name="FlowManager" type="Node" parent="." unique_id=2028062571 node_paths=PackedStringArray("initial_flow")]
+[node name="FlowManager" type="Node" parent="." unique_id=2028062571]
 script = ExtResource("6_f6oyp")
-initial_flow = NodePath("FlowDetection")
-slow_times = 4
 metadata/_custom_type_script = "uid://dmrd6gubt6e3e"
 
 [node name="FlowDetection" parent="FlowManager" unique_id=1680525982 instance=ExtResource("8_vnr05")]
@@ -77,3 +73,8 @@ build_prop_config = Array[ExtResource("7_hhebf")]([SubResource("Resource_volt3")
 
 [node name="FlowAccount" parent="FlowManager" unique_id=1920986823 instance=ExtResource("11_1x723")]
 build_prop_config = Array[ExtResource("7_hhebf")]([SubResource("Resource_u6fk5")])
+
+[node name="CraftsmanManager" type="Node" parent="." unique_id=1157485271]
+script = ExtResource("11_0krn8")
+current_list = Array[ExtResource("12_xl0vr")]([ExtResource("13_u6fk5"), ExtResource("14_w2b1x"), ExtResource("15_4hstu")])
+metadata/_custom_type_script = "uid://d0c0rulwp1lhg"

@@ -4,6 +4,8 @@ class_name AnimationUi
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @export var delta : int = 40
 @export var animation_time : float = 0.8
+@export var value := 1
+
 
 func _ready() -> void:
 	self.modulate = Color(1.0, 1.0, 1.0, 1.0)
@@ -14,6 +16,10 @@ func _ready() -> void:
 	plus_animation()
 	
 func plus_animation() -> void:
+	if value > 0:
+		self.text = "+1"
+	else :
+		self.text = "-1"
 	var tween := create_tween()
 	tween.tween_property(self, "position:x", delta, animation_time)
 	animation_player.play("Plus")

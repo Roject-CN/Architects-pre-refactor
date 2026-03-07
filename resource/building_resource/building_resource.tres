@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BuildingResource" format=3 uid="uid://dvlp1qsa4madw"]
+
+[ext_resource type="Texture2D" uid="uid://bb1llwn0kn1pm" path="res://icon.svg" id="2_eqmun"]
+[ext_resource type="Script" uid="uid://wguvxiry36og" path="res://codes/buildings/building_resource.gd" id="2_we63o"]
+
+[resource]
+script = ExtResource("2_we63o")
+name = "测试建筑"
+texture = ExtResource("2_eqmun")
+description = "这是一座测试的建筑"
+metadata/_custom_type_script = "uid://wguvxiry36og"

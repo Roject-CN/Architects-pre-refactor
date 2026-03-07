@@ -1,17 +1,29 @@
 [gd_scene format=3 uid="uid://cse16dtqs0vd6"]
 
-[ext_resource type="Script" uid="uid://ddu4nw4v6hrg5" path="res://codes/buildings/flow/flow_detection.gd" id="1_ymhyi"]
+[ext_resource type="Script" uid="uid://dyklyrgbryvql" path="res://codes/buildings/flow/base_flow/base_flow.gd" id="1_th2qc"]
 [ext_resource type="PackedScene" uid="uid://j5cttypyt3xd" path="res://scenes/ui/buildings/flow/confirm_ui.tscn" id="2_ymhyi"]
-[ext_resource type="PackedScene" uid="uid://dnr70qpy5itnb" path="res://scenes/ui/base_ui/building_ui.tscn" id="3_th2qc"]
+[ext_resource type="Script" uid="uid://bq1ky4cg1v3i7" path="res://resource/structure/build_prop_config.gd" id="3_7fpli"]
+[ext_resource type="PackedScene" uid="uid://dnr70qpy5itnb" path="res://scenes/ui/buildings/flow/build_ui.tscn" id="3_th2qc"]
+[ext_resource type="Curve" uid="uid://c735f8cwhf5gy" path="res://resource/Others/curve_resource.tres" id="5_huo0y"]
 
-[node name="FlowDetection" type="Node" unique_id=1680525982 node_paths=PackedStringArray("initial_ui")]
-script = ExtResource("1_ymhyi")
-flow_name = "风水勘探"
+[sub_resource type="Resource" id="Resource_huo0y"]
+script = ExtResource("3_7fpli")
+metadata/_custom_type_script = "uid://bq1ky4cg1v3i7"
+
+[sub_resource type="Resource" id="Resource_lsn5r"]
+script = ExtResource("3_7fpli")
+prop = 1
+metadata/_custom_type_script = "uid://bq1ky4cg1v3i7"
+
+[node name="FlowDetection" type="Node" unique_id=683020637 node_paths=PackedStringArray("initial_ui")]
+script = ExtResource("1_th2qc")
 initial_ui = NodePath("ConfirmUi")
 metadata/_custom_type_script = "uid://dyklyrgbryvql"
 
 [node name="ConfirmUi" parent="." unique_id=1059655934 instance=ExtResource("2_ymhyi")]
 text = "确认风水师"
+prop_configs = Array[ExtResource("3_7fpli")]([SubResource("Resource_huo0y"), SubResource("Resource_lsn5r")])
 
-[node name="BuildingUi" parent="." unique_id=1803171722 instance=ExtResource("3_th2qc")]
+[node name="BuildUi" parent="." unique_id=1803171722 instance=ExtResource("3_th2qc")]
+_progress_curve = ExtResource("5_huo0y")
 text = "风水勘探中"

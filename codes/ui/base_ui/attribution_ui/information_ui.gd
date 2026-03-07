@@ -9,8 +9,10 @@ class_name InformationUI
 var plus := preload("res://scenes/ui/base_ui/animation_ui.tscn")
 var value : int = 0
 
+@export var property : BaseResource.PROPERTY
 @export var texture : Texture
 @export var text : String
+
 
 func _ready() -> void:
 	texture_rect.texture = texture
@@ -29,16 +31,26 @@ func set_value(new_value : int) -> void:
 	label.text = text + " : " + str(value)
 
 func update_value() -> void:
-	var plus_node : AnimationUi = plus.instantiate()
-	animation.add_child(plus_node)
+	var animation_node : AnimationUi = plus.instantiate()
+	animation_node.value = 1
+	animation.add_child(animation_node)
 	value += 1
 	label.text = text + " : " + str(value)
+
+func calculate_value() -> void:
+	if value <= 0 :
+		return
+	var animation_node : AnimationUi = plus.instantiate()
+	animation_node.value = -1
+	animation.add_child(animation_node)
+	value -= 1
+	label.text = text + " : " + str(value)
+
+func highlight() -> void:
+	label.modulate = Color.BLUE
 
 func return_size_y() -> int:
 	var size_y : int = 0
 	for i : Control in h_box_container.get_children():
 		size_y += int(i.size.y)
 	return size_y
-
-func _on_button_pressed() -> void:
-	update_value()

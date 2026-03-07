@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://hfovk8ygwk0n"]
+
+[ext_resource type="PackedScene" uid="uid://l0lthvl61vfr" path="res://scenes/ui/base_ui/attribution_ui.tscn" id="1_duskk"]
+[ext_resource type="Texture2D" uid="uid://bb1llwn0kn1pm" path="res://icon.svg" id="2_5xbmg"]
+[ext_resource type="Script" uid="uid://b8k18gcqqmphk" path="res://codes/ui/flow_ui/reward_ui.gd" id="2_r6woy"]
+
+[node name="RewardUi" unique_id=1059655934 instance=ExtResource("1_duskk")]
+script = ExtResource("2_r6woy")
+time = 5.0
+text = "结算页面"
+
+[node name="TextureRect" type="TextureRect" parent="Left/VBoxContainer" parent_id_path=PackedInt32Array(153279391) index="0" unique_id=489381789]
+layout_mode = 2
+texture = ExtResource("2_5xbmg")
+
+[node name="ProgressBar" type="ProgressBar" parent="Left/VBoxContainer" parent_id_path=PackedInt32Array(153279391) index="1" unique_id=201555731]
+layout_mode = 2
+max_value = 1.0
+
+[node name="Reward" type="Label" parent="Left/VBoxContainer" parent_id_path=PackedInt32Array(153279391) index="2" unique_id=771631281]
+layout_mode = 2
+text = "奖励: %d $"
+horizontal_alignment = 1
+
+[node name="Assure" type="Button" parent="Button" parent_id_path=PackedInt32Array(883134600) index="0" unique_id=560567191]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "确认"
+
+[connection signal="pressed" from="Button/Assure" to="." method="_on_assure_pressed"]

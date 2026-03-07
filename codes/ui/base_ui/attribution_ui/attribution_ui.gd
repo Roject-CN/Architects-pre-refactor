@@ -23,10 +23,21 @@ func ui_enter() -> void:
 func ui_process(delta: float) -> void:
 	super(delta)
 
-func show_craftman_attribution(resource : CraftsmanResource) -> void:
+func show_resouce_attribution(resource : BaseResource) -> void:
 	#attribution部分
+	var index := 0
 	for node : InformationUI in r_container.get_children():
-		node.set_value(resource.values[node.text]) 
+		node.set_value(resource.return_value(index))
+		index += 1 
+
+func show_build_config(configs : Array[BuildPropConfig]) -> void:
+	for config in configs:
+		for node : InformationUI in r_container.get_children():
+			if int(config.prop) == node.property:
+				node.highlight()
+				break
+		
+		
 
 #覆盖VBoxContainer的间距距离 为infromation_ui的尺寸 * separation_rate
 func override_separation() -> void:
