@@ -32,6 +32,10 @@ func _on_employee_pressed() -> void:
 	employee.ui_enter()
 
 func _on_building_pressed() -> void:
+	if craftsman_manager.craftsman_manager_is_empty():
+		#后面可以搞个提示ui
+		return
+	
 	var building_resource := BuildingResource.new()
 	var building := building_scene.instantiate() as Building
 	building.building_resource = building_resource

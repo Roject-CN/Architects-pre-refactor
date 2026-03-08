@@ -1,15 +1,6 @@
 extends Node
 class_name BaseFlow
 
-enum FLOW{
-	风水勘探,
-	设计建筑,
-	建造建筑,
-	计算工料,
-}
-@export var flow_index : FLOW
-var _flow_name : String = FLOW.keys()[flow_index]
-
 @export var build_prop_config : Array[BuildPropConfig]
 var building_resource : BuildingResource
 var craftsman_manager : CraftsmanManager
@@ -48,21 +39,13 @@ func ui_transition() -> void:
 func flow_enter() -> void:
 	#分配prop_config以高亮属性值和计算增值
 	for ui : BaseUi in self.get_children():
-		ui.flow_index = flow_index
 		ui.prop_configs = build_prop_config
-			
-	#寻找当前流程的最优人选
-	var sort_list := craftsman_manager.sort_list(build_prop_config)
-	var craftman := sort_list[0]
-	craftsman_manager.append_plan_craftsman(craftman, flow_index)
 	
 	#最后进入
-	assert(initial_ui, _flow_name + "的initial_ui没有设定")
-	print("进入" + self._flow_name + "流程")
 	current_ui = initial_ui
 
 func flow_exit() -> void:
-	print("退出" + self._flow_name + "流程")
+	pass
 
 func flow_process(delta:float) -> void:
 	if current_ui:

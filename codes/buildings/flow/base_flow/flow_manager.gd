@@ -2,8 +2,6 @@ class_name FlowManager
 extends Node
 
 @onready var building: Building = $".."
-
-
 @export var building_resource : BuildingResource
 
 @export var initial_flow : BaseFlow
@@ -26,6 +24,7 @@ var count := 0 :
 		var max_count := slow_times - 1
 		if count >= (max_count - 1):
 			count = 0
+			
 func _ready() -> void:
 	assert(initial_flow, "flow_manager的initial_flow没有设定")
 	for i : BaseFlow in self.get_children():

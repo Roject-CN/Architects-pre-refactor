@@ -20,7 +20,8 @@ script = ExtResource("1_th2qc")
 initial_ui = NodePath("ConfirmUi")
 metadata/_custom_type_script = "uid://dyklyrgbryvql"
 
-[node name="ConfirmUi" parent="." unique_id=1059655934 instance=ExtResource("2_ymhyi")]
+[node name="ConfirmUi" parent="." unique_id=1059655934 node_paths=PackedStringArray("build_ui") instance=ExtResource("2_ymhyi")]
+build_ui = NodePath("../BuildUi")
 text = "确认风水师"
 prop_configs = Array[ExtResource("3_7fpli")]([SubResource("Resource_huo0y"), SubResource("Resource_lsn5r")])
 

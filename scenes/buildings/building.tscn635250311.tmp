@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://vi2ktm4rx1n1"]
+
+[ext_resource type="Script" uid="uid://cgw0irjsbwgpf" path="res://codes/buildings/building.gd" id="1_mogpk"]
+[ext_resource type="PackedScene" uid="uid://bplnjqdlip5af" path="res://scenes/environments/mvp_environment.tscn" id="2_c4fct"]
+[ext_resource type="Script" uid="uid://wguvxiry36og" path="res://codes/buildings/building_resource.gd" id="3_w2b1x"]
+[ext_resource type="Texture2D" uid="uid://bb1llwn0kn1pm" path="res://icon.svg" id="4_4hstu"]
+[ext_resource type="Script" uid="uid://dmrd6gubt6e3e" path="res://codes/buildings/flow/base_flow/flow_manager.gd" id="6_f6oyp"]
+[ext_resource type="Script" uid="uid://bq1ky4cg1v3i7" path="res://resource/structure/build_prop_config.gd" id="7_hhebf"]
+[ext_resource type="PackedScene" uid="uid://cse16dtqs0vd6" path="res://scenes/buildings/flow/flow_detection.tscn" id="8_vnr05"]
+[ext_resource type="PackedScene" uid="uid://cvisp8vihuruy" path="res://scenes/buildings/flow/flow_account.tscn" id="11_1x723"]
+[ext_resource type="PackedScene" uid="uid://b4u2lax1uwiu2" path="res://scenes/buildings/flow/flow_design.tscn" id="12_0krn8"]
+[ext_resource type="PackedScene" uid="uid://b03ije2qdgaa5" path="res://scenes/buildings/flow/flow_build.tscn" id="13_ofkw7"]
+
+[sub_resource type="Resource" id="Resource_78n4u"]
+script = ExtResource("3_w2b1x")
+name = "测试建筑"
+texture = ExtResource("4_4hstu")
+description = "这是一栋用于游戏开发当中测试的建筑"
+metadata/_custom_type_script = "uid://wguvxiry36og"
+
+[sub_resource type="Resource" id="Resource_1x723"]
+script = ExtResource("7_hhebf")
+weight = 1.0
+metadata/_custom_type_script = "uid://bq1ky4cg1v3i7"
+
+[sub_resource type="Resource" id="Resource_0krn8"]
+script = ExtResource("7_hhebf")
+prop = 1
+metadata/_custom_type_script = "uid://bq1ky4cg1v3i7"
+
+[sub_resource type="Resource" id="Resource_hhebf"]
+script = ExtResource("7_hhebf")
+prop = 1
+weight = 1.0
+metadata/_custom_type_script = "uid://bq1ky4cg1v3i7"
+
+[sub_resource type="Resource" id="Resource_ofkw7"]
+script = ExtResource("7_hhebf")
+prop = 3
+metadata/_custom_type_script = "uid://bq1ky4cg1v3i7"
+
+[sub_resource type="Resource" id="Resource_volt3"]
+script = ExtResource("7_hhebf")
+prop = 2
+weight = 1.0
+metadata/_custom_type_script = "uid://bq1ky4cg1v3i7"
+
+[sub_resource type="Resource" id="Resource_xl0vr"]
+script = ExtResource("7_hhebf")
+prop = 3
+metadata/_custom_type_script = "uid://bq1ky4cg1v3i7"
+
+[sub_resource type="Resource" id="Resource_u6fk5"]
+script = ExtResource("7_hhebf")
+prop = 3
+metadata/_custom_type_script = "uid://bq1ky4cg1v3i7"
+
+[node name="Building" type="Node2D" unique_id=267276308]
+script = ExtResource("1_mogpk")
+building_resource = SubResource("Resource_78n4u")
+folder_environments = Array[PackedScene]([ExtResource("2_c4fct")])
+
+[node name="FlowManager" type="Node" parent="." unique_id=2028062571 node_paths=PackedStringArray("initial_flow")]
+script = ExtResource("6_f6oyp")
+initial_flow = NodePath("FlowDetection")
+slow_times = 4
+metadata/_custom_type_script = "uid://dmrd6gubt6e3e"
+
+[node name="FlowDetection" parent="FlowManager" unique_id=1680525982 instance=ExtResource("8_vnr05")]
+build_prop_config = Array[ExtResource("7_hhebf")]([SubResource("Resource_1x723"), SubResource("Resource_0krn8")])
+
+[node name="FlowDesign" parent="FlowManager" unique_id=1948397131 instance=ExtResource("12_0krn8")]
+build_prop_config = Array[ExtResource("7_hhebf")]([SubResource("Resource_hhebf"), SubResource("Resource_ofkw7")])
+
+[node name="FlowBuild" parent="FlowManager" unique_id=251271722 instance=ExtResource("13_ofkw7")]
+build_prop_config = Array[ExtResource("7_hhebf")]([SubResource("Resource_volt3"), SubResource("Resource_xl0vr")])
+
+[node name="FlowAccount" parent="FlowManager" unique_id=1920986823 instance=ExtResource("11_1x723")]
+build_prop_config = Array[ExtResource("7_hhebf")]([SubResource("Resource_u6fk5")])

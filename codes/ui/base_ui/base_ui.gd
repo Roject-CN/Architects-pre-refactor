@@ -7,7 +7,6 @@ signal ui_finished  # 新增：UI 主动完成时发出
 @export var building_resource : BuildingResource
 @export var text : String = "测试标题"
 @onready var label: Label = $Label
-@export var flow_index : BaseFlow.FLOW
 @export var prop_configs : Array[BuildPropConfig]
 #引用节点
 @onready var l_container: VBoxContainer = $Left/VBoxContainer

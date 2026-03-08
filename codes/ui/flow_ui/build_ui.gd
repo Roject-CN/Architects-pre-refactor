@@ -27,7 +27,7 @@ func ui_exit() -> void:
 	super()
 
 func ui_enter() -> void:
-	craftsman = craftsman_manager.plan_list[flow_index]
+	assert(craftsman, str(self) + "craftsman is empty")
 	craftsman_label.text = craftsman.name + "正在努力中"
 	show_resouce_attribution(building_resource)
 	

@@ -5,30 +5,17 @@ class Media:
 	var resource : CraftsmanResource
 	var weight : float = 0.0
 	var index : int = 0
-#var _amount := 0
-
+	
 @export var current_list : Array[CraftsmanResource]
-var plan_list : Array[CraftsmanResource]
 
 signal current_list_changed()
-signal plan_list_changed()
-
-func _ready() -> void:
-	for i in BaseResource.PROPERTY:
-		plan_list.append(null)
 #添加新的员工
 func append_new_craftsman(resource : CraftsmanResource) -> void:
 	current_list.append(resource)
-	current_list_changed.emit()
 
-func append_plan_craftsman(resource : CraftsmanResource, flow_index : int) -> void:
-	plan_list[flow_index] = resource
-	plan_list_changed.emit()
+func craftsman_manager_is_empty() -> bool :
+	return current_list.is_empty()
 
-#func change_plan_craftsman(resource : CraftsmanResource, flow_index : int) -> void:
-	#plan_list[flow_index] = resource	
-	#plan_list_changed.emit()
-	
 #依照 某项能力值 给当前员工列表排序 从大到小
 func sort_list(prop_configs : Array[BuildPropConfig]) -> Array[CraftsmanResource]:
 	var target_list : Array[CraftsmanResource]

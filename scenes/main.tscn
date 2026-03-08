@@ -2,9 +2,6 @@
 
 [ext_resource type="Script" uid="uid://c4jjqgtv4ybmf" path="res://codes/main/main.gd" id="1_o5qli"]
 [ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://global_theme.tres" id="1_tipki"]
-[ext_resource type="Script" uid="uid://bcfvld13usfs" path="res://codes/craftsmen/craftsman_resource.gd" id="2_tefeu"]
-[ext_resource type="Resource" uid="uid://cpahilhgnqvb0" path="res://resource/craftsmen_resource/test1.tres" id="3_o6xl0"]
-[ext_resource type="Resource" uid="uid://bq1f4gk7ydlvw" path="res://resource/craftsmen_resource/test2.tres" id="4_tipki"]
 [ext_resource type="Script" uid="uid://d0c0rulwp1lhg" path="res://codes/main/craftsman_manager.gd" id="7_o6xl0"]
 
 [node name="Main" type="Control" unique_id=890892059]
@@ -66,7 +63,6 @@ text = "回顾过去"
 
 [node name="CraftsmanManager" type="Node" parent="Function" unique_id=1178780251]
 script = ExtResource("7_o6xl0")
-current_list = Array[ExtResource("2_tefeu")]([ExtResource("3_o6xl0"), ExtResource("4_tipki")])
 metadata/_custom_type_script = "uid://d0c0rulwp1lhg"
 
 [connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Employee" to="." method="_on_employee_pressed"]
