@@ -32,13 +32,13 @@ func _ready() -> void:
 
 func ui_exit() -> void:
 	super()
+	call_deferred("queue_free") #消除自己
 
 func ui_enter() -> void:
 	super()
 
 func _on_back_pressed() -> void:
 	ui_exit()
-	call_deferred("queue_free") #消除自己
 
 func _on_assure_pressed() -> void:
 	craftsman_manager.append_new_craftsman(current_craftmen)

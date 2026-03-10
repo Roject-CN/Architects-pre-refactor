@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://c4jjqgtv4ybmf" path="res://codes/main/main.gd" id="1_o5qli"]
 [ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://global_theme.tres" id="1_tipki"]
-[ext_resource type="Script" uid="uid://d0c0rulwp1lhg" path="res://codes/main/craftsman_manager.gd" id="7_o6xl0"]
+[ext_resource type="Script" uid="uid://d0c0rulwp1lhg" path="res://codes/craftsmen/craftsman_manager.gd" id="7_o6xl0"]
 
-[node name="Main" type="Control" unique_id=890892059]
+[node name="Main" type="Control" unique_id=890892059 node_paths=PackedStringArray("craftsman_manager")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_tipki")
 script = ExtResource("1_o5qli")
+craftsman_manager = NodePath("Function/CraftsmanManager")
 
 [node name="Panel" type="Panel" parent="." unique_id=2147417917]
 layout_mode = 1
@@ -61,9 +62,13 @@ text = "回顾过去"
 
 [node name="Function" type="Node" parent="." unique_id=600976631]
 
-[node name="CraftsmanManager" type="Node" parent="Function" unique_id=1178780251]
+[node name="CraftsmanManager" type="Node" parent="Function" unique_id=1178780251 node_paths=PackedStringArray("_company")]
 script = ExtResource("7_o6xl0")
+_company = NodePath("../../Company")
 metadata/_custom_type_script = "uid://d0c0rulwp1lhg"
+
+[node name="Company" type="Node2D" parent="." unique_id=1582027643]
+position = Vector2(357, 236)
 
 [connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Employee" to="." method="_on_employee_pressed"]
 [connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Building" to="." method="_on_building_pressed"]

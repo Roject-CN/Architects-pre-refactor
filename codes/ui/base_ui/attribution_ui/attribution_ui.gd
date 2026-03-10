@@ -37,7 +37,6 @@ func show_build_config(configs : Array[BuildPropConfig]) -> void:
 				node.highlight()
 				break
 		
-		
 
 #覆盖VBoxContainer的间距距离 为infromation_ui的尺寸 * separation_rate
 func override_separation() -> void:

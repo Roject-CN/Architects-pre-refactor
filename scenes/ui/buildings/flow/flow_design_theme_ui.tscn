@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://f6lypbf2mgxn"]
 
 [ext_resource type="PackedScene" uid="uid://dcr83n0wniq2n" path="res://scenes/ui/base_ui/choice_ui.tscn" id="1_cl50w"]
+[ext_resource type="Script" uid="uid://csqdxcehnrmgy" path="res://codes/ui/flow_ui/design_theme_ui.gd" id="2_qpku1"]
 
 [node name="DesignThemeUi" unique_id=1059655934 instance=ExtResource("1_cl50w")]
+script = ExtResource("2_qpku1")
 
 [node name="Button" type="Button" parent="Left/VBoxContainer" parent_id_path=PackedInt32Array(153279391) index="0" unique_id=748078088]
 custom_minimum_size = Vector2(100, 0)

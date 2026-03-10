@@ -7,7 +7,7 @@ const employee_scene := preload("uid://5fkp6mfhsu0w")
 #building_index 意味着建造建筑的序列，目前暂时为测试用
 var building_index := 0
 var current_building : Building
-@onready var craftsman_manager: CraftsmanManager = $Function/CraftsmanManager
+@export var craftsman_manager: CraftsmanManager
 
 @onready var employee_button: Button = $Panel/MarginContainer/VBoxContainer/Employee
 @onready var building_button: Button = $Panel/MarginContainer/VBoxContainer/Building
@@ -15,6 +15,8 @@ var current_building : Building
 
 
 func _ready() -> void:
+	assert(craftsman_manager, "main.stcn's craftsman_manager is empty")
+	
 	var dir = DirAccess.open("user://")
 	if dir:
 		if not dir.dir_exists("building_resource"):

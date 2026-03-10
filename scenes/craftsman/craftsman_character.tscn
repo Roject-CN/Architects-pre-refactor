@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://drpfqa35ayqn8"]
+
+[ext_resource type="Script" uid="uid://ehy137bbe4rb" path="res://codes/craftsmen/craftsman_character.gd" id="1_pux4w"]
+[ext_resource type="Texture2D" uid="uid://do77yn4lfgps7" path="res://sprits/tile_0099.png" id="2_k267a"]
+
+[node name="CraftsmanCharacter" type="Node2D" unique_id=1328210781]
+scale = Vector2(2, 2)
+script = ExtResource("1_pux4w")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1702665757]
+texture = ExtResource("2_k267a")

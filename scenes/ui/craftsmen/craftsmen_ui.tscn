@@ -47,19 +47,20 @@ layout_mode = 2
 text = "相信我，我会好好工作的"
 label_settings = SubResource("LabelSettings_c7lko")
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Back" type="Button" parent="Button" parent_id_path=PackedInt32Array(883134600) index="0" unique_id=1469069294]
-custom_minimum_size = Vector2(60, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.2
-anchor_right = 0.2
+anchor_left = 0.15
+anchor_right = 0.15
 offset_right = 8.0
 offset_bottom = 8.0
 text = "返回"
 
 [node name="Assure" type="Button" parent="Button" parent_id_path=PackedInt32Array(883134600) index="1" unique_id=388805995]
-custom_minimum_size = Vector2(60, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.4
@@ -69,7 +70,7 @@ offset_bottom = 8.0
 text = "招聘 xxxx"
 
 [node name="Next" type="Button" parent="Button" parent_id_path=PackedInt32Array(883134600) index="2" unique_id=397307005]
-custom_minimum_size = Vector2(60, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.65
