@@ -1,6 +1,11 @@
 [Toc]
 格式： ### 日期 然后后面是日志内容即可（最新的优先写在最上面）
+---
+### 2026-03-11
+主要更新内容
 
+- 新增`CraftsmanGenerate`类：该类1.提供一个外部调用函数`generate_value`，传参`fame_value`（玩家名气值）、`gender`（性别：1-男 0-女，置空随机）、`profession`（职业，0~3，置空随机），该函数返回一个`CraftsmanResource`对象，提供属性：name、level、profession、values、cost、description。（图形池暂未实现）；2.提供一个外部调用函数`generate_craftsman`，传参`fame_value`，基于log函数计算要生成的工匠数量，批量生成多个`CraftsmanResource`对象。该类提供方便修改的const参数以调整游戏数值平衡。
+- 修改`CraftsmanResource`类，将_level_limit置为5，对该类中代码无显著影响，最高level5更符合常规游戏等级印象。若不妥可修改删除。
 
 ---
 ### 2026-03-09

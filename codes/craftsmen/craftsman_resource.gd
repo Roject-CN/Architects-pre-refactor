@@ -2,15 +2,17 @@ extends BaseResource
 class_name CraftsmanResource
 
 const profession_name: Array[String] = ["风水师","设计师","工匠师","会计师"]
-const _level_limit := 4
+const _level_limit := 5	#changed	#最高5级更符合常规游戏等级印象，craftsman_generate.gd中因此预设了5个等级和文案，如不妥可删除
 const _energy_limit := 40
 const _energy_tired := 5
 const _experience_per_level = 100
+
 
 @export_group("Information")
 @export var name : String
 @export var profession : PROPERTY
 @export var cost :int
+
 
 @export_group("Effect")
 @export_range(1, _level_limit, 1) var level : int

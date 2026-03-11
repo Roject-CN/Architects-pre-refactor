@@ -6,7 +6,12 @@
 [resource]
 script = ExtResource("2_fc5go")
 name = "罗注意"
+profession = null
 cost = 211
+level = null
+experience = null
+max_energy = null
 texture = ExtResource("3_fc5go")
 description = "我会好好工作的"
+values = null
 metadata/_custom_type_script = "uid://bcfvld13usfs"
