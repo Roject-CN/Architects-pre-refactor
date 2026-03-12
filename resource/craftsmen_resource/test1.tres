@@ -9,4 +9,10 @@ name = "罗注意"
 cost = 211
 texture = ExtResource("3_fc5go")
 description = "我会好好工作的"
+values = {
+"匠心类": 1,
+"工料类": 1,
+"设计类": 1,
+"风水类": 2
+}
 metadata/_custom_type_script = "uid://bcfvld13usfs"

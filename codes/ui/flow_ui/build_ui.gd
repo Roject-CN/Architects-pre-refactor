@@ -43,7 +43,7 @@ func ui_process(delta: float) -> void:
 	value_pecent += (1.0 / time * delta * _progress_curve.sample(value_pecent))
 	
 	for i in prop_configs:
-		i.build_process(delta, craftsman.return_craftsman_effect(delta))
+		i.build_process(delta, craftsman.return_craftsman_effect(delta, i))
 	
 
 func animation_ui_add(index : int) -> void:
