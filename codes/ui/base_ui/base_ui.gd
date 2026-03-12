@@ -29,9 +29,3 @@ func ui_process(_delta : float) -> void:
 # 主动请求切换到下一个 UI（例如按钮点击时调用）
 func request_next() -> void:
 	ui_finished.emit()
-
-func respond_current_list_changed() -> void:
-	pass
-
-func respond_plan_list_changed() -> void:
-	pass

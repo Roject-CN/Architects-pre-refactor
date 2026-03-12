@@ -9,3 +9,5 @@ script = ExtResource("1_pux4w")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1702665757]
 texture = ExtResource("2_k267a")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1514053351]

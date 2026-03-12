@@ -9,9 +9,11 @@ var building_index := 0
 var current_building : Building
 @export var craftsman_manager: CraftsmanManager
 
-@onready var employee_button: Button = $Panel/MarginContainer/VBoxContainer/Employee
-@onready var building_button: Button = $Panel/MarginContainer/VBoxContainer/Building
-@onready var review_button: Button = $Panel/MarginContainer/VBoxContainer/Review
+@onready var employee_button: Button = $Button/MarginContainer/VBoxContainer/Employee
+@onready var building_button: Button = $Button/MarginContainer/VBoxContainer/Building
+@onready var review_button: Button = $Button/MarginContainer/VBoxContainer/Review
+
+@onready var ui: MainUi = $Ui
 
 
 func _ready() -> void:
@@ -23,7 +25,11 @@ func _ready() -> void:
 			dir.make_dir_recursive(Global.BUILDING_SAVE_DIR)
 	pass #未来需要读取存档中的building_index
 	
-	
+	#读取存档环节应当在开始界面 这里先放在主场景里
+	var resource := preload("res://resource/save_resource/start_up.tres")
+	Global.load_save_resource(resource)
+	ui.init_main_ui(Global.save_resource)
+
 	
 
 func _on_employee_pressed() -> void:

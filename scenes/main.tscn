@@ -1,8 +1,14 @@
 [gd_scene format=3 uid="uid://q0k0qyp1t1mw"]
 
 [ext_resource type="Script" uid="uid://c4jjqgtv4ybmf" path="res://codes/main/main.gd" id="1_o5qli"]
-[ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://global_theme.tres" id="1_tipki"]
+[ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://resource/global_theme.tres" id="1_tipki"]
+[ext_resource type="Script" uid="uid://colk7drh6w0ja" path="res://codes/main/main_ui.gd" id="3_jyhfs"]
+[ext_resource type="Script" uid="uid://duhehw80582bv" path="res://codes/main/main_time.gd" id="5_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://bb1llwn0kn1pm" path="res://icon.svg" id="5_tefeu"]
 [ext_resource type="Script" uid="uid://d0c0rulwp1lhg" path="res://codes/craftsmen/craftsman_manager.gd" id="7_o6xl0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tefeu"]
+size = Vector2(128, 128.00003)
 
 [node name="Main" type="Control" unique_id=890892059 node_paths=PackedStringArray("craftsman_manager")]
 layout_mode = 3
@@ -14,15 +20,187 @@ grow_vertical = 2
 theme = ExtResource("1_tipki")
 script = ExtResource("1_o5qli")
 craftsman_manager = NodePath("Function/CraftsmanManager")
+metadata/_edit_lock_ = true
 
-[node name="Panel" type="Panel" parent="." unique_id=2147417917]
+[node name="Company" type="Node2D" parent="." unique_id=1582027643]
+
+[node name="desk" type="Sprite2D" parent="Company" unique_id=1109978833]
+position = Vector2(322, 205)
+scale = Vector2(0.484375, 0.46875)
+texture = ExtResource("5_tefeu")
+
+[node name="Area2D" type="Area2D" parent="Company/desk" unique_id=1087627585]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Company/desk/Area2D" unique_id=652815826]
+shape = SubResource("RectangleShape2D_tefeu")
+
+[node name="desk2" type="Sprite2D" parent="Company" unique_id=2040509389]
+position = Vector2(322, 271)
+scale = Vector2(0.484375, 0.46875)
+texture = ExtResource("5_tefeu")
+
+[node name="Area2D" type="Area2D" parent="Company/desk2" unique_id=379781848]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Company/desk2/Area2D" unique_id=164796387]
+shape = SubResource("RectangleShape2D_tefeu")
+
+[node name="desk3" type="Sprite2D" parent="Company" unique_id=1792279778]
+position = Vector2(390.99997, 205)
+scale = Vector2(0.484375, 0.46875)
+texture = ExtResource("5_tefeu")
+
+[node name="Area2D" type="Area2D" parent="Company/desk3" unique_id=1813838414]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Company/desk3/Area2D" unique_id=1993157818]
+shape = SubResource("RectangleShape2D_tefeu")
+
+[node name="desk4" type="Sprite2D" parent="Company" unique_id=1846505846]
+position = Vector2(391, 272.00003)
+scale = Vector2(0.484375, 0.46875)
+texture = ExtResource("5_tefeu")
+
+[node name="Area2D" type="Area2D" parent="Company/desk4" unique_id=1765241947]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Company/desk4/Area2D" unique_id=1645466713]
+shape = SubResource("RectangleShape2D_tefeu")
+
+[node name="Spawn" type="Marker2D" parent="Company" unique_id=228486192]
+position = Vector2(360, 480)
+
+[node name="Work1" type="Marker2D" parent="Company" unique_id=624297379]
+position = Vector2(272, 203)
+
+[node name="wall" type="Sprite2D" parent="Company" unique_id=81545313]
+position = Vector2(28, 239.99998)
+scale = Vector2(0.40624997, 3.7499998)
+texture = ExtResource("5_tefeu")
+
+[node name="wall2" type="Sprite2D" parent="Company/wall" unique_id=787031392]
+position = Vector2(819.6924, -53.466667)
+scale = Vector2(13.8076935, 0.16458333)
+texture = ExtResource("5_tefeu")
+
+[node name="wall3" type="Sprite2D" parent="Company/wall" unique_id=1176902287]
+position = Vector2(1639.3846, 0.5333374)
+scale = Vector2(0.99999994, 1)
+texture = ExtResource("5_tefeu")
+
+[node name="wall4" type="Sprite2D" parent="Company/wall" unique_id=1109326946]
+position = Vector2(1332.9232, 57.06667)
+scale = Vector2(5.7884603, 0.116666675)
+texture = ExtResource("5_tefeu")
+
+[node name="wall5" type="Sprite2D" parent="Company/wall" unique_id=1046820616]
+position = Vector2(307.69226, 57.06667)
+scale = Vector2(5.7884603, 0.116666675)
+texture = ExtResource("5_tefeu")
+
+[node name="Area2D" type="Area2D" parent="Company/wall" unique_id=931008837]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Company/wall/Area2D" unique_id=1139107269]
+polygon = PackedVector2Array(-59.076927, 61.600006, -71.38462, -64.53333, 1703.3846, -63.2, 1703.3846, 65.06668, 982.1538, 63.200005, 982.1538, 50.13334, 1572.9231, 49.600006, 1563.0769, -44.533333, 59.07692, -42.933334, 64, 50.13334, 667.0769, 49.600006, 667.0769, 63.200005)
+
+[node name="Ui" type="Panel" parent="." unique_id=1672565873]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.1
+grow_horizontal = 2
+script = ExtResource("3_jyhfs")
+metadata/_custom_type_script = "uid://colk7drh6w0ja"
+
+[node name="Container" type="Control" parent="Ui" unique_id=987204868]
+anchors_preset = 0
+offset_right = 346.0
+offset_bottom = 40.0
+
+[node name="Money" type="HBoxContainer" parent="Ui/Container" unique_id=1646293515]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 1
+anchors_preset = -1
+offset_right = 102.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Ui/Container/Money" unique_id=1662097202]
+layout_mode = 2
+text = "金钱:"
+
+[node name="Value" type="Label" parent="Ui/Container/Money" unique_id=1808022642]
+layout_mode = 2
+text = "xxx"
+
+[node name="PlaceHolder" type="Control" parent="Ui/Container/Money" unique_id=168463468]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Fame" type="HBoxContainer" parent="Ui/Container" unique_id=1771801521]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_right = 0.3
+offset_right = 118.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Ui/Container/Fame" unique_id=1410144982]
+layout_mode = 2
+text = "名气值:"
+
+[node name="Value" type="Label" parent="Ui/Container/Fame" unique_id=1082153743]
+layout_mode = 2
+text = "xxx"
+
+[node name="Control" type="Control" parent="Ui/Container/Fame" unique_id=1528065682]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Research" type="HBoxContainer" parent="Ui/Container" unique_id=2094138713]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.65
+anchor_right = 0.7
+offset_right = 118.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Ui/Container/Research" unique_id=2082625239]
+layout_mode = 2
+text = "研究点:"
+
+[node name="Value" type="Label" parent="Ui/Container/Research" unique_id=17637026]
+layout_mode = 2
+text = "xxx"
+
+[node name="Control" type="Control" parent="Ui/Container/Research" unique_id=66922566]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Time" type="HBoxContainer" parent="Ui" unique_id=719396670]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7
+anchor_right = 0.7
+offset_right = 48.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Ui/Time" unique_id=1273392076]
+layout_mode = 2
+text = "时间："
+
+[node name="Value" type="Label" parent="Ui/Time" unique_id=1029099694]
+layout_mode = 2
+text = "xxx年xx月xx日"
+
+[node name="Button" type="Panel" parent="." unique_id=2147417917]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.3
 anchor_right = 0.15
 anchor_bottom = 0.6
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1387030544]
+[node name="MarginContainer" type="MarginContainer" parent="Button" unique_id=1387030544]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -40,36 +218,38 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=167129776]
+[node name="VBoxContainer" type="VBoxContainer" parent="Button/MarginContainer" unique_id=167129776]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=1569889780]
+[node name="Label" type="Label" parent="Button/MarginContainer/VBoxContainer" unique_id=1569889780]
 layout_mode = 2
 text = "菜单列表"
 horizontal_alignment = 1
 
-[node name="Employee" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=1931172483]
+[node name="Employee" type="Button" parent="Button/MarginContainer/VBoxContainer" unique_id=1931172483]
 layout_mode = 2
 text = "雇佣员工"
 
-[node name="Building" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=1308421589]
+[node name="Building" type="Button" parent="Button/MarginContainer/VBoxContainer" unique_id=1308421589]
 layout_mode = 2
 text = "建造建筑"
 
-[node name="Review" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=2118163836]
+[node name="Review" type="Button" parent="Button/MarginContainer/VBoxContainer" unique_id=2118163836]
 layout_mode = 2
 text = "回顾过去"
 
 [node name="Function" type="Node" parent="." unique_id=600976631]
 
-[node name="CraftsmanManager" type="Node" parent="Function" unique_id=1178780251 node_paths=PackedStringArray("_company")]
+[node name="CraftsmanManager" type="Node" parent="Function" unique_id=1178780251 node_paths=PackedStringArray("_spawn_position")]
 script = ExtResource("7_o6xl0")
-_company = NodePath("../../Company")
+_spawn_position = NodePath("../../Company/Spawn")
 metadata/_custom_type_script = "uid://d0c0rulwp1lhg"
 
-[node name="Company" type="Node2D" parent="." unique_id=1582027643]
-position = Vector2(357, 236)
+[node name="MainTime" type="Node" parent="." unique_id=1253994536 node_paths=PackedStringArray("craftsman_manager")]
+script = ExtResource("5_tbgi4")
+craftsman_manager = NodePath("../Function/CraftsmanManager")
+metadata/_custom_type_script = "uid://duhehw80582bv"
 
-[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Employee" to="." method="_on_employee_pressed"]
-[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Building" to="." method="_on_building_pressed"]
-[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Review" to="." method="_on_review_pressed"]
+[connection signal="pressed" from="Button/MarginContainer/VBoxContainer/Employee" to="." method="_on_employee_pressed"]
+[connection signal="pressed" from="Button/MarginContainer/VBoxContainer/Building" to="." method="_on_building_pressed"]
+[connection signal="pressed" from="Button/MarginContainer/VBoxContainer/Review" to="." method="_on_review_pressed"]

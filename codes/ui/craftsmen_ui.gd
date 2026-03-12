@@ -4,6 +4,7 @@ class_name CraftsmenUi
 var current_craftmen : CraftsmanResource
 #craftmen是人才市场，暂且作为测试使用
 @export var craftsmen : Array[CraftsmanResource]
+
 const intro_text_temp : String = "%s %s"
 const level_text_temp : String = "Level %d"
 const assure_text_temp : String = "招聘 %d$"
@@ -20,8 +21,7 @@ var index : int = 0
 
 func _ready() -> void:
 	super()
-	
-	assert(not craftsmen.is_empty(), str(self) + "'s craftsmen(Array[CraftmanResource] is empty)")
+	assert(craftsmen, str(self) + "'s craftsmen(Array[CraftmanResource] is empty)")
 		
 	array_size = craftsmen.size()
 	if array_size < 2:
@@ -41,6 +41,9 @@ func _on_back_pressed() -> void:
 	ui_exit()
 
 func _on_assure_pressed() -> void:
+	#雇佣成功扣钱
+	Global.subtract_money(current_craftmen.cost)
+	
 	craftsman_manager.append_new_craftsman(current_craftmen)
 	craftsmen.erase(current_craftmen)
 	array_size = craftsmen.size()
@@ -48,7 +51,8 @@ func _on_assure_pressed() -> void:
 		_on_back_pressed()
 	else:
 		_on_next_pressed()
-
+	
+	
 
 
 func read_craftman_resource(resource : CraftsmanResource) -> void:

@@ -27,6 +27,7 @@ func _ready() -> void:
 
 func ui_exit() -> void:
 	super()
+	Global.add_money(reward_value)
 
 func ui_enter() -> void:
 	show_resouce_attribution(building_resource)

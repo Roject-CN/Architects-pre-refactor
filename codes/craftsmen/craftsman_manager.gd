@@ -9,7 +9,8 @@ class Media:
 const _max_amount := 4
 const _craftsman_character_scene := preload("uid://drpfqa35ayqn8")
 
-@export var _company : Node2D
+@export var _spawn_position : Marker2D
+@export var _workplace_position : Marker2D
 @export var current_list : Array[CraftsmanResource]
 signal current_list_changed()
 #添加新的员工
@@ -18,7 +19,9 @@ func append_new_craftsman(resource : CraftsmanResource) -> void:
 	#回头搞个Craftsman_manager.tscn 搞个员工列表场景，方便进行升级和解雇人员
 	var craftsman_character := _craftsman_character_scene.instantiate() as CraftsmanCharacter
 	craftsman_character.craftman_resource = resource
-	_company.add_child(craftsman_character)
+	craftsman_character.workplace = _workplace_position
+	craftsman_character.restplace = _spawn_position
+	self.add_child(craftsman_character)
 
 func craftsman_manager_is_empty() -> bool :
 	return current_list.is_empty()

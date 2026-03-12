@@ -123,10 +123,7 @@ prop_configs = Array[ExtResource("7_hhebf")]([SubResource("Resource_huo0y"), Sub
 
 [node name="BuildUi2" parent="FlowManager/FlowDetection" unique_id=1329876329 instance=ExtResource("9_xl0vr")]
 visible = false
-time = null
-separation_rate = null
 text = "风水勘探中"
-prop_configs = null
 
 [node name="FlowDesign" type="Node" parent="FlowManager" unique_id=152366546 node_paths=PackedStringArray("initial_ui")]
 script = ExtResource("6_ofkw7")
@@ -146,10 +143,7 @@ text = "选择建筑主题"
 
 [node name="BuildUi2" parent="FlowManager/FlowDesign" unique_id=2075273968 instance=ExtResource("9_xl0vr")]
 visible = false
-time = null
-separation_rate = null
 text = "设计建筑中"
-prop_configs = null
 
 [node name="PlaceHolder2" parent="FlowManager/FlowDesign" unique_id=964188209 instance=ExtResource("11_w2b1x")]
 visible = false
@@ -170,10 +164,7 @@ prop_configs = Array[ExtResource("7_hhebf")]([SubResource("Resource_01wli"), Sub
 
 [node name="BuildUi2" parent="FlowManager/FlowBuild" unique_id=1966546471 instance=ExtResource("9_xl0vr")]
 visible = false
-time = null
-separation_rate = null
 text = "建造装饰建筑中"
-prop_configs = null
 
 [node name="FlowAccount" type="Node" parent="FlowManager" unique_id=919585806 node_paths=PackedStringArray("initial_ui")]
 script = ExtResource("6_ofkw7")
@@ -189,8 +180,6 @@ prop_configs = Array[ExtResource("7_hhebf")]([SubResource("Resource_q4rys")])
 
 [node name="BuildUi2" parent="FlowManager/FlowAccount" unique_id=1841627980 instance=ExtResource("9_xl0vr")]
 visible = false
-time = null
-separation_rate = null
 text = "正在计算工料中"
 prop_configs = Array[ExtResource("7_hhebf")]([SubResource("Resource_0y52w")])
 

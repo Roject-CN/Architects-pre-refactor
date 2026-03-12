@@ -1,6 +1,6 @@
 extends BaseUi
 
-@export var timer : float 
+@export var timer : float = 10.0
 var time : float = 0.0 
 
 func ui_enter() -> void:
