@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cax01ei3tn8xg"]
+
+[ext_resource type="PackedScene" uid="uid://4ucl0ub4d5ij" path="res://scenes/ui/base_ui/base_ui.tscn" id="1_13pw6"]
+[ext_resource type="Script" uid="uid://tjdrr2wna1de" path="res://codes/ui/flow_ui/place_holder_ui.gd" id="2_gbmsa"]
+
+[node name="PlaceHolderUi" unique_id=1059655934 instance=ExtResource("1_13pw6")]
+script = ExtResource("2_gbmsa")
+timer = 32.0

@@ -10,8 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://j5cttypyt3xd" path="res://scenes/ui/buildings/flow/confirm_ui.tscn" id="8_volt3"]
 [ext_resource type="PackedScene" uid="uid://dnr70qpy5itnb" path="res://scenes/ui/buildings/flow/build_ui.tscn" id="9_xl0vr"]
 [ext_resource type="PackedScene" uid="uid://f6lypbf2mgxn" path="res://scenes/ui/buildings/flow/flow_design_theme_ui.tscn" id="10_u6fk5"]
-[ext_resource type="PackedScene" uid="uid://4ucl0ub4d5ij" path="res://scenes/ui/base_ui/base_ui.tscn" id="11_w2b1x"]
-[ext_resource type="Script" uid="uid://tjdrr2wna1de" path="res://codes/ui/flow_ui/place_holder_ui.gd" id="12_4hstu"]
+[ext_resource type="PackedScene" uid="uid://cax01ei3tn8xg" path="res://scenes/ui/buildings/flow/place_holder_ui.tscn" id="11_0krn8"]
 [ext_resource type="PackedScene" uid="uid://hfovk8ygwk0n" path="res://scenes/ui/buildings/flow/reward_ui.tscn" id="13_78n4u"]
 
 [sub_resource type="Resource" id="Resource_78n4u"]
@@ -116,12 +115,14 @@ initial_ui = NodePath("ConfirmUi2")
 metadata/_custom_type_script = "uid://dyklyrgbryvql"
 
 [node name="ConfirmUi2" parent="FlowManager/FlowDetection" unique_id=1059655934 node_paths=PackedStringArray("build_ui") instance=ExtResource("8_volt3")]
+process_mode = 0
 visible = false
 build_ui = NodePath("../BuildUi2")
 text = "确认风水师"
 prop_configs = Array[ExtResource("7_hhebf")]([SubResource("Resource_huo0y"), SubResource("Resource_lsn5r")])
 
 [node name="BuildUi2" parent="FlowManager/FlowDetection" unique_id=1329876329 instance=ExtResource("9_xl0vr")]
+process_mode = 0
 visible = false
 text = "风水勘探中"
 
@@ -132,23 +133,23 @@ initial_ui = NodePath("ConfirmUi2")
 metadata/_custom_type_script = "uid://dyklyrgbryvql"
 
 [node name="ConfirmUi2" parent="FlowManager/FlowDesign" unique_id=1868643055 node_paths=PackedStringArray("build_ui") instance=ExtResource("8_volt3")]
+process_mode = 0
 visible = false
 build_ui = NodePath("../BuildUi2")
 text = "确认设计师的人选"
 prop_configs = Array[ExtResource("7_hhebf")]([SubResource("Resource_1t7h7"), SubResource("Resource_fh7xo")])
 
 [node name="DesignThemeUi2" parent="FlowManager/FlowDesign" unique_id=965524690 instance=ExtResource("10_u6fk5")]
+process_mode = 0
 visible = false
 text = "选择建筑主题"
 
 [node name="BuildUi2" parent="FlowManager/FlowDesign" unique_id=2075273968 instance=ExtResource("9_xl0vr")]
+process_mode = 0
 visible = false
 text = "设计建筑中"
 
-[node name="PlaceHolder2" parent="FlowManager/FlowDesign" unique_id=964188209 instance=ExtResource("11_w2b1x")]
-visible = false
-script = ExtResource("12_4hstu")
-timer = 10.0
+[node name="PlaceHolderUi" parent="FlowManager/FlowDesign" unique_id=795315083 instance=ExtResource("11_0krn8")]
 
 [node name="FlowBuild" type="Node" parent="FlowManager" unique_id=1960394218 node_paths=PackedStringArray("initial_ui")]
 script = ExtResource("6_ofkw7")
@@ -157,14 +158,18 @@ initial_ui = NodePath("ConfirmUi2")
 metadata/_custom_type_script = "uid://dyklyrgbryvql"
 
 [node name="ConfirmUi2" parent="FlowManager/FlowBuild" unique_id=768199035 node_paths=PackedStringArray("build_ui") instance=ExtResource("8_volt3")]
+process_mode = 0
 visible = false
 build_ui = NodePath("../BuildUi2")
 text = "确认建造装饰人选"
 prop_configs = Array[ExtResource("7_hhebf")]([SubResource("Resource_01wli"), SubResource("Resource_25mfx")])
 
 [node name="BuildUi2" parent="FlowManager/FlowBuild" unique_id=1966546471 instance=ExtResource("9_xl0vr")]
+process_mode = 0
 visible = false
 text = "建造装饰建筑中"
+
+[node name="PlaceHolderUi" parent="FlowManager/FlowBuild" unique_id=1947500056 instance=ExtResource("11_0krn8")]
 
 [node name="FlowAccount" type="Node" parent="FlowManager" unique_id=919585806 node_paths=PackedStringArray("initial_ui")]
 script = ExtResource("6_ofkw7")
@@ -173,15 +178,18 @@ initial_ui = NodePath("ConfirmUi2")
 metadata/_custom_type_script = "uid://dyklyrgbryvql"
 
 [node name="ConfirmUi2" parent="FlowManager/FlowAccount" unique_id=80800835 node_paths=PackedStringArray("build_ui") instance=ExtResource("8_volt3")]
+process_mode = 0
 visible = false
 build_ui = NodePath("../BuildUi2")
 text = "确认计算工料人选"
 prop_configs = Array[ExtResource("7_hhebf")]([SubResource("Resource_q4rys")])
 
 [node name="BuildUi2" parent="FlowManager/FlowAccount" unique_id=1841627980 instance=ExtResource("9_xl0vr")]
+process_mode = 0
 visible = false
 text = "正在计算工料中"
 prop_configs = Array[ExtResource("7_hhebf")]([SubResource("Resource_0y52w")])
 
 [node name="RewardUi2" parent="FlowManager/FlowAccount" unique_id=856418288 instance=ExtResource("13_78n4u")]
+process_mode = 0
 visible = false

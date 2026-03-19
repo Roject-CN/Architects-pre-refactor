@@ -6,23 +6,57 @@ class Media:
 	var weight : float = 0.0
 	var index : int = 0
 
-const _max_amount := 4
+
 const _craftsman_character_scene := preload("uid://drpfqa35ayqn8")
 
 @export var _spawn_position : Marker2D
-@export var _workplace_position : Marker2D
-@export var current_list : Array[CraftsmanResource]
-signal current_list_changed()
+@export var _workplace_position : Array[Marker2D]
+@export var main_time : MainTime
+var current_list : Array[CraftsmanResource]
+
+@onready var _max_amount := _workplace_position.size()
+
+
+
+#CraftsmanCharacter实体是添加到 CraftsmanManager节点下
+
+
+#signal current_list_changed()
 #添加新的员工
 func append_new_craftsman(resource : CraftsmanResource) -> void:
+	
+	if current_list.size() >= _max_amount:
+		#后面可以增加提醒的ui
+		return
+	
 	current_list.append(resource)
 	#回头搞个Craftsman_manager.tscn 搞个员工列表场景，方便进行升级和解雇人员
 	var craftsman_character := _craftsman_character_scene.instantiate() as CraftsmanCharacter
 	craftsman_character.craftman_resource = resource
-	craftsman_character.workplace = _workplace_position
-	craftsman_character.restplace = _spawn_position
-	self.add_child(craftsman_character)
+	craftsman_character.workplaces = _workplace_position
+	craftsman_character.workplace = _workplace_position[current_list.find(resource)]
 
+	craftsman_character.restplace = _spawn_position
+	
+	main_time.request_go_to_rest.connect(craftsman_character.go_to_rest)
+	main_time.request_go_to_work.connect(craftsman_character.go_to_work)
+	
+	self.add_child(craftsman_character)
+	craftsman_character.go_to_work()
+
+#删除旧员工
+func delete_craftsman(resource : CraftsmanResource) -> void:
+	
+	current_list.erase(resource)
+
+#返回员工当前的状态
+func return_craftsman_is_working() -> bool :
+	var working := false	
+	if self.get_child_count() != 0 :
+		var craftsman = self.get_child(0) as CraftsmanCharacter
+		working = craftsman.is_working()
+	return working
+	
 func craftsman_manager_is_empty() -> bool :
 	return current_list.is_empty()
 

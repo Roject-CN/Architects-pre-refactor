@@ -7,8 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://bb1llwn0kn1pm" path="res://icon.svg" id="5_tefeu"]
 [ext_resource type="Script" uid="uid://d0c0rulwp1lhg" path="res://codes/craftsmen/craftsman_manager.gd" id="7_o6xl0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tefeu"]
-size = Vector2(128, 128.00003)
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_tefeu"]
+vertices = PackedVector2Array(63.90625, 86.0625, 656.0781, 89.92969, 433.14844, 162.14844, 283.14844, 159.85156, 61.078125, 419.03906, 280.85156, 312.92188, 306.82813, 420.03906, 414.67188, 314.0078, 413.34375, 417.0625, 658.90625, 415.07813, 430.8672, 311.6875, 415.78906, 535.3125, 308.8203, 538.6797)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7, 8), PackedInt32Array(2, 1, 9, 10), PackedInt32Array(10, 9, 8, 7), PackedInt32Array(11, 12, 6, 8)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(54, 76, 666, 80, 669, 425, 422, 427, 421, 303, 423, 172, 293, 170, 291, 303, 414, 304, 421, 303, 426, 545, 299, 549, 297, 430, 51, 429)])
 
 [node name="Main" type="Control" unique_id=890892059 node_paths=PackedStringArray("craftsman_manager")]
 layout_mode = 3
@@ -22,85 +24,79 @@ script = ExtResource("1_o5qli")
 craftsman_manager = NodePath("Function/CraftsmanManager")
 metadata/_edit_lock_ = true
 
-[node name="Company" type="Node2D" parent="." unique_id=1582027643]
+[node name="Company" type="CanvasLayer" parent="." unique_id=2013525011]
+layer = -1
 
-[node name="desk" type="Sprite2D" parent="Company" unique_id=1109978833]
+[node name="CanvasModulate" type="CanvasModulate" parent="Company" unique_id=933238228]
+
+[node name="desk" type="Sprite2D" parent="Company/CanvasModulate" unique_id=1109978833]
 position = Vector2(322, 205)
 scale = Vector2(0.484375, 0.46875)
 texture = ExtResource("5_tefeu")
 
-[node name="Area2D" type="Area2D" parent="Company/desk" unique_id=1087627585]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Company/desk/Area2D" unique_id=652815826]
-shape = SubResource("RectangleShape2D_tefeu")
-
-[node name="desk2" type="Sprite2D" parent="Company" unique_id=2040509389]
+[node name="desk2" type="Sprite2D" parent="Company/CanvasModulate" unique_id=2040509389]
 position = Vector2(322, 271)
 scale = Vector2(0.484375, 0.46875)
 texture = ExtResource("5_tefeu")
 
-[node name="Area2D" type="Area2D" parent="Company/desk2" unique_id=379781848]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Company/desk2/Area2D" unique_id=164796387]
-shape = SubResource("RectangleShape2D_tefeu")
-
-[node name="desk3" type="Sprite2D" parent="Company" unique_id=1792279778]
+[node name="desk3" type="Sprite2D" parent="Company/CanvasModulate" unique_id=1792279778]
 position = Vector2(390.99997, 205)
 scale = Vector2(0.484375, 0.46875)
 texture = ExtResource("5_tefeu")
 
-[node name="Area2D" type="Area2D" parent="Company/desk3" unique_id=1813838414]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Company/desk3/Area2D" unique_id=1993157818]
-shape = SubResource("RectangleShape2D_tefeu")
-
-[node name="desk4" type="Sprite2D" parent="Company" unique_id=1846505846]
+[node name="desk4" type="Sprite2D" parent="Company/CanvasModulate" unique_id=1846505846]
 position = Vector2(391, 272.00003)
 scale = Vector2(0.484375, 0.46875)
 texture = ExtResource("5_tefeu")
 
-[node name="Area2D" type="Area2D" parent="Company/desk4" unique_id=1765241947]
+[node name="Spawn" type="Marker2D" parent="Company/CanvasModulate" unique_id=228486192]
+position = Vector2(363, 531)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Company/desk4/Area2D" unique_id=1645466713]
-shape = SubResource("RectangleShape2D_tefeu")
-
-[node name="Spawn" type="Marker2D" parent="Company" unique_id=228486192]
-position = Vector2(360, 480)
-
-[node name="Work1" type="Marker2D" parent="Company" unique_id=624297379]
+[node name="Work1" type="Marker2D" parent="Company/CanvasModulate" unique_id=624297379]
 position = Vector2(272, 203)
 
-[node name="wall" type="Sprite2D" parent="Company" unique_id=81545313]
+[node name="Work2" type="Marker2D" parent="Company/CanvasModulate" unique_id=1100575854]
+position = Vector2(270, 278)
+
+[node name="Work3" type="Marker2D" parent="Company/CanvasModulate" unique_id=1405269418]
+position = Vector2(451, 280)
+
+[node name="Work4" type="Marker2D" parent="Company/CanvasModulate" unique_id=673808529]
+position = Vector2(446, 202)
+
+[node name="wall" type="Sprite2D" parent="Company/CanvasModulate" unique_id=81545313]
 position = Vector2(28, 239.99998)
 scale = Vector2(0.40624997, 3.7499998)
 texture = ExtResource("5_tefeu")
 
-[node name="wall2" type="Sprite2D" parent="Company/wall" unique_id=787031392]
+[node name="wall2" type="Sprite2D" parent="Company/CanvasModulate/wall" unique_id=787031392]
 position = Vector2(819.6924, -53.466667)
 scale = Vector2(13.8076935, 0.16458333)
 texture = ExtResource("5_tefeu")
 
-[node name="wall3" type="Sprite2D" parent="Company/wall" unique_id=1176902287]
+[node name="wall3" type="Sprite2D" parent="Company/CanvasModulate/wall" unique_id=1176902287]
 position = Vector2(1639.3846, 0.5333374)
 scale = Vector2(0.99999994, 1)
 texture = ExtResource("5_tefeu")
 
-[node name="wall4" type="Sprite2D" parent="Company/wall" unique_id=1109326946]
+[node name="wall4" type="Sprite2D" parent="Company/CanvasModulate/wall" unique_id=1109326946]
 position = Vector2(1332.9232, 57.06667)
 scale = Vector2(5.7884603, 0.116666675)
 texture = ExtResource("5_tefeu")
 
-[node name="wall5" type="Sprite2D" parent="Company/wall" unique_id=1046820616]
+[node name="wall5" type="Sprite2D" parent="Company/CanvasModulate/wall" unique_id=1046820616]
 position = Vector2(307.69226, 57.06667)
 scale = Vector2(5.7884603, 0.116666675)
 texture = ExtResource("5_tefeu")
 
-[node name="Area2D" type="Area2D" parent="Company/wall" unique_id=931008837]
+[node name="Area2D" type="Area2D" parent="Company/CanvasModulate/wall" unique_id=931008837]
 visible = false
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Company/wall/Area2D" unique_id=1139107269]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Company/CanvasModulate/wall/Area2D" unique_id=1139107269]
 polygon = PackedVector2Array(-59.076927, 61.600006, -71.38462, -64.53333, 1703.3846, -63.2, 1703.3846, 65.06668, 982.1538, 63.200005, 982.1538, 50.13334, 1572.9231, 49.600006, 1563.0769, -44.533333, 59.07692, -42.933334, 64, 50.13334, 667.0769, 49.600006, 667.0769, 63.200005)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Company/CanvasModulate" unique_id=1239231787]
+navigation_polygon = SubResource("NavigationPolygon_tefeu")
 
 [node name="Ui" type="Panel" parent="." unique_id=1672565873]
 layout_mode = 1
@@ -240,14 +236,17 @@ text = "回顾过去"
 
 [node name="Function" type="Node" parent="." unique_id=600976631]
 
-[node name="CraftsmanManager" type="Node" parent="Function" unique_id=1178780251 node_paths=PackedStringArray("_spawn_position")]
+[node name="CraftsmanManager" type="Node" parent="Function" unique_id=1178780251 node_paths=PackedStringArray("_spawn_position", "_workplace_position", "main_time")]
 script = ExtResource("7_o6xl0")
-_spawn_position = NodePath("../../Company/Spawn")
+_spawn_position = NodePath("../../Company/CanvasModulate/Spawn")
+_workplace_position = [NodePath("../../Company/CanvasModulate/Work1"), NodePath("../../Company/CanvasModulate/Work2"), NodePath("../../Company/CanvasModulate/Work3"), NodePath("../../Company/CanvasModulate/Work4")]
+main_time = NodePath("../../MainTime")
 metadata/_custom_type_script = "uid://d0c0rulwp1lhg"
 
-[node name="MainTime" type="Node" parent="." unique_id=1253994536 node_paths=PackedStringArray("craftsman_manager")]
+[node name="MainTime" type="Node" parent="." unique_id=1253994536 node_paths=PackedStringArray("craftsman_manager", "canvas_modulate")]
 script = ExtResource("5_tbgi4")
 craftsman_manager = NodePath("../Function/CraftsmanManager")
+canvas_modulate = NodePath("../Company/CanvasModulate")
 metadata/_custom_type_script = "uid://duhehw80582bv"
 
 [connection signal="pressed" from="Button/MarginContainer/VBoxContainer/Employee" to="." method="_on_employee_pressed"]

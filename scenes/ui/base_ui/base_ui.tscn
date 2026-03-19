@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://4ucl0ub4d5ij"]
 
-[ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://global_theme.tres" id="1_6qa4x"]
+[ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://resource/global_theme.tres" id="1_6qa4x"]
 [ext_resource type="Script" uid="uid://bcu47gmfix0f5" path="res://codes/ui/base_ui/base_ui.gd" id="2_8ej6i"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mjsx3"]
 font_size = 24
 
 [node name="BaseUi" type="Control" unique_id=1059655934]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

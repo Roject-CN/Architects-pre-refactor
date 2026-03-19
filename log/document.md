@@ -11,6 +11,7 @@
 
 ### 1. 建筑系统
 
+四个流程
 风水勘探
 - confirm_ui
 - build_ui
