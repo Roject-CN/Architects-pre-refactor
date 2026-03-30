@@ -17,12 +17,25 @@ const BASE_CRAFTSMAN_COUNT = 12	#基础招募数量
 const COUNT_SCALE_FACTOR = 6	#缩放因子，值越大最终数量越多
 const COUNT_LOG_FACTOR = 5	#对数放大因素，值越大前期增速越快、后期增速越慢
 const MAX_CRAFTSMAN_COUNT = 60	#工匠数量上限
+const SPECIAL_BASE_PROB = 0.0	#基础特殊工匠概率
+const SPECIAL_MAX_PROB = 0.2	#最大特殊工匠概率(20%)
+const SPECIAL_PROB_THRESHOLD = 60	#名气≥该值才会触发特殊工匠
+const SPECIAL_FAME_SCALE = 80	#概率增长区间(阈值~100名气)
+const ALLOW_SPECIAL_REPEAT = false	#是否允许重复生成特殊工匠
 ##
 
+#图形池
+const TEXTURE_PATH = "res://sprits/craftsmen"
+static var texture_pool : Dictionary = {}
+const GENDER_FOLDERS := ["female", "male"]
+const PROFESSION_FOLDERS := ["geomancer", "designer", "artisan", "accountant"]
 
 #记录已生成名字的静态数组
 static var generated_male_names: Array[String] = []
 static var generated_female_names: Array[String] = []
+
+#特殊工匠生成记录
+static var generated_special_names : Array[String] = []
 
 #姓名库
 const FIRST_NAMES := [
@@ -64,6 +77,51 @@ enum PROFESSION {
 	accountant
 }
 
+#特殊工匠池
+const SPECIAL_CRAFTSMAN_POOL : Array[Dictionary] = [
+	{
+		"name": "鲁班",
+		"gender": 1,
+		"profession": PROFESSION.artisan,
+		"level": 5,
+		"description": "工匠师-登峰造极：木匠鼻祖，技艺巧夺天工万世流芳",
+		"custom_texture": null # 填写专属贴图路径则覆盖，null用随机职业贴图
+	},
+	{
+		"name": "郭璞",
+		"gender": 1,
+		"profession": PROFESSION.geomancer,
+		"level": 5,
+		"description": "风水师-登峰造极：风水鼻祖，堪舆之术冠绝古今",
+		"custom_texture": null
+	},
+	{
+		"name": "宇文恺",
+		"gender": 1,
+		"profession": PROFESSION.designer,
+		"level": 5,
+		"description": "设计师-登峰造极：隋唐工程巨匠，规划设计千古一绝",
+		"custom_texture": null
+	},
+	{
+		"name": "桑弘羊",
+		"gender": 1,
+		"profession": PROFESSION.accountant,
+		"level": 5,
+		"description": "会计师-登峰造极：理财圣手，国计民生运筹帷幄",
+		"custom_texture": null
+	},
+	{
+		"name": "墨子",
+		"gender": 1,
+		"profession": PROFESSION.artisan,
+		"level": 5,
+		"description": "工匠师-登峰造极：墨家机关术，匠心独运通神造化",
+		"custom_texture": null
+	}
+]
+
+
 #描述模板
 const DESCRIPTIONS :={
 	PROFESSION.geomancer:[
@@ -98,6 +156,7 @@ const DESCRIPTIONS :={
 
 static func _init() -> void:
 	randomize()
+	_load_all_texture()
 
 ### 外部调用函数，返回一个CraftsmanResource对象
 
@@ -123,12 +182,15 @@ func generate_value(fame_value : int , gender:int = -1 , profession : int = -1) 
 		#"experience_per_level" : 0,
 		"cost" : 0,
 		"description" : "",
+		"texture" : null
 	}
 	
 	#处理profession
 	if profession < 0 or profession > 3:
 		profession = randi()%4  # 未指定或越界随机0-3
 	result.profession = profession
+	
+	result.texture = _get_random_sprite(gender,profession)
 	
 	#计算value并赋值
 	result.values = _generate_value(result.level,result.profession)
@@ -150,6 +212,7 @@ func generate_value(fame_value : int , gender:int = -1 , profession : int = -1) 
 		resource.values[i] = result.values[i]
 	resource.cost = result.cost
 	resource.description = result.description
+	resource.texture = result.texture
 	
 	return resource
 
@@ -287,4 +350,143 @@ func _generate_value(level:int,profession : int) -> Array:
 		result[i] = floor(BASE_VALUE * (level - 1) + randi()%(BASE_VALUE/2))
 	@warning_ignore("integer_division")
 	result[profession] += BASE_VALUE/2
+	return result
+
+#加载所有texture
+static func _load_all_texture():
+	# 初始化图形池空结构
+	texture_pool = {}
+	for gender in GENDER_FOLDERS:
+		texture_pool[gender] = {}
+		for prof in PROFESSION_FOLDERS:
+			texture_pool[gender][prof] = []
+
+	# 遍历文件夹加载图片
+	for gender_idx in range(2):
+		var gender_name = GENDER_FOLDERS[gender_idx]
+		var gender_path = TEXTURE_PATH + "/" + gender_name + "/" # 修复：增加斜杠
+
+		# 判断性别文件夹是否存在
+		var gender_dir = DirAccess.open(gender_path)
+		if not gender_dir:
+			push_warning("文件夹不存在: ", gender_path)
+			continue
+
+		 # 遍历职业文件夹
+		for prof_idx in range(4):
+			var prof_name = PROFESSION_FOLDERS[prof_idx]
+			var prof_path = gender_path + prof_name + "/"
+
+			# 判断职业文件夹是否存在
+			var prof_dir = DirAccess.open(prof_path)
+			if not prof_dir:
+				push_warning("文件夹不存在: ", prof_path)
+				continue
+
+			# 开始遍历文件夹内文件
+			prof_dir.list_dir_begin() # 🔥 修复核心：无参调用
+			var file_name = prof_dir.get_next()
+			
+			while file_name != "":
+				# 仅处理文件
+				if not prof_dir.current_is_dir():
+					# 仅加载图片格式
+					if file_name.ends_with(".png") or file_name.ends_with(".jpg") or file_name.ends_with(".jpeg"):
+						var full_path = prof_path + file_name
+						var tex = load(full_path)
+						if tex is Texture2D:
+							texture_pool[gender_name][prof_name].append(tex)
+				
+				file_name = prof_dir.get_next()
+			
+			# 结束遍历
+			prof_dir.list_dir_end()
+			print("加载完成：", prof_path, " | 图片数量：", texture_pool[gender_name][prof_name].size())
+static func _get_random_sprite(gender: int, profession: int) -> Texture2D:
+	var gender_name = GENDER_FOLDERS[gender]
+	var prof_name = PROFESSION_FOLDERS[profession]
+	var texture_list = texture_pool[gender_name][prof_name]
+
+	if texture_list.is_empty():
+		print("无可用形象：性别=", gender, " 职业=", profession)
+		return null
+	return texture_list[randi() % texture_list.size()]
+
+#根据名气计算特殊工匠概率
+func _calculate_special_prob(fame_value : int) -> float:
+	var clamped_fame = clamp(fame_value, 0, 100)
+	if clamped_fame < SPECIAL_PROB_THRESHOLD:
+		return SPECIAL_BASE_PROB
+	var progress = (clamped_fame - SPECIAL_PROB_THRESHOLD) / SPECIAL_FAME_SCALE
+	progress = clamp(progress, 0.0, 1.0)
+	return lerp(SPECIAL_BASE_PROB, SPECIAL_MAX_PROB, progress)
+
+#随机获取未生成的特殊工匠
+func _get_random_special_craftsman() -> Dictionary:
+	var available_specials = []
+	for special in SPECIAL_CRAFTSMAN_POOL:
+		if not generated_special_names.has(special.name):
+			available_specials.append(special)
+	if available_specials.is_empty():
+		if ALLOW_SPECIAL_REPEAT:
+			available_specials = SPECIAL_CRAFTSMAN_POOL
+			generated_special_names.clear()
+		else:
+			return {}
+	return available_specials[randi() % available_specials.size()]
+
+#生成特殊工匠属性（更强）
+func _generate_special_values(level : int, profession : int) -> Array:
+	var result = [0,0,0,0]
+	for i in range(4):
+		@warning_ignore("integer_division")
+		result[i] = floor(BASE_VALUE * (level - 1) + BASE_VALUE + randi()%BASE_VALUE)
+	@warning_ignore("integer_division")
+	result[profession] += BASE_VALUE
+	return result
+
+#生成特殊工匠资源
+func _generate_special_craftsman_resource(special_data : Dictionary) -> CraftsmanResource:
+	var resource = CraftsmanResource.new()
+	generated_special_names.append(special_data.name)
+
+	resource.name = special_data.name
+	resource.level = special_data.level
+	resource.gender = special_data.gender
+	resource.profession = resource.PROPERTY[special_data.profession]
+	resource.values = _generate_special_values(special_data.level, special_data.profession)
+
+	# 特殊工匠成本翻倍
+	var total_values = 0
+	for val in resource.values:
+		total_values += val
+	resource.cost = BASE_COST * 3 + COST_PER_LEVEL * resource.level * 2 + COST_PER_VALUE * total_values * 2
+
+	resource.description = special_data.description
+	# 明确判断非空，兼容性更强
+	if special_data.custom_texture and special_data.custom_texture != "":
+		resource.texture = load(special_data.custom_texture)
+	else:
+		resource.texture = _get_random_sprite(special_data.gender, special_data.profession)
+	return resource
+
+### 外部调用函数，返回一个CraftsmanResource对象
+
+#单个生成：概率出特殊工匠，否则普通工匠
+func generate_special_craftsman(fame_value : int) -> CraftsmanResource:
+	var special_prob = _calculate_special_prob(fame_value)
+	if randf() < special_prob:
+		var special_data = _get_random_special_craftsman()
+		if special_data:
+			return _generate_special_craftsman_resource(special_data)
+	return generate_value(fame_value)
+
+### 外部调用函数，返回一个包含CraftsmanResource对象的Array
+
+#批量生成：混入特殊工匠
+func generate_craftsman_with_special(fame_value : int) -> Array:
+	var result = []
+	var times = _calculate_worker_count(fame_value)
+	for i in range(times):
+		result.append(generate_special_craftsman(fame_value))
 	return result
