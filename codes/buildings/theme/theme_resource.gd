@@ -8,3 +8,4 @@ enum TYPE {
 }
 
 @export var type : TYPE
+@export var name : String

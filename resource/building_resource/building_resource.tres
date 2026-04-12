@@ -8,4 +8,10 @@ script = ExtResource("2_we63o")
 name = "测试建筑"
 texture = ExtResource("2_eqmun")
 description = "这是一座测试的建筑"
+values = {
+"匠心类": 0,
+"工料类": 0,
+"设计类": 0,
+"风水类": 0
+}
 metadata/_custom_type_script = "uid://wguvxiry36og"

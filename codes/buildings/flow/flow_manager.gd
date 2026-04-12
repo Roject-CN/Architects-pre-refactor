@@ -32,11 +32,12 @@ func _ready() -> void:
 		amount_flow += 1
 		flows.append(i)
 
+#在Building类中调用
 func open_flow_manager() -> void:
 	#initialize_current_flow
 	current_flow = initial_flow
 
-
+#执行当前flow的flow_process
 func _physics_process(delta: float) -> void:
 	if current_flow:
 		if count == 0:

@@ -2,20 +2,32 @@
 
 [ext_resource type="PackedScene" uid="uid://dcr83n0wniq2n" path="res://scenes/ui/base_ui/choice_ui.tscn" id="1_cl50w"]
 [ext_resource type="Script" uid="uid://csqdxcehnrmgy" path="res://codes/ui/flow_ui/design_theme_ui.gd" id="2_qpku1"]
+[ext_resource type="Script" uid="uid://ca1nftey11dbk" path="res://codes/buildings/theme/theme_resource.gd" id="3_oyysq"]
+[ext_resource type="Resource" uid="uid://dgasx2kjqmyfa" path="res://resource/building_resource/theme_resource/top_test1.tres" id="4_dec3b"]
+[ext_resource type="Resource" uid="uid://p10fisepi2gu" path="res://resource/building_resource/theme_resource/top_test2.tres" id="5_h3v32"]
+[ext_resource type="Resource" uid="uid://b3tjt6dxydarj" path="res://resource/building_resource/theme_resource/middle_test1.tres" id="5_lro6v"]
+[ext_resource type="Resource" uid="uid://d371pdecn0otu" path="res://resource/building_resource/theme_resource/buttom_test1.tres" id="6_pvpef"]
+[ext_resource type="Resource" uid="uid://krhig6fcmfj8" path="res://resource/building_resource/theme_resource/middle_test2.tres" id="7_c5uwn"]
+[ext_resource type="Resource" uid="uid://dvlp1qsa4madw" path="res://resource/building_resource/building_resource.tres" id="7_lro6v"]
+[ext_resource type="Resource" uid="uid://bl20l4gvpyqq4" path="res://resource/building_resource/theme_resource/buttom_test2.tres" id="9_r4s6x"]
 
 [node name="DesignThemeUi" unique_id=1059655934 instance=ExtResource("1_cl50w")]
 script = ExtResource("2_qpku1")
+test_top_themes = Array[ExtResource("3_oyysq")]([ExtResource("4_dec3b"), ExtResource("5_h3v32")])
+test_middle_themes = Array[ExtResource("3_oyysq")]([ExtResource("5_lro6v"), ExtResource("7_c5uwn")])
+test_buttom_themes = Array[ExtResource("3_oyysq")]([ExtResource("6_pvpef"), ExtResource("9_r4s6x")])
+building_resource = ExtResource("7_lro6v")
 
-[node name="Button" type="Button" parent="Left/VBoxContainer" parent_id_path=PackedInt32Array(153279391) index="0" unique_id=748078088]
-custom_minimum_size = Vector2(100, 0)
+[node name="Top" type="Button" parent="Left/VBoxContainer" parent_id_path=PackedInt32Array(153279391) index="0" unique_id=748078088]
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 text = "上分"
 
-[node name="Button2" type="Button" parent="Left/VBoxContainer" parent_id_path=PackedInt32Array(153279391) index="1" unique_id=1857998298]
+[node name="Middle" type="Button" parent="Left/VBoxContainer" parent_id_path=PackedInt32Array(153279391) index="1" unique_id=1857998298]
 layout_mode = 2
 text = "中分"
 
-[node name="Button3" type="Button" parent="Left/VBoxContainer" parent_id_path=PackedInt32Array(153279391) index="2" unique_id=1628516275]
+[node name="Buttom" type="Button" parent="Left/VBoxContainer" parent_id_path=PackedInt32Array(153279391) index="2" unique_id=1628516275]
 layout_mode = 2
 text = "下分"
 

@@ -15,7 +15,7 @@ var value_pecent : float = 0.0 :
 			assure.disabled = false
 		
 @export var time : float = 5.0
-var craftsman : CraftsmanResource
+var craftsman_resource : CraftsmanResource
 
 	
 func _ready() -> void:
@@ -27,13 +27,15 @@ func ui_exit() -> void:
 	super()
 
 func ui_enter() -> void:
-	assert(craftsman, str(self) + "craftsman is empty")
-	craftsman_label.text = craftsman.name + "正在努力中"
+	assert(craftsman_resource, str(self) + "craftsman is empty")
+	craftsman_label.text = craftsman_resource.name + "正在努力中"
 	show_resouce_attribution(building_resource)
 	
 	#连接prop_config的信号 
 	for prop_config in prop_configs:
 		prop_config.request_animation_ui_add.connect(animation_ui_add)
+		#prop_config增加工作的员工
+		prop_config.append_new_craftsman(craftsman_resource)
 			
 	super()
 
@@ -42,14 +44,15 @@ func ui_process(delta: float) -> void:
 		return
 	value_pecent += (1.0 / time * delta * _progress_curve.sample(value_pecent))
 	
+	#prop_configs执行自己相应的逻辑
 	for i in prop_configs:
-		i.build_process(delta, craftsman.return_craftsman_effect(delta, i))
+		i.build_process(delta)
 	
 
-func animation_ui_add(index : int) -> void:
+func animation_ui_add(prop : BaseResource.PROPERTY) -> void:
 	var resource := building_resource
-	resource.add_value(index)
-	var information_ui : InformationUI = r_container.get_child(index)
+	resource.add_value(prop)
+	var information_ui : InformationUI = r_container.get_child(prop)
 	information_ui.update_value()
 
 	

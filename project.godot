@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 Global="*uid://pq8f3wqvu64v"
 Event="*uid://dh08pg788aie4"
 
+[debug]
+
+canvas_items/warnings/renamed_in_godot_4_hint=true
+
 [display]
 
 window/size/viewport_width=720
@@ -31,6 +35,10 @@ window/stretch/mode="viewport"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/agent/plugin.cfg")
+
+[gui]
+
+theme/custom="uid://c73vty6o732sb"
 
 [physics]
 

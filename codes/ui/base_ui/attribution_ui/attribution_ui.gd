@@ -6,22 +6,10 @@ class_name AttributionUi
 		separation_rate = value
 		if is_inside_tree():
 			override_separation()
-
-
-
 # 初始化
 func _ready() -> void:	
 	super()
 	override_separation()
-	
-func ui_exit() -> void:
-	super()
-
-func ui_enter() -> void:
-	super()
-
-func ui_process(delta: float) -> void:
-	super(delta)
 
 func show_resouce_attribution(resource : BaseResource) -> void:
 	#attribution部分

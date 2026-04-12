@@ -2,11 +2,18 @@ extends AttributionUi
 class_name ConfirmUi
 
 @onready var craftsmen_container: VBoxContainer = $Left/VBoxContainer/Scroll/VBoxContainer
+
+#暂时的
+@onready var cancel: Button = $Button/Cancel
+
+
 @export var build_ui : BuildUi
+#暂时的
+@export var building : Building
 var current_craftman : CraftsmanResource : 
 	set(value):
 		current_craftman = value
-		build_ui.craftsman = current_craftman
+		build_ui.craftsman_resource = current_craftman
 		show_resouce_attribution(current_craftman)
 
 func ui_enter() -> void:
@@ -32,16 +39,18 @@ func ui_enter() -> void:
 	#高亮属性
 	show_build_config(prop_configs)
 	super()
+	
+	#暂时的
+	if not  building:
+		cancel.visible = false
+		
 
 func assign_new_craftman(resource : CraftsmanResource) -> void:
 	current_craftman = resource
 
 func _on_assure_pressed() -> void:
-	ui_exit()
 	request_next()
 
-func respond_plan_list_changed() -> void:	
-	for i in craftsmen_container.get_children():
-		i.call_deferred("queue_free")
-	
-	ui_enter()
+func _on_cancel_pressed() -> void:
+	#现在这个取消只是暂时的
+	building.save_builiding_resource()

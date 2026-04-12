@@ -8,10 +8,10 @@ const MONTH_PER_DAY := 30
 const YEAR_PER_MONTH := 12
 const TIME_DAYS_TEXT := "%3d年%2d月%2d日"
 #主场景的ui
-@onready var money_value: Label = $Container/Money/Value
-@onready var fame_value: Label = $Container/Fame/Value
-@onready var research_value: Label = $Container/Research/Value
-@onready var time_days: Label = $Time/Value
+@onready var money_value: Label = $TopInformation/Money/Value
+@onready var fame_value: Label = $TopInformation/Fame/Value
+@onready var research_value: Label = $TopInformation/Research/Value
+@onready var time_days: Label = $TopInformation/Time/Value
 
 
 func init_main_ui(resource : SaveResource) -> void:

@@ -19,8 +19,12 @@ var index : int = 0
 @onready var next: Button = $Button/Next
 
 
-func _ready() -> void:
+
+func ui_exit() -> void:
 	super()
+	call_deferred("queue_free") #消除自己
+
+func ui_enter() -> void:
 	assert(craftsmen, str(self) + "'s craftsmen(Array[CraftmanResource] is empty)")
 		
 	array_size = craftsmen.size()
@@ -28,13 +32,7 @@ func _ready() -> void:
 		next.disabled = true
 	current_craftmen  = craftsmen[index]
 	read_craftman_resource(current_craftmen)
-	#执行BaseUi的ready()
-
-func ui_exit() -> void:
-	super()
-	call_deferred("queue_free") #消除自己
-
-func ui_enter() -> void:
+	
 	super()
 
 func _on_back_pressed() -> void:

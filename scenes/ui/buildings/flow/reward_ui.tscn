@@ -3,10 +3,24 @@
 [ext_resource type="PackedScene" uid="uid://l0lthvl61vfr" path="res://scenes/ui/base_ui/attribution_ui.tscn" id="1_duskk"]
 [ext_resource type="Texture2D" uid="uid://bb1llwn0kn1pm" path="res://icon.svg" id="2_5xbmg"]
 [ext_resource type="Script" uid="uid://b8k18gcqqmphk" path="res://codes/ui/flow_ui/reward_ui.gd" id="2_r6woy"]
+[ext_resource type="Script" uid="uid://wguvxiry36og" path="res://codes/buildings/building_resource.gd" id="3_r6woy"]
+
+[sub_resource type="Resource" id="Resource_sb6p6"]
+script = ExtResource("3_r6woy")
+values = {
+"匠心类": 90,
+"工料类": 90,
+"设计类": 90,
+"风水类": 100
+}
+metadata/_custom_type_script = "uid://wguvxiry36og"
 
 [node name="RewardUi" unique_id=1059655934 instance=ExtResource("1_duskk")]
+offset_left = 6.0
+offset_right = 6.0
 script = ExtResource("2_r6woy")
 time = 5.0
+building_resource = SubResource("Resource_sb6p6")
 text = "结算页面"
 
 [node name="TextureRect" type="TextureRect" parent="Left/VBoxContainer" parent_id_path=PackedInt32Array(153279391) index="0" unique_id=489381789]

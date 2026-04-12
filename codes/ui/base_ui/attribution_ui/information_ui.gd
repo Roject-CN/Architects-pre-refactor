@@ -37,13 +37,13 @@ func update_value() -> void:
 	value += 1
 	label.text = text + " : " + str(value)
 
-func calculate_value() -> void:
+func calculate_value(new_value : int) -> void:
 	if value <= 0 :
 		return
 	var animation_node : AnimationUi = plus.instantiate()
-	animation_node.value = -1
+	animation_node.value = -new_value
 	animation.add_child(animation_node)
-	value -= 1
+	value -= new_value
 	label.text = text + " : " + str(value)
 
 func highlight() -> void:

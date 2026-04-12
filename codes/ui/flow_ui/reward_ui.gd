@@ -34,8 +34,9 @@ func ui_enter() -> void:
 	var index := 0
 	var values := building_resource.values
 	for key in values:
-		values_deltas[index] = time / values.get(key)
+		values_deltas[index] = time / float(values.get(key))
 		index += 1
+	
 	super()
 
 func ui_process(delta: float) -> void:
@@ -49,7 +50,7 @@ func ui_process(delta: float) -> void:
 		if temp_deltas[index] >= i:
 			temp_deltas[index] = 0
 			var information_ui : InformationUI = r_container.get_child(index)
-			information_ui.calculate_value()		
+			information_ui.calculate_value(1)		
 			reward_value += 1
 			reward.text = reward_text % reward_value
 			building_resource.cost += 1

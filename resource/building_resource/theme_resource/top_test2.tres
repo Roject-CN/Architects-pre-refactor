@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ThemeResource" format=3 uid="uid://p10fisepi2gu"]
+
+[ext_resource type="Script" uid="uid://ca1nftey11dbk" path="res://codes/buildings/theme/theme_resource.gd" id="1_hd3kp"]
+
+[resource]
+script = ExtResource("1_hd3kp")
+name = "屋顶测试2"
+metadata/_custom_type_script = "uid://ca1nftey11dbk"

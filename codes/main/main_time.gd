@@ -62,8 +62,9 @@ func _ready() -> void:
 	assert(craftsman_manager, "MainTime's craftsman_manager is empty")		
 	
 	#通过全局的 Event 脚本连接信号 当建筑页面出现时停止时间的计时和天气的变化，在 PlaceHolder和被销毁后又开始计时
-	Event.building_enter.connect(func() : can_time_process = false)
-	Event.building_quit.connect(func() : can_time_process = true)
+	Event.building_ui_enter.connect(func() : can_time_process = false)
+	Event.building_ui_quit.connect(func() : can_time_process = true)
 func _physics_process(delta: float) -> void:
 	if can_time_process:
 		_time += delta
+		craftsman_manager.craftsmans_character_process(delta)

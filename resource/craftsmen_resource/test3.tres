@@ -14,7 +14,7 @@ description = "我是你老豆"
 values = {
 "匠心类": 1,
 "工料类": 3,
-"设计类": 1,
-"风水类": 1
+"设计类": 2,
+"风水类": 2
 }
 metadata/_custom_type_script = "uid://bcfvld13usfs"

@@ -3,9 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://l0lthvl61vfr" path="res://scenes/ui/base_ui/attribution_ui.tscn" id="1_m7yh4"]
 [ext_resource type="Script" uid="uid://dlsuruow0auqd" path="res://codes/ui/craftsmen_ui.gd" id="2_2o5a0"]
 [ext_resource type="Script" uid="uid://bcfvld13usfs" path="res://codes/craftsmen/craftsman_resource.gd" id="3_al16r"]
-[ext_resource type="Resource" uid="uid://cpahilhgnqvb0" path="res://resource/craftsmen_resource/test1.tres" id="4_j4svg"]
-[ext_resource type="Resource" uid="uid://bq1f4gk7ydlvw" path="res://resource/craftsmen_resource/test2.tres" id="5_n0ikj"]
-[ext_resource type="Resource" uid="uid://h8qv1lopkc10" path="res://resource/craftsmen_resource/test3.tres" id="6_2o5a0"]
 [ext_resource type="Texture2D" uid="uid://do77yn4lfgps7" path="res://sprits/tile_0099.png" id="6_fe5w2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c7lko"]
@@ -17,7 +14,7 @@ offset_top = -1.0
 offset_right = -1.0
 offset_bottom = -1.0
 script = ExtResource("2_2o5a0")
-craftsmen = Array[ExtResource("3_al16r")]([ExtResource("4_j4svg"), ExtResource("5_n0ikj"), ExtResource("6_2o5a0")])
+craftsmen = Array[ExtResource("3_al16r")]([])
 separation_rate = 0.75
 text = "招聘界面"
 

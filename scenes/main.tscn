@@ -3,16 +3,25 @@
 [ext_resource type="Script" uid="uid://c4jjqgtv4ybmf" path="res://codes/main/main.gd" id="1_o5qli"]
 [ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://resource/global_theme.tres" id="1_tipki"]
 [ext_resource type="Script" uid="uid://colk7drh6w0ja" path="res://codes/main/main_ui.gd" id="3_jyhfs"]
+[ext_resource type="Script" uid="uid://bcfvld13usfs" path="res://codes/craftsmen/craftsman_resource.gd" id="3_ya4ey"]
+[ext_resource type="Resource" uid="uid://cpahilhgnqvb0" path="res://resource/craftsmen_resource/test1.tres" id="4_eb6dy"]
 [ext_resource type="Script" uid="uid://duhehw80582bv" path="res://codes/main/main_time.gd" id="5_tbgi4"]
-[ext_resource type="Texture2D" uid="uid://bb1llwn0kn1pm" path="res://icon.svg" id="5_tefeu"]
+[ext_resource type="Resource" uid="uid://bq1f4gk7ydlvw" path="res://resource/craftsmen_resource/test2.tres" id="5_trceg"]
+[ext_resource type="Resource" uid="uid://h8qv1lopkc10" path="res://resource/craftsmen_resource/test3.tres" id="6_a8y0u"]
 [ext_resource type="Script" uid="uid://d0c0rulwp1lhg" path="res://codes/craftsmen/craftsman_manager.gd" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://b5rxknicvviqi" path="res://scenes/ui/base_ui/pop_up_ui.tscn" id="7_tipki"]
+[ext_resource type="Texture2D" uid="uid://cebjk50l0bew" path="res://sprits/game素材/里屋（带物品.png" id="8_eb6dy"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_tefeu"]
-vertices = PackedVector2Array(63.90625, 86.0625, 656.0781, 89.92969, 433.14844, 162.14844, 283.14844, 159.85156, 61.078125, 419.03906, 280.85156, 312.92188, 306.82813, 420.03906, 414.67188, 314.0078, 413.34375, 417.0625, 658.90625, 415.07813, 430.8672, 311.6875, 415.78906, 535.3125, 308.8203, 538.6797)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7, 8), PackedInt32Array(2, 1, 9, 10), PackedInt32Array(10, 9, 8, 7), PackedInt32Array(11, 12, 6, 8)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(54, 76, 666, 80, 669, 425, 422, 427, 421, 303, 423, 172, 293, 170, 291, 303, 414, 304, 421, 303, 426, 545, 299, 549, 297, 430, 51, 429)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ya4ey"]
+vertices = PackedVector2Array(8.9296875, 551.0469, 336, 460, 367.5, 459, 516.5, 459, 709, 554.9375, 396, 346, 485.75, 371, 367.5, 371, 301, 346, 613, 186, 613, 46, 709, 9.890625, 5.0703125, 2.109375, 193, 46, 521, 452, 521, 233, 219, 186, 396, 215, 485.75, 233, 336, 372, 222.25, 372, 222.25, 250, 301, 215, 193, 55, 140, 55, 140, 238, 153, 453, 187, 453, 187, 460, 516.5, 452, 153, 250, 219, 238)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(9, 10, 11, 4), PackedInt32Array(12, 11, 10, 13), PackedInt32Array(9, 4, 14, 15), PackedInt32Array(16, 9, 15, 17), PackedInt32Array(18, 6, 5, 17), PackedInt32Array(2, 1, 19, 7), PackedInt32Array(8, 7, 19, 20), PackedInt32Array(8, 20, 21, 22), PackedInt32Array(13, 23, 24, 12), PackedInt32Array(0, 12, 24, 25), PackedInt32Array(26, 27, 28, 0), PackedInt32Array(3, 29, 14, 4), PackedInt32Array(28, 1, 0), PackedInt32Array(26, 0, 25, 30), PackedInt32Array(30, 25, 31, 21), PackedInt32Array(22, 21, 31, 16), PackedInt32Array(17, 22, 16), PackedInt32Array(17, 15, 18)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-5, -8, -1, 561, 719, 565, 719, 0)])
 
-[node name="Main" type="Control" unique_id=890892059 node_paths=PackedStringArray("craftsman_manager")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ya4ey"]
+atlas = ExtResource("8_eb6dy")
+region = Rect2(0, 0, 2560, 2560)
+
+[node name="Main" type="Control" unique_id=890892059 node_paths=PackedStringArray("craftsman_manager", "pop_up_ui")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,6 +31,8 @@ grow_vertical = 2
 theme = ExtResource("1_tipki")
 script = ExtResource("1_o5qli")
 craftsman_manager = NodePath("Function/CraftsmanManager")
+pop_up_ui = NodePath("PopUpUi")
+craftsmen = Array[ExtResource("3_ya4ey")]([ExtResource("4_eb6dy"), ExtResource("5_trceg"), ExtResource("6_a8y0u")])
 metadata/_edit_lock_ = true
 
 [node name="Company" type="CanvasLayer" parent="." unique_id=2013525011]
@@ -29,76 +40,35 @@ layer = -1
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Company" unique_id=933238228]
 
-[node name="desk" type="Sprite2D" parent="Company/CanvasModulate" unique_id=1109978833]
-position = Vector2(322, 205)
-scale = Vector2(0.484375, 0.46875)
-texture = ExtResource("5_tefeu")
-
-[node name="desk2" type="Sprite2D" parent="Company/CanvasModulate" unique_id=2040509389]
-position = Vector2(322, 271)
-scale = Vector2(0.484375, 0.46875)
-texture = ExtResource("5_tefeu")
-
-[node name="desk3" type="Sprite2D" parent="Company/CanvasModulate" unique_id=1792279778]
-position = Vector2(390.99997, 205)
-scale = Vector2(0.484375, 0.46875)
-texture = ExtResource("5_tefeu")
-
-[node name="desk4" type="Sprite2D" parent="Company/CanvasModulate" unique_id=1846505846]
-position = Vector2(391, 272.00003)
-scale = Vector2(0.484375, 0.46875)
-texture = ExtResource("5_tefeu")
-
 [node name="Spawn" type="Marker2D" parent="Company/CanvasModulate" unique_id=228486192]
 position = Vector2(363, 531)
 
 [node name="Work1" type="Marker2D" parent="Company/CanvasModulate" unique_id=624297379]
-position = Vector2(272, 203)
+position = Vector2(304, 317)
 
 [node name="Work2" type="Marker2D" parent="Company/CanvasModulate" unique_id=1100575854]
-position = Vector2(270, 278)
+position = Vector2(304, 280)
 
 [node name="Work3" type="Marker2D" parent="Company/CanvasModulate" unique_id=1405269418]
-position = Vector2(451, 280)
+position = Vector2(397, 283)
 
 [node name="Work4" type="Marker2D" parent="Company/CanvasModulate" unique_id=673808529]
-position = Vector2(446, 202)
-
-[node name="wall" type="Sprite2D" parent="Company/CanvasModulate" unique_id=81545313]
-position = Vector2(28, 239.99998)
-scale = Vector2(0.40624997, 3.7499998)
-texture = ExtResource("5_tefeu")
-
-[node name="wall2" type="Sprite2D" parent="Company/CanvasModulate/wall" unique_id=787031392]
-position = Vector2(819.6924, -53.466667)
-scale = Vector2(13.8076935, 0.16458333)
-texture = ExtResource("5_tefeu")
-
-[node name="wall3" type="Sprite2D" parent="Company/CanvasModulate/wall" unique_id=1176902287]
-position = Vector2(1639.3846, 0.5333374)
-scale = Vector2(0.99999994, 1)
-texture = ExtResource("5_tefeu")
-
-[node name="wall4" type="Sprite2D" parent="Company/CanvasModulate/wall" unique_id=1109326946]
-position = Vector2(1332.9232, 57.06667)
-scale = Vector2(5.7884603, 0.116666675)
-texture = ExtResource("5_tefeu")
-
-[node name="wall5" type="Sprite2D" parent="Company/CanvasModulate/wall" unique_id=1046820616]
-position = Vector2(307.69226, 57.06667)
-scale = Vector2(5.7884603, 0.116666675)
-texture = ExtResource("5_tefeu")
-
-[node name="Area2D" type="Area2D" parent="Company/CanvasModulate/wall" unique_id=931008837]
-visible = false
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Company/CanvasModulate/wall/Area2D" unique_id=1139107269]
-polygon = PackedVector2Array(-59.076927, 61.600006, -71.38462, -64.53333, 1703.3846, -63.2, 1703.3846, 65.06668, 982.1538, 63.200005, 982.1538, 50.13334, 1572.9231, 49.600006, 1563.0769, -44.533333, 59.07692, -42.933334, 64, 50.13334, 667.0769, 49.600006, 667.0769, 63.200005)
+position = Vector2(399, 314)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Company/CanvasModulate" unique_id=1239231787]
-navigation_polygon = SubResource("NavigationPolygon_tefeu")
+position = Vector2(0, 1)
+navigation_polygon = SubResource("NavigationPolygon_ya4ey")
+metadata/_edit_lock_ = true
 
-[node name="Ui" type="Panel" parent="." unique_id=1672565873]
+[node name="Background" type="Sprite2D" parent="Company/CanvasModulate" unique_id=1136383670]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(354, 255)
+scale = Vector2(0.25, 0.2)
+texture = SubResource("AtlasTexture_ya4ey")
+metadata/_edit_lock_ = true
+
+[node name="MainUi" type="Panel" parent="." unique_id=1672565873]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -107,31 +77,31 @@ grow_horizontal = 2
 script = ExtResource("3_jyhfs")
 metadata/_custom_type_script = "uid://colk7drh6w0ja"
 
-[node name="Container" type="Control" parent="Ui" unique_id=987204868]
+[node name="TopInformation" type="Control" parent="MainUi" unique_id=987204868]
 anchors_preset = 0
 offset_right = 346.0
 offset_bottom = 40.0
 
-[node name="Money" type="HBoxContainer" parent="Ui/Container" unique_id=1646293515]
+[node name="Money" type="HBoxContainer" parent="MainUi/TopInformation" unique_id=1646293515]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 1
 anchors_preset = -1
 offset_right = 102.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="Ui/Container/Money" unique_id=1662097202]
+[node name="Label" type="Label" parent="MainUi/TopInformation/Money" unique_id=1662097202]
 layout_mode = 2
 text = "金钱:"
 
-[node name="Value" type="Label" parent="Ui/Container/Money" unique_id=1808022642]
+[node name="Value" type="Label" parent="MainUi/TopInformation/Money" unique_id=1808022642]
 layout_mode = 2
 text = "xxx"
 
-[node name="PlaceHolder" type="Control" parent="Ui/Container/Money" unique_id=168463468]
+[node name="PlaceHolder" type="Control" parent="MainUi/TopInformation/Money" unique_id=168463468]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 
-[node name="Fame" type="HBoxContainer" parent="Ui/Container" unique_id=1771801521]
+[node name="Fame" type="HBoxContainer" parent="MainUi/TopInformation" unique_id=1771801521]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -140,19 +110,19 @@ anchor_right = 0.3
 offset_right = 118.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="Ui/Container/Fame" unique_id=1410144982]
+[node name="Label" type="Label" parent="MainUi/TopInformation/Fame" unique_id=1410144982]
 layout_mode = 2
 text = "名气值:"
 
-[node name="Value" type="Label" parent="Ui/Container/Fame" unique_id=1082153743]
+[node name="Value" type="Label" parent="MainUi/TopInformation/Fame" unique_id=1082153743]
 layout_mode = 2
 text = "xxx"
 
-[node name="Control" type="Control" parent="Ui/Container/Fame" unique_id=1528065682]
+[node name="Control" type="Control" parent="MainUi/TopInformation/Fame" unique_id=1528065682]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 
-[node name="Research" type="HBoxContainer" parent="Ui/Container" unique_id=2094138713]
+[node name="Research" type="HBoxContainer" parent="MainUi/TopInformation" unique_id=2094138713]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -161,38 +131,39 @@ anchor_right = 0.7
 offset_right = 118.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="Ui/Container/Research" unique_id=2082625239]
+[node name="Label" type="Label" parent="MainUi/TopInformation/Research" unique_id=2082625239]
 layout_mode = 2
 text = "研究点:"
 
-[node name="Value" type="Label" parent="Ui/Container/Research" unique_id=17637026]
+[node name="Value" type="Label" parent="MainUi/TopInformation/Research" unique_id=17637026]
 layout_mode = 2
 text = "xxx"
 
-[node name="Control" type="Control" parent="Ui/Container/Research" unique_id=66922566]
+[node name="Control" type="Control" parent="MainUi/TopInformation/Research" unique_id=66922566]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 
-[node name="Time" type="HBoxContainer" parent="Ui" unique_id=719396670]
+[node name="Time" type="HBoxContainer" parent="MainUi/TopInformation" unique_id=719396670]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.7
 anchor_right = 0.7
-offset_right = 48.0
+offset_left = 261.8
+offset_right = 423.8
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="Ui/Time" unique_id=1273392076]
+[node name="Label" type="Label" parent="MainUi/TopInformation/Time" unique_id=1273392076]
 layout_mode = 2
 text = "时间："
 
-[node name="Value" type="Label" parent="Ui/Time" unique_id=1029099694]
+[node name="Value" type="Label" parent="MainUi/TopInformation/Time" unique_id=1029099694]
 layout_mode = 2
 text = "xxx年xx月xx日"
 
 [node name="Button" type="Panel" parent="." unique_id=2147417917]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.3
+anchor_top = 0.25
 anchor_right = 0.15
 anchor_bottom = 0.6
 
@@ -232,6 +203,7 @@ text = "建造建筑"
 
 [node name="Review" type="Button" parent="Button/MarginContainer/VBoxContainer" unique_id=2118163836]
 layout_mode = 2
+disabled = true
 text = "回顾过去"
 
 [node name="Function" type="Node" parent="." unique_id=600976631]
@@ -248,6 +220,13 @@ script = ExtResource("5_tbgi4")
 craftsman_manager = NodePath("../Function/CraftsmanManager")
 canvas_modulate = NodePath("../Company/CanvasModulate")
 metadata/_custom_type_script = "uid://duhehw80582bv"
+
+[node name="PopUpUi" parent="." unique_id=1238429742 instance=ExtResource("7_tipki")]
+visible = false
+z_index = 99
+layout_mode = 1
+offset_top = -1.0
+offset_bottom = -1.0
 
 [connection signal="pressed" from="Button/MarginContainer/VBoxContainer/Employee" to="." method="_on_employee_pressed"]
 [connection signal="pressed" from="Button/MarginContainer/VBoxContainer/Building" to="." method="_on_building_pressed"]

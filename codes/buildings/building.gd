@@ -25,13 +25,13 @@ func _ready() -> void:
 	flow_manager.open_flow_manager()
 	
 	#使 MainTime停止计时
-	Event.building_enter.emit()
+	Event.building_ui_enter.emit()
 
 #flow_manager再检测到已经运行到最后一个流程并结束的时候， 执行此函数
 func save_builiding_resource() -> void:
 	
 	#使 MainTime开始计时
-	Event.building_quit.emit()
+	Event.building_ui_quit.emit()
 	request_building_resource_saved.emit(building_resource)
 	call_deferred("queue_free")
 
