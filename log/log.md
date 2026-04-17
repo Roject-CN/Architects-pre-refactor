@@ -1,6 +1,13 @@
 [Toc]
 格式： ### 日期 然后接着更新的标题，概括大致内容，后面是日志内容即可（最新的优先写在最上面） 最后提交的message写日志的标题就好了
 
+### 2026-4-18
+
+* 完善了历史建筑资源保存系统，每当建筑结算完成后，记录当前画面与建筑属性。主场景下回顾按钮即可浏览历史建筑
+
+* 新增的文件：save_buildings.gd;save_buildings_ui.gd；新增的场景：save_buildings_ui.tscn；修改的文件：main.gd;building.gd
+
+
 ### 2026-4-12
 document 和 todo更新
 更新文档和todo列表
