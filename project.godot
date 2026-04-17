@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*uid://pq8f3wqvu64v"
 Event="*uid://dh08pg788aie4"
+SaveBuildings="*uid://cpnsm3npre00m"
 
 [debug]
 

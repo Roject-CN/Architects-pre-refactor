@@ -203,7 +203,6 @@ text = "建造建筑"
 
 [node name="Review" type="Button" parent="Button/MarginContainer/VBoxContainer" unique_id=2118163836]
 layout_mode = 2
-disabled = true
 text = "回顾过去"
 
 [node name="Function" type="Node" parent="." unique_id=600976631]

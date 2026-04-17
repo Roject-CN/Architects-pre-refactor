@@ -70,19 +70,50 @@ func _on_building_pressed() -> void:
 	building_index += 1
 	function.add_child(building)
 	building_button.disabled = true
-	building.request_building_resource_saved.connect(save_building_resource)
+	
+	# 连接信号：完成时截图并保存
+	building.building_complete.connect(_on_building_complete)
 	
 
-func save_building_resource(building_resource : BuildingResource) -> void:
+func _on_building_complete(building_res : BuildingResource):
+	# 等待一帧确保 RewardUi 的 hide() 被实际绘制到屏幕
+	await get_tree().process_frame
+	await RenderingServer.frame_post_draw
+	var screenshot = _capture_screenshot()
+	
+	# 保存为独立tres文件
 	building_button.disabled = false
-	return
 	var dir_path = Global.BUILDING_SAVE_DIR_PATH   
-	var file_path = dir_path % building_resource.index 
-	#保存在user://building/x_building_resource.tres
-	var err = ResourceSaver.save(building_resource, file_path)
+	var file_path = dir_path % building_res.index 
+	var err = ResourceSaver.save(building_res, file_path)
 	if err != OK:
 		push_error("保存失败: ", err)
-		
+		return
+	
+	# 同时记入史册
+	SaveBuildings.record(building_res, file_path, screenshot)
+
+func _capture_screenshot() -> ImageTexture:
+	var viewport = get_viewport()
+	var img = viewport.get_texture().get_image()
+	
+	# 目标：最长边 320px，保持宽高比，高画质缩放
+	var target_max = 320
+	var w = img.get_width()
+	var h = img.get_height()
+	
+	if w > target_max or h > target_max:
+		var ratio = min(target_max / float(w), target_max / float(h))
+		var new_w = int(w * ratio)
+		var new_h = int(h * ratio)
+		img.resize(new_w, new_h, Image.INTERPOLATE_LANCZOS)
+	
+	return ImageTexture.create_from_image(img)
+
+
+
+
 
 func _on_review_pressed() -> void:
-	pass # Replace with function body.
+	var ui := preload("res://scenes/ui/buildings/flow/save_buildings_ui.tscn").instantiate()
+	add_child(ui)
