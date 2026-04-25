@@ -46,16 +46,22 @@ func _on_assure_pressed() -> void:
 	Global.subtract_money(current_craftmen.cost)
 	
 	craftsman_manager.append_new_craftsman(current_craftmen)
-	craftsmen.erase(current_craftmen)
 	
 	# 发射工匠被雇佣的信号
 	craftsman_hired.emit(current_craftmen)
+	
+	# 从列表中移除被雇佣的工匠
+	craftsmen.erase(current_craftmen)
 	
 	array_size = craftsmen.size()
 	if array_size == 0:
 		_on_back_pressed()
 	else:
-		_on_next_pressed()
+		# 更新当前显示的工匠
+		if index >= array_size:
+			index = array_size - 1
+		current_craftmen = craftsmen[index]
+		read_craftman_resource(current_craftmen)
 	
 	
 
@@ -78,11 +84,12 @@ func read_craftman_resource(resource : CraftsmanResource) -> void:
 	
 	#attribution部分
 	show_resouce_attribution(resource)
-	
+
 func _on_next_pressed() -> void:
 	array_size = craftsmen.size()
 	if array_size < 2:
 		next.disabled = true
+		return
 	
 	if index >= (array_size - 1):
 		index = 0
@@ -90,3 +97,7 @@ func _on_next_pressed() -> void:
 		index += 1
 	current_craftmen = craftsmen[index]
 	read_craftman_resource(current_craftmen)
+	
+	# 更新按钮状态
+	if array_size < 2:
+		next.disabled = true

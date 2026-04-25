@@ -50,12 +50,10 @@ func _ready() -> void:
 
 func _on_employee_pressed() -> void:
 	
+	# 只在人才市场为空时才重新生成工匠
 	if craftsmen.size() == 0:
-		# 如果人才市场为空，重新生成工匠
-		generate_craftsmen_market()
-		if craftsmen.size() == 0:
-			pop_up_ui.pop_up_information("提醒", "当前名气值过低，无法生成可招聘的工匠")
-			return
+		pop_up_ui.pop_up_information("提示", "人才市场已空，请完成更多建筑来刷新市场")
+		return
 	
 	var employee := employee_scene.instantiate() as CraftsmenUi
 	employee.craftsman_manager = craftsman_manager
@@ -108,9 +106,10 @@ func _on_building_complete(building_res : BuildingResource):
 	# 同时记入史册
 	SaveBuildings.record(building_res, file_path, screenshot)
 	
-	# 建筑完成后增加名气值，并刷新人才市场
+	# 建筑建造流程全部完成，增加名气值并刷新人才市场
 	set_fame(current_fame + 10)
 	generate_craftsmen_market()
+	print("建筑建造流程全部完成，名气值增加至：", current_fame, "，人才市场已刷新")
 
 func _capture_screenshot() -> ImageTexture:
 	var viewport = get_viewport()

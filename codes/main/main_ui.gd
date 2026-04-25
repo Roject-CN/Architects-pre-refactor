@@ -31,7 +31,11 @@ func update_money_value(value : int) -> void:
 	money_value.text = str(value)
 	
 func update_fame_value(value : int) -> void:
-	money_value.text = str(value)
+	fame_value.text = str(value)
+
+# 更新名气值显示（用于主场景调用）
+func update_fame_display(fame_value_int: int) -> void:
+	fame_value.text = str(fame_value_int)
 	
 func update_research_value(value : int) -> void:
 	money_value.text = str(value)

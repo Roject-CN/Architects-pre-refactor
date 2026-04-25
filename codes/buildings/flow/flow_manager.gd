@@ -55,5 +55,8 @@ func flow_transition() -> void:
 	current_flow = flows[index_flow]  # 切换流程
 
 func save_building_resource() -> void:
+	# 建筑建造流程全部完成，调用Building类的保存函数
+	# Building类中的save_builiding_resource()会发射building_complete信号
+	if building and building.has_method("save_builiding_resource"):
+		building.save_builiding_resource()
 	building.save_builiding_resource()
-	
