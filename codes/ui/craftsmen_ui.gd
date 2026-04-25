@@ -1,6 +1,9 @@
 extends AttributionUi
 class_name CraftsmenUi
 
+# 信号：当工匠被雇佣时发射
+signal craftsman_hired(craftsman: CraftsmanResource)
+
 var current_craftmen : CraftsmanResource
 #craftmen是人才市场，暂且作为测试使用
 @export var craftsmen : Array[CraftsmanResource]
@@ -44,6 +47,10 @@ func _on_assure_pressed() -> void:
 	
 	craftsman_manager.append_new_craftsman(current_craftmen)
 	craftsmen.erase(current_craftmen)
+	
+	# 发射工匠被雇佣的信号
+	craftsman_hired.emit(current_craftmen)
+	
 	array_size = craftsmen.size()
 	if array_size == 0:
 		_on_back_pressed()

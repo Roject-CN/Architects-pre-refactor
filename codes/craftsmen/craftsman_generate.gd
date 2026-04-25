@@ -207,9 +207,13 @@ func generate_value(fame_value : int , gender:int = -1 , profession : int = -1) 
 	#为CraftsmanResource对象赋值
 	resource.name = result.name
 	resource.level = result.level
-	resource.profession = resource.PROPERTY[result.profession]
+	# 将整数索引转换为PROPERTY枚举值
+	resource.profession = result.profession
+	# 设置values字典，使用正确的枚举键名
+	var prop_keys = resource.PROPERTY.keys()
 	for i in range(4):
-		resource.values[i] = result.values[i]
+		if i < prop_keys.size():
+			resource.values[prop_keys[i]] = result.values[i]
 	resource.cost = result.cost
 	resource.description = result.description
 	resource.texture = result.texture
