@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bg8cdcugv6gk3"
-path="res://.godot/imported/c1.png-55223eeb6e5af8d2992ff5d89c9ed9a4.ctex"
+uid="uid://br5nt7jufjqof"
+path="res://.godot/imported/d1.png-ece358cafbb3aacb9e9d5d635d9d568c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprits/craftsmen/female/accountant/c1.png"
-dest_files=["res://.godot/imported/c1.png-55223eeb6e5af8d2992ff5d89c9ed9a4.ctex"]
+source_file="res://sprits/craftsmen/male/designer/d1.png"
+dest_files=["res://.godot/imported/d1.png-ece358cafbb3aacb9e9d5d635d9d568c.ctex"]
 
 [params]
 
