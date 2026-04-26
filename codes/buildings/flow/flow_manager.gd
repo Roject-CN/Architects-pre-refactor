@@ -59,4 +59,3 @@ func save_building_resource() -> void:
 	# Building类中的save_builiding_resource()会发射building_complete信号
 	if building and building.has_method("save_builiding_resource"):
 		building.save_builiding_resource()
-	building.save_builiding_resource()
