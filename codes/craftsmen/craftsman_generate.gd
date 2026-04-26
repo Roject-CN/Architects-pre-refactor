@@ -405,7 +405,6 @@ static func _load_all_texture():
 			
 			# 结束遍历
 			prof_dir.list_dir_end()
-			print("加载完成：", prof_path, " | 图片数量：", texture_pool[gender_name][prof_name].size())
 static func _get_random_sprite(gender: int, profession: int) -> Texture2D:
 	var gender_name = GENDER_FOLDERS[gender]
 	var prof_name = PROFESSION_FOLDERS[profession]

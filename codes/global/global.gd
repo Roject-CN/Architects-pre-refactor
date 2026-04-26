@@ -21,6 +21,7 @@ func save_save_resource() -> void:
 	pass
 
 func add_money(amount: int) -> void:
+	print("fuck")
 	save_resource.current_money += amount
 
 func subtract_money(amount: int) -> void:

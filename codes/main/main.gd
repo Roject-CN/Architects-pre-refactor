@@ -30,7 +30,7 @@ func _ready() -> void:
 	Event.building_ui_quit.connect(func(): building_button.disabled = false	)
 	
 
-func _on_employee_pressed() -> void:	
+func _on_employee_pressed() -> void:
 
 	var employee := employee_scene.instantiate() as CraftsmenUi
 	employee.craftsman_manager = craftsman_manager

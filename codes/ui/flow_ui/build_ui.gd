@@ -57,6 +57,5 @@ func animation_ui_add(prop : BaseResource.PROPERTY) -> void:
 
 	
 func _on_assure_pressed() -> void:
-	ui_exit()
 	request_next()
 	
