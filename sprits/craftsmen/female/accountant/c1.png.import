@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://buqbnkrmljb2h"
-path="res://.godot/imported/c1.png-9adec2f686a1152acec4986a2a99393e.ctex"
+path="res://.godot/imported/c1.png-55223eeb6e5af8d2992ff5d89c9ed9a4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprits/craftsmen/male/accountant/c1.png"
-dest_files=["res://.godot/imported/c1.png-9adec2f686a1152acec4986a2a99393e.ctex"]
+source_file="res://sprits/craftsmen/female/accountant/c1.png"
+dest_files=["res://.godot/imported/c1.png-55223eeb6e5af8d2992ff5d89c9ed9a4.ctex"]
 
 [params]
 
