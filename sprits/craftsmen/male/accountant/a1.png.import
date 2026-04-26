@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dslrgiivs3485"
-path="res://.godot/imported/a1.png-63cd35cc1f3af2edae452902ba06bd25.ctex"
+uid="uid://bwlw2c3lo1f2l"
+path="res://.godot/imported/a1.png-893ede3ed1141dbf83d382f78a14cf58.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprits/craftsmen/male/artisan/a1.png"
-dest_files=["res://.godot/imported/a1.png-63cd35cc1f3af2edae452902ba06bd25.ctex"]
+source_file="res://sprits/craftsmen/male/accountant/a1.png"
+dest_files=["res://.godot/imported/a1.png-893ede3ed1141dbf83d382f78a14cf58.ctex"]
 
 [params]
 

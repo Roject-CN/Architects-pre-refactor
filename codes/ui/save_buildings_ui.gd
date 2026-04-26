@@ -118,7 +118,7 @@ func _on_clear_pressed():
 	dialog.get_cancel_button().text = "取消"
 	
 	dialog.confirmed.connect(func():
-		SaveBuildings.clear()
+		Global.save_resource.save_building_resources.clear()
 		refresh()  # 刷新列表显示
 	)
 	
@@ -129,34 +129,20 @@ func _on_clear_pressed():
 func _close():
 	queue_free()
 
-func _theme_name(t) -> String:
-	if t == null: 
-		return "无"
-	
-	# 优先使用 resource_name，如果没有则从路径提取文件名（去掉.tres）
-	var name = ""
-	if t.resource_name and t.resource_name != "":
-		name = t.resource_name
-	else:
-		# 从路径提取文件名，去掉 .tres 后缀
-		var file = t.resource_path.get_file()
-		name = file.replace(".tres", "")
-	
-	return name
 
 
 func refresh():
 	for c in _list.get_children(): 
 		c.queue_free()
 	
-	for entry in SaveBuildings.all():
+	for resource : BuildingResource  in Global.save_resource.save_building_resources:
 		var row := HBoxContainer.new()
 		row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		
 		# 左侧：截图（如果有）或占位
 		var tex := TextureRect.new()
-		if entry.tex != null:
-			tex.texture = entry.tex
+		if resource.texture != null:
+			tex.texture = resource.tex
 		else:
 			# 无截图时显示占位色块
 			tex.texture = null
@@ -171,31 +157,31 @@ func refresh():
 		
 		# 名称和编号
 		var name_lab := Label.new()
-		name_lab.text = "[%d] %s" % [entry.index, entry.name]
+		name_lab.text = "[%d] %s" % [resource.index, resource.name]
 		name_lab.add_theme_font_size_override("font_size", 16)
 		info.add_child(name_lab)
 		
 		# 四项数值
-		for key in entry.val.keys():
+		for key in resource.values.keys():
 			var lab := Label.new()
-			lab.text = "%s：%d" % [key, entry.val[key]]
+			lab.text = "%s：%d" % [key, resource.values[key]]
 			info.add_child(lab)
 		
 		# 上分主题
 		var top_lab := Label.new()
-		top_lab.text = "上分：%s" % _theme_name(entry.top)
+		top_lab.text = "上分：%s" % (resource.top_theme.name)
 		top_lab.modulate = Color(0.8, 0.8, 0.8)
 		info.add_child(top_lab)
 		
 		# 中分主题
 		var mid_lab := Label.new()
-		mid_lab.text = "中分：%s" % _theme_name(entry.mid)
+		mid_lab.text = "中分：%s" % (resource.middle_theme.name)
 		mid_lab.modulate = Color(0.8, 0.8, 0.8)
 		info.add_child(mid_lab)
 		
 		# 下分主题
 		var bot_lab := Label.new()
-		bot_lab.text = "下分：%s" % _theme_name(entry.bot)
+		bot_lab.text = "下分：%s" % (resource.buttom_theme.name)
 		bot_lab.modulate = Color(0.8, 0.8, 0.8)
 		info.add_child(bot_lab)
 		

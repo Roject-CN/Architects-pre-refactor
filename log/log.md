@@ -2,6 +2,12 @@
 格式： ### 日期 然后接着更新的标题，概括大致内容，后面是日志内容即可（最新的优先写在最上面） 最后提交的message写日志的标题就好了
 
 ### 2026-4-25
+* 修复员工聘用界面，玩家金钱数不足时仍然能够点击聘用按钮的bug；
+* 将建筑资源保存机制从原先的接入主场景，改为接入建筑`Building`类的`save_builiding_resource`函数，同时修改了保存建筑资源的代码。同时`建筑资源`的保存位置也从文件目录换到了全局单例`SaveResource`类的`save_building_resources`属性上，方便全局读取和修改建筑资源数据，同时设置了数组大小，若超过则自动删除。
+* 调整了数值崩坏的问题，在`PropConfig`类中调整了建筑增值的变量，将原先的`LIMIT`从 2.0 改成 20.0，使得建筑增值减慢十倍。
+---
+
+### 2026-4-25
 
 * 本次更新将回顾建筑历史和随机生成工匠两大功能接入到主场景。建筑建造流程完成后自动刷新人才市场。修复了craftsman_generate.gd的PROPERTY枚举访问错误、main.gd的类型转换问题、craftsmen_ui.gd的信号缺失和UI功能异常、flow_manager.gd的返回按钮错误刷新市场以及main_ui.gd的名气值显示错误等bug
 
@@ -11,6 +17,7 @@
 
 * 新增的文件：save_buildings.gd;save_buildings_ui.gd；新增的场景：save_buildings_ui.tscn；修改的文件：main.gd;building.gd
 
+---
 
 ### 2026-4-12
 document 和 todo更新

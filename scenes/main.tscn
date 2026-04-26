@@ -3,11 +3,7 @@
 [ext_resource type="Script" uid="uid://c4jjqgtv4ybmf" path="res://codes/main/main.gd" id="1_o5qli"]
 [ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://resource/global_theme.tres" id="1_tipki"]
 [ext_resource type="Script" uid="uid://colk7drh6w0ja" path="res://codes/main/main_ui.gd" id="3_jyhfs"]
-[ext_resource type="Script" uid="uid://bcfvld13usfs" path="res://codes/craftsmen/craftsman_resource.gd" id="3_ya4ey"]
-[ext_resource type="Resource" uid="uid://cpahilhgnqvb0" path="res://resource/craftsmen_resource/test1.tres" id="4_eb6dy"]
 [ext_resource type="Script" uid="uid://duhehw80582bv" path="res://codes/main/main_time.gd" id="5_tbgi4"]
-[ext_resource type="Resource" uid="uid://bq1f4gk7ydlvw" path="res://resource/craftsmen_resource/test2.tres" id="5_trceg"]
-[ext_resource type="Resource" uid="uid://h8qv1lopkc10" path="res://resource/craftsmen_resource/test3.tres" id="6_a8y0u"]
 [ext_resource type="Script" uid="uid://d0c0rulwp1lhg" path="res://codes/craftsmen/craftsman_manager.gd" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://b5rxknicvviqi" path="res://scenes/ui/base_ui/pop_up_ui.tscn" id="7_tipki"]
 [ext_resource type="Texture2D" uid="uid://cebjk50l0bew" path="res://sprits/game素材/里屋（带物品.png" id="8_eb6dy"]
@@ -32,7 +28,6 @@ theme = ExtResource("1_tipki")
 script = ExtResource("1_o5qli")
 craftsman_manager = NodePath("Function/CraftsmanManager")
 pop_up_ui = NodePath("PopUpUi")
-craftsmen = Array[ExtResource("3_ya4ey")]([ExtResource("4_eb6dy"), ExtResource("5_trceg"), ExtResource("6_a8y0u")])
 metadata/_edit_lock_ = true
 
 [node name="Company" type="CanvasLayer" parent="." unique_id=2013525011]

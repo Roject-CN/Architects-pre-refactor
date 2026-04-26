@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://l0lthvl61vfr" path="res://scenes/ui/base_ui/attribution_ui.tscn" id="1_m7yh4"]
 [ext_resource type="Script" uid="uid://dlsuruow0auqd" path="res://codes/ui/craftsmen_ui.gd" id="2_2o5a0"]
 [ext_resource type="Script" uid="uid://bcfvld13usfs" path="res://codes/craftsmen/craftsman_resource.gd" id="3_al16r"]
+[ext_resource type="Script" uid="uid://dllo8ex743q15" path="res://codes/craftsmen/craftsman_generate.gd" id="4_af67v"]
 [ext_resource type="Texture2D" uid="uid://do77yn4lfgps7" path="res://sprits/tile_0099.png" id="6_fe5w2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c7lko"]
@@ -75,6 +76,10 @@ anchor_right = 0.65
 offset_right = 8.0
 offset_bottom = 8.0
 text = "下一个"
+
+[node name="CraftsmanGenerate" type="Node" parent="." index="5" unique_id=1993207626]
+script = ExtResource("4_af67v")
+metadata/_custom_type_script = "uid://dllo8ex743q15"
 
 [connection signal="pressed" from="Button/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="Button/Assure" to="." method="_on_assure_pressed"]

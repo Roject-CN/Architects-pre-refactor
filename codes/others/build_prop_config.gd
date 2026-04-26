@@ -1,7 +1,7 @@
 class_name BuildPropConfig 
 extends Resource
 
-const MAX_LIMIT := 2.0
+const MAX_LIMIT := 20.0
 
 @export var prop : BaseResource.PROPERTY
 #weight代表该属性的权重 权重越小增值越慢

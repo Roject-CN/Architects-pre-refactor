@@ -1,8 +1,6 @@
 extends AttributionUi
 class_name CraftsmenUi
 
-# 信号：当工匠被雇佣时发射
-signal craftsman_hired(craftsman: CraftsmanResource)
 
 var current_craftmen : CraftsmanResource
 #craftmen是人才市场，暂且作为测试使用
@@ -20,16 +18,16 @@ var index : int = 0
 @onready var level: Label = $Left/VBoxContainer/Level
 @onready var assure: Button = $Button/Assure
 @onready var next: Button = $Button/Next
-
-
+@onready var craftsman_generator: CraftsmanGenerate = $CraftsmanGenerate
 
 func ui_exit() -> void:
 	super()
 	call_deferred("queue_free") #消除自己
 
 func ui_enter() -> void:
-	assert(craftsmen, str(self) + "'s craftsmen(Array[CraftmanResource] is empty)")
-		
+	#生成员工
+	generate()
+	
 	array_size = craftsmen.size()
 	if array_size < 2:
 		next.disabled = true
@@ -41,14 +39,24 @@ func ui_enter() -> void:
 func _on_back_pressed() -> void:
 	ui_exit()
 
+func generate() -> void:
+	if craftsman_generator:
+		# 使用当前名气值生成工匠，并将普通Array转换为Array[CraftsmanResource]
+		var current_fame : int = Global.save_resource.fame
+		var generated_craftsmen = craftsman_generator.generate_craftsman(current_fame)
+		craftsmen.clear()
+		for craftsman in generated_craftsmen:
+			if craftsman is CraftsmanResource:
+				craftsmen.append(craftsman)
+		print("生成工匠市场：当前名气值 ", current_fame, "，生成工匠数量：", craftsmen.size())
+	else:
+		push_warning("CraftsmanGenerator未初始化")
+		
 func _on_assure_pressed() -> void:
 	#雇佣成功扣钱
 	Global.subtract_money(current_craftmen.cost)
 	
 	craftsman_manager.append_new_craftsman(current_craftmen)
-	
-	# 发射工匠被雇佣的信号
-	craftsman_hired.emit(current_craftmen)
 	
 	# 从列表中移除被雇佣的工匠
 	craftsmen.erase(current_craftmen)
@@ -82,6 +90,10 @@ func read_craftman_resource(resource : CraftsmanResource) -> void:
 	assure.text = assure_text
 	description.text = resource.description
 	
+	if Global.save_resource.current_money < resource.cost:
+		assure.disabled = true
+	else:
+		assure.disabled = false
 	#attribution部分
 	show_resouce_attribution(resource)
 

@@ -29,6 +29,13 @@ var time_days : int = 0 :
 #员工列表
 @export var start_list : Array[CraftsmanResource]
 
+#建筑资源的储存
+var save_building_resources : Array[BuildingResource] : 
+	set(new):
+		#超过十个资源就删除最后一个
+		if new.size() >= 10:
+			new.pop_back()
+
 #检测是否为第一次加载
 var first_time : bool = true
 

@@ -5,9 +5,6 @@ extends Node2D
 @onready var flow_manager: FlowManager = $FlowManager
 @export var craftsman_manager : CraftsmanManager
 
-#flow_manager再检测到已经运行到最后一个流程并结束的时候， 执行此函数
-signal building_complete(building_resource : BuildingResource)
-
 func _ready() -> void:
 	assert(craftsman_manager, str(self.name) + "'s craftsman_manager is empty")
 	
@@ -31,9 +28,10 @@ func _ready() -> void:
 #flow_manager再检测到已经运行到最后一个流程并结束的时候， 执行此函数
 func save_builiding_resource() -> void:
 	
+	Global.add_building_resource(building_resource)
+	
 	#使 MainTime开始计时
 	Event.building_ui_quit.emit()
-	building_complete.emit(building_resource)
 	call_deferred("queue_free")
 
 ## 环境部分

@@ -1,8 +1,6 @@
 extends Node
 
 # Global.gd 或任何全局脚本中
-const BUILDING_SAVE_DIR = "user://building_resource/"
-const BUILDING_SAVE_DIR_PATH = "user://building_resource/%d_building_resource.tres"
 
 #加载存档资源
 @export var save_resource : SaveResource
@@ -42,3 +40,6 @@ func subtract_research(amount: int) -> void:
 
 func add_days(amount : int) -> void:
 	save_resource.time_days += amount
+
+func add_building_resource(building_resource : BuildingResource) -> void:
+	save_resource.save_building_resources.append(building_resource)

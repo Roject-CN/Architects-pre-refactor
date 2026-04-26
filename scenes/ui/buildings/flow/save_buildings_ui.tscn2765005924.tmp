@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://823hmfrdlr63"]
+
+[ext_resource type="Script" uid="uid://bfxs50h00w7t4" path="res://codes/ui/save_buildings_ui.gd" id="1_mit0o"]
+
+[node name="SaveBuildingsUi" type="Control" unique_id=1751271447]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_mit0o")
