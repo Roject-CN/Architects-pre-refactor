@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ThemeResource" format=3 uid="uid://1nayo7p1gtok"]
+
+[ext_resource type="Script" uid="uid://ca1nftey11dbk" path="res://codes/buildings/theme/theme_resource.gd" id="1_heg8u"]
+
+[resource]
+script = ExtResource("1_heg8u")
+type = 1
+time = 2
+name = "穿梁结合"
+description = "这是将抬梁式与穿斗式两种构架混合使用的智慧结晶。在实际应用中，通常在建筑的山墙部分使用节省木材、抗风性好的穿斗式，而在需要大空间的明间（中央部分）则使用抬梁式，做到扬长避短。这种灵活的组合方式在南方各地民居和祠堂建筑中极为常见，实现了经济性与空间感的完美平衡。它完美展现了中国古代工匠不拘泥于教条，讲求实效、灵活变通的营造思想"
+metadata/_custom_type_script = "uid://ca1nftey11dbk"

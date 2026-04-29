@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ThemeResource" format=3 uid="uid://dtjs0gvuvirfy"]
+
+[ext_resource type="Script" uid="uid://ca1nftey11dbk" path="res://codes/buildings/theme/theme_resource.gd" id="1_mmx6s"]
+
+[resource]
+script = ExtResource("1_mmx6s")
+type = 2
+time = 2
+name = "石砌台基"
+description = "石砌台基属于普通台基中的高等级形式，其“台明”部分全部用经过加工的石料包砌，如条石、石板等，并在顶面安放“阶条石”，四角立置“角柱石”。由于石材质地坚硬、防水性能极佳，石砌台基比砖砌台基更为坚固耐久，等级也更高，多用于官式建筑、寺庙、衙署等较为重要的建筑上。石材的开采和加工要求更高，使其本身就成为一种财富与权力的象征。采用石砌台基，代表建筑迈入了更加永固和庄重的阶段"
+metadata/_custom_type_script = "uid://ca1nftey11dbk"

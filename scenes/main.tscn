@@ -18,12 +18,14 @@ atlas = ExtResource("8_eb6dy")
 region = Rect2(0, 0, 2560, 2560)
 
 [node name="Main" type="Control" unique_id=890892059 node_paths=PackedStringArray("craftsman_manager", "pop_up_ui")]
+z_as_relative = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme = ExtResource("1_tipki")
 script = ExtResource("1_o5qli")
 craftsman_manager = NodePath("Function/CraftsmanManager")
@@ -51,6 +53,7 @@ position = Vector2(397, 283)
 position = Vector2(399, 314)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Company/CanvasModulate" unique_id=1239231787]
+visible = false
 position = Vector2(0, 1)
 navigation_polygon = SubResource("NavigationPolygon_ya4ey")
 metadata/_edit_lock_ = true
@@ -63,8 +66,11 @@ scale = Vector2(0.25, 0.2)
 texture = SubResource("AtlasTexture_ya4ey")
 metadata/_edit_lock_ = true
 
-[node name="MainUi" type="Panel" parent="." unique_id=1672565873]
-layout_mode = 1
+[node name="MainUiLayer" type="CanvasLayer" parent="." unique_id=959531541]
+layer = 99
+
+[node name="MainUi" type="Panel" parent="MainUiLayer" unique_id=1672565873]
+z_index = 99
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.1
@@ -72,31 +78,31 @@ grow_horizontal = 2
 script = ExtResource("3_jyhfs")
 metadata/_custom_type_script = "uid://colk7drh6w0ja"
 
-[node name="TopInformation" type="Control" parent="MainUi" unique_id=987204868]
+[node name="TopInformation" type="Control" parent="MainUiLayer/MainUi" unique_id=987204868]
 anchors_preset = 0
 offset_right = 346.0
 offset_bottom = 40.0
 
-[node name="Money" type="HBoxContainer" parent="MainUi/TopInformation" unique_id=1646293515]
+[node name="Money" type="HBoxContainer" parent="MainUiLayer/MainUi/TopInformation" unique_id=1646293515]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 1
 anchors_preset = -1
 offset_right = 102.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="MainUi/TopInformation/Money" unique_id=1662097202]
+[node name="Label" type="Label" parent="MainUiLayer/MainUi/TopInformation/Money" unique_id=1662097202]
 layout_mode = 2
 text = "金钱:"
 
-[node name="Value" type="Label" parent="MainUi/TopInformation/Money" unique_id=1808022642]
+[node name="Value" type="Label" parent="MainUiLayer/MainUi/TopInformation/Money" unique_id=1808022642]
 layout_mode = 2
 text = "xxx"
 
-[node name="PlaceHolder" type="Control" parent="MainUi/TopInformation/Money" unique_id=168463468]
+[node name="PlaceHolder" type="Control" parent="MainUiLayer/MainUi/TopInformation/Money" unique_id=168463468]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 
-[node name="Fame" type="HBoxContainer" parent="MainUi/TopInformation" unique_id=1771801521]
+[node name="Fame" type="HBoxContainer" parent="MainUiLayer/MainUi/TopInformation" unique_id=1771801521]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -105,19 +111,19 @@ anchor_right = 0.3
 offset_right = 118.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="MainUi/TopInformation/Fame" unique_id=1410144982]
+[node name="Label" type="Label" parent="MainUiLayer/MainUi/TopInformation/Fame" unique_id=1410144982]
 layout_mode = 2
 text = "名气值:"
 
-[node name="Value" type="Label" parent="MainUi/TopInformation/Fame" unique_id=1082153743]
+[node name="Value" type="Label" parent="MainUiLayer/MainUi/TopInformation/Fame" unique_id=1082153743]
 layout_mode = 2
 text = "xxx"
 
-[node name="Control" type="Control" parent="MainUi/TopInformation/Fame" unique_id=1528065682]
+[node name="Control" type="Control" parent="MainUiLayer/MainUi/TopInformation/Fame" unique_id=1528065682]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 
-[node name="Research" type="HBoxContainer" parent="MainUi/TopInformation" unique_id=2094138713]
+[node name="Research" type="HBoxContainer" parent="MainUiLayer/MainUi/TopInformation" unique_id=2094138713]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -126,19 +132,19 @@ anchor_right = 0.7
 offset_right = 118.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="MainUi/TopInformation/Research" unique_id=2082625239]
+[node name="Label" type="Label" parent="MainUiLayer/MainUi/TopInformation/Research" unique_id=2082625239]
 layout_mode = 2
 text = "研究点:"
 
-[node name="Value" type="Label" parent="MainUi/TopInformation/Research" unique_id=17637026]
+[node name="Value" type="Label" parent="MainUiLayer/MainUi/TopInformation/Research" unique_id=17637026]
 layout_mode = 2
 text = "xxx"
 
-[node name="Control" type="Control" parent="MainUi/TopInformation/Research" unique_id=66922566]
+[node name="Control" type="Control" parent="MainUiLayer/MainUi/TopInformation/Research" unique_id=66922566]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 
-[node name="Time" type="HBoxContainer" parent="MainUi/TopInformation" unique_id=719396670]
+[node name="Time" type="HBoxContainer" parent="MainUiLayer/MainUi/TopInformation" unique_id=719396670]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.7
@@ -147,32 +153,27 @@ offset_left = 261.8
 offset_right = 423.8
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="MainUi/TopInformation/Time" unique_id=1273392076]
+[node name="Label" type="Label" parent="MainUiLayer/MainUi/TopInformation/Time" unique_id=1273392076]
 layout_mode = 2
 text = "时间："
 
-[node name="Value" type="Label" parent="MainUi/TopInformation/Time" unique_id=1029099694]
+[node name="Value" type="Label" parent="MainUiLayer/MainUi/TopInformation/Time" unique_id=1029099694]
 layout_mode = 2
 text = "xxx年xx月xx日"
 
-[node name="Button" type="Panel" parent="." unique_id=2147417917]
+[node name="ButtonMenu" type="Panel" parent="." unique_id=2147417917]
+z_index = -99
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.25
 anchor_right = 0.15
-anchor_bottom = 0.6
+anchor_bottom = 0.8
 
-[node name="MarginContainer" type="MarginContainer" parent="Button" unique_id=1387030544]
+[node name="MarginContainer" type="MarginContainer" parent="ButtonMenu" unique_id=1387030544]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -44.0
-offset_top = -72.0
-offset_right = 44.0
-offset_bottom = 72.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 8
@@ -180,25 +181,29 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Button/MarginContainer" unique_id=167129776]
+[node name="VBoxContainer" type="VBoxContainer" parent="ButtonMenu/MarginContainer" unique_id=167129776]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Button/MarginContainer/VBoxContainer" unique_id=1569889780]
+[node name="Label" type="Label" parent="ButtonMenu/MarginContainer/VBoxContainer" unique_id=1569889780]
 layout_mode = 2
 text = "菜单列表"
 horizontal_alignment = 1
 
-[node name="Employee" type="Button" parent="Button/MarginContainer/VBoxContainer" unique_id=1931172483]
+[node name="Employee" type="Button" parent="ButtonMenu/MarginContainer/VBoxContainer" unique_id=1931172483]
 layout_mode = 2
 text = "雇佣员工"
 
-[node name="Building" type="Button" parent="Button/MarginContainer/VBoxContainer" unique_id=1308421589]
+[node name="Building" type="Button" parent="ButtonMenu/MarginContainer/VBoxContainer" unique_id=1308421589]
 layout_mode = 2
 text = "建造建筑"
 
-[node name="Review" type="Button" parent="Button/MarginContainer/VBoxContainer" unique_id=2118163836]
+[node name="Review" type="Button" parent="ButtonMenu/MarginContainer/VBoxContainer" unique_id=2118163836]
 layout_mode = 2
 text = "回顾过去"
+
+[node name="Theme" type="Button" parent="ButtonMenu/MarginContainer/VBoxContainer" unique_id=1143383779]
+layout_mode = 2
+text = "主题解锁"
 
 [node name="Function" type="Node" parent="." unique_id=600976631]
 
@@ -222,6 +227,7 @@ layout_mode = 1
 offset_top = -1.0
 offset_bottom = -1.0
 
-[connection signal="pressed" from="Button/MarginContainer/VBoxContainer/Employee" to="." method="_on_employee_pressed"]
-[connection signal="pressed" from="Button/MarginContainer/VBoxContainer/Building" to="." method="_on_building_pressed"]
-[connection signal="pressed" from="Button/MarginContainer/VBoxContainer/Review" to="." method="_on_review_pressed"]
+[connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/Employee" to="." method="_on_employee_pressed"]
+[connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/Building" to="." method="_on_building_pressed"]
+[connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/Review" to="." method="_on_review_pressed"]
+[connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/Theme" to="." method="_on_theme_pressed"]

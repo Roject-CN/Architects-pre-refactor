@@ -2,6 +2,15 @@
 
 [ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://resource/global_theme.tres" id="1_2hswq"]
 [ext_resource type="Script" uid="uid://div4uigqj6jh8" path="res://codes/ui/base_ui/pop_up_ui.gd" id="1_j1bxd"]
+[ext_resource type="Texture2D" uid="uid://bb1llwn0kn1pm" path="res://icon.svg" id="3_3wx5s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3wx5s"]
+bg_color = Color(0.7921569, 0.5411765, 0.21176471, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8261941, 0.7278278, 0.72312635, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2hswq"]
 font_size = 12
@@ -29,6 +38,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3wx5s")
 
 [node name="Title" type="Label" parent="Panel" unique_id=1016933190]
 layout_mode = 1
@@ -65,14 +75,50 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.9
+anchor_top = 0.95
 anchor_right = 0.5
-anchor_bottom = 0.9
+anchor_bottom = 0.95
 offset_left = -4.0
 offset_top = -8.0
 offset_right = 4.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "确认"
+
+[node name="TextureRect" type="TextureRect" parent="Panel" unique_id=1538085291]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel" unique_id=1161839500]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer" unique_id=454258753]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("3_3wx5s")
+stretch_mode = 3
+
+[node name="Description" type="Label" parent="Panel/HBoxContainer" unique_id=1688230860]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+text = "这个Ui用来显示一些提醒信息，比如解锁成就、当前页面无法开启等情况"
+label_settings = SubResource("LabelSettings_2hswq")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]

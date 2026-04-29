@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ThemeResource" format=3 uid="uid://d371pdecn0otu"]
+
+[ext_resource type="Script" uid="uid://ca1nftey11dbk" path="res://codes/buildings/theme/theme_resource.gd" id="1_jbrp7"]
+
+[resource]
+script = ExtResource("1_jbrp7")
+type = 2
+name = "素土台基"
+description = "最原始的台基形式，通过纯人工夯打土壤而成，使地基坚实匀称。考古发现中，许多早期大型建筑都建立在巨大的夯土台基之上。其工艺奇迹的代表是世界最高木塔——山西应县木塔，其重达数千吨的主体直接压在素土夯实的台基上，近千年几乎没有沉降，堪称一大奇迹。这充分证明了中国古代工匠对土力学原理的深刻理解和精湛的夯土技术"
+metadata/_custom_type_script = "uid://ca1nftey11dbk"

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ThemeResource" format=3 uid="uid://bln3d81v1l4yw"]
+
+[ext_resource type="Script" uid="uid://ca1nftey11dbk" path="res://codes/buildings/theme/theme_resource.gd" id="1_15l1w"]
+
+[resource]
+script = ExtResource("1_15l1w")
+name = "攒尖顶"
+description = "攒尖顶是一种独特的屋顶形式，无正脊，数条垂脊向上汇聚于顶端一点，其上常饰有“宝顶”，整体呈锥形。它多用于面积不大的亭、阁、塔等点景建筑，其平面形式灵活多变，有圆形、方形、三角、六角、八角等。攒尖顶的形象最早可追溯至北朝石窟石刻。尽管多用于景观建筑，但在皇家建筑中也有例外，如北京天坛祈年殿、故宫中和殿就是等级极高的攒尖顶殿宇。其向心汇聚的形态，蕴含着“天人合一”、“万法归一”的哲学意境，是古代礼制与天地对话的建筑语言"
+metadata/_custom_type_script = "uid://ca1nftey11dbk"

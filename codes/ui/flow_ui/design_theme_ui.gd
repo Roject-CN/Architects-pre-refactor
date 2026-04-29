@@ -1,9 +1,9 @@
 extends ChoiceUi
 class_name DesignUi
 
-@export var test_top_themes : Array[ThemeResource]
-@export var test_middle_themes : Array[ThemeResource]
-@export var test_buttom_themes : Array[ThemeResource]
+var top_themes : Array[ThemeResource]
+var middle_themes : Array[ThemeResource]
+var buttom_themes : Array[ThemeResource]
 
 const TEXT := ["上分", "中分", "下分"]
 
@@ -26,22 +26,27 @@ func ui_enter()-> void:
 	#只有选择好所有的主题资源才可以进入下一步 所以先设置不可按
 	assure.disabled = true
 	
+	#
+	top_themes = Global.top_theme_resource.duplicate(true)
+	middle_themes = Global.middle_theme_resource.duplicate(true)
+	buttom_themes = Global.buttom_theme_resource.duplicate(true)
+	
 	super()
 
 func top_button_pressed() -> void:
 	top.grab_focus()
 	clear_theme_resources()
-	show_theme_resources(test_top_themes)
+	show_theme_resources(top_themes)
 	
 func middle_button_pressed() -> void:
 	middle.grab_focus()
 	clear_theme_resources()
-	show_theme_resources(test_middle_themes)
+	show_theme_resources(middle_themes)
 	
 func buttom_button_pressed() -> void:
 	buttom.grab_focus()
 	clear_theme_resources()
-	show_theme_resources(test_buttom_themes)
+	show_theme_resources(buttom_themes)
 
 #根据主题资源显示按钮选项
 func show_theme_resources(resources : Array[ThemeResource]) -> void:

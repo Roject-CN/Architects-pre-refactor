@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ThemeResource" format=3 uid="uid://poweux62q54i"]
+
+[ext_resource type="Script" uid="uid://ca1nftey11dbk" path="res://codes/buildings/theme/theme_resource.gd" id="1_yhbnv"]
+
+[resource]
+script = ExtResource("1_yhbnv")
+type = 2
+time = 2
+name = "须弥座台基"
+description = "须弥座是古建筑中等级最高的台基形式，其造型源于佛教中象征宇宙中心的“须弥山”，由佛座演变而来。须弥座的结构复杂，通常由数层叠涩线脚、较高的束腰等部分组成，并饰以莲瓣、卷草等精美雕刻。最早的实例见于北朝石窟，唐代以后装饰愈加华丽繁复。例如，北京故宫太和殿就是耸立在三层汉白玉须弥座台基之上，以此彰显至高无上的皇权。它不仅仅是建筑的底座，更是集石雕艺术与等级制度于一体的文化符号，代表着使用者最尊贵的地位。"
+metadata/_custom_type_script = "uid://ca1nftey11dbk"

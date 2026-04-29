@@ -27,14 +27,18 @@ var time_days : int = 0 :
 		time_days_changed.emit(value)
 
 #员工列表
-@export var start_list : Array[CraftsmanResource]
+var start_list : Array[CraftsmanResource]
 
 #建筑资源的储存
-var save_building_resources : Array[BuildingResource] : 
-	set(new):
-		#超过十个资源就删除最后一个
-		if new.size() >= 10:
-			new.pop_back()
+var save_building_resources : Array[BuildingResource]
+
+#建筑主题资源
+var top_theme_resource : Array[ThemeResource]
+var middle_theme_resource : Array[ThemeResource]
+var buttom_theme_resource : Array[ThemeResource]
+
+#历史建筑成就
+var achivements : Array[BuildingResource]
 
 #检测是否为第一次加载
 var first_time : bool = true
@@ -48,3 +52,9 @@ func init_save_resource() -> void:
 	if first_time:
 		first_time = false
 		current_money = init_money
+
+func add_building_resource(resource : BuildingResource) -> void:
+	save_building_resources.append(resource)
+	
+	if save_building_resources.size() >= 10:
+		save_building_resources.pop_front() 

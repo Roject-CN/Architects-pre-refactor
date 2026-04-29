@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ThemeResource" format=3 uid="uid://p10fisepi2gu"]
+
+[ext_resource type="Script" uid="uid://ca1nftey11dbk" path="res://codes/buildings/theme/theme_resource.gd" id="1_vrtp5"]
+
+[resource]
+script = ExtResource("1_vrtp5")
+time = 1
+name = "硬山顶"
+description = "硬山顶同为两面坡顶，但其屋面两侧与山墙齐平，或山墙略高于屋面，檩头完全包封在山墙之内，造型显得质朴而刚硬。硬山顶的出现与砖的普及使用密切相关，历史稍晚。其防风火性能优越，因此在明清时期广泛应用于南北方民居，成为我国最普遍的民居屋顶形式。硬山顶虽等级不高，但在徽州等地，当地工匠将其山墙进一步发展为高低错落、形似马头的“封火墙”，不仅强化了防火功能，更创造性地塑造了极具地域特色的建筑美学。它代表着中国建筑在有限条件与礼制规范下，发展出的适应性、经济性与独特的地域美学"
+metadata/_custom_type_script = "uid://ca1nftey11dbk"

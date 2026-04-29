@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ThemeResource" format=3 uid="uid://dx0cwcl3hm72g"]
+
+[ext_resource type="Script" uid="uid://ca1nftey11dbk" path="res://codes/buildings/theme/theme_resource.gd" id="1_nfbnh"]
+
+[resource]
+script = ExtResource("1_nfbnh")
+time = 2
+name = "歇山顶"
+description = "歇山顶等级仅次于庑殿顶，它像由悬山顶和庑殿顶组合而成。其结构由正脊、四条垂脊、四条戗脊共九条脊构成，上半部为两坡，下半部转为四坡。歇山顶的形象最早可见于汉代明器，其造型既有庑殿顶的恢宏气势，又多了几分灵动变化，是应用最为广泛的高级屋顶形式。现存最古老的唐代木构建筑山西五台山南禅寺大殿使用的就是单檐歇山顶。其九脊天成的意象，在雄浑与秀丽间找到了完美的平衡，是中华文化中庸之道与灵活变通精神的生动体现"
+metadata/_custom_type_script = "uid://ca1nftey11dbk"

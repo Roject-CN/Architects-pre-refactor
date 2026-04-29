@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ThemeResource" format=3 uid="uid://krhig6fcmfj8"]
+
+[ext_resource type="Script" uid="uid://ca1nftey11dbk" path="res://codes/buildings/theme/theme_resource.gd" id="1_al46e"]
+
+[resource]
+script = ExtResource("1_al46e")
+type = 1
+name = "干栏式"
+description = "干栏式建筑是一种底层架空的建筑形式，其下部用木桩或竹桩架空，上层住人，用以适应南方潮湿多雨、多蛇虫的环境。这种建筑形式历史悠久，最早可追溯到距今约7000年前的浙江余姚河姆渡文化遗址。考古发现表明，当时的先民已掌握较为先进的榫卯技术来建造干栏式建筑。它源于古老的“巢居”，是先民适应自然的伟大创造，深刻烙印着人类从蒙昧走向文明的生存智慧，至今仍在许多南方少数民族地区广泛使用"
+metadata/_custom_type_script = "uid://ca1nftey11dbk"

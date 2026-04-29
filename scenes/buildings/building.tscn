@@ -216,4 +216,3 @@ prop_configs = Array[ExtResource("7_hhebf")]([SubResource("Resource_0y52w")])
 [node name="RewardUi2" parent="FlowManager/FlowAccount" unique_id=856418288 instance=ExtResource("13_78n4u")]
 process_mode = 0
 visible = false
-denominations = Array[int]([50, 10, 5, 1])

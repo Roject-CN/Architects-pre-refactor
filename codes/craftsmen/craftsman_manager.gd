@@ -17,8 +17,6 @@ var current_list : Array[CraftsmanCharacter]
 
 @onready var _max_amount := _workplace_position.size()
 
-
-
 #CraftsmanCharacter实体是添加到 CraftsmanManager节点下
 #signal current_list_changed()
 #添加新的员工

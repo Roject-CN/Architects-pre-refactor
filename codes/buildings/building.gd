@@ -32,6 +32,8 @@ func save_builiding_resource() -> void:
 	
 	#使 MainTime开始计时
 	Event.building_ui_quit.emit()
+	#使建造建筑的按钮复原
+	Event.building_end.emit()
 	call_deferred("queue_free")
 
 ## 环境部分

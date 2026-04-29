@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ThemeResource" format=3 uid="uid://dgasx2kjqmyfa"]
+
+[ext_resource type="Script" uid="uid://ca1nftey11dbk" path="res://codes/buildings/theme/theme_resource.gd" id="1_xwb0u"]
+
+[resource]
+script = ExtResource("1_xwb0u")
+name = "悬山顶"
+description = "悬山顶是两面坡顶的早期重要样式，其最大特征是屋面两侧悬伸挑出山墙之外，以保护墙体免受风雨侵蚀。历史上，由于古代制砖技术不发达，墙体多为土筑，悬山顶因其实用的保护功能，成为民间最普遍的屋顶形式。在唐代以前，重要建筑几乎不采用悬山顶，其更多地应用于民居。金代修建的山西五台山佛光寺文殊殿，是现存罕见的七开间悬山顶建筑实例，其内部采用大胆的“减柱法”，营造出极为开阔的礼佛空间。悬山顶体现了中华先民朴素的建造智慧与顺应自然的实用理性"
+metadata/_custom_type_script = "uid://ca1nftey11dbk"

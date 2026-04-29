@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ThemeResource" format=3 uid="uid://b3tjt6dxydarj"]
+
+[ext_resource type="Script" uid="uid://ca1nftey11dbk" path="res://codes/buildings/theme/theme_resource.gd" id="1_ce343"]
+
+[resource]
+script = ExtResource("1_ce343")
+type = 1
+name = "井干式"
+description = "井干式是最原始的一种木构架形式，其做法是将圆木或方木层层叠垒，在转角处交叉咬合，形成井壁状的墙体。这种结构历史极为悠久，最早可追溯至商代陵墓的木椁中。汉代宫苑中甚至建有高达五十丈的“井干楼”。然而，因耗费木材量大且开窗受限，后世逐渐被其他结构取代。如今，井干式建筑主要在我国东北、西南等森林资源丰富的地区仍有使用。其粗犷质朴的形态反映了人类早期最直接的木作智慧，是文明初创时期“构木为巢”的真实写照"
+metadata/_custom_type_script = "uid://ca1nftey11dbk"

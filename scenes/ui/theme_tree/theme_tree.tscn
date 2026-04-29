@@ -1,0 +1,272 @@
+[gd_scene format=3 uid="uid://3un3f3lwldrm"]
+
+[ext_resource type="Script" uid="uid://bmltsycwaemyc" path="res://codes/ui/theme_tree/theme_tree.gd" id="1_qu45k"]
+[ext_resource type="PackedScene" uid="uid://cfhex28ebk6rl" path="res://scenes/ui/theme_tree/theme_button.tscn" id="1_vi5og"]
+[ext_resource type="Resource" uid="uid://dgasx2kjqmyfa" path="res://resource/building_resource/theme_resource/top_1.tres" id="3_sews4"]
+[ext_resource type="Resource" uid="uid://p10fisepi2gu" path="res://resource/building_resource/theme_resource/top_2.tres" id="4_cqdlo"]
+[ext_resource type="Resource" uid="uid://blmhq8kcm85rn" path="res://resource/building_resource/theme_resource/top_3.tres" id="5_pmk4b"]
+[ext_resource type="Resource" uid="uid://dx0cwcl3hm72g" path="res://resource/building_resource/theme_resource/top_4.tres" id="6_xh21l"]
+[ext_resource type="Resource" uid="uid://bln3d81v1l4yw" path="res://resource/building_resource/theme_resource/top_5.tres" id="7_rfv6n"]
+[ext_resource type="Resource" uid="uid://b3tjt6dxydarj" path="res://resource/building_resource/theme_resource/middle_1.tres" id="8_jvlhl"]
+[ext_resource type="Resource" uid="uid://krhig6fcmfj8" path="res://resource/building_resource/theme_resource/middle_2.tres" id="9_gb7m0"]
+[ext_resource type="Resource" uid="uid://b14cu7go0mpmo" path="res://resource/building_resource/theme_resource/middle_3.tres" id="10_np6wx"]
+[ext_resource type="Resource" uid="uid://bpltefle5l52o" path="res://resource/building_resource/theme_resource/middle_4.tres" id="11_b2ifl"]
+[ext_resource type="Resource" uid="uid://1nayo7p1gtok" path="res://resource/building_resource/theme_resource/middle_5.tres" id="12_66vn4"]
+[ext_resource type="Resource" uid="uid://d371pdecn0otu" path="res://resource/building_resource/theme_resource/buttom_1.tres" id="13_gq8j3"]
+[ext_resource type="Resource" uid="uid://bl20l4gvpyqq4" path="res://resource/building_resource/theme_resource/buttom_2.tres" id="14_5udqs"]
+[ext_resource type="Resource" uid="uid://dtjs0gvuvirfy" path="res://resource/building_resource/theme_resource/buttom_3.tres" id="15_p73mq"]
+[ext_resource type="Resource" uid="uid://poweux62q54i" path="res://resource/building_resource/theme_resource/buttom_4.tres" id="16_j8o0d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gb7m0"]
+bg_color = Color(0.6222687, 0.5455211, 0.27588314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jvlhl"]
+bg_color = Color(0, 0, 0, 0.14509805)
+
+[node name="ThemeTree" type="Control" unique_id=1238132458]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_qu45k")
+
+[node name="Background" type="CanvasLayer" parent="." unique_id=669228061]
+
+[node name="Background" type="Panel" parent="Background" unique_id=1392386456]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gb7m0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1510357376]
+
+[node name="Themes" type="Control" parent="CanvasLayer" unique_id=656513194]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TopTheme" type="Control" parent="CanvasLayer/Themes" unique_id=1304939598]
+anchors_preset = 0
+
+[node name="t1" parent="CanvasLayer/Themes/TopTheme" unique_id=433211561 node_paths=PackedStringArray("next_theme_button") instance=ExtResource("1_vi5og")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 89.0
+offset_top = 260.0
+offset_right = 89.0
+offset_bottom = 260.0
+next_theme_button = NodePath("../t2")
+theme_resource = ExtResource("3_sews4")
+
+[node name="t2" parent="CanvasLayer/Themes/TopTheme" unique_id=959464301 node_paths=PackedStringArray("next_theme_button") instance=ExtResource("1_vi5og")]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 183.0
+offset_right = 92.0
+offset_bottom = 183.0
+next_theme_button = NodePath("../t3")
+theme_resource = ExtResource("4_cqdlo")
+
+[node name="t3" parent="CanvasLayer/Themes/TopTheme" unique_id=319703650 node_paths=PackedStringArray("next_theme_button") instance=ExtResource("1_vi5og")]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 116.0
+offset_right = 93.0
+offset_bottom = 116.0
+next_theme_button = NodePath("../t4")
+theme_resource = ExtResource("5_pmk4b")
+
+[node name="t4" parent="CanvasLayer/Themes/TopTheme" unique_id=1407511957 node_paths=PackedStringArray("next_theme_button") instance=ExtResource("1_vi5og")]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 39.0
+offset_right = 96.0
+offset_bottom = 39.0
+next_theme_button = NodePath("../t5")
+theme_resource = ExtResource("6_xh21l")
+
+[node name="t5" parent="CanvasLayer/Themes/TopTheme" unique_id=1162294740 instance=ExtResource("1_vi5og")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 105.0
+offset_top = -45.0
+offset_right = 105.0
+offset_bottom = -45.0
+theme_resource = ExtResource("7_rfv6n")
+
+[node name="MiddleTheme" type="Control" parent="CanvasLayer/Themes" unique_id=1790129655]
+anchors_preset = 0
+offset_left = -1.0
+offset_top = -53.0
+offset_right = -1.0
+offset_bottom = -53.0
+
+[node name="m1" parent="CanvasLayer/Themes/MiddleTheme" unique_id=826813185 node_paths=PackedStringArray("next_theme_button") instance=ExtResource("1_vi5og")]
+layout_mode = 0
+offset_left = 302.0
+offset_top = 302.0
+offset_right = 302.0
+offset_bottom = 302.0
+next_theme_button = NodePath("../m2")
+theme_resource = ExtResource("8_jvlhl")
+
+[node name="m2" parent="CanvasLayer/Themes/MiddleTheme" unique_id=588592323 node_paths=PackedStringArray("next_theme_button") instance=ExtResource("1_vi5og")]
+layout_mode = 0
+offset_left = 301.0
+offset_top = 223.0
+offset_right = 301.0
+offset_bottom = 223.0
+next_theme_button = NodePath("../m3")
+theme_resource = ExtResource("9_gb7m0")
+
+[node name="m3" parent="CanvasLayer/Themes/MiddleTheme" unique_id=336705355 node_paths=PackedStringArray("next_theme_button") instance=ExtResource("1_vi5og")]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 143.0
+offset_right = 304.0
+offset_bottom = 143.0
+next_theme_button = NodePath("../m4")
+theme_resource = ExtResource("10_np6wx")
+
+[node name="m4" parent="CanvasLayer/Themes/MiddleTheme" unique_id=1808762399 node_paths=PackedStringArray("next_theme_button") instance=ExtResource("1_vi5og")]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 67.0
+offset_right = 304.0
+offset_bottom = 67.0
+next_theme_button = NodePath("../m5")
+theme_resource = ExtResource("11_b2ifl")
+
+[node name="m5" parent="CanvasLayer/Themes/MiddleTheme" unique_id=687609313 instance=ExtResource("1_vi5og")]
+layout_mode = 0
+offset_left = 299.0
+offset_top = -5.0
+offset_right = 299.0
+offset_bottom = -5.0
+theme_resource = ExtResource("12_66vn4")
+
+[node name="ButtomTheme" type="Control" parent="CanvasLayer/Themes" unique_id=1960859044]
+anchors_preset = 0
+
+[node name="b1" parent="CanvasLayer/Themes/ButtomTheme" unique_id=1169323521 node_paths=PackedStringArray("next_theme_button") instance=ExtResource("1_vi5og")]
+layout_mode = 0
+offset_left = 509.0
+offset_top = 262.0
+offset_right = 509.0
+offset_bottom = 262.0
+next_theme_button = NodePath("../b2")
+theme_resource = ExtResource("13_gq8j3")
+
+[node name="b2" parent="CanvasLayer/Themes/ButtomTheme" unique_id=1645076472 node_paths=PackedStringArray("next_theme_button") instance=ExtResource("1_vi5og")]
+layout_mode = 0
+offset_left = 508.0
+offset_top = 180.0
+offset_right = 508.0
+offset_bottom = 180.0
+next_theme_button = NodePath("../b3")
+theme_resource = ExtResource("14_5udqs")
+
+[node name="b3" parent="CanvasLayer/Themes/ButtomTheme" unique_id=507866064 node_paths=PackedStringArray("next_theme_button") instance=ExtResource("1_vi5og")]
+layout_mode = 0
+offset_left = 507.0
+offset_top = 83.0
+offset_right = 507.0
+offset_bottom = 83.0
+next_theme_button = NodePath("../b4")
+theme_resource = ExtResource("15_p73mq")
+
+[node name="b4" parent="CanvasLayer/Themes/ButtomTheme" unique_id=1418584686 instance=ExtResource("1_vi5og")]
+layout_mode = 0
+offset_left = 509.0
+offset_top = -5.0
+offset_right = 509.0
+offset_bottom = -5.0
+theme_resource = ExtResource("16_j8o0d")
+
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1663662813]
+visible = false
+anchors_preset = -1
+anchor_top = 0.65
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel" unique_id=501164977]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -76.5
+offset_bottom = 76.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "硬山顶同为两面坡顶，但其屋面两侧与山墙齐平，或山墙略高于屋面，檩头完全包封在山墙之内，造型显得质朴而刚硬。硬山顶的出现与砖的普及使用密切相关，历史稍晚。其防风火性能优越，因此在明清时期广泛应用于南北方民居，成为我国最普遍的民居屋顶形式。硬山顶虽等级不高，但在徽州等地，当地工匠将其山墙进一步发展为高低错落、形似马头的“封火墙”，不仅强化了防火功能，更创造性地塑造了极具地域特色的建筑美学。它代表着中国建筑在有限条件与礼制规范下，发展出的适应性、经济性与独特的地域美学。"
+autowrap_mode = 3
+
+[node name="PlaceHolder" type="Panel" parent="CanvasLayer" unique_id=185340368]
+anchors_preset = -1
+anchor_top = 0.65
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_jvlhl")
+
+[node name="Label" type="Label" parent="CanvasLayer/PlaceHolder" unique_id=976078221]
+modulate = Color(1, 1, 1, 0.11372549)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "此处无法触发"
+
+[node name="Label2" type="Label" parent="CanvasLayer/PlaceHolder" unique_id=1136711473]
+modulate = Color(1, 1, 1, 0.11372549)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -38.0
+offset_right = 48.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "鼠标停留建筑主题按钮一会，会出现文本介绍"
+
+[node name="Quit" type="Button" parent="CanvasLayer" unique_id=1158140386]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "退出"
+
+[connection signal="pressed" from="CanvasLayer/Quit" to="." method="_on_quit_pressed"]

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ThemeResource" format=3 uid="uid://b14cu7go0mpmo"]
+
+[ext_resource type="Script" uid="uid://ca1nftey11dbk" path="res://codes/buildings/theme/theme_resource.gd" id="1_njem7"]
+
+[resource]
+script = ExtResource("1_njem7")
+type = 1
+time = 1
+name = "穿斗式"
+description = "穿斗式构架是中国古建筑木构架的一种主要形式。其特点是不用大梁，而是沿房屋进深方向密集立柱，柱顶直接承托檩条，柱子之间用数层“穿枋”横向穿透柱身，形成一榀整体构架。这种构架体系至迟在汉代已见雏形。它的优点是能用小料盖大屋，抗风抗震性能强，但室内柱子较密，空间不够开阔。因此，它主要流行于中国长江中下游及西南地区。现存最高的穿斗式建筑是四川的忠县石宝寨寨楼。其“以柱承檩、穿枋连架”的结构逻辑，充分体现了因地制宜、用材巧妙的民间智慧"
+metadata/_custom_type_script = "uid://ca1nftey11dbk"

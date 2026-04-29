@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cfhex28ebk6rl"]
+
+[ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://resource/global_theme.tres" id="1_1fxfi"]
+[ext_resource type="Script" uid="uid://c0ac7ayfglxpi" path="res://codes/ui/theme_tree/theme_button.gd" id="2_w3cyn"]
+
+[node name="ThemeButton" type="Control" unique_id=433211561]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_1fxfi")
+script = ExtResource("2_w3cyn")
+
+[node name="Button" type="Button" parent="." unique_id=300859312]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 120.0
+offset_bottom = 20.0
+grow_vertical = 2
+disabled = true
+text = "测试主题"
+
+[node name="self_pos" type="Control" parent="." unique_id=257460668]
+anchors_preset = 0
+
+[node name="next_pos" type="Control" parent="." unique_id=1058491944]
+anchors_preset = 0
+
+[node name="Timer" type="Timer" parent="." unique_id=1747321786]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

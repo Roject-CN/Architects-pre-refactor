@@ -32,10 +32,6 @@ window/size/window_width_override=1280
 window/size/window_height_override=760
 window/stretch/mode="viewport"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/agent/plugin.cfg")
-
 [gui]
 
 theme/custom="uid://c73vty6o732sb"

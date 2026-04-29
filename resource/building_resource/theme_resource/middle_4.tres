@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ThemeResource" format=3 uid="uid://bpltefle5l52o"]
+
+[ext_resource type="Script" uid="uid://ca1nftey11dbk" path="res://codes/buildings/theme/theme_resource.gd" id="1_qk3kw"]
+
+[resource]
+script = ExtResource("1_qk3kw")
+type = 1
+time = 1
+name = "抬梁式"
+description = "抬梁式构架是中国古代木构建筑中应用最广、等级最高的一种。其结构方式是沿着进深方向立柱，柱上架设大梁，梁上再置短柱（瓜柱），层层叠落至屋脊，以此形成宽阔的内部空间。这种结构至迟在春秋时期就已出现。抬梁式能营造出宏伟的气势和开阔的室内空间，因此被广泛应用于北方及南方闽粤地区的宫殿、寺庙等重要建筑。其代表实例是山西五台山佛光寺大殿，它以其雄浑的斗拱和叠梁结构，完美展现了唐代建筑的力与美。其宏伟气派与技术含量，使它成为中国古代官式建筑的正宗，是华夏营造文明巅峰的标志。"
+metadata/_custom_type_script = "uid://ca1nftey11dbk"

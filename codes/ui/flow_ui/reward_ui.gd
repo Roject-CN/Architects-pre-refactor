@@ -4,6 +4,9 @@ class_name RewardUi
 @onready var assure: Button = $Button/Assure
 @onready var progress_bar: ProgressBar = $Left/VBoxContainer/ProgressBar
 @onready var reward: Label = $Left/VBoxContainer/Reward
+@onready var achivement_manager: AchivementManager = $AchivementManager
+
+
 
 const reward_text := "奖励: %d $"
 var reward_value := 0   # 累计奖励金钱
@@ -20,6 +23,7 @@ var value_percent : float = 0.0 :
 		progress_bar.value = value_percent	
 		if value_percent >= 1.0:
 			assure.disabled = false
+			achivement_manager.achive(building_resource)
 
 @export var time : float = 5.0
 
@@ -31,6 +35,7 @@ func decompose_amount(amount: int) -> Array[int]:
 	var result : Array[int] = []
 	var remaining = amount
 	for denom in denominations:
+		@warning_ignore("integer_division")
 		var count = remaining / denom
 		for _i in range(count):
 			result.append(denom)
@@ -42,9 +47,9 @@ func _ready() -> void:
 	assure.disabled = true
 	progress_bar.value = 0.0
 
+
 func ui_exit() -> void:
 	super()
-	print("twice?")
 	Global.add_money(reward_value)   # 你的原有逻辑
 
 func ui_enter() -> void:

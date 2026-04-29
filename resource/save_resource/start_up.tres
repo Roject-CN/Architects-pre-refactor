@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StartUp" format=3 uid="uid://c0srmgmp32f54"]
+[gd_resource type="Resource" script_class="SaveResource" format=3 uid="uid://c0srmgmp32f54"]
 
 [ext_resource type="Script" uid="uid://edffjrsw3hkm" path="res://codes/others/save_resource.gd" id="1_crken"]
 [ext_resource type="Script" uid="uid://bcfvld13usfs" path="res://codes/craftsmen/craftsman_resource.gd" id="2_dgm8o"]

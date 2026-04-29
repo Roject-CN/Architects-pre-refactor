@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ThemeResource" format=3 uid="uid://bl20l4gvpyqq4"]
+
+[ext_resource type="Script" uid="uid://ca1nftey11dbk" path="res://codes/buildings/theme/theme_resource.gd" id="1_ic1ul"]
+
+[resource]
+script = ExtResource("1_ic1ul")
+type = 2
+time = 1
+name = "砖砌台基"
+description = "砖砌台基是随着制砖技术成熟而普及开来的一种台基做法，属于较低等级的普通台基。它是在夯土台基的表面四周用砖进行包砌，相比素土台基更加坚固、耐久且美观，同时也具备更好的防水性能。砖砌台基在明清时期的民居、地方建筑和次要殿堂中广泛应用，是古建筑中最为常见的台基形式。它的普及标志着建筑材料从天然土石向人工烧制品的进步，大大提升了建筑的耐久性和整洁度"
+metadata/_custom_type_script = "uid://ca1nftey11dbk"

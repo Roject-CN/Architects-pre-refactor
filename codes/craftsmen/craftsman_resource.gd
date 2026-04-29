@@ -10,7 +10,7 @@ const _LEVEL_LIMIT := 5	#changed	#最高5级更符合常规游戏等级印象，
 #精力值的最大值
 const _ENERGY_LIMIT := 40
 #当低于该值时表明员工陷入疲惫状态
-const _ENERGY_TIRED := 10
+const _ENERGY_TIRED := 15
 #每升一级员工所需要的经验值
 const _EXPERIENCE_PER_LEVEL := 100
 
@@ -63,4 +63,4 @@ func add_energy(delta : float) -> void:
 
 #减少精力值
 func subtract_energy(delta : float) -> void:
-	energy -= delta * 0.1
+	energy -= delta * 0.2

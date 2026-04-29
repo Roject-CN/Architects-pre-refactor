@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ThemeResource" format=3 uid="uid://blmhq8kcm85rn"]
+
+[ext_resource type="Script" uid="uid://ca1nftey11dbk" path="res://codes/buildings/theme/theme_resource.gd" id="1_775ut"]
+
+[resource]
+script = ExtResource("1_775ut")
+time = 1
+name = "庑殿顶"
+description = "庑殿顶是古建筑中等级最高的屋顶形式，由一条正脊和四条垂脊构成，形成四面坡的“四阿”造型，故又称“五脊殿”。其历史极为悠久，早在殷商甲骨文、汉代画像石中便可见其形象。这种屋顶造型庄重雄伟，在封建社会是皇权与神权的象征，一般只用于皇宫、庙宇的主殿等最高等级的建筑，如北京故宫太和殿。明清时期，庑殿顶的运用有严格的等级限制，只有皇家和孔子殿堂才可使用。其雄浑的体量感与深远的出檐，不仅定义了建筑的最高等级，更承载了“天圆地方”的古老宇宙观，是统治理念在建筑上的终极体现"
+metadata/_custom_type_script = "uid://ca1nftey11dbk"
