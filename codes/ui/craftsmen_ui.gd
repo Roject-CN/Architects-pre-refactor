@@ -3,8 +3,12 @@ class_name CraftsmenUi
 
 
 var current_craftmen : CraftsmanResource
-#craftmen是人才市场，暂且作为测试使用
-@export var craftsmen : Array[CraftsmanResource]
+# 使用全局工匠市场数据
+var craftsmen : Array[CraftsmanResource]:
+	get:
+		return Global.global_craftsmen_market
+	set(value):
+		Global.global_craftsmen_market = value
 
 const intro_text_temp : String = "%s %s"
 const level_text_temp : String = "Level %d"
@@ -22,17 +26,31 @@ var index : int = 0
 
 func ui_exit() -> void:
 	super()
-	call_deferred("queue_free") #消除自己
+	# 不再删除自己，只隐藏界面
+	visible = false
+	# 保存工匠市场数据到存档
+	Global.save_save_resource()
 
 func ui_enter() -> void:
-	#生成员工
+	# 显示界面
+	visible = true
+	
+	# 生成或补充员工
 	generate()
 	
 	array_size = craftsmen.size()
 	if array_size < 2:
 		next.disabled = true
-	current_craftmen  = craftsmen[index]
-	read_craftman_resource(current_craftmen)
+	else:
+		next.disabled = false
+	
+	# 确保index在有效范围内
+	if array_size > 0:
+		index = index % array_size  # 防止越界
+		current_craftmen = craftsmen[index]
+		read_craftman_resource(current_craftmen)
+	else:
+		push_warning("工匠市场为空")
 	
 	super()
 
@@ -41,14 +59,38 @@ func _on_back_pressed() -> void:
 
 func generate() -> void:
 	if craftsman_generator:
-		# 使用当前名气值生成工匠，并将普通Array转换为Array[CraftsmanResource]
+		# 使用当前名气值生成工匠
 		var current_fame : int = Global.save_resource.fame
+		var target_count = craftsman_generator._calculate_worker_count(current_fame)
+		
+		# 计算需要补充的工匠数量
+		var current_count = craftsmen.size()
+		var need_to_generate = target_count - current_count
+		
+		# 如果当前工匠数量已经足够，不需要生成新的
+		if need_to_generate <= 0:
+			print("工匠市场已满，当前数量：", current_count, "，目标数量：", target_count)
+			return
+		
+		# 生成需要补充的工匠
 		var generated_craftsmen = craftsman_generator.generate_craftsman(current_fame)
-		craftsmen.clear()
+		
+		# 只添加新生成的工匠，不删除已有的
+		var added_count = 0
 		for craftsman in generated_craftsmen:
-			if craftsman is CraftsmanResource:
-				craftsmen.append(craftsman)
-		print("生成工匠市场：当前名气值 ", current_fame, "，生成工匠数量：", craftsmen.size())
+			if craftsman is CraftsmanResource and added_count < need_to_generate:
+				# 检查是否已经存在相同的工匠（避免重复）
+				var is_duplicate = false
+				for existing_craftsman in craftsmen:
+					if existing_craftsman.name == craftsman.name and existing_craftsman.profession == craftsman.profession:
+						is_duplicate = true
+						break
+				
+				if not is_duplicate:
+					craftsmen.append(craftsman)
+					added_count += 1
+		
+		print("补充工匠市场：当前数量 ", current_count, "，补充数量：", added_count, "，目标数量：", target_count)
 	else:
 		push_warning("CraftsmanGenerator未初始化")
 		

@@ -16,29 +16,56 @@ var current_building : Building
 @onready var employee_button: Button = $ButtonMenu/MarginContainer/VBoxContainer/Employee
 @onready var building_button: Button = $ButtonMenu/MarginContainer/VBoxContainer/Building
 @onready var review_button: Button = $ButtonMenu/MarginContainer/VBoxContainer/Review
+@onready var quit_button: Button = $ButtonMenu/MarginContainer/VBoxContainer/Quit
 
 @onready var main_ui: MainUi = $MainUiLayer/MainUi
+
+# 场景引用
+const start_scene: PackedScene = preload("res://scenes/start.tscn")
 
 
 func _ready() -> void:
 	assert(craftsman_manager, "main.stcn's craftsman_manager is empty")
 	
-	#读取存档环节应当在开始界面 这里先放在主场景里
-	var resource := preload("uid://c0srmgmp32f54")
-	Global.load_save_resource(resource)
+	# 检查全局存档是否已设置（由开始界面设置）
+	if not Global.save_resource:
+		# 如果没有设置，使用预设资源
+		var resource := preload("uid://c0srmgmp32f54")
+		Global.load_save_resource(resource)
+		print("使用预设资源初始化全局存档")
+	else:
+		print("全局存档已设置，跳过初始化")
+	
 	main_ui.init_main_ui(Global.save_resource)
+	
+	# 从存档恢复员工数据
+	_restore_craftsmen_from_save()
 	
 	#building退出后让按钮可用
 	Event.building_end.connect(func(): building_button.disabled = false	)
 	
+	# 连接退出按钮信号
+	quit_button.pressed.connect(_on_quit_pressed)
+	
 
 func _on_employee_pressed() -> void:
-
-	var employee := employee_scene.instantiate() as CraftsmenUi
-	employee.craftsman_manager = craftsman_manager
+	# 检查是否已经存在招募界面
+	var existing_ui = null
+	for child in function.get_children():
+		if child is CraftsmenUi:
+			existing_ui = child
+			break
 	
-	function.add_child(employee)
-	employee.ui_enter()
+	if existing_ui:
+		# 如果存在，直接显示并刷新
+		existing_ui.visible = true
+		existing_ui.ui_enter()
+	else:
+		# 如果不存在，创建新的
+		var employee := employee_scene.instantiate() as CraftsmenUi
+		employee.craftsman_manager = craftsman_manager
+		function.add_child(employee)
+		employee.ui_enter()
 
 func _on_building_pressed() -> void:
 	if craftsman_manager.craftsman_manager_is_empty():
@@ -76,4 +103,66 @@ func _on_theme_pressed() -> void:
 
 func theme_tree_quited() -> void:
 	button_menu.visible = true
+
+# 同步员工数据到存档资源
+func _sync_craftsmen_to_save() -> void:
+	# 清空存档中的员工列表
+	Global.save_resource.start_list.clear()
 	
+	# 将工匠管理器中的员工数据同步到存档
+	for character in craftsman_manager.current_list:
+		if character.craftman_resource:
+			Global.save_resource.start_list.append(character.craftman_resource)
+			print("同步员工: ", character.craftman_resource.name)
+	
+	print("员工数据同步完成，共", Global.save_resource.start_list.size(), "名员工")
+
+# 从存档恢复员工数据
+func _restore_craftsmen_from_save() -> void:
+	# 从存档资源恢复员工
+	for resource in Global.save_resource.start_list:
+		if resource is CraftsmanResource:
+			craftsman_manager.append_new_craftsman(resource)
+			print("恢复员工: ", resource.name)
+	
+	print("员工数据恢复完成，共", craftsman_manager.current_list.size(), "名员工")
+
+# 退出游戏按钮 - 返回主菜单并保存游戏
+func _on_quit_pressed() -> void:
+	print("Quit按钮被点击")
+	
+	# 同步员工数据到存档资源
+	_sync_craftsmen_to_save()
+	
+	# 保存当前游戏进度（包括建筑历史）
+	print("正在保存游戏进度...")
+	Global.save_save_resource()
+	
+	# 显示保存成功提示
+	if pop_up_ui:
+		pop_up_ui.pop_up_information("游戏保存", "游戏进度已保存，即将返回主菜单")
+	else:
+		print("pop_up_ui未找到")
+	
+	# 等待短暂时间让玩家看到提示
+	print("等待1秒...")
+	await get_tree().create_timer(1.0).timeout
+	
+	# 切换到开始场景
+	print("尝试切换到开始场景...")
+	
+	# 使用场景文件路径直接切换（更可靠的方式）
+	var start_scene_path = "res://scenes/start.tscn"
+	if FileAccess.file_exists(start_scene_path):
+		print("start.tscn文件存在，准备切换")
+		get_tree().change_scene_to_file(start_scene_path)
+		print("已切换到start.tscn场景")
+	else:
+		push_error("start.tscn文件不存在: " + start_scene_path)
+		# 备用方案：使用资源加载
+		var start_scene_resource = load(start_scene_path)
+		if start_scene_resource:
+			get_tree().change_scene_to_packed(start_scene_resource)
+			print("备用方案成功")
+		else:
+			push_error("所有切换方案都失败")

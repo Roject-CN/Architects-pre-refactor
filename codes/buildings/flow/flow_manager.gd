@@ -54,6 +54,16 @@ func flow_transition() -> void:
 		
 	current_flow = flows[index_flow]  # 切换流程
 
+# 设置到指定阶段（用于存档恢复）
+func set_flow_to_index(target_index: int) -> void:
+	if target_index >= 0 and target_index < amount_flow:
+		index_flow = target_index
+		current_flow = flows[index_flow]
+		current_flow.flow_enter()
+		print("已设置到建造阶段: ", target_index)
+	else:
+		print("无效的阶段索引: ", target_index)
+
 func save_building_resource() -> void:
 	# 建筑建造流程全部完成，调用Building类的保存函数
 	# Building类中的save_builiding_resource()会发射building_complete信号

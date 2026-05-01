@@ -1,6 +1,11 @@
 extends ChoiceUi
 class_name DesignUi
 
+# 测试主题数组（在场景编辑器中设置）
+@export var test_top_themes : Array[ThemeResource]
+@export var test_middle_themes : Array[ThemeResource]
+@export var test_buttom_themes : Array[ThemeResource]
+
 var top_themes : Array[ThemeResource]
 var middle_themes : Array[ThemeResource]
 var buttom_themes : Array[ThemeResource]
@@ -26,10 +31,21 @@ func ui_enter()-> void:
 	#只有选择好所有的主题资源才可以进入下一步 所以先设置不可按
 	assure.disabled = true
 	
-	#
-	top_themes = Global.top_theme_resource.duplicate(true)
-	middle_themes = Global.middle_theme_resource.duplicate(true)
-	buttom_themes = Global.buttom_theme_resource.duplicate(true)
+	# 使用导出的测试主题数组
+	if test_top_themes.size() > 0:
+		top_themes = test_top_themes.duplicate(true)
+	else:
+		push_warning("test_top_themes数组为空，请检查导出设置")
+	
+	if test_middle_themes.size() > 0:
+		middle_themes = test_middle_themes.duplicate(true)
+	else:
+		push_warning("test_middle_themes数组为空，请检查导出设置")
+	
+	if test_buttom_themes.size() > 0:
+		buttom_themes = test_buttom_themes.duplicate(true)
+	else:
+		push_warning("test_buttom_themes数组为空，请检查导出设置")
 	
 	super()
 

@@ -205,6 +205,11 @@ text = "回顾过去"
 layout_mode = 2
 text = "主题解锁"
 
+[node name="Quit" type="Button" parent="ButtonMenu/MarginContainer/VBoxContainer" unique_id=754001027]
+layout_mode = 2
+text = "退出游戏"
+[connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+
 [node name="Function" type="Node" parent="." unique_id=600976631]
 
 [node name="CraftsmanManager" type="Node" parent="Function" unique_id=1178780251 node_paths=PackedStringArray("_spawn_position", "_workplace_position", "main_time")]
