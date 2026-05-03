@@ -15,8 +15,45 @@ func _ready() -> void:
 	# 连接信号
 	close_button.pressed.connect(_on_close_pressed)
 	
+	# 设置容器间距
+	_setup_container_spacing()
+	
 	# 延迟加载数据，确保所有节点都初始化完成
 	call_deferred("_deferred_initialize")
+
+# 设置容器间距
+func _setup_container_spacing() -> void:
+	# 获取所有容器节点
+	var panel = $Panel
+	var margin_container = $Panel/MarginContainer
+	var vbox_container = $Panel/MarginContainer/VBoxContainer
+	var scroll_container = $Panel/MarginContainer/VBoxContainer/ScrollContainer
+	
+	# 设置Panel的填充为0
+	panel.add_theme_constant_override("content_margin_left", 0)
+	panel.add_theme_constant_override("content_margin_right", 0)
+	panel.add_theme_constant_override("content_margin_top", 0)
+	panel.add_theme_constant_override("content_margin_bottom", 0)
+	
+	# 设置MarginContainer的margin为0
+	margin_container.add_theme_constant_override("margin_left", 0)
+	margin_container.add_theme_constant_override("margin_right", 0)
+	margin_container.add_theme_constant_override("margin_top", 0)
+	margin_container.add_theme_constant_override("margin_bottom", 0)
+	
+	# 设置VBoxContainer（外层）的间距为0
+	vbox_container.add_theme_constant_override("separation", 0)
+	
+	# 设置ScrollContainer的填充为0
+	scroll_container.add_theme_constant_override("content_margin_left", 0)
+	scroll_container.add_theme_constant_override("content_margin_right", 0)
+	scroll_container.add_theme_constant_override("content_margin_top", 0)
+	scroll_container.add_theme_constant_override("content_margin_bottom", 0)
+	
+	# 设置内部VBoxContainer（vlist）的间距
+	vlist.add_theme_constant_override("separation", 2)
+	vlist.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	vlist.alignment = BoxContainer.ALIGNMENT_BEGIN
 
 # 延迟初始化
 func _deferred_initialize() -> void:
@@ -87,16 +124,20 @@ func _update_craftsmen_list() -> void:
 		vlist.add_child(empty_label)
 		return
 	
-	# 创建二维布局（每行最多显示3个工匠）
+	# 创建二维布局（每行最多显示2个工匠）
 	var row_container: HBoxContainer = null
 	var craftsman_count = 0
+	var card_height = 280  # 卡片固定高度
 	
 	for craftsman in recruited_craftsmen:
-		# 每3个工匠创建一个新的行容器
-		if craftsman_count % 3 == 0:
+		# 每2个工匠创建一个新的行容器
+		if craftsman_count % 2 == 0:
 			row_container = HBoxContainer.new()
-			row_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-			row_container.alignment = BoxContainer.ALIGNMENT_CENTER
+			row_container.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+			row_container.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+			row_container.custom_minimum_size = Vector2(460, card_height)  # 2*220 + 1*20 = 460
+			row_container.add_theme_constant_override("separation", 20)
+			row_container.alignment = BoxContainer.ALIGNMENT_BEGIN  # 左对齐
 			vlist.add_child(row_container)
 		
 		# 创建工匠卡片
@@ -109,9 +150,10 @@ func _update_craftsmen_list() -> void:
 func _create_craftsman_card(craftsman: CraftsmanResource) -> Control:
 	# 主容器
 	var card_container = VBoxContainer.new()
-	card_container.custom_minimum_size = Vector2(200, 300)
-	card_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	card_container.add_theme_constant_override("separation", 10)
+	card_container.custom_minimum_size = Vector2(220, 280)  # 固定大小
+	card_container.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	card_container.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	card_container.add_theme_constant_override("separation", 8)
 	
 	# 名字标签（居中显示）
 	var craftsman_name_label = Label.new()
@@ -267,17 +309,19 @@ func _trigger_main_scene_sync() -> void:
 
 # 从员工管理器中移除员工
 func _fire_craftsman_from_manager(craftsman: CraftsmanResource) -> void:
+	var craftsman_manager = null
+	
 	# 方法1：通过主场景获取员工管理器
 	var main_scene = get_tree().current_scene
 	if main_scene and main_scene.has_method("_get_craftsman_manager"):
-		var craftsman_manager = main_scene._get_craftsman_manager()
+		craftsman_manager = main_scene._get_craftsman_manager()
 		if craftsman_manager:
 			craftsman_manager.delete_craftsman(craftsman)
 			print("从员工管理器移除员工: ", craftsman.name)
-		return
+			return
 	
 	# 方法2：通过节点路径查找员工管理器
-	var craftsman_manager = get_craftsman_manager()
+	craftsman_manager = get_craftsman_manager()
 	if craftsman_manager:
 		craftsman_manager.delete_craftsman(craftsman)
 		print("通过节点查找移除员工: ", craftsman.name)

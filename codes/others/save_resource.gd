@@ -27,7 +27,7 @@ signal time_days_changed(value : int)
 		research_value = value
 		research_value_changed.emit(value)
 
-var time_days : int = 0 : 
+@export var time_days : int = 0 : 
 	set(value):
 		time_days = value
 		time_days_changed.emit(value)
