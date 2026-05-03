@@ -222,9 +222,55 @@ func _on_saves_pressed() -> void:
 	print("当前打开的界面类型: ", save_manager.get_class())
 	print("界面节点路径: ", save_manager.get_path())
 
-# 设置按钮（暂不实现）
+# 设置按钮
 func _on_settings_pressed() -> void:
-	print("设置功能暂未实现")
+	# 加载设置场景
+	var settings_scene_path = "res://scenes/ui/settings.tscn"
+	
+	# 检查场景文件是否存在
+	if not FileAccess.file_exists(settings_scene_path):
+		push_error("设置场景文件不存在: " + settings_scene_path)
+		return
+	
+	# 尝试加载场景
+	var settings_scene = load(settings_scene_path)
+	if not settings_scene:
+		push_error("设置场景加载失败: " + settings_scene_path)
+		return
+	
+	# 实例化设置界面
+	var settings_instance = settings_scene.instantiate()
+	
+	# 确保设置界面渲染在最上层
+	# 使用CanvasLayer确保界面始终在最上层
+	var canvas_layer = CanvasLayer.new()
+	canvas_layer.layer = 100  # 使用CanvasLayer的layer属性确保最上层
+	
+	# 添加模态背景效果
+	var modal_background = ColorRect.new()
+	modal_background.color = Color(0, 0, 0, 0.7)  # 更深的半透明黑色背景
+	modal_background.size = get_viewport_rect().size
+	modal_background.mouse_filter = Control.MOUSE_FILTER_STOP  # 阻止鼠标事件穿透到底层
+	canvas_layer.add_child(modal_background)
+	
+	# 设置设置界面
+	settings_instance.z_index = 10  # 在CanvasLayer内设置相对层级
+	settings_instance.mouse_filter = Control.MOUSE_FILTER_STOP
+	canvas_layer.add_child(settings_instance)
+	
+	# 连接关闭信号以移除整个CanvasLayer
+	if settings_instance.has_signal("closed"):
+		settings_instance.closed.connect(func():
+			print("设置界面已关闭")
+			if canvas_layer.get_parent():
+				canvas_layer.queue_free()
+		)
+	else:
+		push_error("设置界面缺少closed信号")
+	
+	# 添加到场景
+	add_child(canvas_layer)
+	print("设置界面已添加到CanvasLayer，确保渲染在最上层")
 
 # 退出游戏按钮
 func _on_quit_pressed() -> void:

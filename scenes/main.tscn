@@ -208,7 +208,6 @@ text = "主题解锁"
 [node name="Quit" type="Button" parent="ButtonMenu/MarginContainer/VBoxContainer" unique_id=754001027]
 layout_mode = 2
 text = "退出游戏"
-[connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 
 [node name="Function" type="Node" parent="." unique_id=600976631]
 
@@ -236,3 +235,4 @@ offset_bottom = -1.0
 [connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/Building" to="." method="_on_building_pressed"]
 [connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/Review" to="." method="_on_review_pressed"]
 [connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/Theme" to="." method="_on_theme_pressed"]
+[connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
