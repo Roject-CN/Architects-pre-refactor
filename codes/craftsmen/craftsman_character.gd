@@ -40,8 +40,14 @@ func _ready() -> void:
 		animation_ui_add
 	)
 	sprite_2d.texture = craftman_resource.texture
-	self.global_position = restplace.global_position
-	nav_agent.target_reached.connect(_on_target_reached)
+	
+	# 安全检查：确保restplace不为空再设置位置
+	if restplace:
+		self.global_position = restplace.global_position
+	else:
+		# 如果restplace为空，设置默认位置或等待后续设置
+		push_warning("CraftsmanCharacter: restplace is null, position not set")
+		nav_agent.target_reached.connect(_on_target_reached)
 	
 	#精力条
 	energy.max_value = craftman_resource.max_energy

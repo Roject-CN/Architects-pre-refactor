@@ -159,20 +159,14 @@ func _on_continue_pressed() -> void:
 	
 	print("加载最新存档: ", latest_save["name"])
 	
-	# 构建存档文件路径
-	var save_dir = "user://saves/" + latest_save["directory"] + "/"
-	var save_file_path = save_dir + "save.tres"
+	# 使用完整的加载函数加载所有数据（包括工匠数据）
+	print("调用 SaveResource.load_complete_game_data()...")
+	Global.save_resource = SaveResource.load_complete_game_data(latest_save["name"])
+	print("主存档加载成功")
+	print("Global.save_resource.start_list 大小: ", Global.save_resource.start_list.size())
 	
-	# 加载存档
-	var save_resource = ResourceLoader.load(save_file_path)
-	if save_resource:
-		Global.save_resource = save_resource
-		print("存档加载成功: ", latest_save["name"])
-		
-		# 切换到主场景
-		get_tree().change_scene_to_packed(main_scene)
-	else:
-		print("存档加载失败: ", save_file_path)
+	# 切换到主场景
+	get_tree().change_scene_to_packed(main_scene)
 
 # 存档管理按钮
 func _on_saves_pressed() -> void:
@@ -320,12 +314,25 @@ func _show_quit_confirmation() -> void:
 # 存档被选择
 func _on_save_selected(save_data: Dictionary) -> void:
 	# 加载选中的存档
+	print("===========================================")
+	print("存档选择处理开始")
+	print("存档数据: ", save_data)
+	
 	if save_data["type"] == "main":
 		print("尝试加载主存档: ", save_data["name"])
+		print("存档名称: ", save_data["name"])
+		print("存档路径: ", save_data.get("path", "未知"))
+		
 		# 使用完整的加载函数加载所有数据
+		print("调用 SaveResource.load_complete_game_data()...")
 		Global.save_resource = SaveResource.load_complete_game_data(save_data["name"])
+		
 		print("主存档加载成功")
+		print("Global.save_resource.start_list 大小: ", Global.save_resource.start_list.size())
+		
 		get_tree().change_scene_to_packed(main_scene)
+		print("场景切换完成")
+		print("===========================================")
 	else:
 		print("尝试加载备份存档: ", save_data["path"])
 		# 备份存档加载（可以扩展）

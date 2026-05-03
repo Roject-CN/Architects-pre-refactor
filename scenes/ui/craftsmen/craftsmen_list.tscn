@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://b8t0oyc17v6aq"]
+
+[ext_resource type="Script" uid="uid://bmypdmhff0afp" path="res://codes/ui/craftsmen_list.gd" id="1_k6xvo"]
+[ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://resource/global_theme.tres" id="2_rt8qi"]
+
+[node name="CraftsmenList" type="Control" unique_id=2011748255]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k6xvo")
+
+[node name="Panel" type="Panel" parent="." unique_id=2011748256]
+layout_mode = 0
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+theme = ExtResource("2_rt8qi")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=2011748257]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=2011748258]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=2011748259]
+layout_mode = 2
+text = "工匠列表"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=2011748260]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Vlist" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer" unique_id=2011748261]
+layout_mode = 2
+
+[node name="Hlist" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/Vlist" unique_id=881311792]
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer" unique_id=2011748265]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=2011748262]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2011748266]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Close" type="Button" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2011748263]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+text = "关闭"

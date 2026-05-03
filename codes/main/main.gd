@@ -58,14 +58,80 @@ func _on_employee_pressed() -> void:
 	
 	if existing_ui:
 		# 如果存在，直接显示并刷新
-		existing_ui.visible = true
-		existing_ui.ui_enter()
+			existing_ui.visible = true
+			existing_ui.ui_enter()
 	else:
 		# 如果不存在，创建新的
 		var employee := employee_scene.instantiate() as CraftsmenUi
 		employee.craftsman_manager = craftsman_manager
 		function.add_child(employee)
 		employee.ui_enter()
+
+# 员工列表按钮按下
+func _on_craftsmen_list_pressed() -> void:
+	print("员工列表按钮按下")
+	
+	# 加载员工列表场景
+	var craftsmen_list_scene_path = "res://scenes/ui/craftsmen/craftsmen_list.tscn"
+	
+	# 检查场景文件是否存在
+	if not FileAccess.file_exists(craftsmen_list_scene_path):
+		push_error("员工列表场景文件不存在: " + craftsmen_list_scene_path)
+		return
+	
+	# 尝试加载场景
+	var craftsmen_list_scene = load(craftsmen_list_scene_path)
+	if not craftsmen_list_scene:
+		push_error("员工列表场景加载失败: " + craftsmen_list_scene_path)
+		return
+	
+	# 实例化员工列表界面
+	var craftsmen_list_instance = craftsmen_list_scene.instantiate()
+	
+	# 确保员工列表界面渲染在最上层
+	# 使用CanvasLayer确保界面始终在最上层
+	var canvas_layer = CanvasLayer.new()
+	canvas_layer.layer = 100  # 使用CanvasLayer的layer属性确保最上层
+	
+	# 添加模态背景效果
+	var modal_background = ColorRect.new()
+	modal_background.color = Color(0, 0, 0, 0.7)  # 更深的半透明黑色背景
+	modal_background.size = Vector2(1920, 1080)  # 使用固定尺寸，后续会调整
+	modal_background.mouse_filter = Control.MOUSE_FILTER_STOP  # 阻止鼠标事件穿透到底层
+	canvas_layer.add_child(modal_background)
+	
+	# 延迟设置背景尺寸以适应视口
+	call_deferred("_set_modal_background_size", modal_background)
+	
+	# 设置员工列表界面
+	craftsmen_list_instance.z_index = 10  # 在CanvasLayer内设置相对层级
+	craftsmen_list_instance.mouse_filter = Control.MOUSE_FILTER_STOP
+	canvas_layer.add_child(craftsmen_list_instance)
+	
+	# 连接关闭信号以移除整个CanvasLayer
+	if craftsmen_list_instance.has_signal("closed"):
+		var close_callback = func():
+			print("员工列表界面已关闭")
+			if canvas_layer.get_parent():
+				canvas_layer.queue_free()
+			# 刷新员工数据并保存到文件
+			_sync_craftsmen_to_save()
+			Global.save_save_resource()
+			print("员工数据已保存到存档文件")
+		
+		craftsmen_list_instance.closed.connect(close_callback)
+	else:
+		push_error("员工列表界面缺少closed信号")
+	
+	# 添加到场景
+	add_child(canvas_layer)
+	print("员工列表界面已添加到CanvasLayer，确保渲染在最上层")
+
+# 设置模态背景尺寸
+func _set_modal_background_size(modal_background: ColorRect) -> void:
+	var viewport_size = get_viewport().get_visible_rect().size
+	modal_background.size = viewport_size
+	print("模态背景尺寸已设置为: ", viewport_size)
 
 func _on_building_pressed() -> void:
 	if craftsman_manager.craftsman_manager_is_empty():
@@ -116,16 +182,62 @@ func _sync_craftsmen_to_save() -> void:
 			print("同步员工: ", character.craftman_resource.name)
 	
 	print("员工数据同步完成，共", Global.save_resource.start_list.size(), "名员工")
+	
+	# 立即保存到文件
+	Global.save_save_resource()
+	print("员工数据已保存到存档文件")
 
 # 从存档恢复员工数据
 func _restore_craftsmen_from_save() -> void:
-	# 从存档资源恢复员工
+	print("开始恢复员工数据...")
+	
+	# 检查全局存档状态
+	if not Global.save_resource:
+		print("错误: Global.save_resource 为空")
+		return
+	
+	if not Global.save_resource.start_list:
+		print("警告: Global.save_resource.start_list 为空")
+		print("存档中的员工数量: 0")
+		print("员工数据恢复完成，共0名员工")
+		return
+	
+	print("存档中的员工数量: ", Global.save_resource.start_list.size())
+	
+	# 从存档资源恢复员工（使用immediate_sync=false避免重复同步）
+	var restored_count = 0
 	for resource in Global.save_resource.start_list:
 		if resource is CraftsmanResource:
-			craftsman_manager.append_new_craftsman(resource)
 			print("恢复员工: ", resource.name)
+			craftsman_manager.append_new_craftsman(resource, false)  # 关键修改：禁用立即同步
+			restored_count += 1
+		else:
+			print("警告: 资源类型不是CraftsmanResource: ", typeof(resource))
 	
-	print("员工数据恢复完成，共", craftsman_manager.current_list.size(), "名员工")
+	print("员工数据恢复完成，共", restored_count, "名员工")
+	print("员工管理器中的员工数量: ", craftsman_manager.current_list.size())
+	
+	# 恢复完成后统一同步一次
+	craftsman_manager._sync_to_global_save()
+	print("员工数据恢复完成，已统一同步到存档")
+
+# 刷新员工列表数据
+func refresh_craftsmen_list() -> void:
+	# 同步员工数据到存档
+	_sync_craftsmen_to_save()
+	
+	# 查找并刷新员工列表界面
+	for child in get_children():
+		if child is CanvasLayer:
+			for canvas_child in child.get_children():
+				if canvas_child is CraftsmenList and canvas_child.has_method("refresh_list"):
+					canvas_child.refresh_list()
+					print("员工列表已刷新")
+					break
+
+# 获取员工管理器（供其他界面调用）
+func _get_craftsman_manager() -> CraftsmanManager:
+	return craftsman_manager
 
 # 退出游戏按钮 - 返回主菜单并保存游戏
 func _on_quit_pressed() -> void:

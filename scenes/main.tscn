@@ -193,6 +193,10 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "雇佣员工"
 
+[node name="CraftsmenList" type="Button" parent="ButtonMenu/MarginContainer/VBoxContainer" unique_id=1931172484]
+layout_mode = 2
+text = "员工列表"
+
 [node name="Building" type="Button" parent="ButtonMenu/MarginContainer/VBoxContainer" unique_id=1308421589]
 layout_mode = 2
 text = "建造建筑"
@@ -232,6 +236,7 @@ offset_top = -1.0
 offset_bottom = -1.0
 
 [connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/Employee" to="." method="_on_employee_pressed"]
+[connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/CraftsmenList" to="." method="_on_craftsmen_list_pressed"]
 [connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/Building" to="." method="_on_building_pressed"]
 [connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/Review" to="." method="_on_review_pressed"]
 [connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/Theme" to="." method="_on_theme_pressed"]

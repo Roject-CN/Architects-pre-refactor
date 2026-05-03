@@ -20,7 +20,8 @@ var current_list : Array[CraftsmanCharacter]
 #CraftsmanCharacter实体是添加到 CraftsmanManager节点下
 #signal current_list_changed()
 #添加新的员工
-func append_new_craftsman(resource : CraftsmanResource) -> void:
+# immediate_sync: 是否立即同步到存档（默认为true，恢复数据时设为false）
+func append_new_craftsman(resource : CraftsmanResource, immediate_sync: bool = true) -> void:
 	
 	if current_list.size() >= _max_amount:
 		#后面可以增加提醒的ui
@@ -33,23 +34,71 @@ func append_new_craftsman(resource : CraftsmanResource) -> void:
 	#需要先添加到 current_list 否则返回的都是 -1
 	current_list.append(craftsman_character)
 	
-	craftsman_character.workplaces = _workplace_position
-	craftsman_character.workplace = _workplace_position[find_character_index_by_resource(resource)]
-	craftsman_character.restplace = _spawn_position
+	# 将员工添加到场景树中，确保员工可见和可操作
+	add_child(craftsman_character)
+	
+	# 安全检查：确保位置引用不为空
+	if _workplace_position and _workplace_position.size() > 0:
+		craftsman_character.workplaces = _workplace_position
+		var index = find_character_index_by_resource(resource)
+		if index < _workplace_position.size():
+			craftsman_character.workplace = _workplace_position[index]
+		else:
+			push_warning("CraftsmanManager: workplace index out of bounds, using first position")
+			craftsman_character.workplace = _workplace_position[0]
+	else:
+		push_warning("CraftsmanManager: _workplace_position is empty")
+	
+	if _spawn_position:
+		craftsman_character.restplace = _spawn_position
+	else:
+		push_warning("CraftsmanManager: _spawn_position is null")
+	
+	print("员工已添加到场景树: ", resource.name)
+	
+	# 连接主时间信号
 	main_time.request_go_to_rest.connect(craftsman_character.go_to_rest)
 	main_time.request_go_to_work.connect(craftsman_character.go_to_work)
 	
-	self.add_child(craftsman_character)
-	
-	
+	# 让员工开始工作
 	craftsman_character.go_to_work()
+	
+	# 根据参数决定是否立即同步员工数据到全局存档
+	if immediate_sync:
+		_sync_to_global_save()
+
+# 同步员工数据到全局存档
+func _sync_to_global_save() -> void:
+	if Global.save_resource:
+		# 清空存档中的员工列表
+		Global.save_resource.start_list.clear()
+		
+		# 将当前员工列表同步到存档
+		for character in current_list:
+			if character.craftman_resource:
+				Global.save_resource.start_list.append(character.craftman_resource)
+		
+		print("员工数据已同步到全局存档，数量: ", Global.save_resource.start_list.size())
+		
+		# 立即保存到文件
+		Global.save_save_resource()
+		print("员工数据已保存到文件")
+	else:
+		push_warning("CraftsmanManager: Global.save_resource 为空，无法同步数据")
 
 #删除旧员工
 func delete_craftsman(resource : CraftsmanResource) -> void:
-	for i in current_list.size():
-		var character:= current_list[i]
+	# 使用反向遍历避免数组越界错误
+	for i in range(current_list.size() - 1, -1, -1):
+		var character = current_list[i]
 		if character.craftman_resource == resource:
-			current_list.erase(character)
+			# 从场景中移除角色节点
+			if character.get_parent():
+				character.queue_free()
+			# 从列表中移除
+			current_list.remove_at(i)
+			print("员工已从管理器中移除: ", resource.name)
+			break  # 找到后立即退出循环
 
 #返回员工们当前的状态（在工作还是在休息中）
 func return_craftsman_is_working() -> bool :
