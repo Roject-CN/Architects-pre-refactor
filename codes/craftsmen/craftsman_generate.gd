@@ -283,42 +283,44 @@ func _generate_name(gender : int) -> String:
 func generate_level_distribution(fame_value : int) -> Array:
 	fame_value = clamp(fame_value,0,MAX_FAME)
 	var fame_factor = fame_value / MAX_FAME	#归一化
-	var level_probs = [0.45,0.3,0.15,0.1,0]	#基础概率
-	if fame_factor < 0.4:  # 新手阶段（0~40）：level2快速增长，其他等级温和增长/下降
-		# level1：线性下降 [0.45 → 0.27]
-		level_probs[0] = 0.45 - 0.45 * fame_factor
-		# level2：线性上升 [0.3 → 0.42]（增速最快）
-		level_probs[1] = 0.3 + 0.3 * fame_factor
-		# level3：线性上升 [0.15 → 0.19]
-		level_probs[2] = 0.15 + 0.1 * fame_factor
-		# level4：线性上升 [0.1 → 0.12]
-		level_probs[3] = 0.1 + 0.05 * fame_factor
+	var level_probs = [0.6,0.25,0.1,0.05,0]	#基础概率（降低高级工匠概率）
+	
+	if fame_factor < 0.4:  # 新手阶段（0~40）：主要生成level1，少量level2
+		# level1：保持较高概率 [0.6 → 0.5]
+		level_probs[0] = 0.6 - 0.25 * fame_factor
+		# level2：缓慢增长 [0.25 → 0.3]
+		level_probs[1] = 0.25 + 0.125 * fame_factor
+		# level3：极低概率 [0.1 → 0.12]
+		level_probs[2] = 0.1 + 0.05 * fame_factor
+		# level4：极低概率 [0.05 → 0.06]
+		level_probs[3] = 0.05 + 0.025 * fame_factor
 		# level5：保持0
 		level_probs[4] = 0.0
 
-	elif fame_factor < 0.8:  # 中级阶段（40~80）：level2开始下降，level3/4/5继续增长
-		# level1：线性下降 [0.27 → 0.09]
-		level_probs[0] = 0.45 - 0.45 * fame_factor
-		# level2：线性下降 [0.42 → 0.34]（先增后减的转折点）
-		level_probs[1] = 0.5 - 0.2 * fame_factor
-		# level3：线性上升 [0.19 → 0.27]
-		level_probs[2] = 0.11 + 0.2 * fame_factor
-		# level4：线性上升 [0.12 → 0.20]
-		level_probs[3] = 0.04 + 0.2 * fame_factor
-		# level5：线性上升 [0 → 0.10]
-		level_probs[4] = 0.25 * fame_factor - 0.1
+	elif fame_factor < 0.8:  # 中级阶段（40~80）：level1下降，level2/3增长，level4/5开始出现
+		# level1：线性下降 [0.5 → 0.25]
+		level_probs[0] = 0.6 - 0.875 * fame_factor
+		# level2：成为主导 [0.3 → 0.35]
+		level_probs[1] = 0.3 + 0.125 * fame_factor
+		# level3：稳步增长 [0.12 → 0.2]
+		level_probs[2] = 0.12 + 0.2 * fame_factor
+		# level4：开始出现 [0.06 → 0.12]
+		level_probs[3] = 0.06 + 0.15 * fame_factor
+		# level5：极低概率 [0 → 0.08]
+		level_probs[4] = 0.2 * fame_factor - 0.08
 
-	else:  # 后期阶段（80~100）：level2/3下降，level4/5主导
-		# level1：线性下降至0 [0.09 → 0]
-		level_probs[0] = 0.09 - 0.45 * (fame_factor - 0.8)
-		# level2：快速下降 [0.34 → 0.05]（先增后减）
-		level_probs[1] = 0.34 - 1.45 * (fame_factor - 0.8)
-		# level3：缓慢下降 [0.27 → 0.25]（先增后减）
-		level_probs[2] = 0.27 - 0.1 * (fame_factor - 0.8)
-		# level4：快速上升 [0.20 → 0.50]（核心等级）
-		level_probs[3] = 0.20 + 1.5 * (fame_factor - 0.8)
-		# level5：稳步上升 [0.10 → 0.20]
-		level_probs[4] = 0.10 + 0.5 * (fame_factor - 0.8)
+	else:  # 后期阶段（80~100）：level3/4/5主导
+		# level1：快速下降至很低 [0.25 → 0.05]
+		level_probs[0] = 0.25 - 1.0 * (fame_factor - 0.8)
+		# level2：缓慢下降 [0.35 → 0.15]
+		level_probs[1] = 0.35 - 1.0 * (fame_factor - 0.8)
+		# level3：成为主导 [0.2 → 0.3]
+		level_probs[2] = 0.2 + 0.5 * (fame_factor - 0.8)
+		# level4：快速增长 [0.12 → 0.35]
+		level_probs[3] = 0.12 + 1.15 * (fame_factor - 0.8)
+		# level5：稳步增长 [0.08 → 0.15]
+		level_probs[4] = 0.08 + 0.35 * (fame_factor - 0.8)
+	
 	#归一化
 	var total_prob = 0.0
 	for i in range(5):

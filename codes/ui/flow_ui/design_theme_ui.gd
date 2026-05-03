@@ -1,6 +1,11 @@
 extends ChoiceUi
 class_name DesignUi
 
+# 测试主题数组（在场景编辑器中设置）
+@export var test_top_themes : Array[ThemeResource]
+@export var test_middle_themes : Array[ThemeResource]
+@export var test_buttom_themes : Array[ThemeResource]
+
 var top_themes : Array[ThemeResource]
 var middle_themes : Array[ThemeResource]
 var buttom_themes : Array[ThemeResource]

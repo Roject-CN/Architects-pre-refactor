@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Architects"
-run/main_scene="uid://q0k0qyp1t1mw"
+run/main_scene="uid://d1uh7vuy5se2p"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 

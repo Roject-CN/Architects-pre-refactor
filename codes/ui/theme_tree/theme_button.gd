@@ -15,7 +15,7 @@ signal request_close_tooltip()
 var entering := false
 
 func _ready() -> void:
-	button.text = theme_resource.name
+	#button.text = theme_resource.name
 	# 设置自身连接点的位置（基于按钮尺寸）
 	next_pos.position.x = button.size.x / 2
 	next_pos.position.y = -button.size.y / 2

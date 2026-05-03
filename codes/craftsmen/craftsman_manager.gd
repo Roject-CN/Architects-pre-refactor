@@ -20,7 +20,8 @@ var current_list : Array[CraftsmanCharacter]
 #CraftsmanCharacter实体是添加到 CraftsmanManager节点下
 		
 #添加新的员工
-func append_new_craftsman(resource : CraftsmanResource) -> void:
+# immediate_sync: 是否立即同步到存档（默认为true，恢复数据时设为false）
+func append_new_craftsman(resource : CraftsmanResource, immediate_sync: bool = true) -> void:
 	
 	if current_list.size() >= _max_amount:
 		return
@@ -47,10 +48,17 @@ func append_new_craftsman(resource : CraftsmanResource) -> void:
 		craftsman_character.go_to_rest()
 #删除旧员工
 func delete_craftsman(resource : CraftsmanResource) -> void:
-	for i in current_list.size():
-		var character:= current_list[i]
+	# 使用反向遍历避免数组越界错误
+	for i in range(current_list.size() - 1, -1, -1):
+		var character = current_list[i]
 		if character.craftman_resource == resource:
-			current_list.erase(character)
+			# 从场景中移除角色节点
+			if character.get_parent():
+				character.queue_free()
+			# 从列表中移除
+			current_list.remove_at(i)
+			print("员工已从管理器中移除: ", resource.name)
+			break  # 找到后立即退出循环
 
 #返回员工们当前的状态（在工作还是在休息中）
 func return_craftsman_is_working() -> bool :

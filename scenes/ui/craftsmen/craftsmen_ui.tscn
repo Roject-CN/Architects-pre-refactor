@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://l0lthvl61vfr" path="res://scenes/ui/base_ui/attribution_ui.tscn" id="1_m7yh4"]
 [ext_resource type="Script" uid="uid://dlsuruow0auqd" path="res://codes/ui/craftsmen_ui.gd" id="2_2o5a0"]
-[ext_resource type="Script" uid="uid://bcfvld13usfs" path="res://codes/craftsmen/craftsman_resource.gd" id="3_al16r"]
 [ext_resource type="Script" uid="uid://dllo8ex743q15" path="res://codes/craftsmen/craftsman_generate.gd" id="4_af67v"]
 [ext_resource type="Texture2D" uid="uid://do77yn4lfgps7" path="res://sprits/tile_0099.png" id="6_fe5w2"]
 
@@ -15,7 +14,6 @@ offset_top = -1.0
 offset_right = -1.0
 offset_bottom = -1.0
 script = ExtResource("2_2o5a0")
-craftsmen = Array[ExtResource("3_al16r")]([])
 separation_rate = 0.75
 text = "招聘界面"
 
