@@ -50,13 +50,33 @@ var available_saves: Array[Dictionary] = []
 
 # 更新继续按钮状态
 func _update_continue_button() -> void:
-	var main_save_path = "user://saves/main_save.tres"
-	if ResourceLoader.exists(main_save_path):
+	# 获取所有存档并找到最新的
+	var saves = SaveResource.list_saves()
+	var latest_save = _get_latest_save(saves)
+	
+	if latest_save:
 		continue_button.disabled = false
-		continue_button.tooltip_text = "继续上次的游戏进度"
+		continue_button.tooltip_text = "继续游戏 - " + latest_save["name"]
+		print("找到最新存档: ", latest_save["name"], "，继续按钮已启用")
 	else:
 		continue_button.disabled = true
 		continue_button.tooltip_text = "没有找到存档文件"
+		print("未找到存档，继续按钮已禁用")
+
+# 获取最新的存档
+func _get_latest_save(saves: Array) -> Dictionary:
+	if saves.is_empty():
+		return {}
+	
+	# 如果没有多个存档，直接返回第一个
+	if saves.size() == 1:
+		return saves[0]
+	
+	# 按目录名称排序（假设目录名称包含时间信息）
+	var sorted_saves = saves.duplicate()
+	sorted_saves.sort_custom(func(a, b): return a["directory"] > b["directory"])
+	
+	return sorted_saves[0]
 
 # 扫描可用存档
 func _scan_available_saves() -> void:
@@ -127,26 +147,32 @@ func _start_new_game(save_name: String = "新存档") -> void:
 
 # 继续游戏按钮
 func _on_continue_pressed() -> void:
-	# 加载最近的存档
-	print("正在加载存档...")
+	print("继续按钮按下")
 	
-	# 获取所有存档
+	# 获取所有存档并找到最新的
 	var saves = SaveResource.list_saves()
+	var latest_save = _get_latest_save(saves)
 	
-	if saves.size() > 0:
-		# 加载第一个存档（可以根据需要修改为加载最新的）
-		var latest_save = saves[0]
-		Global.save_resource = SaveResource.load_complete_game_data(latest_save["directory"])
+	if not latest_save:
+		print("没有找到可用的存档，无法继续")
+		return
+	
+	print("加载最新存档: ", latest_save["name"])
+	
+	# 构建存档文件路径
+	var save_dir = "user://saves/" + latest_save["directory"] + "/"
+	var save_file_path = save_dir + "save.tres"
+	
+	# 加载存档
+	var save_resource = ResourceLoader.load(save_file_path)
+	if save_resource:
+		Global.save_resource = save_resource
+		print("存档加载成功: ", latest_save["name"])
 		
-		if Global.save_resource:
-			print("存档加载成功: 名称=", Global.save_resource.save_name, ", 金钱=", Global.save_resource.current_money)
-			get_tree().change_scene_to_packed(main_scene)
-		else:
-			_show_error_dialog("存档加载失败", "无法加载存档文件。")
+		# 切换到主场景
+		get_tree().change_scene_to_packed(main_scene)
 	else:
-		# 没有存档，开始新游戏
-		_show_error_dialog("没有存档", "没有找到存档文件，将开始新游戏。")
-		_start_new_game()
+		print("存档加载失败: ", save_file_path)
 
 # 存档管理按钮
 func _on_saves_pressed() -> void:
@@ -314,21 +340,36 @@ func _on_save_deleted(save_data: Dictionary) -> void:
 	# 删除存档文件
 	print("开始删除存档: ", save_data["name"])
 	
-	if save_data["type"] == "main":
-		# 删除主存档目录（使用FileAccess删除整个目录）
-		var saves_path = "user://saves"
-		_delete_folder(saves_path)
-		print("主存档目录已删除")
-	elif save_data["type"] == "backup":
-		# 删除备份存档目录
-		var backup_name = save_data["name"].replace("备份-", "backup_")
-		var backup_path = "user://saves/" + backup_name
-		_delete_folder(backup_path)
-		print("备份存档目录已删除: ", backup_path)
+	# 构建正确的存档目录路径
+	var save_dir = "user://saves/" + save_data["directory"] + "/"
+	print("删除存档目录: ", save_dir)
+	
+	# 使用更可靠的删除方法
+	if _delete_specific_folder(save_dir):
+		print("存档目录删除成功: ", save_data["name"])
+	else:
+		print("存档目录删除失败: ", save_data["name"])
 	
 	# 重新扫描存档
 	_scan_available_saves()
 	_update_continue_button()
+	
+	print("存档删除完成，继续按钮状态已更新")
+
+# 删除特定文件夹（不递归删除整个saves目录）
+func _delete_specific_folder(folder_path: String) -> bool:
+	print("尝试删除特定文件夹: ", folder_path)
+	
+	# 直接使用现有的_delete_folder函数
+	_delete_folder(folder_path)
+	
+	# 检查是否删除成功
+	if not DirAccess.dir_exists_absolute(folder_path):
+		print("删除目录成功: ", folder_path)
+		return true
+	else:
+		print("删除目录失败: ", folder_path)
+		return false
 
 # 使用命令行方式删除文件夹（更可靠）
 func _delete_folder(folder_path: String) -> void:
@@ -343,37 +384,38 @@ func _delete_folder(folder_path: String) -> void:
 		print("目录不存在: ", folder_path)
 		return
 	
-	# 删除所有内容
+	# 先删除所有文件和子目录
 	dir.list_dir_begin()
 	var file_name = dir.get_next()
 	while file_name != "":
+		if file_name == "." or file_name == "..":
+			file_name = dir.get_next()
+			continue
+			
+		var full_path = folder_path.path_join(file_name)
+		
 		if dir.current_is_dir():
 			# 递归删除子目录
-			_delete_folder(folder_path + "/" + file_name)
+			_delete_folder(full_path)
 		else:
 			# 删除文件
-			var file_path = folder_path + "/" + file_name
-			var file_access = FileAccess.open(file_path, FileAccess.WRITE)
-			if file_access:
-				file_access.close()
-				if dir.remove(file_name) == OK:
-					print("删除文件成功: ", file_name)
-				else:
-					print("删除文件失败: ", file_name)
+			if dir.remove(file_name) == OK:
+				print("删除文件成功: ", file_name)
 			else:
-				print("无法打开文件: ", file_name)
+				print("删除文件失败: ", file_name)
 		file_name = dir.get_next()
 	dir.list_dir_end()
 	
-	# 返回上级目录并删除空目录
-	var parent_dir = DirAccess.open("user://")
+	# 删除空目录
+	var parent_dir = DirAccess.open(folder_path.get_base_dir())
 	if parent_dir:
 		var folder_name = folder_path.get_file()
-		if parent_dir.dir_exists(folder_name):
-			if parent_dir.remove(folder_name) == OK:
-				print("删除目录成功: ", folder_path)
-			else:
-				print("删除目录失败: ", folder_path)
+		if parent_dir.remove(folder_name) == OK:
+			print("删除空目录成功: ", folder_path)
+		else:
+			print("删除空目录失败: ", folder_path)
+	else:
+		print("无法打开父目录: ", folder_path.get_base_dir())
 
 # 清理存档目录
 func _clean_save_directory() -> void:
