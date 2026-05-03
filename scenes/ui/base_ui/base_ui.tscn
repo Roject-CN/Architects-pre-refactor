@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://4ucl0ub4d5ij"]
 
-[ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://resource/global_theme.tres" id="1_6qa4x"]
+[ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://resource/ThemeResource/global_theme.tres" id="1_6qa4x"]
 [ext_resource type="Script" uid="uid://bcu47gmfix0f5" path="res://codes/ui/base_ui/base_ui.gd" id="2_8ej6i"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mjsx3"]

@@ -19,9 +19,14 @@ enum STATE {
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var aniamtion_ui_marked: Marker2D = $AnimationUi
-@onready var energy: ProgressBar = $Energy
+@onready var energy: ProgressBar = $VBoxContainer/Energy
+
 #临时表示名字
-@onready var label: Label = $Label
+@onready var label: Label = $VBoxContainer/Label
+
+
+const RED := preload("uid://dn6l2h4tj2ptl")
+const WHITE := preload("uid://18uncdjs64k6")
 
 
 const SCALE := 0.2
@@ -46,7 +51,12 @@ func _ready() -> void:
 	#精力条
 	energy.max_value = craftman_resource.max_energy
 	craftman_resource.energy_value_changed.connect(
-		func(value : float): energy.value = value
+		func(value : float): 
+		energy.value = value
+		if value > craftman_resource._ENERGY_TIRED:
+			energy.add_theme_stylebox_override("fill", WHITE)
+		else:
+			energy.add_theme_stylebox_override("fill", RED)	
 		)
 	
 	label.text = craftman_resource.name

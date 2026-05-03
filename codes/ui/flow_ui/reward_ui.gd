@@ -10,6 +10,7 @@ class_name RewardUi
 
 const reward_text := "奖励: %d $"
 var reward_value := 0   # 累计奖励金钱
+var total_v := 0
 
 # 每个资源属性的事件队列结构
 var event_queues : Array[Array]   # 每个元素是一个 Array[int]（扣减量序列）
@@ -46,7 +47,7 @@ func _ready() -> void:
 	super()
 	assure.disabled = true
 	progress_bar.value = 0.0
-
+	
 
 func ui_exit() -> void:
 	super()
@@ -76,6 +77,7 @@ func ui_enter() -> void:
 
 func ui_process(delta: float) -> void:
 	if value_percent >= 1.0:
+		reward.text = reward_text % reward_value
 		return
 	
 	# 更新流逝时间，并限制最大不超过 time
@@ -108,10 +110,12 @@ func ui_process(delta: float) -> void:
 			# 获取对应的 InformationUI（假设 r_container 按属性顺序排列）
 			var information_ui : InformationUI = r_container.get_child(i)
 			information_ui.calculate_value(delta_value)   # 播放对应数值的动画（如 "-100"）
-			reward_value += delta_value * 2
-			reward.text = reward_text % reward_value
-			building_resource.cost -= delta_value   # 资源剩余量减少（注意原代码是 +=，这里改为 -=）
+			total_v += delta_value
+			reward_value = int(log(total_v + 1) / log(1.5)  *  30)	
+			reward.text = reward_text % (reward_value * value_percent)
+			building_resource.cost += delta_value   
 			triggered_indexes[i] += 1
-
+			
+		
 func _on_assure_pressed() -> void:
 	request_next()

@@ -27,9 +27,9 @@ func ui_enter()-> void:
 	assure.disabled = true
 	
 	#
-	top_themes = Global.top_theme_resource.duplicate(true)
-	middle_themes = Global.middle_theme_resource.duplicate(true)
-	buttom_themes = Global.buttom_theme_resource.duplicate(true)
+	top_themes = Global.save_resource.top_theme_resource.duplicate(true)
+	middle_themes = Global.save_resource.middle_theme_resource.duplicate(true)
+	buttom_themes = Global.save_resource.buttom_theme_resource.duplicate(true)
 	
 	super()
 

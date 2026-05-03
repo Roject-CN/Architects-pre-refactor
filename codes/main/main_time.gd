@@ -15,17 +15,20 @@ signal request_go_to_work
 signal request_go_to_rest
 
 var count : int = 0
-var _time : float : 
+var working := true
+var _time : float  = 0: 
 	set(value):
 		_time = value
 		count = int(_time)
 		if _time > _seconds_per_day:
 			_time = 0
 			Global.add_days(1)
+			working = true	
 			request_go_to_work.emit()
 			
 		if count == int(_seconds_per_day / 2):
 			request_go_to_rest.emit()
+			working = false
 		_update_lighting()
 
 func _update_lighting():
@@ -57,6 +60,10 @@ func _update_lighting():
 	var current_color : Color = canvas_modulate.color
 	final_rgb.a = current_color.a
 	canvas_modulate.color = final_rgb
+
+func can_go_to_work() -> bool:
+	return working
+
 
 func _ready() -> void:
 	assert(craftsman_manager, "MainTime's craftsman_manager is empty")		

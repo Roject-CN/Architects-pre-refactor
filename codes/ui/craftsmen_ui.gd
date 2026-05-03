@@ -90,7 +90,7 @@ func read_craftman_resource(resource : CraftsmanResource) -> void:
 	assure.text = assure_text
 	description.text = resource.description
 	
-	if Global.save_resource.current_money < resource.cost:
+	if Global.save_resource.current_money < resource.cost or Global.save_resource.start_list.size() >= 6:
 		assure.disabled = true
 	else:
 		assure.disabled = false

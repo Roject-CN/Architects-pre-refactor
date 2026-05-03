@@ -18,12 +18,11 @@ var current_list : Array[CraftsmanCharacter]
 @onready var _max_amount := _workplace_position.size()
 
 #CraftsmanCharacter实体是添加到 CraftsmanManager节点下
-#signal current_list_changed()
+		
 #添加新的员工
 func append_new_craftsman(resource : CraftsmanResource) -> void:
 	
 	if current_list.size() >= _max_amount:
-		#后面可以增加提醒的ui
 		return
 	
 	#回头搞个Craftsman_manager.tscn 搞个员工列表场景，方便进行升级和解雇人员
@@ -32,6 +31,7 @@ func append_new_craftsman(resource : CraftsmanResource) -> void:
 	
 	#需要先添加到 current_list 否则返回的都是 -1
 	current_list.append(craftsman_character)
+	Global.save_resource.start_list.append(craftsman_character.craftman_resource)
 	
 	craftsman_character.workplaces = _workplace_position
 	craftsman_character.workplace = _workplace_position[find_character_index_by_resource(resource)]
@@ -41,9 +41,10 @@ func append_new_craftsman(resource : CraftsmanResource) -> void:
 	
 	self.add_child(craftsman_character)
 	
-	
-	craftsman_character.go_to_work()
-
+	if main_time.can_go_to_work():
+		craftsman_character.go_to_work()
+	else :
+		craftsman_character.go_to_rest()
 #删除旧员工
 func delete_craftsman(resource : CraftsmanResource) -> void:
 	for i in current_list.size():

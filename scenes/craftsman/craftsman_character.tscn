@@ -3,6 +3,25 @@
 [ext_resource type="Script" uid="uid://ehy137bbe4rb" path="res://codes/craftsmen/craftsman_character.gd" id="1_pux4w"]
 [ext_resource type="Texture2D" uid="uid://do77yn4lfgps7" path="res://sprits/tile_0099.png" id="2_k267a"]
 [ext_resource type="PackedScene" uid="uid://jyoxd75b8pl1" path="res://scenes/ui/base_ui/animation_ui.tscn" id="3_b5aep"]
+[ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://resource/ThemeResource/global_theme.tres" id="4_b5aep"]
+[ext_resource type="FontFile" uid="uid://fukwdrwxaptt" path="res://resource/font_resource/VonwaonBitmap-12px.ttf" id="5_6m5lc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6m5lc"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(1, 1, 1, 0.4)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_qbyj1"]
+font = ExtResource("5_6m5lc")
+font_size = 6
+shadow_size = 0
 
 [node name="CraftsmanCharacter" type="Node2D" unique_id=970046079]
 z_index = -1
@@ -28,16 +47,33 @@ position = Vector2(-8.5, -15)
 visible = false
 scale = Vector2(0.2, 0.2)
 
-[node name="Energy" type="ProgressBar" parent="." unique_id=108723444]
-offset_left = -6.5
-offset_top = 9.5
-offset_right = -2.5
-offset_bottom = 36.5
-scale = Vector2(0.3, 0.3)
-max_value = 40.0
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1228240883]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -9.0
+offset_top = 8.666668
+offset_right = 9.0
+offset_bottom = 28.666668
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("4_b5aep")
+theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="." unique_id=8733026]
-offset_top = 11.499999
-offset_right = 40.0
-offset_bottom = 34.5
-scale = Vector2(0.2, 0.2)
+[node name="Energy" type="ProgressBar" parent="VBoxContainer" unique_id=108723444]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 4
+theme_override_styles/fill = SubResource("StyleBoxFlat_6m5lc")
+max_value = 40.0
+step = 0.1
+show_percentage = false
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1307031111]
+visible = false
+z_index = -1
+layout_mode = 2
+size_flags_horizontal = 4
+label_settings = SubResource("LabelSettings_qbyj1")

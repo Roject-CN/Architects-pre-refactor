@@ -1,7 +1,7 @@
 class_name BuildPropConfig
 extends Resource
 
-const MAX_LIMIT := 15.0
+const MAX_LIMIT := 10.0
 var _max_limit := MAX_LIMIT
 var _times_count := 0           # 实际存储次数
 
@@ -13,6 +13,11 @@ var _build_craftsmen : Array[CraftsmanResource]
 signal request_animation_ui_add(prop : BaseResource.PROPERTY)
 
 var _craftsmen_values : Array[float] = []
+
+func clear_max_limits() -> void:
+	_max_limit = MAX_LIMIT
+	_times_count = 0
+	_build_craftsmen.clear()
 
 func append_new_craftsman(resource : CraftsmanResource) -> void:
 	_build_craftsmen.append(resource)
@@ -28,9 +33,9 @@ func build_process(delta : float) -> void:
 
 			# 触发一次加成
 			_times_count += 1
-			if _times_count >= 10:
+			if _times_count >= 15:
 				_times_count = 0
-				_max_limit *= 1.1   # 每次点击10次后上限提升10%
+				_max_limit *= 2   # 每次点击15次后上限提升100%
 
 			request_animation_ui_add.emit(prop)
 			resource.request_craftsman_character_animation_ui_added.emit(prop)

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BaseResource" format=3 uid="uid://p68pft8bhsa0"]
+
+[ext_resource type="Script" uid="uid://bdgg3aofx78k6" path="res://codes/others/base_resource.gd" id="1_c8qgf"]
+
+[resource]
+script = ExtResource("1_c8qgf")
+values = {
+"匠心类": 20,
+"工料类": 20,
+"设计类": 20,
+"风水类": 20
+}
+metadata/_custom_type_script = "uid://bdgg3aofx78k6"

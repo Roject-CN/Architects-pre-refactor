@@ -38,6 +38,6 @@ func achive(resource : BuildingResource) -> void:
 		new.middle_theme = achivement.middle_theme
 		new.buttom_theme = achivement.buttom_theme
 		for key in new.values:
-			new.values[key] = achivement.LIMIT + 1
+			new.values[key] = achivement.compare.values[key] + 1
 		
 		Global.save_resource.achivements.append(new)

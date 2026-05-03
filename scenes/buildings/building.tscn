@@ -52,6 +52,7 @@ metadata/_custom_type_script = "uid://bq1ky4cg1v3i7"
 [sub_resource type="Resource" id="Resource_05lpc"]
 script = ExtResource("7_hhebf")
 prop = 3
+weight = 0.1
 metadata/_custom_type_script = "uid://bq1ky4cg1v3i7"
 
 [sub_resource type="Resource" id="Resource_1t7h7"]
@@ -78,6 +79,7 @@ metadata/_custom_type_script = "uid://bq1ky4cg1v3i7"
 [sub_resource type="Resource" id="Resource_diqjy"]
 script = ExtResource("7_hhebf")
 prop = 3
+weight = 0.4
 metadata/_custom_type_script = "uid://bq1ky4cg1v3i7"
 
 [sub_resource type="Resource" id="Resource_01wli"]
@@ -142,6 +144,7 @@ prop_configs = Array[ExtResource("7_hhebf")]([SubResource("Resource_huo0y"), Sub
 process_mode = 0
 visible = false
 _progress_curve = SubResource("Curve_0krn8")
+time = 3.0
 text = "风水勘探中"
 
 [node name="FlowDesign" type="Node" parent="FlowManager" unique_id=152366546 node_paths=PackedStringArray("initial_ui")]
@@ -166,10 +169,12 @@ text = "选择建筑主题"
 process_mode = 0
 visible = false
 _progress_curve = SubResource("Curve_ofkw7")
+time = 3.0
 text = "设计建筑中"
 
 [node name="PlaceHolderUi" parent="FlowManager/FlowDesign" unique_id=795315083 instance=ExtResource("11_0krn8")]
 visible = false
+timer = 12.0
 
 [node name="FlowBuild" type="Node" parent="FlowManager" unique_id=1960394218 node_paths=PackedStringArray("initial_ui")]
 script = ExtResource("6_ofkw7")
@@ -188,10 +193,12 @@ prop_configs = Array[ExtResource("7_hhebf")]([SubResource("Resource_01wli"), Sub
 process_mode = 0
 visible = false
 _progress_curve = SubResource("Curve_volt3")
+time = 3.0
 text = "建造装饰建筑中"
 
 [node name="PlaceHolderUi" parent="FlowManager/FlowBuild" unique_id=1947500056 instance=ExtResource("11_0krn8")]
 visible = false
+timer = 12.0
 
 [node name="FlowAccount" type="Node" parent="FlowManager" unique_id=919585806 node_paths=PackedStringArray("initial_ui")]
 script = ExtResource("6_ofkw7")
@@ -210,6 +217,7 @@ prop_configs = Array[ExtResource("7_hhebf")]([SubResource("Resource_q4rys")])
 process_mode = 0
 visible = false
 _progress_curve = SubResource("Curve_xl0vr")
+time = 3.0
 text = "正在计算工料中"
 prop_configs = Array[ExtResource("7_hhebf")]([SubResource("Resource_0y52w")])
 

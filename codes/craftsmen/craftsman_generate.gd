@@ -390,18 +390,20 @@ static func _load_all_texture():
 			# 开始遍历文件夹内文件
 			prof_dir.list_dir_begin() # 🔥 修复核心：无参调用
 			var file_name = prof_dir.get_next()
-			
 			while file_name != "":
 				# 仅处理文件
 				if not prof_dir.current_is_dir():
 					# 仅加载图片格式
-					if file_name.ends_with(".png") or file_name.ends_with(".jpg") or file_name.ends_with(".jpeg"):
-						var full_path = prof_path + file_name
+					if file_name.ends_with(".png.import") or file_name.ends_with(".jpg.import") or file_name.ends_with(".jpeg.import"):
+						# 去掉末尾的 ".import" 得到原始资源路径
+						var base_name = file_name.trim_suffix(".import")
+						var full_path = prof_path + base_name
 						var tex = load(full_path)
 						if tex is Texture2D:
 							texture_pool[gender_name][prof_name].append(tex)
 				
 				file_name = prof_dir.get_next()
+				
 			
 			# 结束遍历
 			prof_dir.list_dir_end()

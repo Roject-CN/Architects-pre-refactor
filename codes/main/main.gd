@@ -30,15 +30,29 @@ func _ready() -> void:
 	
 	#building退出后让按钮可用
 	Event.building_end.connect(func(): building_button.disabled = false	)
-	
+	#读取Global的员工列表
+	for i : CraftsmanResource in Global.save_resource.start_list:
+		craftsman_manager.append_new_craftsman(i)
 
 func _on_employee_pressed() -> void:
 
-	var employee := employee_scene.instantiate() as CraftsmenUi
-	employee.craftsman_manager = craftsman_manager
+	if Global.save_resource.start_list.size() >= 6:
+		pop_up_ui.pop_up_information("提醒", "员工数量超过，需要您先辞退其他的员工")
+		return
 	
-	function.add_child(employee)
-	employee.ui_enter()
+	pop_up_ui.pop_up_information("提醒", "每次招募员工需花费100元")
+	
+	if Global.save_resource.current_money >= 100:
+		pop_up_ui._pressed.connect(func():
+			Global.save_resource.current_money -= 100
+			var employee := employee_scene.instantiate() as CraftsmenUi
+			employee.craftsman_manager = craftsman_manager
+			
+			function.add_child(employee)
+			employee.ui_enter(), CONNECT_ONE_SHOT
+			)
+	else :
+		pop_up_ui.pop_up_information("提醒", "您的金钱少于100元，所以无法招募，赚够更多的钱再来吧")
 
 func _on_building_pressed() -> void:
 	if craftsman_manager.craftsman_manager_is_empty():

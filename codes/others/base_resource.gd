@@ -7,10 +7,10 @@ const MIN_VALUE = 0
 const MAX_VALUE = 999
 
 @export var values: Dictionary = {
-	"风水类": 1,
-	"设计类": 1,
-	"匠心类": 1,
-	"工料类": 1,
+	"风水类": 0,
+	"设计类": 0,
+	"匠心类": 0,
+	"工料类": 0,
 }:
 	set(new_dict):
 		# 清理无效键，钳制值范围

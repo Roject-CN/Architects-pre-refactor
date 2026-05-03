@@ -8,13 +8,14 @@ const profession_name: Array[String] = ["风水师","设计师","工匠师","会
 #等级的最大值
 const _LEVEL_LIMIT := 5	#changed	#最高5级更符合常规游戏等级印象，craftsman_generate.gd中因此预设了5个等级和文案，如不妥可删除
 #精力值的最大值
-const _ENERGY_LIMIT := 40
+const _ENERGY_LIMIT := 45
 #当低于该值时表明员工陷入疲惫状态
-const _ENERGY_TIRED := 15
+const _ENERGY_TIRED := 5
 #每升一级员工所需要的经验值
 const _EXPERIENCE_PER_LEVEL := 100
 
 #在集体工作环节用以连接animation_ui节点（CraftsmanCharacter类里）
+@warning_ignore("unused_signal")
 signal request_craftsman_character_animation_ui_added(prop : BaseResource.PROPERTY)
 #精力值显示的组件与此信号相连接，在精力值改变的时候发送该信号
 signal energy_value_changed(value : float)
@@ -30,7 +31,7 @@ signal energy_value_changed(value : float)
 @export_group("Effect")
 @export_range(1, _LEVEL_LIMIT, 1) var level : int = 1
 @export var experience : int = 0
-@export_range(1, _ENERGY_LIMIT, 1) var max_energy : int = 10
+@export_range(1, _ENERGY_LIMIT, 1) var max_energy : int = 10 + level * 10
 var energy : float = max_energy :
 	set (value) : 
 		if value <= 1 :
@@ -50,7 +51,7 @@ var craftsman_effect : float
 func return_craftsman_effect(delta : float, prop_config : BaseResource.PROPERTY) -> float:
 	energy -= delta 
 	var _experience_effect : float = level + level * float(experience) / _EXPERIENCE_PER_LEVEL 
-	craftsman_effect = energy * _experience_effect / _ENERGY_TIRED
+	craftsman_effect =  log(energy + 10) * _experience_effect / _ENERGY_TIRED
 	var capability := return_value(prop_config) 
 	
 	craftsman_effect *= capability

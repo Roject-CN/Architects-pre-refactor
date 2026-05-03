@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cfhex28ebk6rl"]
 
-[ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://resource/global_theme.tres" id="1_1fxfi"]
+[ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://resource/ThemeResource/global_theme.tres" id="1_1fxfi"]
 [ext_resource type="Script" uid="uid://c0ac7ayfglxpi" path="res://codes/ui/theme_tree/theme_button.gd" id="2_w3cyn"]
 
 [node name="ThemeButton" type="Control" unique_id=433211561]

@@ -11,14 +11,14 @@ class_name Achivement
 
 var locked := true
 
-const LIMIT := 50
+@export var compare : BaseResource
 
 func is_the_same(resource : BuildingResource) -> bool :
 	
 	var value_can_achive_times := 0
 	
 	for i : BaseResource.PROPERTY in BaseResource.PROPERTY.values():
-		if resource.return_value(i) > LIMIT:
+		if resource.return_value(i) >= compare.return_value(i):
 			value_can_achive_times += 1
 	
 	

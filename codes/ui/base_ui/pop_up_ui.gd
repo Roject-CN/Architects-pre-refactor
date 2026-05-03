@@ -4,6 +4,7 @@ class_name PopUpUi
 @onready var title: Label = $Panel/Title
 @onready var content: Label = $Panel/Content
 @onready var button: Button = $Panel/Button
+signal _pressed
 
 func _ready() -> void:
 	hide()
@@ -15,3 +16,4 @@ func pop_up_information(title_string : String, text_string : String) -> void:
 
 func _on_button_pressed() -> void:
 	hide()
+	_pressed.emit()

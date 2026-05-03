@@ -7,6 +7,8 @@ class_name BuildUi
 
 @export var _progress_curve : Curve = preload("uid://c735f8cwhf5gy")
 
+signal build_props_clear
+
 var value_pecent : float = 0.0 : 
 	set(new_value):
 		value_pecent = new_value
@@ -25,6 +27,7 @@ func _ready() -> void:
 
 func ui_exit() -> void:
 	super()
+	build_props_clear.emit()
 
 func ui_enter() -> void:
 	assert(craftsman_resource, str(self) + "craftsman is empty")
@@ -36,7 +39,9 @@ func ui_enter() -> void:
 		prop_config.request_animation_ui_add.connect(animation_ui_add)
 		#prop_config增加工作的员工
 		prop_config.append_new_craftsman(craftsman_resource)
-			
+		#恢复prop_config的_max_limits为默认值
+		build_props_clear.connect(prop_config.clear_max_limits, CONNECT_ONE_SHOT)
+	
 	super()
 
 func ui_process(delta: float) -> void:

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b5rxknicvviqi"]
 
-[ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://resource/global_theme.tres" id="1_2hswq"]
+[ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://resource/ThemeResource/global_theme.tres" id="1_2hswq"]
 [ext_resource type="Script" uid="uid://div4uigqj6jh8" path="res://codes/ui/base_ui/pop_up_ui.gd" id="1_j1bxd"]
 [ext_resource type="Texture2D" uid="uid://bb1llwn0kn1pm" path="res://icon.svg" id="3_3wx5s"]
 
@@ -64,11 +64,11 @@ offset_right = 20.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "这个Ui用来显示一些提醒信息，比如解锁成就、当前页面无法开启等情况"
-label_settings = SubResource("LabelSettings_2hswq")
+theme_override_font_sizes/font_size = 13
+text = "这个Ui用来显示一些提醒信息，比如解锁成就、当前页面无法开启等情况这个Ui用来显示一些提醒信息，比如解锁成就、当前页面无法开启等情况这个Ui用来显示一些提醒信息，比如解锁成就、当前页面无法开启等情况这个Ui用来显示一些提醒信"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2
+autowrap_mode = 3
 
 [node name="Button" type="Button" parent="Panel" unique_id=1156323215]
 custom_minimum_size = Vector2(100, 0)

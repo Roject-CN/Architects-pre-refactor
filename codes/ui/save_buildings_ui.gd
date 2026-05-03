@@ -170,6 +170,7 @@ func refresh():
 		
 		# 上分主题
 		var top_lab := Label.new()
+		
 		top_lab.text = "上分：%s" % (resource.top_theme.name)
 		top_lab.modulate = Color(0.8, 0.8, 0.8)
 		info.add_child(top_lab)
