@@ -50,7 +50,6 @@ func _sort_saves_by_time() -> void:
 		var time_b = _extract_timestamp_from_name(b["name"])
 		return time_a > time_b
 	)
-	print("存档列表已按时间排序")
 
 # 从存档名称提取时间戳
 func _extract_timestamp_from_name(name: String) -> float:
@@ -149,7 +148,6 @@ func _on_load_pressed(save_data: Dictionary) -> void:
 
 # 删除存档
 func _on_delete_pressed(save_data: Dictionary) -> void:
-	print("点击删除按钮，存档数据: ", save_data["name"])
 	# 显示确认对话框
 	_show_delete_confirmation(save_data)
 
@@ -170,12 +168,10 @@ func _show_delete_confirmation(save_data: Dictionary) -> void:
 
 # 删除确认处理
 func _on_delete_confirmed(save_data: Dictionary) -> void:
-	print("确认删除存档: ", save_data["name"])
-	
 	# 发出删除信号
 	save_deleted.emit(save_data)
 	
-	# 使用名称查找并删除（更可靠）
+	# 使用名称查找并删除
 	var found_index = -1
 	for i in range(available_saves.size()):
 		if available_saves[i]["name"] == save_data["name"]:
@@ -184,12 +180,9 @@ func _on_delete_confirmed(save_data: Dictionary) -> void:
 	
 	if found_index != -1:
 		available_saves.remove_at(found_index)
-		print("已从列表中移除存档")
 	
 	# 刷新列表
 	_refresh_save_list()
-	
-	print("删除操作完成")
 
 # 关闭按钮
 func _on_close_pressed() -> void:

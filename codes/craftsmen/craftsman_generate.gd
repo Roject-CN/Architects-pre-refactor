@@ -415,7 +415,6 @@ static func _get_random_sprite(gender: int, profession: int) -> Texture2D:
 	var texture_list = texture_pool[gender_name][prof_name]
 
 	if texture_list.is_empty():
-		print("无可用形象：性别=", gender, " 职业=", profession)
 		return null
 	return texture_list[randi() % texture_list.size()]
 

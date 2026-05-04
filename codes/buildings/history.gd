@@ -11,18 +11,15 @@ signal closed()
 func _ready() -> void:
 	# 连接关闭按钮信号
 	close_button.pressed.connect(_on_close_pressed)
-	print("History场景已初始化")
 	
 	# 延迟加载数据
 	call_deferred("_load_history_data")
 
 # 延迟加载历史数据
 func _load_history_data() -> void:
-	print("开始加载历史建筑数据...")
-	
-	# 获取历史列表容器（尝试多种可能的路径）
+	# 获取历史列表容器
 	if not history_list:
-		print("错误: 无法找到历史列表容器")
+		_show_empty_state(history_list)
 		return
 	
 	# 清空现有列表
@@ -31,25 +28,19 @@ func _load_history_data() -> void:
 	
 	# 检查全局存档
 	if not Global.save_resource:
-		print("错误: Global.save_resource 为空")
 		_show_empty_state(history_list)
 		return
 	
 	# 获取建筑数据
 	var buildings = Global.save_resource.save_building_resources
 	if not buildings or buildings.is_empty():
-		print("没有找到历史建筑数据")
 		_show_empty_state(history_list)
 		return
-	
-	print("找到 ", buildings.size(), " 个历史建筑")
 	
 	# 显示建筑列表
 	for building in buildings:
 		var building_item = _create_building_item(building)
 		history_list.add_child(building_item)
-	
-	print("历史建筑数据加载完成")
 
 # 显示空状态
 func _show_empty_state(container: VBoxContainer) -> void:
@@ -161,7 +152,6 @@ func _get_attribute_value(building: BuildingResource, index: int) -> int:
 
 # 关闭按钮按下
 func _on_close_pressed() -> void:
-	print("History场景关闭按钮被点击")
 	closed.emit()
 	
 	# 获取父节点（CanvasLayer）并销毁它
@@ -171,8 +161,6 @@ func _on_close_pressed() -> void:
 	else:
 		# 如果没有父节点，直接销毁自己
 		queue_free()
-	
-	print("History场景已关闭")
 
 # 处理输入事件（ESC键关闭）
 func _input(event: InputEvent) -> void:

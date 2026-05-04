@@ -135,7 +135,6 @@ func refresh():
 	for c in _list.get_children(): 
 		c.queue_free()
 	
-	print(Global.save_resource.save_building_resources.size())
 	for resource : BuildingResource  in Global.save_resource.save_building_resources:
 		var row := HBoxContainer.new()
 		row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
