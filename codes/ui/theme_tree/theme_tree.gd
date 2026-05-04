@@ -57,7 +57,6 @@ func open_tooltip(text : String) -> void:
 
 func close_tooltip() -> void:
 	label.text = "鼠标停留建筑主题按钮一会，会出现文本介绍"
-
 	panel.modulate.a = 0.6
 	
 

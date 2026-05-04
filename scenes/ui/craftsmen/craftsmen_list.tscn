@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b8t0oyc17v6aq"]
 
 [ext_resource type="Script" uid="uid://bmypdmhff0afp" path="res://codes/ui/craftsmen_list.gd" id="1_k6xvo"]
-[ext_resource type="Theme" uid="uid://c3bsqk86hvh0h" path="res://resource/global_theme.tres" id="2_rt8qi"]
 
 [node name="CraftsmenList" type="Control" unique_id=2011748255]
 layout_mode = 3
@@ -18,7 +17,6 @@ anchor_left = 0.1
 anchor_top = 0.1
 anchor_right = 0.9
 anchor_bottom = 0.9
-theme = ExtResource("2_rt8qi")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=2011748257]
 layout_mode = 0

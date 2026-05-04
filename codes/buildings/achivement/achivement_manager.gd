@@ -40,4 +40,7 @@ func achive(resource : BuildingResource) -> void:
 		for key in new.values:
 			new.values[key] = achivement.compare.values[key] + 1
 		
+		new.name = achivement.achievement_name
+		new.description = achivement.description
+		
 		Global.save_resource.achivements.append(new)

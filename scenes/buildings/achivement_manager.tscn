@@ -127,3 +127,4 @@ compare = ExtResource("11_jmfrl")
 metadata/_custom_type_script = "uid://bhs51v8mebwbt"
 
 [node name="PopUpUi" parent="." unique_id=1238429742 instance=ExtResource("17_cjkjp")]
+visible = false

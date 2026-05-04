@@ -10,7 +10,7 @@ class_name Achivement
 @export_multiline var description : String
 
 var locked := true
-
+@export var texture : Texture
 @export var compare : BaseResource
 
 func is_the_same(resource : BuildingResource) -> bool :

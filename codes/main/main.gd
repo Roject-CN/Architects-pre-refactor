@@ -352,3 +352,7 @@ func _update_save_directory(old_name: String, new_name: String) -> void:
 				Global.save_resource.save_name = new_name
 		else:
 			print("警告: 无法打开存档目录")
+
+
+func _on_achievement_pressed() -> void:
+	$AchievementDisplay.ui_enter()

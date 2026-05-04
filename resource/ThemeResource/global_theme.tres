@@ -1,7 +1,10 @@
 [gd_resource type="Theme" format=3 uid="uid://c73vty6o732sb"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tccg3"]
-bg_color = Color(0.7921569, 0.5411765, 0.21176471, 1)
+[ext_resource type="StyleBox" uid="uid://d27u4frgiytfp" path="res://resource/ThemeResource/button_normal.tres" id="1_l5f3i"]
+[ext_resource type="StyleBox" uid="uid://dxifysodfhjy7" path="res://resource/ThemeResource/panel.tres" id="2_of1th"]
 
 [resource]
-Panel/styles/panel = SubResource("StyleBoxFlat_tccg3")
+Button/styles/disabled = ExtResource("1_l5f3i")
+Button/styles/normal = ExtResource("1_l5f3i")
+Button/styles/pressed = ExtResource("1_l5f3i")
+Panel/styles/panel = ExtResource("2_of1th")

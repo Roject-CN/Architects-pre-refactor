@@ -1,0 +1,17 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://dxifysodfhjy7"]
+
+[ext_resource type="Texture2D" uid="uid://dydlcucujwa8f" path="res://sprits/ui部分/panel.png" id="1_6prby"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7bcu"]
+atlas = ExtResource("1_6prby")
+
+[resource]
+texture = SubResource("AtlasTexture_q7bcu")
+texture_margin_left = 91.0
+texture_margin_top = 84.0
+texture_margin_right = 91.0
+texture_margin_bottom = 83.0
+expand_margin_left = 20.0
+expand_margin_top = 40.0
+expand_margin_right = 20.0
+expand_margin_bottom = 40.0

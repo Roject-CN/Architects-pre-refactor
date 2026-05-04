@@ -3,10 +3,12 @@ class_name ThemeButton
 
 @export var next_theme_button : ThemeButton
 @export var theme_resource : ThemeResource
-
+@export var unlock_need_fame : int = 0
+@export var cost_money : int = 100
 
 @onready var button: TextureRect = $Button
 @onready var label: Label = $Button/Label
+@onready var label_2: RichTextLabel = $Button/Label2
 
 
 @onready var self_pos: Control = $self_pos
@@ -17,6 +19,7 @@ signal request_open_tooltip(str : String)
 signal request_close_tooltip()
 
 var entering := false
+const tip_text := "%3s名气值 %3s金钱解锁"
 
 func _ready() -> void:
 	label.text = theme_resource.name
@@ -27,6 +30,9 @@ func _ready() -> void:
 	self_pos.position.y = button.size.y / 2
 	
 	button_disable()
+	
+	label_2.hide()
+	label_2.text = tip_text % [unlock_need_fame, cost_money]
 
 func _draw() -> void:
 	if next_theme_button == null:
@@ -91,11 +97,20 @@ func draw_dashed_bezier(start: Vector2, end: Vector2,
 
 func button_enable() -> void:
 	button.modulate = Color("ffffffff")
-
 func button_disable() -> void:
 	button.modulate = Color("595959ff")
-	
+func button_pressed() -> void:
+	button.modulate = Color("aeaeaeff")
+
 func _on_button_pressed() -> void:
+	
+	if Global.save_resource.current_money < cost_money:
+		return
+	if Global.save_resource.fame < unlock_need_fame:
+		return
+	
+	Global.subtract_money(cost_money)
+	
 	#
 	match theme_resource.type:
 		ThemeResource.TYPE.上分:
@@ -107,7 +122,7 @@ func _on_button_pressed() -> void:
 		ThemeResource.TYPE.下分:
 			Global.save_resource.buttom_theme_resource.append(theme_resource)
 	
-	button_disable()
+	button_pressed()
 	if next_theme_button:
 		next_theme_button.button_enable()
 
@@ -115,6 +130,23 @@ func _on_button_pressed() -> void:
 
 
 func _on_button_mouse_entered() -> void:
+	var fame_str : String
+	var money_str : String
+	if Global.save_resource.fame < unlock_need_fame:
+		fame_str = "[color=red]" + str(unlock_need_fame) + "[/color]"
+	else:
+		fame_str = "[color=green]" + str(unlock_need_fame) + "[/color]"
+	if Global.save_resource.current_money < cost_money:
+		money_str = "[color=red]" + str(cost_money) + "[/color]"
+	else:
+		money_str = "[color=green]" + str(cost_money) + "[/color]"
+	
+	label_2.reset_size()
+	label_2.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	label_2.position.y -= (label_2.size.y + 5)
+	label_2.text = tip_text % [fame_str, money_str]
+	label_2.show()
+	
 	timer.start()
 	entering = true
 	timer.timeout.connect(func ():
@@ -124,6 +156,8 @@ func _on_button_mouse_entered() -> void:
 
 
 func _on_button_mouse_exited() -> void:
+	label_2.hide()
+	
 	entering = false
 	request_close_tooltip.emit()
 

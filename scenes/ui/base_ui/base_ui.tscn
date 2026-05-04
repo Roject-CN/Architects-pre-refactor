@@ -21,9 +21,9 @@ script = ExtResource("2_8ej6i")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.15
-anchor_top = 0.15
+anchor_top = 0.2
 anchor_right = 0.85
-anchor_bottom = 0.85
+anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -31,9 +31,9 @@ grow_vertical = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.15
+anchor_top = 0.2
 anchor_right = 0.5
-anchor_bottom = 0.15
+anchor_bottom = 0.2
 offset_left = -20.0
 offset_right = 20.0
 offset_bottom = 23.0
@@ -46,9 +46,9 @@ vertical_alignment = 1
 [node name="Left" type="Control" parent="." unique_id=1915760024]
 layout_mode = 1
 anchor_left = 0.25
-anchor_top = 0.25
+anchor_top = 0.32
 anchor_right = 0.25
-anchor_bottom = 0.25
+anchor_bottom = 0.32
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -58,9 +58,9 @@ layout_mode = 0
 [node name="Right" type="Control" parent="." unique_id=2119368726]
 layout_mode = 1
 anchor_left = 0.6
-anchor_top = 0.25
+anchor_top = 0.3
 anchor_right = 0.6
-anchor_bottom = 0.25
+anchor_bottom = 0.3
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -76,7 +76,7 @@ theme_override_constants/separation = 40
 [node name="Button" type="Control" parent="." unique_id=883134600]
 layout_mode = 1
 anchor_left = 0.15
-anchor_top = 0.75
+anchor_top = 0.8
 anchor_right = 0.85
-anchor_bottom = 0.85
+anchor_bottom = 0.9
 grow_vertical = 2

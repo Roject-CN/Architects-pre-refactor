@@ -3,11 +3,15 @@
 [ext_resource type="Script" uid="uid://c4jjqgtv4ybmf" path="res://codes/main/main.gd" id="1_o5qli"]
 [ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://resource/ThemeResource/global_theme.tres" id="1_tipki"]
 [ext_resource type="Script" uid="uid://colk7drh6w0ja" path="res://codes/main/main_ui.gd" id="3_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://c0clltno7ne31" path="res://sprits/ui部分/游戏背景.png" id="4_choun"]
 [ext_resource type="Script" uid="uid://duhehw80582bv" path="res://codes/main/main_time.gd" id="5_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://otjajti2qkst" path="res://sprits/ui部分/金币.png" id="6_eb6dy"]
 [ext_resource type="Script" uid="uid://d0c0rulwp1lhg" path="res://codes/craftsmen/craftsman_manager.gd" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://b5rxknicvviqi" path="res://scenes/ui/base_ui/pop_up_ui.tscn" id="7_tipki"]
+[ext_resource type="Texture2D" uid="uid://bpwnmmawxgnsj" path="res://sprits/ui部分/名声.png" id="7_trceg"]
 [ext_resource type="Texture2D" uid="uid://cebjk50l0bew" path="res://sprits/game素材/里屋（带物品.png" id="8_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://cfefp8hv2qqtl" path="res://scenes/buildings/picture_pick.tscn" id="9_85g3d"]
+[ext_resource type="PackedScene" uid="uid://bt2uyax1vxjpb" path="res://scenes/ui/achievement_display.tscn" id="9_choun"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ya4ey"]
 vertices = PackedVector2Array(8.9296875, 551.0469, 336, 460, 367.5, 459, 516.5, 459, 709, 554.9375, 396, 346, 485.75, 371, 367.5, 371, 301, 346, 613, 186, 613, 46, 709, 9.890625, 5.0703125, 2.109375, 193, 46, 521, 452, 521, 233, 219, 186, 396, 215, 485.75, 233, 336, 372, 222.25, 372, 222.25, 250, 301, 215, 193, 55, 140, 55, 140, 238, 153, 453, 187, 453, 187, 460, 516.5, 452, 153, 250, 219, 238)
@@ -17,6 +21,43 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-5, -8, -1, 561, 719, 5
 [sub_resource type="AtlasTexture" id="AtlasTexture_ya4ey"]
 atlas = ExtResource("8_eb6dy")
 region = Rect2(0, 0, 2560, 2560)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_muem4"]
+atlas = ExtResource("4_choun")
+region = Rect2(2079, 474, 196, 367)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dp3eg"]
+texture = SubResource("AtlasTexture_muem4")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eb6dy"]
+atlas = ExtResource("4_choun")
+region = Rect2(0, 0, 2552.1108, 164.99344)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_trceg"]
+texture = SubResource("AtlasTexture_eb6dy")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8y0u"]
+atlas = ExtResource("6_eb6dy")
+region = Rect2(640, 5, 1280, 1270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkv2x"]
+atlas = ExtResource("7_trceg")
+region = Rect2(605, 10, 1275, 1270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbj1t"]
+atlas = ExtResource("4_choun")
+region = Rect2(0, 163, 325, 1117)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_muem4"]
+texture = SubResource("AtlasTexture_jbj1t")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trceg"]
+atlas = ExtResource("4_choun")
+region = Rect2(1883, 155, 689, 1126)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a8y0u"]
+texture = SubResource("AtlasTexture_trceg")
+region_rect = Rect2(0, 0, 689.0013, 1125)
 
 [node name="Main" type="Control" unique_id=890892059 node_paths=PackedStringArray("craftsman_manager", "pop_up_ui", "pick_pictires")]
 z_as_relative = false
@@ -74,6 +115,15 @@ scale = Vector2(0.25, 0.2)
 texture = SubResource("AtlasTexture_ya4ey")
 metadata/_edit_lock_ = true
 
+[node name="Panel" type="Panel" parent="Company" unique_id=1718277276]
+z_index = -99
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_dp3eg")
+
 [node name="MainUiLayer" type="CanvasLayer" parent="." unique_id=959531541]
 layer = 99
 
@@ -81,15 +131,22 @@ layer = 99
 z_index = 99
 anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 0.1
+anchor_bottom = 0.13
 grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_trceg")
 script = ExtResource("3_jyhfs")
 metadata/_custom_type_script = "uid://colk7drh6w0ja"
 
 [node name="TopInformation" type="Control" parent="MainUiLayer/MainUi" unique_id=987204868]
-anchors_preset = 0
-offset_right = 346.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 9.0
+offset_top = -24.199999
+offset_right = 355.0
+offset_bottom = 15.800001
+grow_vertical = 2
 
 [node name="Money" type="HBoxContainer" parent="MainUiLayer/MainUi/TopInformation" unique_id=1646293515]
 custom_minimum_size = Vector2(80, 0)
@@ -98,9 +155,12 @@ anchors_preset = -1
 offset_right = 102.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="MainUiLayer/MainUi/TopInformation/Money" unique_id=1662097202]
+[node name="Label" type="TextureRect" parent="MainUiLayer/MainUi/TopInformation/Money" unique_id=187940695]
 layout_mode = 2
-text = "金钱:"
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_a8y0u")
+expand_mode = 2
+stretch_mode = 4
 
 [node name="Value" type="Label" parent="MainUiLayer/MainUi/TopInformation/Money" unique_id=1808022642]
 layout_mode = 2
@@ -119,9 +179,10 @@ anchor_right = 0.3
 offset_right = 118.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="MainUiLayer/MainUi/TopInformation/Fame" unique_id=1410144982]
+[node name="Label" type="TextureRect" parent="MainUiLayer/MainUi/TopInformation/Fame" unique_id=1465987245]
 layout_mode = 2
-text = "名气值:"
+texture = SubResource("AtlasTexture_jkv2x")
+expand_mode = 2
 
 [node name="Value" type="Label" parent="MainUiLayer/MainUi/TopInformation/Fame" unique_id=1082153743]
 layout_mode = 2
@@ -132,6 +193,7 @@ custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 
 [node name="Research" type="HBoxContainer" parent="MainUiLayer/MainUi/TopInformation" unique_id=2094138713]
+visible = false
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -169,28 +231,53 @@ text = "时间："
 layout_mode = 2
 text = "xxx年xx月xx日"
 
-[node name="ButtonMenu" type="Panel" parent="." unique_id=2147417917]
-z_index = -99
+[node name="Panel" type="Control" parent="." unique_id=1659724970]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.25
-anchor_right = 0.15
-anchor_bottom = 0.8
+anchor_left = 0.85
+anchor_top = 0.13
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2.0
+offset_bottom = 2.0
 
-[node name="MarginContainer" type="MarginContainer" parent="ButtonMenu" unique_id=1387030544]
+[node name="Panel" type="Panel" parent="Panel" unique_id=165568977]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = 2.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_styles/panel = SubResource("StyleBoxTexture_muem4")
+
+[node name="ButtonMenu" type="Panel" parent="." unique_id=2147417917]
+z_index = -99
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.13
+anchor_right = 0.2
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_a8y0u")
+
+[node name="MarginContainer" type="MarginContainer" parent="ButtonMenu" unique_id=1387030544]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -114.0
+offset_right = 50.0
+offset_bottom = 186.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ButtonMenu/MarginContainer" unique_id=167129776]
 layout_mode = 2
+theme_override_constants/separation = 15
 
 [node name="Label" type="Label" parent="ButtonMenu/MarginContainer/VBoxContainer" unique_id=1569889780]
 layout_mode = 2
@@ -216,6 +303,11 @@ text = "回顾过去"
 [node name="Theme" type="Button" parent="ButtonMenu/MarginContainer/VBoxContainer" unique_id=1143383779]
 layout_mode = 2
 text = "主题解锁"
+
+[node name="Achievement" type="Button" parent="ButtonMenu/MarginContainer/VBoxContainer" unique_id=2091393127]
+layout_mode = 2
+text = "成就展览
+"
 
 [node name="Quit" type="Button" parent="ButtonMenu/MarginContainer/VBoxContainer" unique_id=754001027]
 layout_mode = 2
@@ -245,9 +337,14 @@ layout_mode = 1
 offset_top = -1.0
 offset_bottom = -1.0
 
+[node name="AchievementDisplay" parent="." unique_id=2011748255 instance=ExtResource("9_choun")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/Employee" to="." method="_on_employee_pressed"]
 [connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/CraftsmenList" to="." method="_on_craftsmen_list_pressed"]
 [connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/Building" to="." method="_on_building_pressed"]
 [connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/Review" to="." method="_on_review_pressed"]
 [connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/Theme" to="." method="_on_theme_pressed"]
+[connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/Achievement" to="." method="_on_achievement_pressed"]
 [connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

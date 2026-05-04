@@ -46,6 +46,27 @@ grow_vertical = 2
 text = "测试结构"
 label_settings = SubResource("LabelSettings_epnqt")
 
+[node name="Label2" type="RichTextLabel" parent="Button" unique_id=772660809]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = -11.5
+offset_right = 81.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[color=red]20[/color]名气值 [color=green]100[/color]金钱解锁
+"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+autowrap_trim_flags = 0
+
 [node name="self_pos" type="Control" parent="." unique_id=257460668]
 anchors_preset = 0
 
