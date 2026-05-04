@@ -73,9 +73,9 @@ func _create_building_item(building: BuildingResource) -> Control:
 	stylebox.content_margin_bottom = 10
 	container.add_theme_stylebox_override("panel", stylebox)
 	
-	# 建筑图片
+	# 建筑图片（略微放大到72x72）
 	var texture_rect = TextureRect.new()
-	texture_rect.custom_minimum_size = Vector2(64, 64)
+	texture_rect.custom_minimum_size = Vector2(72, 72)
 	texture_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 	texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	
@@ -84,43 +84,65 @@ func _create_building_item(building: BuildingResource) -> Control:
 	
 	container.add_child(texture_rect)
 	
-	# 建筑信息（包含四维属性）
+	# 建筑信息（垂直排列）
 	var info_container = VBoxContainer.new()
 	info_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	info_container.add_theme_constant_override("separation", 5)
 	
 	# 建筑名称（只在有名称时显示）
 	if building.name and building.name.strip_edges() != "":
 		var name_label = Label.new()
 		name_label.text = building.name
-		name_label.add_theme_font_size_override("font_size", 16)
+		name_label.add_theme_font_size_override("font_size", 14)
+		name_label.modulate = Color.WHITE
+		name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		info_container.add_child(name_label)
 	
-	# 四维属性（从主题资源获取）
-	var attributes_container = HBoxContainer.new()
-	attributes_container.add_theme_constant_override("separation", 10)
+	# 创建网格布局容器，确保上下对齐
+	var grid_container = HBoxContainer.new()
+	grid_container.add_theme_constant_override("separation", 10)
 	
-	# 四维属性名称
-	var attribute_names = ["匠心类", "工料类", "设计类", "风水类"]
+	var all_names = ["匠心类", "工料类", "设计类", "风水类", "上分", "中分", "下分"]
 	
-	for i in range(4):
-		var attr_vbox = VBoxContainer.new()
+	# 为每个属性创建垂直容器（名称在上，值在下）
+	for i in range(all_names.size()):
+		var item_vbox = VBoxContainer.new()
+		item_vbox.add_theme_constant_override("separation", 2)
+		item_vbox.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+		item_vbox.custom_minimum_size = Vector2(45, 0)  # 减小最小宽度
 		
-		var attr_name_label = Label.new()
-		attr_name_label.text = attribute_names[i]
-		attr_name_label.add_theme_font_size_override("font_size", 10)
-		attr_name_label.modulate = Color(0.8, 0.8, 0.8)
-		attr_vbox.add_child(attr_name_label)
+		# 属性名称（第一行）
+		var name_label = Label.new()
+		name_label.text = all_names[i]
+		name_label.add_theme_font_size_override("font_size", 11)
+		name_label.modulate = Color(0.7, 0.7, 0.7)
+		name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		item_vbox.add_child(name_label)
 		
-		var attr_value_label = Label.new()
-		# 尝试从主题资源获取属性值
-		var value = _get_attribute_value(building, i)
-		attr_value_label.text = str(value)
-		attr_value_label.add_theme_font_size_override("font_size", 14)
-		attr_vbox.add_child(attr_value_label)
+		# 属性值（第二行）
+		var value_label = Label.new()
+		if i < 4:
+			# 四维属性
+			var value = _get_attribute_value(building, i)
+			value_label.text = str(value)
+			value_label.modulate = Color(0.9, 0.9, 0.9)
+		else:
+			# 三分主题
+			var theme_index = i - 4
+			var themes = [building.top_theme, building.middle_theme, building.buttom_theme]
+			if themes[theme_index] and themes[theme_index].name:
+				value_label.text = themes[theme_index].name
+			else:
+				value_label.text = "无"
+			value_label.modulate = Color(0.9, 0.7, 0.5)  # 金色高亮
 		
-		attributes_container.add_child(attr_vbox)
+		value_label.add_theme_font_size_override("font_size", 12)
+		value_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		item_vbox.add_child(value_label)
+		
+		grid_container.add_child(item_vbox)
 	
-	info_container.add_child(attributes_container)
+	info_container.add_child(grid_container)
 	
 	container.add_child(info_container)
 	
