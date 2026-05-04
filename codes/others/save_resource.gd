@@ -36,7 +36,7 @@ signal time_days_changed(value : int)
 var start_list : Array[CraftsmanResource]
 
 #建筑资源的储存
-var save_building_resources : Array[BuildingResource]
+@export var save_building_resources : Array[BuildingResource]
 
 #建筑主题资源
 var top_theme_resource : Array[ThemeResource]
@@ -44,7 +44,7 @@ var middle_theme_resource : Array[ThemeResource]
 var buttom_theme_resource : Array[ThemeResource]
 
 #历史建筑成就
-var achivements : Array[BuildingResource]
+@export var achivements : Array[BuildingResource]
 
 #检测是否为第一次加载（需要导出才能保存到文件）
 @export var first_time : bool = true

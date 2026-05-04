@@ -155,13 +155,26 @@ func _create_craftsman_card(craftsman: CraftsmanResource) -> Control:
 	card_container.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	card_container.add_theme_constant_override("separation", 8)
 	
-	# 名字标签（居中显示）
+	# 名字和等级标签（居中显示）
+	var name_container = VBoxContainer.new()
+	name_container.alignment = BoxContainer.ALIGNMENT_CENTER
+	
 	var craftsman_name_label = Label.new()
 	craftsman_name_label.text = craftsman.name
 	craftsman_name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	craftsman_name_label.add_theme_font_size_override("font_size", 16)
 	craftsman_name_label.add_theme_color_override("font_color", Color.WHITE)
-	card_container.add_child(craftsman_name_label)
+	name_container.add_child(craftsman_name_label)
+	
+	# 等级标签
+	var level_label = Label.new()
+	level_label.text = "等级 " + str(craftsman.level) + "/" + str(CraftsmanResource._LEVEL_LIMIT)
+	level_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	level_label.add_theme_font_size_override("font_size", 12)
+	level_label.add_theme_color_override("font_color", Color(0.8, 0.8, 0.8))
+	name_container.add_child(level_label)
+	
+	card_container.add_child(name_container)
 	
 	# 形象和属性容器
 	var content_container = HBoxContainer.new()
@@ -214,6 +227,19 @@ func _create_craftsman_card(craftsman: CraftsmanResource) -> Control:
 	
 	content_container.add_child(attributes_container)
 	
+	# 升级费用提示
+	var upgrade_cost_label = Label.new()
+	if craftsman.level >= CraftsmanResource._LEVEL_LIMIT:
+		upgrade_cost_label.text = "已满级"
+		upgrade_cost_label.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
+	else:
+		var upgrade_cost = craftsman.level * 100
+		upgrade_cost_label.text = "升级费用: " + str(upgrade_cost) + " 金币"
+		upgrade_cost_label.add_theme_color_override("font_color", Color(0.8, 0.8, 0.2))
+	upgrade_cost_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	upgrade_cost_label.add_theme_font_size_override("font_size", 12)
+	card_container.add_child(upgrade_cost_label)
+	
 	# 按钮容器
 	var buttons_container = HBoxContainer.new()
 	buttons_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -225,6 +251,12 @@ func _create_craftsman_card(craftsman: CraftsmanResource) -> Control:
 	upgrade_button.text = "升级"
 	upgrade_button.custom_minimum_size = Vector2(80, 30)
 	upgrade_button.pressed.connect(_on_upgrade_pressed.bind(craftsman))
+	
+	# 如果已满级，禁用升级按钮
+	if craftsman.level >= CraftsmanResource._LEVEL_LIMIT:
+		upgrade_button.disabled = true
+		upgrade_button.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
+	
 	buttons_container.add_child(upgrade_button)
 	
 	# 解雇按钮
@@ -260,7 +292,67 @@ func _create_craftsman_card(craftsman: CraftsmanResource) -> Control:
 # 升级按钮按下
 func _on_upgrade_pressed(craftsman: CraftsmanResource) -> void:
 	print("升级按钮按下: ", craftsman.name)
-	# TODO: 实现升级功能
+	
+	# 检查是否已达最高等级
+	if craftsman.level >= CraftsmanResource._LEVEL_LIMIT:
+		print("员工", craftsman.name, "已达最高等级")
+		return
+	
+	# 计算升级费用（当前等级 * 100金币）
+	var upgrade_cost = craftsman.level * 100
+	print("升级费用: ", upgrade_cost, " 金币")
+	
+	# 检查是否有足够金币
+	if not Global.save_resource or Global.save_resource.current_money < upgrade_cost:
+		print("金币不足，无法升级")
+		return
+	
+	# 扣除金币
+	Global.save_resource.current_money -= upgrade_cost
+	print("已扣除金币: ", upgrade_cost)
+	
+	# 升级逻辑
+	_level_up(craftsman)
+	
+	# 刷新UI显示
+	_update_craftsmen_list()
+	
+	# 保存更改到文件
+	Global.save_save_resource()
+	print("员工", craftsman.name, "升级完成")
+
+# 执行升级
+func _level_up(craftsman: CraftsmanResource) -> void:
+	# 等级+1
+	craftsman.level += 1
+	print("等级提升到: ", craftsman.level)
+	
+	# 获取职业对应的属性索引
+	var profession_index = craftsman.profession
+	var attribute_names = ["风水类", "设计类", "匠心类", "工料类"]
+	var profession_attr_name = attribute_names[profession_index]
+	
+	# 属性增强值
+	var main_attr_boost = 5  # 职业属性增强值
+	var other_attr_boost = 1  # 其他属性增强值
+	
+	# 增强属性
+	for i in range(4):
+		var attr_name = attribute_names[i]
+		var current_value = craftsman.values.get(attr_name, 0)
+		var boost = main_attr_boost if i == profession_index else other_attr_boost
+		var new_value = current_value + boost
+		
+		# 限制最大值
+		if new_value > BaseResource.MAX_VALUE:
+			new_value = BaseResource.MAX_VALUE
+		
+		craftsman.values[attr_name] = new_value
+		print("  ", attr_name, ": ", current_value, " -> ", new_value)
+	
+	# 更新最大精力值
+	craftsman.max_energy = 10 + craftsman.level * 10
+	print("最大精力值更新为: ", craftsman.max_energy)
 
 # 解雇按钮按下
 func _on_fire_pressed(craftsman: CraftsmanResource) -> void:

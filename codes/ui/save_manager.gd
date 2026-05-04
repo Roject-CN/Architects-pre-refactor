@@ -26,6 +26,9 @@ func _refresh_save_list() -> void:
 	for child in save_list.get_children():
 		child.queue_free()
 	
+	# 按时间排序存档（最新的在前）
+	_sort_saves_by_time()
+	
 	# 添加存档项
 	for save_data in available_saves:
 		if save_data is Dictionary:
@@ -39,6 +42,42 @@ func _refresh_save_list() -> void:
 		empty_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		empty_label.add_theme_font_size_override("font_size", 16)
 		save_list.add_child(empty_label)
+
+# 按时间排序存档（最新的在前）
+func _sort_saves_by_time() -> void:
+	available_saves.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+		var time_a = _extract_timestamp_from_name(a["name"])
+		var time_b = _extract_timestamp_from_name(b["name"])
+		return time_a > time_b
+	)
+	print("存档列表已按时间排序")
+
+# 从存档名称提取时间戳
+func _extract_timestamp_from_name(name: String) -> float:
+	# 存档名称格式: 存档_2026-05-04T14-49-20
+	if name.begins_with("存档_"):
+		var timestamp_str = name.substr(3)  # 去掉"存档_"
+		return _parse_timestamp(timestamp_str)
+	
+	# 非时间戳格式的存档，返回0（排在最后）
+	return 0
+
+# 解析时间戳字符串
+func _parse_timestamp(timestamp_str: String) -> float:
+	# 格式: 2026-05-04T14-49-20
+	var parts = timestamp_str.replace("T", "-").split("-")
+	if parts.size() >= 6:
+		var year = parts[0].to_int()
+		var month = parts[1].to_int()
+		var day = parts[2].to_int()
+		var hour = parts[3].to_int()
+		var minute = parts[4].to_int()
+		var second = parts[5].to_int()
+		
+		# 计算总秒数作为排序依据
+		return year * 31536000 + month * 2592000 + day * 86400 + hour * 3600 + minute * 60 + second
+	
+	return 0
 
 # 创建存档项
 func _create_save_item(save_data: Dictionary) -> HBoxContainer:
@@ -58,16 +97,16 @@ func _create_save_item(save_data: Dictionary) -> HBoxContainer:
 	# 存档详细信息
 	var info = save_data["info"]
 	if not info.is_empty():
-		var details_label = Label.new()
-		details_label.text = "金钱: %d | 名气: %d | 建筑: %d | 时间: %s" % [
-			info.get("money", 0),
-			info.get("fame", 0),
-			info.get("buildings_count", 0),
-			info.get("save_time", "未知")
-		]
-		details_label.add_theme_font_size_override("font_size", 12)
-		details_label.modulate = Color(0.8, 0.8, 0.8)
-		info_container.add_child(details_label)
+			var details_label = Label.new()
+			details_label.text = "金钱: %d | 名气: %d | 建筑: %d | 天数: %d天" % [
+				info.get("money", 0),
+				info.get("fame", 0),
+				info.get("building_count", 0),
+				info.get("days", 0)
+			]
+			details_label.add_theme_font_size_override("font_size", 12)
+			details_label.modulate = Color(0.8, 0.8, 0.8)
+			info_container.add_child(details_label)
 	
 	container.add_child(info_container)
 	

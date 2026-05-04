@@ -160,8 +160,41 @@ func _on_building_pressed() -> void:
 
 
 func _on_review_pressed() -> void:
-	var ui := preload("res://scenes/ui/buildings/flow/save_buildings_ui.tscn").instantiate()
-	add_child(ui)
+	print("回顾过去按钮按下")
+	
+	# 加载history场景
+	var history_scene_path = "res://scenes/ui/history.tscn"
+	
+	# 检查场景文件是否存在
+	if not FileAccess.file_exists(history_scene_path):
+		push_error("history场景文件不存在: " + history_scene_path)
+		return
+	
+	# 尝试加载场景
+	var history_scene = load(history_scene_path)
+	if not history_scene:
+		push_error("history场景加载失败: " + history_scene_path)
+		return
+	
+	# 实例化场景
+	var history_ui = history_scene.instantiate()
+	if not history_ui:
+		push_error("history场景实例化失败")
+		return
+	
+	print("history场景实例化成功")
+	
+	# 确保history界面渲染在最上层
+	# 使用CanvasLayer确保界面始终在最上层
+	var canvas_layer = CanvasLayer.new()
+	canvas_layer.layer = 100  # 设置较高的层级确保在最上层
+	canvas_layer.add_child(history_ui)
+	
+	# 添加到场景树
+	get_tree().root.add_child(canvas_layer)
+	
+	print("history界面已添加到CanvasLayer，确保渲染在最上层")
+	print("界面节点路径: ", canvas_layer.get_path())
 
 #主题科技树解锁
 func _on_theme_pressed() -> void:
@@ -250,6 +283,9 @@ func _on_quit_pressed() -> void:
 	# 同步员工数据到存档资源
 	_sync_craftsmen_to_save()
 	
+	# 更新存档名称为当前时间（用于按最后打开时间排序）
+	_update_save_name_with_timestamp()
+	
 	# 保存当前游戏进度（包括建筑历史）
 	print("正在保存游戏进度...")
 	Global.save_save_resource()
@@ -273,15 +309,46 @@ func _on_quit_pressed() -> void:
 		print("start.tscn文件存在，准备切换")
 		get_tree().change_scene_to_file(start_scene_path)
 		print("已切换到start.tscn场景")
+
+# 更新存档名称为当前时间戳
+func _update_save_name_with_timestamp() -> void:
+	if not Global.save_resource:
+		return
+	
+	# 生成新的存档名称（带当前时间戳）
+	var timestamp = Time.get_datetime_string_from_system().replace(":", "-").replace(" ", "_")
+	var old_save_name = Global.save_resource.save_name
+	var new_save_name = "存档_" + timestamp
+	
+	# 如果名称已经是时间戳格式，直接更新
+	if old_save_name.begins_with("存档_"):
+		Global.save_resource.save_name = new_save_name
+		print("存档名称已更新为: ", new_save_name)
 	else:
-		push_error("start.tscn文件不存在: " + start_scene_path)
-		# 备用方案：使用资源加载
-		var start_scene_resource = load(start_scene_path)
-		if start_scene_resource:
-			get_tree().change_scene_to_packed(start_scene_resource)
-			print("备用方案成功")
+		# 非时间戳格式的旧存档，保持原名称不变
+		print("保留原存档名称: ", old_save_name)
+	
+	# 更新存档目录名称（如果需要）
+	_update_save_directory(old_save_name, new_save_name)
+
+# 更新存档目录名称
+func _update_save_directory(old_name: String, new_name: String) -> void:
+	if old_name == new_name:
+		return
+	
+	var old_dir = "user://saves/" + old_name + "/"
+	var new_dir = "user://saves/" + new_name + "/"
+	
+	# 如果旧目录存在且新目录不存在，尝试重命名
+	if DirAccess.dir_exists_absolute(old_dir) and not DirAccess.dir_exists_absolute(new_dir):
+		var dir = DirAccess.open("user://saves/")
+		if dir:
+			var result = dir.rename(old_name, new_name)
+			if result == OK:
+				print("存档目录已重命名: ", old_name, " -> ", new_name)
+			else:
+				print("警告: 无法重命名存档目录，错误代码: ", result)
+				# 如果重命名失败，继续使用旧目录，但更新save_name
+				Global.save_resource.save_name = new_name
 		else:
-			push_error("所有切换方案都失败")
-
-
-		
+			print("警告: 无法打开存档目录")
