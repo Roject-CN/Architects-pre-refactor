@@ -24,9 +24,15 @@ offset_bottom = 16.0
 theme = ExtResource("2_jv7fm")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=2011748257]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.95000005
+anchor_bottom = 0.98700005
+offset_left = 32.0
+offset_top = 8.46
+offset_right = -0.2000122
+offset_bottom = 8.451965
+scale = Vector2(1, 0.985)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=2011748258]
 layout_mode = 2

@@ -158,6 +158,9 @@ static func _init() -> void:
 	randomize()
 	_load_all_texture()
 
+#以下AI辅助生成部分
+#DeepSeek-R1-0528 2026-03-27
+
 ### 外部调用函数，返回一个CraftsmanResource对象
 
 #形参 fame_value : 名气值；
