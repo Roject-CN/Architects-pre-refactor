@@ -42,7 +42,6 @@ func _load_all_building_textures():
 		file_name = dir.get_next()
 	
 	dir.list_dir_end()
-	print("建筑图片加载完成，共加载 ", building_textures.size(), " 张")
 
 func get_building_texture(roof_name: String, base_name: String) -> Texture2D:
 	# 如果直接传的是下分简称（如 "素土"），跳过映射

@@ -10,7 +10,7 @@ class_name AchivementManager
 func _ready() -> void:
 	#已经被解锁的成就
 	
-	for i : BuildingResource in Global.save_resource.achivements:
+	for i : BuildingResource in Global.save_resource.achievements:
 		for j : Achivement in container.get_children():
 			if j.is_the_same(i):
 				j.locked = false
@@ -40,4 +40,4 @@ func achive(resource : BuildingResource) -> void:
 		for key in new.values:
 			new.values[key] = achivement.compare.values[key] + 1
 		
-		Global.save_resource.achivements.append(new)
+		Global.save_resource.achievements.append(new)

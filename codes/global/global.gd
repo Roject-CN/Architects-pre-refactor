@@ -1,6 +1,6 @@
 extends Node
 
-# Global.gd 或任何全局脚本中
+# Global.gd
 
 # 全局工匠市场数据
 var global_craftsmen_market : Array[CraftsmanResource] = []
@@ -40,33 +40,25 @@ func load_save_resource(resource : SaveResource) -> void:
 func load_save_resource_on_start() -> void:
 	save_resource = SaveResource.load_complete_game_data()
 	save_resource.init_save_resource()
-	var save_info = save_resource.get_save_info()
-	print("完整存档加载成功：", save_info)
 
 func save_save_resource() -> void:
 	if save_resource:
 		var result = save_resource.save_complete_game_data()
-		if result == OK:
-			print("完整存档保存成功")
-		else:
+		if result != OK:
 			push_error("存档保存失败: ", result)
 
 # 手动保存游戏（供UI调用）
 func manual_save_game() -> void:
 	if save_resource:
 		var result = save_resource.save_complete_game_data()
-		if result == OK:
-			print("手动存档成功")
-		else:
+		if result != OK:
 			push_error("手动存档失败: ", result)
 
 # 创建备份存档
 func create_backup_save() -> void:
 	if save_resource:
 		var result = save_resource.create_backup_save()
-		if result == OK:
-			print("备份存档创建成功")
-		else:
+		if result != OK:
 			push_error("备份创建失败: ", result)
 
 func add_money(amount: int) -> void:
@@ -99,7 +91,7 @@ func themes_empty() -> bool :
 	var a3 := save_resource.buttom_theme_resource.is_empty()
 	return a1 || a2 || a3
 
-# === 背景音乐功能 ===
+# 背景音乐功能
 
 # 初始化背景音乐
 func _setup_background_music() -> void:
@@ -119,11 +111,10 @@ func _load_background_music() -> void:
 	var music_stream: AudioStream
 	
 	for path in music_paths:
-		if FileAccess.file_exists(path):
-			music_stream = load(path)
-			if music_stream:
-				print("背景音乐加载成功: ", path)
-				break
+			if FileAccess.file_exists(path):
+				music_stream = load(path)
+				if music_stream:
+					break
 	
 	if music_stream:
 		background_music.stream = music_stream
@@ -139,12 +130,6 @@ func _load_background_music() -> void:
 		
 		if is_music_enabled:
 			background_music.play()
-			print("背景音乐开始播放")
-	else:
-		print("警告: 未找到背景音乐文件，请将音频文件转换为以下格式：")
-		print("- OGG格式（推荐，压缩比高，音质好）")
-		print("- WAV格式（无损，文件较大）")
-		print("- MP3格式（通用，但Godot支持有限）")
 
 # 播放背景音乐
 func play_background_music() -> void:
@@ -176,7 +161,7 @@ func set_music_enabled(enabled: bool) -> void:
 	else:
 		if background_music.playing:
 			background_music.stop()
-	_save_settings()  # 保存设置
+	_save_settings()
 
 # 获取当前音乐状态
 func get_music_status() -> Dictionary:
@@ -187,7 +172,7 @@ func get_music_status() -> Dictionary:
 		"has_music": background_music.stream != null
 	}
 
-# === 设置持久化功能 ===
+# 设置持久化功能
 
 # 加载设置
 func _load_settings() -> void:
@@ -198,13 +183,9 @@ func _load_settings() -> void:
 		# 加载音乐设置
 		if config.has_section_key("audio", "music_volume"):
 			music_volume = config.get_value("audio", "music_volume")
-			print("加载音乐音量设置: ", music_volume)
 		
 		if config.has_section_key("audio", "music_enabled"):
 			is_music_enabled = config.get_value("audio", "music_enabled")
-			print("加载音乐启用设置: ", is_music_enabled)
-	else:
-		print("使用默认设置，设置文件不存在或加载失败")
 
 # 保存设置
 func _save_settings() -> void:
@@ -215,7 +196,5 @@ func _save_settings() -> void:
 	config.set_value("audio", "music_enabled", is_music_enabled)
 	
 	var error = config.save(SETTINGS_FILE)
-	if error == OK:
-		print("设置保存成功: ", SETTINGS_FILE)
-	else:
+	if error != OK:
 		push_error("设置保存失败: ", error)

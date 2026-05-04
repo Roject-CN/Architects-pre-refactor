@@ -69,7 +69,6 @@ func generate() -> void:
 		
 		# 如果当前工匠数量已经足够，不需要生成新的
 		if need_to_generate <= 0:
-			print("工匠市场已满，当前数量：", current_count, "，目标数量：", target_count)
 			return
 		
 		# 生成需要补充的工匠
@@ -89,10 +88,6 @@ func generate() -> void:
 				if not is_duplicate:
 					craftsmen.append(craftsman)
 					added_count += 1
-		
-		print("补充工匠市场：当前数量 ", current_count, "，补充数量：", added_count, "，目标数量：", target_count)
-	else:
-		push_warning("CraftsmanGenerator未初始化")
 		
 func _on_assure_pressed() -> void:
 	#雇佣成功扣钱

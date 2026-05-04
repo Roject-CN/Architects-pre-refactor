@@ -57,8 +57,6 @@ func _setup_container_spacing() -> void:
 
 # 延迟初始化
 func _deferred_initialize() -> void:
-	print("员工列表界面延迟初始化开始")
-	
 	# 强制同步员工数据
 	_sync_craftsmen_data()
 	
@@ -67,28 +65,21 @@ func _deferred_initialize() -> void:
 	
 	# 更新UI
 	_update_craftsmen_list()
-	
-	print("员工列表界面初始化完成，显示员工数量: ", recruited_craftsmen.size())
 
 # 强制同步员工数据
 func _sync_craftsmen_data() -> void:
-	print("强制同步员工数据")
-	
 	# 获取主场景并触发数据同步
 	var main_scene = get_tree().current_scene
 	if main_scene and main_scene.has_method("_sync_craftsmen_to_save"):
 		main_scene._sync_craftsmen_to_save()
-		print("已触发主场景员工数据同步")
 	elif main_scene and main_scene.has_method("refresh_craftsmen_list"):
 		main_scene.refresh_craftsmen_list()
-		print("已触发主场景员工列表刷新")
 
 # 加载已招募的员工
 func _load_recruited_craftsmen() -> void:
 	# 方法1：从全局存档数据获取
 	if Global.save_resource and Global.save_resource.start_list:
 		recruited_craftsmen = Global.save_resource.start_list.duplicate()
-		print("从全局存档加载已招募员工数量: ", recruited_craftsmen.size())
 		return
 	
 	# 方法2：从主场景的员工管理器获取
@@ -98,16 +89,13 @@ func _load_recruited_craftsmen() -> void:
 		for character in craftsman_manager.current_list:
 			if character.craftman_resource:
 				recruited_craftsmen.append(character.craftman_resource)
-		print("从员工管理器加载已招募员工数量: ", recruited_craftsmen.size())
 		
 		# 同步到全局存档
 		if Global.save_resource:
 			Global.save_resource.start_list = recruited_craftsmen.duplicate()
-			print("已同步员工数据到全局存档")
 		return
 	
-	# 方法3：检查是否有其他数据源
-	print("没有找到已招募的员工数据源")
+	# 清空列表
 	recruited_craftsmen.clear()
 
 # 更新工匠列表UI
@@ -291,25 +279,19 @@ func _create_craftsman_card(craftsman: CraftsmanResource) -> Control:
 
 # 升级按钮按下
 func _on_upgrade_pressed(craftsman: CraftsmanResource) -> void:
-	print("升级按钮按下: ", craftsman.name)
-	
 	# 检查是否已达最高等级
 	if craftsman.level >= CraftsmanResource._LEVEL_LIMIT:
-		print("员工", craftsman.name, "已达最高等级")
 		return
 	
 	# 计算升级费用（当前等级 * 100金币）
 	var upgrade_cost = craftsman.level * 100
-	print("升级费用: ", upgrade_cost, " 金币")
 	
 	# 检查是否有足够金币
 	if not Global.save_resource or Global.save_resource.current_money < upgrade_cost:
-		print("金币不足，无法升级")
 		return
 	
 	# 扣除金币
 	Global.save_resource.current_money -= upgrade_cost
-	print("已扣除金币: ", upgrade_cost)
 	
 	# 升级逻辑
 	_level_up(craftsman)
@@ -319,18 +301,15 @@ func _on_upgrade_pressed(craftsman: CraftsmanResource) -> void:
 	
 	# 保存更改到文件
 	Global.save_save_resource()
-	print("员工", craftsman.name, "升级完成")
 
 # 执行升级
 func _level_up(craftsman: CraftsmanResource) -> void:
 	# 等级+1
 	craftsman.level += 1
-	print("等级提升到: ", craftsman.level)
 	
 	# 获取职业对应的属性索引
 	var profession_index = craftsman.profession
 	var attribute_names = ["风水类", "设计类", "匠心类", "工料类"]
-	var profession_attr_name = attribute_names[profession_index]
 	
 	# 属性增强值
 	var main_attr_boost = 5  # 职业属性增强值
@@ -348,33 +327,23 @@ func _level_up(craftsman: CraftsmanResource) -> void:
 			new_value = BaseResource.MAX_VALUE
 		
 		craftsman.values[attr_name] = new_value
-		print("  ", attr_name, ": ", current_value, " -> ", new_value)
 	
 	# 更新最大精力值
 	craftsman.max_energy = 10 + craftsman.level * 10
-	print("最大精力值更新为: ", craftsman.max_energy)
 
 # 解雇按钮按下
 func _on_fire_pressed(craftsman: CraftsmanResource) -> void:
-	print("解雇按钮按下: ", craftsman.name)
-	
 	# 从已招募列表中移除员工
 	var index = recruited_craftsmen.find(craftsman)
-	if index != -1:
-		recruited_craftsmen.remove_at(index)
-		print("从已招募列表移除员工: ", craftsman.name)
-	else:
-		print("警告: 未找到要解雇的员工: ", craftsman.name)
+	if index == -1:
 		return
+	recruited_craftsmen.remove_at(index)
 	
 	# 从全局存档数据中移除员工
 	if Global.save_resource and Global.save_resource.start_list:
 		var global_index = Global.save_resource.start_list.find(craftsman)
 		if global_index != -1:
 			Global.save_resource.start_list.remove_at(global_index)
-			print("从全局存档移除员工: ", craftsman.name)
-		else:
-			print("警告: 未在全局存档中找到员工: ", craftsman.name)
 	
 	# 从主场景的员工管理器中移除员工
 	_fire_craftsman_from_manager(craftsman)
@@ -384,9 +353,8 @@ func _on_fire_pressed(craftsman: CraftsmanResource) -> void:
 	
 	# 保存更改到文件
 	Global.save_save_resource()
-	print("员工解雇完成，数据已保存到存档文件")
 	
-	# 强制触发主场景的数据同步（确保一致性）
+	# 强制触发主场景的数据同步
 	_trigger_main_scene_sync()
 
 # 触发主场景数据同步
@@ -394,34 +362,24 @@ func _trigger_main_scene_sync() -> void:
 	var main_scene = get_tree().current_scene
 	if main_scene and main_scene.has_method("_sync_craftsmen_to_save"):
 		main_scene._sync_craftsmen_to_save()
-		print("已触发主场景员工数据同步")
 	elif main_scene and main_scene.has_method("refresh_craftsmen_list"):
 		main_scene.refresh_craftsmen_list()
-		print("已触发主场景员工列表刷新")
 
 # 从员工管理器中移除员工
 func _fire_craftsman_from_manager(craftsman: CraftsmanResource) -> void:
-	var craftsman_manager = null
-	
 	# 方法1：通过主场景获取员工管理器
 	var main_scene = get_tree().current_scene
 	if main_scene and main_scene.has_method("_get_craftsman_manager"):
-		craftsman_manager = main_scene._get_craftsman_manager()
+		var craftsman_manager = main_scene._get_craftsman_manager()
 		if craftsman_manager:
 			craftsman_manager.delete_craftsman(craftsman)
-			print("从员工管理器移除员工: ", craftsman.name)
 			return
 	
 	# 方法2：通过节点路径查找员工管理器
-	craftsman_manager = get_craftsman_manager()
+	var craftsman_manager = get_craftsman_manager()
 	if craftsman_manager:
 		craftsman_manager.delete_craftsman(craftsman)
-		print("通过节点查找移除员工: ", craftsman.name)
 		return
-	
-	# 方法3：直接通过全局数据同步
-	print("警告: 无法找到员工管理器，仅从数据层移除员工")
-	# 数据已经通过start_list同步，游戏逻辑会在下次刷新时生效
 
 # 获取主场景的员工管理器（备用方法）
 func get_craftsman_manager():

@@ -60,9 +60,6 @@ func set_flow_to_index(target_index: int) -> void:
 		index_flow = target_index
 		current_flow = flows[index_flow]
 		current_flow.flow_enter()
-		print("已设置到建造阶段: ", target_index)
-	else:
-		print("无效的阶段索引: ", target_index)
 
 func save_building_resource() -> void:
 	# 建筑建造流程全部完成，调用Building类的保存函数

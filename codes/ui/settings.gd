@@ -53,8 +53,6 @@ func _on_music_toggle_changed(toggled: bool) -> void:
 	# 如果启用音乐且当前没有播放，则开始播放
 	if toggled and not Global.background_music.playing:
 		Global.play_background_music()
-	
-	print("背景音乐已", "启用" if toggled else "禁用")
 
 # 关闭设置界面
 func _on_close_pressed() -> void:

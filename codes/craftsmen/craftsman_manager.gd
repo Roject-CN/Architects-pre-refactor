@@ -54,8 +54,6 @@ func append_new_craftsman(resource : CraftsmanResource, immediate_sync: bool = t
 	else:
 		push_warning("CraftsmanManager: _spawn_position is null")
 	
-	print("员工已添加到场景树: ", resource.name)
-	
 	# 连接主时间信号
 	main_time.request_go_to_rest.connect(craftsman_character.go_to_rest)
 	main_time.request_go_to_work.connect(craftsman_character.go_to_work)
@@ -79,11 +77,8 @@ func _sync_to_global_save() -> void:
 				if Global.save_resource.start_list.has(character.craftman_resource):
 					Global.save_resource.start_list.append(character.craftman_resource)
 		
-		print("员工数据已同步到全局存档，数量: ", Global.save_resource.start_list.size())
-		
 		# 立即保存到文件
 		Global.save_save_resource()
-		print("员工数据已保存到文件")
 	else:
 		push_warning("CraftsmanManager: Global.save_resource 为空，无法同步数据")
 
@@ -98,7 +93,6 @@ func delete_craftsman(resource : CraftsmanResource) -> void:
 				character.queue_free()
 			# 从列表中移除
 			current_list.remove_at(i)
-			print("员工已从管理器中移除: ", resource.name)
 			break  # 找到后立即退出循环
 
 #返回员工们当前的状态（在工作还是在休息中）
