@@ -9,7 +9,8 @@ class_name BuildUi
 
 
 @export var _progress_curve : Curve = preload("uid://c735f8cwhf5gy")
-@export var pick_pictures : PicturePick
+
+@export var flow_pic : Texture
 signal build_props_clear
 
 var value_pecent : float = 0.0 : 
@@ -46,8 +47,8 @@ func ui_enter() -> void:
 		#恢复prop_config的_max_limits为默认值
 		build_props_clear.connect(prop_config.clear_max_limits, CONNECT_ONE_SHOT)
 	
-	if pick_pictures:
-		texture_rect.texture = pick_pictures.pick_pictures(building_resource)
+	texture_rect.texture = flow_pic
+	
 	super()
 
 func ui_process(delta: float) -> void:

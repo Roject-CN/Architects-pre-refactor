@@ -7,7 +7,6 @@ var buttom_themes : Array[ThemeButton]
 
 @onready var panel: Panel = $CanvasLayer/Panel
 @onready var label: Label = $CanvasLayer/Panel/Label
-@onready var place_holder: Panel = $CanvasLayer/PlaceHolder
 
 
 @onready var themes: Control = $CanvasLayer/Themes
@@ -46,7 +45,6 @@ func _ready():
 	if Global.save_resource.buttom_theme_resource.size() < buttom_themes.size():
 		buttom_themes[Global.save_resource.buttom_theme_resource.size()].button_enable()
 		
-	#文本显示框先不显示
 	close_tooltip()
 	
 	assert(not top_themes.is_empty(), "top_themes.is_empty()")
@@ -54,13 +52,14 @@ func _ready():
 	LIMIT_TOP = top_themes.back().position.y - 100.0
 
 func open_tooltip(text : String) -> void:
-	panel.visible = true	
-	place_holder.visible = false
 	label.text = text
+	panel.modulate.a = 1.0
 
 func close_tooltip() -> void:
-	place_holder.visible = true	
-	panel.visible = false
+	label.text = "鼠标停留建筑主题按钮一会，会出现文本介绍"
+
+	panel.modulate.a = 0.6
+	
 
 func _input(event):
 	# 滚轮缩放

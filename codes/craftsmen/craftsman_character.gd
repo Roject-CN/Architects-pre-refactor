@@ -31,8 +31,8 @@ const WHITE := preload("uid://18uncdjs64k6")
 
 const SCALE := 0.2
 const ANIMATION_UI := preload("uid://jyoxd75b8pl1")
-const TEXTURES : Array[Texture] = [preload("uid://bb1llwn0kn1pm"), preload("uid://bb1llwn0kn1pm"),
-preload("uid://bb1llwn0kn1pm"), preload("uid://bb1llwn0kn1pm")]
+const TEXTURES : Array[Texture] = [preload("uid://c47mekjyuy64w"), preload("uid://d3cgds05omvpa"),
+preload("uid://buj47suyxyajk"), preload("uid://ove75076mxla")]
 #占位符 都是属性值的图片
 
 var current_state : STATE = STATE.REST

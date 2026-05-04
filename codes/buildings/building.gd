@@ -5,7 +5,7 @@ extends Node2D
 @onready var flow_manager: FlowManager = $FlowManager
 @export var craftsman_manager : CraftsmanManager
 var pick : PicturePick
-@export var need_pick : BuildUi
+@export var need_pick : RewardUi
 
 func _ready() -> void:
 	assert(craftsman_manager, str(self.name) + "'s craftsman_manager is empty")

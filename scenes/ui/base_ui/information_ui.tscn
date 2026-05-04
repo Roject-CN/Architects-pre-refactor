@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://pt2vkxbbndy0"]
 
-[ext_resource type="Texture2D" uid="uid://bb1llwn0kn1pm" path="res://icon.svg" id="1_bmy5i"]
 [ext_resource type="Script" uid="uid://b2xlfl41dap5f" path="res://codes/ui/base_ui/attribution_ui/information_ui.gd" id="1_ev873"]
+[ext_resource type="Texture2D" uid="uid://ove75076mxla" path="res://sprits/buildings/building_attributes/1769236032289.png" id="2_ev873"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ev873"]
 font_size = 18
@@ -20,9 +20,8 @@ theme_override_constants/separation = 10
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=669225251]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("1_bmy5i")
-expand_mode = 1
-stretch_mode = 5
+texture = ExtResource("2_ev873")
+expand_mode = 2
 
 [node name="Value" type="Label" parent="HBoxContainer" unique_id=1795977458]
 layout_mode = 2

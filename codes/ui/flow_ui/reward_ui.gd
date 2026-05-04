@@ -6,7 +6,7 @@ class_name RewardUi
 @onready var reward: Label = $Left/VBoxContainer/Reward
 @onready var achivement_manager: AchivementManager = $AchivementManager
 @onready var texture_rect: TextureRect = $Left/VBoxContainer/TextureRect
-
+var pick_pictures : PicturePick
 
 
 const reward_text := "奖励: %d $"
@@ -73,6 +73,9 @@ func ui_enter() -> void:
 	reward_value = 0
 	reward.text = reward_text % reward_value
 	value_percent = 0.0
+	
+	#寻找相应的照片
+	pick_pictures.pick_pictures(building_resource)
 	if building_resource.texture:
 		texture_rect.texture = building_resource.texture
 	super()

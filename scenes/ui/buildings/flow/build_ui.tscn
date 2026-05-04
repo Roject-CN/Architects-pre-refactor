@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://l0lthvl61vfr" path="res://scenes/ui/base_ui/attribution_ui.tscn" id="1_y3p7t"]
 [ext_resource type="Script" uid="uid://p860guxlbun8" path="res://codes/ui/flow_ui/build_ui.gd" id="2_3ygew"]
 [ext_resource type="Curve" uid="uid://c735f8cwhf5gy" path="res://resource/others/curve_resource.tres" id="3_d4udc"]
+[ext_resource type="Texture2D" uid="uid://jxec72dqntvv" path="res://sprits/buildings/flow/勘探.png" id="4_ayord"]
 [ext_resource type="Resource" uid="uid://dtjs0gvuvirfy" path="res://resource/building_resource/theme_resource/buttom_3.tres" id="4_b8gnj"]
 [ext_resource type="Resource" uid="uid://krhig6fcmfj8" path="res://resource/building_resource/theme_resource/middle_2.tres" id="5_5vkq3"]
-[ext_resource type="Texture2D" uid="uid://bb1llwn0kn1pm" path="res://icon.svg" id="5_ayord"]
 [ext_resource type="Script" uid="uid://wguvxiry36og" path="res://codes/buildings/building_resource.gd" id="6_ixwoc"]
 [ext_resource type="Resource" uid="uid://dgasx2kjqmyfa" path="res://resource/building_resource/theme_resource/top_1.tres" id="7_xmyh5"]
 
@@ -25,6 +25,7 @@ metadata/_custom_type_script = "uid://wguvxiry36og"
 [node name="BuildUi" unique_id=1059655934 instance=ExtResource("1_y3p7t")]
 script = ExtResource("2_3ygew")
 _progress_curve = ExtResource("3_d4udc")
+flow_pic = ExtResource("4_ayord")
 time = 5.0
 building_resource = SubResource("Resource_cpt6n")
 
@@ -37,7 +38,7 @@ custom_minimum_size = Vector2(150, 120)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("5_ayord")
+texture = ExtResource("4_ayord")
 expand_mode = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="Left/VBoxContainer" index="1" unique_id=1429125484]
@@ -49,8 +50,12 @@ max_value = 1.0
 
 [node name="craftsman_label" type="Label" parent="Left/VBoxContainer" index="2" unique_id=493426356]
 layout_mode = 2
+horizontal_alignment = 1
 
-[node name="Assure" type="Button" parent="Button" parent_id_path=PackedInt32Array(883134600) index="0" unique_id=1230296730]
+[node name="Button" parent="." index="4" unique_id=883134600]
+grow_vertical = 1
+
+[node name="Assure" type="Button" parent="Button" index="0" unique_id=1230296730]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 8

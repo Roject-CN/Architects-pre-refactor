@@ -3,7 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://4ucl0ub4d5ij" path="res://scenes/ui/base_ui/base_ui.tscn" id="1_5v4cq"]
 [ext_resource type="Script" uid="uid://yv3fr4cktftv" path="res://codes/ui/base_ui/attribution_ui/attribution_ui.gd" id="2_djrfl"]
 [ext_resource type="PackedScene" uid="uid://pt2vkxbbndy0" path="res://scenes/ui/base_ui/information_ui.tscn" id="3_084wr"]
-[ext_resource type="Texture2D" uid="uid://bb1llwn0kn1pm" path="res://icon.svg" id="4_mhn1y"]
+[ext_resource type="Texture2D" uid="uid://c47mekjyuy64w" path="res://sprits/buildings/building_attributes/1769235896288.png" id="4_mhn1y"]
+[ext_resource type="Texture2D" uid="uid://d3cgds05omvpa" path="res://sprits/buildings/building_attributes/1769236849954.png" id="5_j8nnc"]
+[ext_resource type="Texture2D" uid="uid://buj47suyxyajk" path="res://sprits/buildings/building_attributes/1777885956786.png" id="6_h4l5f"]
+[ext_resource type="Texture2D" uid="uid://ove75076mxla" path="res://sprits/buildings/building_attributes/1769236032289.png" id="7_p5o4h"]
 
 [node name="AttributionUi" unique_id=1059655934 instance=ExtResource("1_5v4cq")]
 script = ExtResource("2_djrfl")
@@ -29,15 +32,15 @@ text = "风水值"
 
 [node name="InformationUi2" parent="Right/VBoxContainer" index="1" unique_id=2043124674 instance=ExtResource("3_084wr")]
 layout_mode = 2
-texture = ExtResource("4_mhn1y")
+texture = ExtResource("5_j8nnc")
 text = "设计值"
 
 [node name="InformationUi3" parent="Right/VBoxContainer" index="2" unique_id=472957691 instance=ExtResource("3_084wr")]
 layout_mode = 2
-texture = ExtResource("4_mhn1y")
+texture = ExtResource("6_h4l5f")
 text = "匠心值"
 
 [node name="InformationUi4" parent="Right/VBoxContainer" index="3" unique_id=1441741558 instance=ExtResource("3_084wr")]
 layout_mode = 2
-texture = ExtResource("4_mhn1y")
+texture = ExtResource("7_p5o4h")
 text = "工料值"

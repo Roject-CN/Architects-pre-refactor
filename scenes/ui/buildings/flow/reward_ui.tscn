@@ -23,15 +23,18 @@ values = {
 metadata/_custom_type_script = "uid://wguvxiry36og"
 
 [node name="RewardUi" unique_id=1059655934 instance=ExtResource("1_duskk")]
+anchors_preset = -1
 offset_left = 6.0
-offset_right = 6.0
 script = ExtResource("2_r6woy")
 time = 5.0
 denominations = Array[int]([50, 10, 5, 1])
 building_resource = SubResource("Resource_sb6p6")
 text = "结算页面"
 
-[node name="VBoxContainer" parent="Left" parent_id_path=PackedInt32Array(1915760024) index="0" unique_id=153279391]
+[node name="Left" parent="." index="2" unique_id=1915760024]
+anchor_left = 0.2
+
+[node name="VBoxContainer" parent="Left" index="0" unique_id=153279391]
 custom_minimum_size = Vector2(150, 200)
 
 [node name="TextureRect" type="TextureRect" parent="Left/VBoxContainer" index="0" unique_id=489381789]

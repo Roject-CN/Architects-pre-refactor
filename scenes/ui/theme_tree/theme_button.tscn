@@ -2,6 +2,13 @@
 
 [ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://resource/ThemeResource/global_theme.tres" id="1_1fxfi"]
 [ext_resource type="Script" uid="uid://c0ac7ayfglxpi" path="res://codes/ui/theme_tree/theme_button.gd" id="2_w3cyn"]
+[ext_resource type="Texture2D" uid="uid://brr7s5yu3vvqi" path="res://sprits/game素材/卷轴.png" id="3_mxbo1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_epnqt"]
+font_color = Color(0.103743516, 0.10374353, 0.103743516, 1)
+outline_size = 2
+outline_color = Color(0.5364299, 0.6315404, 0.6742484, 1)
+shadow_size = 4
 
 [node name="ThemeButton" type="Control" unique_id=433211561]
 layout_mode = 3
@@ -9,7 +16,8 @@ anchors_preset = 0
 theme = ExtResource("1_1fxfi")
 script = ExtResource("2_w3cyn")
 
-[node name="Button" type="Button" parent="." unique_id=300859312]
+[node name="Button" type="TextureRect" parent="." unique_id=1534541921]
+modulate = Color(0.34781712, 0.3478169, 0.34781682, 1)
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 1
 anchors_preset = 4
@@ -19,8 +27,24 @@ offset_top = -20.0
 offset_right = 120.0
 offset_bottom = 20.0
 grow_vertical = 2
-disabled = true
-text = "测试主题"
+texture = ExtResource("3_mxbo1")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Button" unique_id=36650851]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "测试结构"
+label_settings = SubResource("LabelSettings_epnqt")
 
 [node name="self_pos" type="Control" parent="." unique_id=257460668]
 anchors_preset = 0
@@ -32,6 +56,6 @@ anchors_preset = 0
 wait_time = 0.5
 one_shot = true
 
+[connection signal="gui_input" from="Button" to="." method="_on_button_gui_input"]
 [connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

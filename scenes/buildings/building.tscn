@@ -11,7 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://dnr70qpy5itnb" path="res://scenes/ui/buildings/flow/build_ui.tscn" id="9_xl0vr"]
 [ext_resource type="PackedScene" uid="uid://f6lypbf2mgxn" path="res://scenes/ui/buildings/flow/flow_design_theme_ui.tscn" id="10_u6fk5"]
 [ext_resource type="PackedScene" uid="uid://cax01ei3tn8xg" path="res://scenes/ui/buildings/flow/place_holder_ui.tscn" id="11_0krn8"]
+[ext_resource type="Texture2D" uid="uid://cduxnygxr0fpi" path="res://sprits/buildings/flow/设计.png" id="11_ofkw7"]
 [ext_resource type="PackedScene" uid="uid://hfovk8ygwk0n" path="res://scenes/ui/buildings/flow/reward_ui.tscn" id="13_78n4u"]
+[ext_resource type="Texture2D" uid="uid://dc40ay7kwysvv" path="res://sprits/buildings/flow/工料.png" id="13_xl0vr"]
+[ext_resource type="Texture2D" uid="uid://bjppo0vsnycml" path="res://sprits/buildings/flow/建造.png" id="14_u6fk5"]
 
 [sub_resource type="Resource" id="Resource_78n4u"]
 script = ExtResource("3_w2b1x")
@@ -70,6 +73,25 @@ metadata/_custom_type_script = "uid://bq1ky4cg1v3i7"
 _data = [Vector2(0.26020408, 1), 0.0, 0.0, 0, 0, Vector2(0.3152921, 0.08788204), 0.0, 0.0, 0, 0, Vector2(0.52749145, 0.16054225), 0.0, 0.0, 0, 0, Vector2(0.552459, 1), 0.0, 0.0, 0, 0, Vector2(0.6377551, 1), 0.0, 0.0, 0, 0, Vector2(0.75343645, 0.14508265), 0.0, 0.0, 0, 0, Vector2(0.9776633, 0.21465099), 0.0, 0.0, 0, 0, Vector2(0.99999, 1), 0.0, 0.0, 0, 0]
 point_count = 8
 
+[sub_resource type="Resource" id="Resource_cjfqh"]
+script = ExtResource("7_hhebf")
+prop = 3
+metadata/_custom_type_script = "uid://bq1ky4cg1v3i7"
+
+[sub_resource type="Resource" id="Resource_q4rys"]
+script = ExtResource("7_hhebf")
+prop = 3
+metadata/_custom_type_script = "uid://bq1ky4cg1v3i7"
+
+[sub_resource type="Curve" id="Curve_xl0vr"]
+_data = [Vector2(0.26020408, 1), 0.0, 0.0, 0, 0, Vector2(0.3152921, 0.08788204), 0.0, 0.0, 0, 0, Vector2(0.52749145, 0.16054225), 0.0, 0.0, 0, 0, Vector2(0.552459, 1), 0.0, 0.0, 0, 0, Vector2(0.6377551, 1), 0.0, 0.0, 0, 0, Vector2(0.75343645, 0.14508265), 0.0, 0.0, 0, 0, Vector2(0.9776633, 0.21465099), 0.0, 0.0, 0, 0, Vector2(0.99999, 1), 0.0, 0.0, 0, 0]
+point_count = 8
+
+[sub_resource type="Resource" id="Resource_0y52w"]
+script = ExtResource("7_hhebf")
+prop = 3
+metadata/_custom_type_script = "uid://bq1ky4cg1v3i7"
+
 [sub_resource type="Resource" id="Resource_qmjy6"]
 script = ExtResource("7_hhebf")
 prop = 2
@@ -96,29 +118,10 @@ metadata/_custom_type_script = "uid://bq1ky4cg1v3i7"
 _data = [Vector2(0.26020408, 1), 0.0, 0.0, 0, 0, Vector2(0.3152921, 0.08788204), 0.0, 0.0, 0, 0, Vector2(0.52749145, 0.16054225), 0.0, 0.0, 0, 0, Vector2(0.552459, 1), 0.0, 0.0, 0, 0, Vector2(0.6377551, 1), 0.0, 0.0, 0, 0, Vector2(0.75343645, 0.14508265), 0.0, 0.0, 0, 0, Vector2(0.9776633, 0.21465099), 0.0, 0.0, 0, 0, Vector2(0.99999, 1), 0.0, 0.0, 0, 0]
 point_count = 8
 
-[sub_resource type="Resource" id="Resource_cjfqh"]
-script = ExtResource("7_hhebf")
-prop = 3
-metadata/_custom_type_script = "uid://bq1ky4cg1v3i7"
-
-[sub_resource type="Resource" id="Resource_q4rys"]
-script = ExtResource("7_hhebf")
-prop = 3
-metadata/_custom_type_script = "uid://bq1ky4cg1v3i7"
-
-[sub_resource type="Curve" id="Curve_xl0vr"]
-_data = [Vector2(0.26020408, 1), 0.0, 0.0, 0, 0, Vector2(0.3152921, 0.08788204), 0.0, 0.0, 0, 0, Vector2(0.52749145, 0.16054225), 0.0, 0.0, 0, 0, Vector2(0.552459, 1), 0.0, 0.0, 0, 0, Vector2(0.6377551, 1), 0.0, 0.0, 0, 0, Vector2(0.75343645, 0.14508265), 0.0, 0.0, 0, 0, Vector2(0.9776633, 0.21465099), 0.0, 0.0, 0, 0, Vector2(0.99999, 1), 0.0, 0.0, 0, 0]
-point_count = 8
-
-[sub_resource type="Resource" id="Resource_0y52w"]
-script = ExtResource("7_hhebf")
-prop = 3
-metadata/_custom_type_script = "uid://bq1ky4cg1v3i7"
-
 [node name="Building" type="Node2D" unique_id=267276308 node_paths=PackedStringArray("need_pick")]
 script = ExtResource("1_mogpk")
 building_resource = SubResource("Resource_78n4u")
-need_pick = NodePath("FlowManager/FlowBuild/BuildUi2")
+need_pick = NodePath("FlowManager/FlowBuild/RewardUi2")
 folder_environments = Array[PackedScene]([ExtResource("2_c4fct")])
 
 [node name="FlowManager" type="Node" parent="." unique_id=2028062571 node_paths=PackedStringArray("initial_flow")]
@@ -170,35 +173,11 @@ text = "选择建筑主题"
 process_mode = 0
 visible = false
 _progress_curve = SubResource("Curve_ofkw7")
+flow_pic = ExtResource("11_ofkw7")
 time = 3.0
 text = "设计建筑中"
 
 [node name="PlaceHolderUi" parent="FlowManager/FlowDesign" unique_id=795315083 instance=ExtResource("11_0krn8")]
-visible = false
-timer = 12.0
-
-[node name="FlowBuild" type="Node" parent="FlowManager" unique_id=1960394218 node_paths=PackedStringArray("initial_ui")]
-script = ExtResource("6_ofkw7")
-build_prop_config = Array[ExtResource("7_hhebf")]([SubResource("Resource_qmjy6"), SubResource("Resource_diqjy")])
-initial_ui = NodePath("ConfirmUi2")
-metadata/_custom_type_script = "uid://dyklyrgbryvql"
-
-[node name="ConfirmUi2" parent="FlowManager/FlowBuild" unique_id=768199035 node_paths=PackedStringArray("build_ui") instance=ExtResource("8_volt3")]
-process_mode = 0
-visible = false
-build_ui = NodePath("../BuildUi2")
-text = "确认建造装饰人选"
-prop_configs = Array[ExtResource("7_hhebf")]([SubResource("Resource_01wli"), SubResource("Resource_25mfx")])
-
-[node name="BuildUi2" parent="FlowManager/FlowBuild" unique_id=1966546471 node_paths=PackedStringArray("pick_pictures") instance=ExtResource("9_xl0vr")]
-process_mode = 0
-visible = false
-_progress_curve = SubResource("Curve_volt3")
-pick_pictures = NodePath("")
-time = 3.0
-text = "建造装饰建筑中"
-
-[node name="PlaceHolderUi" parent="FlowManager/FlowBuild" unique_id=1947500056 instance=ExtResource("11_0krn8")]
 visible = false
 timer = 12.0
 
@@ -219,10 +198,37 @@ prop_configs = Array[ExtResource("7_hhebf")]([SubResource("Resource_q4rys")])
 process_mode = 0
 visible = false
 _progress_curve = SubResource("Curve_xl0vr")
+flow_pic = ExtResource("13_xl0vr")
 time = 3.0
 text = "正在计算工料中"
 prop_configs = Array[ExtResource("7_hhebf")]([SubResource("Resource_0y52w")])
 
-[node name="RewardUi2" parent="FlowManager/FlowAccount" unique_id=856418288 instance=ExtResource("13_78n4u")]
+[node name="FlowBuild" type="Node" parent="FlowManager" unique_id=1960394218 node_paths=PackedStringArray("initial_ui")]
+script = ExtResource("6_ofkw7")
+build_prop_config = Array[ExtResource("7_hhebf")]([SubResource("Resource_qmjy6"), SubResource("Resource_diqjy")])
+initial_ui = NodePath("ConfirmUi2")
+metadata/_custom_type_script = "uid://dyklyrgbryvql"
+
+[node name="ConfirmUi2" parent="FlowManager/FlowBuild" unique_id=768199035 node_paths=PackedStringArray("build_ui") instance=ExtResource("8_volt3")]
 process_mode = 0
 visible = false
+build_ui = NodePath("../BuildUi2")
+text = "确认建造装饰人选"
+prop_configs = Array[ExtResource("7_hhebf")]([SubResource("Resource_01wli"), SubResource("Resource_25mfx")])
+
+[node name="BuildUi2" parent="FlowManager/FlowBuild" unique_id=1966546471 instance=ExtResource("9_xl0vr")]
+process_mode = 0
+visible = false
+_progress_curve = SubResource("Curve_volt3")
+flow_pic = ExtResource("14_u6fk5")
+time = 3.0
+text = "建造装饰建筑中"
+
+[node name="PlaceHolderUi" parent="FlowManager/FlowBuild" unique_id=1947500056 instance=ExtResource("11_0krn8")]
+visible = false
+timer = 12.0
+
+[node name="RewardUi2" parent="FlowManager/FlowBuild" unique_id=856418288 instance=ExtResource("13_78n4u")]
+process_mode = 0
+visible = false
+text = "验收页面"

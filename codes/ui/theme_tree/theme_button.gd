@@ -4,7 +4,11 @@ class_name ThemeButton
 @export var next_theme_button : ThemeButton
 @export var theme_resource : ThemeResource
 
-@onready var button: Button = $Button
+
+@onready var button: TextureRect = $Button
+@onready var label: Label = $Button/Label
+
+
 @onready var self_pos: Control = $self_pos
 @onready var next_pos: Control = $next_pos
 @onready var timer: Timer = $Timer
@@ -15,23 +19,23 @@ signal request_close_tooltip()
 var entering := false
 
 func _ready() -> void:
-	button.text = theme_resource.name
+	label.text = theme_resource.name
 	# 设置自身连接点的位置（基于按钮尺寸）
 	next_pos.position.x = button.size.x / 2
 	next_pos.position.y = -button.size.y / 2
 	self_pos.position.x = button.size.x / 2
 	self_pos.position.y = button.size.y / 2
+	
+	button_disable()
 
 func _draw() -> void:
 	if next_theme_button == null:
 		return
 
 	var start := next_pos.position
-	# 转换终点到本地坐标
 	var end_global := next_theme_button.self_pos.global_position
 	var end_local := get_global_transform().affine_inverse() * end_global
 
-	# 绘制虚线贝塞尔曲线（中国风柔线）
 	draw_dashed_bezier(start, end_local, 8.0, 4.0, Color.BLACK, 2.0)
 
 # 辅助函数：绘制带控制点的三次贝塞尔虚线
@@ -86,8 +90,11 @@ func draw_dashed_bezier(start: Vector2, end: Vector2,
 					drawing = true
 
 func button_enable() -> void:
-	button.disabled = false
+	button.modulate = Color("ffffffff")
 
+func button_disable() -> void:
+	button.modulate = Color("595959ff")
+	
 func _on_button_pressed() -> void:
 	#
 	match theme_resource.type:
@@ -100,7 +107,7 @@ func _on_button_pressed() -> void:
 		ThemeResource.TYPE.下分:
 			Global.save_resource.buttom_theme_resource.append(theme_resource)
 	
-	button.disabled = true
+	button_disable()
 	if next_theme_button:
 		next_theme_button.button_enable()
 
@@ -119,3 +126,9 @@ func _on_button_mouse_entered() -> void:
 func _on_button_mouse_exited() -> void:
 	entering = false
 	request_close_tooltip.emit()
+
+
+func _on_button_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			_on_button_pressed()

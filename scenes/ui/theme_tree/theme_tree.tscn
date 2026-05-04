@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bmltsycwaemyc" path="res://codes/ui/theme_tree/theme_tree.gd" id="1_qu45k"]
 [ext_resource type="PackedScene" uid="uid://cfhex28ebk6rl" path="res://scenes/ui/theme_tree/theme_button.tscn" id="1_vi5og"]
+[ext_resource type="Texture2D" uid="uid://dbpfma0w26t5b" path="res://sprits/game素材/科技树背景.png" id="2_gb7m0"]
 [ext_resource type="Resource" uid="uid://dgasx2kjqmyfa" path="res://resource/building_resource/theme_resource/top_1.tres" id="3_sews4"]
 [ext_resource type="Resource" uid="uid://p10fisepi2gu" path="res://resource/building_resource/theme_resource/top_2.tres" id="4_cqdlo"]
 [ext_resource type="Resource" uid="uid://blmhq8kcm85rn" path="res://resource/building_resource/theme_resource/top_3.tres" id="5_pmk4b"]
@@ -17,12 +18,6 @@
 [ext_resource type="Resource" uid="uid://dtjs0gvuvirfy" path="res://resource/building_resource/theme_resource/buttom_3.tres" id="15_p73mq"]
 [ext_resource type="Resource" uid="uid://poweux62q54i" path="res://resource/building_resource/theme_resource/buttom_4.tres" id="16_j8o0d"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gb7m0"]
-bg_color = Color(0.6222687, 0.5455211, 0.27588314, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jvlhl"]
-bg_color = Color(0, 0, 0, 0.14509805)
-
 [node name="ThemeTree" type="Control" unique_id=1238132458]
 layout_mode = 3
 anchors_preset = 15
@@ -35,13 +30,14 @@ script = ExtResource("1_qu45k")
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=669228061]
 
-[node name="Background" type="Panel" parent="Background" unique_id=1392386456]
+[node name="Background" type="TextureRect" parent="Background" unique_id=2011083170]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_gb7m0")
+texture = ExtResource("2_gb7m0")
+expand_mode = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1510357376]
 
@@ -190,7 +186,6 @@ offset_bottom = -5.0
 theme_resource = ExtResource("16_j8o0d")
 
 [node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1663662813]
-visible = false
 anchors_preset = -1
 anchor_top = 0.65
 anchor_right = 1.0
@@ -212,49 +207,6 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "硬山顶同为两面坡顶，但其屋面两侧与山墙齐平，或山墙略高于屋面，檩头完全包封在山墙之内，造型显得质朴而刚硬。硬山顶的出现与砖的普及使用密切相关，历史稍晚。其防风火性能优越，因此在明清时期广泛应用于南北方民居，成为我国最普遍的民居屋顶形式。硬山顶虽等级不高，但在徽州等地，当地工匠将其山墙进一步发展为高低错落、形似马头的“封火墙”，不仅强化了防火功能，更创造性地塑造了极具地域特色的建筑美学。它代表着中国建筑在有限条件与礼制规范下，发展出的适应性、经济性与独特的地域美学。"
 autowrap_mode = 3
-
-[node name="PlaceHolder" type="Panel" parent="CanvasLayer" unique_id=185340368]
-anchors_preset = -1
-anchor_top = 0.65
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_jvlhl")
-
-[node name="Label" type="Label" parent="CanvasLayer/PlaceHolder" unique_id=976078221]
-modulate = Color(1, 1, 1, 0.11372549)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -0.5
-offset_top = -11.5
-offset_right = 0.5
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "此处无法触发"
-
-[node name="Label2" type="Label" parent="CanvasLayer/PlaceHolder" unique_id=1136711473]
-modulate = Color(1, 1, 1, 0.11372549)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = -38.0
-offset_right = 48.0
-offset_bottom = -15.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "鼠标停留建筑主题按钮一会，会出现文本介绍"
 
 [node name="Quit" type="Button" parent="CanvasLayer" unique_id=1158140386]
 anchors_preset = 6
