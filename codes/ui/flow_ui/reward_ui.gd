@@ -5,6 +5,7 @@ class_name RewardUi
 @onready var progress_bar: ProgressBar = $Left/VBoxContainer/ProgressBar
 @onready var reward: Label = $Left/VBoxContainer/Reward
 @onready var achivement_manager: AchivementManager = $AchivementManager
+@onready var texture_rect: TextureRect = $Left/VBoxContainer/TextureRect
 
 
 
@@ -72,7 +73,8 @@ func ui_enter() -> void:
 	reward_value = 0
 	reward.text = reward_text % reward_value
 	value_percent = 0.0
-	
+	if building_resource.texture:
+		texture_rect.texture = building_resource.texture
 	super()
 
 func ui_process(delta: float) -> void:

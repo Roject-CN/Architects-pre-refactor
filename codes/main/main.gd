@@ -20,6 +20,8 @@ var current_building : Building
 
 @onready var main_ui: MainUi = $MainUiLayer/MainUi
 
+
+@export var pick_pictires : PicturePick
 # 场景引用
 const start_scene: PackedScene = preload("res://scenes/start.tscn")
 
@@ -46,8 +48,6 @@ func _ready() -> void:
 	#读取Global的员工列表
 	for i : CraftsmanResource in Global.save_resource.start_list:
 		craftsman_manager.append_new_craftsman(i)
-	# 连接退出按钮信号
-	quit_button.pressed.connect(_on_quit_pressed)
 	
 
 func _on_employee_pressed() -> void:
@@ -154,6 +154,7 @@ func _on_building_pressed() -> void:
 	building.craftsman_manager = craftsman_manager
 	building_resource.index = building_index
 	building_index += 1
+	building.pick = pick_pictires
 	function.add_child(building)
 	building_button.disabled = true
 
@@ -281,3 +282,6 @@ func _on_quit_pressed() -> void:
 			print("备用方案成功")
 		else:
 			push_error("所有切换方案都失败")
+
+
+		

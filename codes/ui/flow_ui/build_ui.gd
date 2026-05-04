@@ -4,9 +4,12 @@ class_name BuildUi
 @onready var assure: Button = $Button/Assure
 @onready var progress_bar: ProgressBar = $Left/VBoxContainer/ProgressBar
 @onready var craftsman_label: Label = $Left/VBoxContainer/craftsman_label
+@onready var texture_rect: TextureRect = $Left/VBoxContainer/TextureRect
+
+
 
 @export var _progress_curve : Curve = preload("uid://c735f8cwhf5gy")
-
+@export var pick_pictures : PicturePick
 signal build_props_clear
 
 var value_pecent : float = 0.0 : 
@@ -24,7 +27,8 @@ func _ready() -> void:
 	super()
 	assure.disabled = true
 	progress_bar.value = 0.0
-
+	
+	
 func ui_exit() -> void:
 	super()
 	build_props_clear.emit()
@@ -42,6 +46,8 @@ func ui_enter() -> void:
 		#恢复prop_config的_max_limits为默认值
 		build_props_clear.connect(prop_config.clear_max_limits, CONNECT_ONE_SHOT)
 	
+	if pick_pictures:
+		texture_rect.texture = pick_pictures.pick_pictures(building_resource)
 	super()
 
 func ui_process(delta: float) -> void:

@@ -16,7 +16,7 @@ class_name BuildingResource
 @export var top_theme : ThemeResource
 @export var middle_theme : ThemeResource
 @export var buttom_theme : ThemeResource
-
+	
 func add_theme(type : ThemeResource.TYPE, theme_resource : ThemeResource) -> void:
 	if type == ThemeResource.TYPE.上分:
 		top_theme = theme_resource

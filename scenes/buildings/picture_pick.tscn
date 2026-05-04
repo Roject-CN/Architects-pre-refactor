@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cfefp8hv2qqtl"]
+
+[ext_resource type="Script" uid="uid://ctgoxp82atahs" path="res://codes/buildings/picture_pick.gd" id="1_o26hp"]
+
+[node name="PicturePick" type="Node" unique_id=1897356442]
+script = ExtResource("1_o26hp")

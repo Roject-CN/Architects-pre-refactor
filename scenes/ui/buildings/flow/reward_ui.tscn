@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://hfovk8ygwk0n"]
 
 [ext_resource type="PackedScene" uid="uid://l0lthvl61vfr" path="res://scenes/ui/base_ui/attribution_ui.tscn" id="1_duskk"]
-[ext_resource type="Texture2D" uid="uid://bb1llwn0kn1pm" path="res://icon.svg" id="2_5xbmg"]
 [ext_resource type="Script" uid="uid://b8k18gcqqmphk" path="res://codes/ui/flow_ui/reward_ui.gd" id="2_r6woy"]
 [ext_resource type="Resource" uid="uid://d371pdecn0otu" path="res://resource/building_resource/theme_resource/buttom_1.tres" id="3_pximr"]
 [ext_resource type="Script" uid="uid://wguvxiry36og" path="res://codes/buildings/building_resource.gd" id="3_r6woy"]
 [ext_resource type="Resource" uid="uid://krhig6fcmfj8" path="res://resource/building_resource/theme_resource/middle_2.tres" id="4_pximr"]
 [ext_resource type="Resource" uid="uid://dgasx2kjqmyfa" path="res://resource/building_resource/theme_resource/top_1.tres" id="6_clq5l"]
+[ext_resource type="Texture2D" uid="uid://beu1ovfagi6vh" path="res://sprits/buildings/pictures/庑殿顶干栏.png" id="7_pximr"]
 [ext_resource type="PackedScene" uid="uid://dth1qirgetj5n" path="res://scenes/buildings/achivement_manager.tscn" id="8_xi4aq"]
 
 [sub_resource type="Resource" id="Resource_sb6p6"]
@@ -31,15 +31,20 @@ denominations = Array[int]([50, 10, 5, 1])
 building_resource = SubResource("Resource_sb6p6")
 text = "结算页面"
 
-[node name="TextureRect" type="TextureRect" parent="Left/VBoxContainer" parent_id_path=PackedInt32Array(153279391) index="0" unique_id=489381789]
-layout_mode = 2
-texture = ExtResource("2_5xbmg")
+[node name="VBoxContainer" parent="Left" parent_id_path=PackedInt32Array(1915760024) index="0" unique_id=153279391]
+custom_minimum_size = Vector2(150, 200)
 
-[node name="ProgressBar" type="ProgressBar" parent="Left/VBoxContainer" parent_id_path=PackedInt32Array(153279391) index="1" unique_id=201555731]
+[node name="TextureRect" type="TextureRect" parent="Left/VBoxContainer" index="0" unique_id=489381789]
+custom_minimum_size = Vector2(150, 120)
+layout_mode = 2
+texture = ExtResource("7_pximr")
+expand_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Left/VBoxContainer" index="1" unique_id=201555731]
 layout_mode = 2
 max_value = 1.0
 
-[node name="Reward" type="Label" parent="Left/VBoxContainer" parent_id_path=PackedInt32Array(153279391) index="2" unique_id=771631281]
+[node name="Reward" type="Label" parent="Left/VBoxContainer" index="2" unique_id=771631281]
 layout_mode = 2
 text = "奖励: %d $"
 horizontal_alignment = 1

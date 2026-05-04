@@ -4,6 +4,8 @@ extends Node2D
 @export var building_resource : BuildingResource
 @onready var flow_manager: FlowManager = $FlowManager
 @export var craftsman_manager : CraftsmanManager
+var pick : PicturePick
+@export var need_pick : BuildUi
 
 func _ready() -> void:
 	assert(craftsman_manager, str(self.name) + "'s craftsman_manager is empty")
@@ -18,7 +20,9 @@ func _ready() -> void:
 			if ui is BaseUi:
 				ui.building_resource = building_resource
 				ui.craftsman_manager = craftsman_manager
-				
+	
+	need_pick.pick_pictures = pick
+		
 	#保证先赋值再开始启动状态机
 	flow_manager.open_flow_manager()
 	

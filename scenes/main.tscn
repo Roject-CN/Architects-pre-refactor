@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://d0c0rulwp1lhg" path="res://codes/craftsmen/craftsman_manager.gd" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://b5rxknicvviqi" path="res://scenes/ui/base_ui/pop_up_ui.tscn" id="7_tipki"]
 [ext_resource type="Texture2D" uid="uid://cebjk50l0bew" path="res://sprits/game素材/里屋（带物品.png" id="8_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://cfefp8hv2qqtl" path="res://scenes/buildings/picture_pick.tscn" id="9_85g3d"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ya4ey"]
 vertices = PackedVector2Array(8.9296875, 551.0469, 336, 460, 367.5, 459, 516.5, 459, 709, 554.9375, 396, 346, 485.75, 371, 367.5, 371, 301, 346, 613, 186, 613, 46, 709, 9.890625, 5.0703125, 2.109375, 193, 46, 521, 452, 521, 233, 219, 186, 396, 215, 485.75, 233, 336, 372, 222.25, 372, 222.25, 250, 301, 215, 193, 55, 140, 55, 140, 238, 153, 453, 187, 453, 187, 460, 516.5, 452, 153, 250, 219, 238)
@@ -18,7 +19,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-5, -8, -1, 561, 719, 5
 atlas = ExtResource("8_eb6dy")
 region = Rect2(0, 0, 2560, 2560)
 
-[node name="Main" type="Control" unique_id=890892059 node_paths=PackedStringArray("craftsman_manager", "pop_up_ui")]
+[node name="Main" type="Control" unique_id=890892059 node_paths=PackedStringArray("craftsman_manager", "pop_up_ui", "pick_pictires")]
 z_as_relative = false
 layout_mode = 3
 anchors_preset = 15
@@ -31,6 +32,7 @@ theme = ExtResource("1_tipki")
 script = ExtResource("1_o5qli")
 craftsman_manager = NodePath("Function/CraftsmanManager")
 pop_up_ui = NodePath("PopUpUi")
+pick_pictires = NodePath("Function/PicturePick")
 metadata/_edit_lock_ = true
 
 [node name="Company" type="CanvasLayer" parent="." unique_id=2013525011]
@@ -240,6 +242,8 @@ _spawn_position = NodePath("../../Company/CanvasModulate/Spawn")
 _workplace_position = [NodePath("../../Company/CanvasModulate/Work1"), NodePath("../../Company/CanvasModulate/Work2"), NodePath("../../Company/CanvasModulate/Work3"), NodePath("../../Company/CanvasModulate/Work4"), NodePath("../../Company/CanvasModulate/Work5"), NodePath("../../Company/CanvasModulate/Work6")]
 main_time = NodePath("../../MainTime")
 metadata/_custom_type_script = "uid://d0c0rulwp1lhg"
+
+[node name="PicturePick" parent="Function" unique_id=1897356442 instance=ExtResource("9_85g3d")]
 
 [node name="MainTime" type="Node" parent="." unique_id=1253994536 node_paths=PackedStringArray("craftsman_manager", "canvas_modulate")]
 script = ExtResource("5_tbgi4")

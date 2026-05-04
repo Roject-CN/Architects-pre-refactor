@@ -143,7 +143,7 @@ func refresh():
 		# 左侧：截图（如果有）或占位
 		var tex := TextureRect.new()
 		if resource.texture != null:
-			tex.texture = resource.tex
+			tex.texture = resource.texture
 		else:
 			# 无截图时显示占位色块
 			tex.texture = null
