@@ -303,6 +303,21 @@ func _load_building_resources(buildings_dir: String) -> void:
 func _save_craftsmen_data(craftsmen_dir: String) -> int:
 	var result = OK
 	
+	# 确保目录路径正确
+	if not craftsmen_dir.ends_with("/"):
+		craftsmen_dir += "/"
+	
+	# 删除旧的工匠数据文件
+	var dir = DirAccess.open(craftsmen_dir)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if file_name.begins_with("craftsman_") and file_name.ends_with(".tres"):
+				dir.remove(file_name)
+			file_name = dir.get_next()
+		dir.list_dir_end()
+	
 	# 保存员工列表
 	for i in range(start_list.size()):
 		var craftsman = start_list[i]

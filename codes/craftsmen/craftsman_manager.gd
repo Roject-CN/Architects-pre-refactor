@@ -99,6 +99,7 @@ func delete_craftsman(resource : CraftsmanResource) -> void:
 			current_list.remove_at(i)
 			
 			break  # 找到后立即退出循环
+		_sync_to_global_save()
 
 #返回员工们当前的状态（在工作还是在休息中）
 func return_craftsman_is_working() -> bool :
