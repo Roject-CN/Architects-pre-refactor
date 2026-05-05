@@ -152,8 +152,8 @@ func _on_continue_pressed() -> void:
 	if not latest_save:
 		return
 	
-	# 使用完整的加载函数加载所有数据
-	Global.save_resource = SaveResource.load_complete_game_data(latest_save["name"])
+	# 使用目录名加载最新存档
+	Global.save_resource = SaveResource.load_complete_game_data(latest_save["directory"])
 	
 	# 切换到主场景
 	get_tree().change_scene_to_packed(main_scene)
