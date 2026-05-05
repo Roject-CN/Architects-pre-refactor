@@ -32,10 +32,23 @@ func is_the_same(resource : BuildingResource) -> bool :
 		if resource.name != achievement_name:
 			flow_name_is_same = false
 		
+	# 使用主题名称比较而不是引用比较（解决存档加载后引用不匹配的问题）
+	var themes_match := _themes_are_equal(top_theme, resource.top_theme) && \
+		_themes_are_equal(middle_theme, resource.middle_theme) && \
+		_themes_are_equal(buttom_theme, resource.buttom_theme)
 	
-	return (top_theme == resource.top_theme and 
-	middle_theme == resource.middle_theme and
-	buttom_theme == resource.buttom_theme and
-	value_can_achive_times >= 4 and 
-	flow_name_is_same
+	return (themes_match and
+		value_can_achive_times >= 4 and 
+		flow_name_is_same
 	)
+
+# 比较两个主题是否相等（使用名称比较）
+func _themes_are_equal(theme1: ThemeResource, theme2: ThemeResource) -> bool:
+	# 两个都为空
+	if not theme1 and not theme2:
+		return true
+	# 其中一个为空
+	if not theme1 or not theme2:
+		return false
+	# 使用名称比较
+	return theme1.name == theme2.name
