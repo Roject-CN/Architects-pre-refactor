@@ -23,20 +23,34 @@ func return_achivement(resource : BuildingResource) -> Achivement:
 
 
 func achieve(resource : BuildingResource) -> void:
-	var achivement := return_achivement(resource)
-	if achivement :
-		pop_up_ui.pop_up_information("恭喜你解锁 %s 成就" % achivement.achievement_name, 
-		achivement.description)
+	# 遍历所有成就，触发所有符合条件的成就
+	var achievements_to_unlock: Array[Achivement] = []
+	
+	for achivement : Achivement in building_achievement.get_children():
+		# 如果成就未解锁且符合条件
+		if achivement.locked and achivement.is_the_same(resource):
+			achievements_to_unlock.append(achivement)
+	
+	# 如果有符合条件的成就
+	if achievements_to_unlock.size() > 0:
+		# 触发第一个成就的弹窗
+		var first_achievement = achievements_to_unlock[0]
+		pop_up_ui.pop_up_information("恭喜你解锁 %s 成就" % first_achievement.achievement_name, 
+		first_achievement.description)
 		pop_up_ui.visible = true
 		
-		var new := BuildingResource.new()
-		new.top_theme = achivement.top_theme
-		new.middle_theme = achivement.middle_theme
-		new.buttom_theme = achivement.buttom_theme
-		for key in new.values:
-			new.values[key] = achivement.compare.values[key] + 1
-		
-		new.name = achivement.achievement_name
-		new.description = achivement.description
-		
-		Global.save_resource.achievements.append(new)
+		# 记录所有解锁的成就
+		for achivement in achievements_to_unlock:
+			achivement.locked = false
+			
+			var new := BuildingResource.new()
+			new.top_theme = achivement.top_theme
+			new.middle_theme = achivement.middle_theme
+			new.buttom_theme = achivement.buttom_theme
+			for key in new.values:
+				new.values[key] = achivement.compare.values[key] + 1
+			
+			new.name = achivement.achievement_name
+			new.description = achivement.description
+			
+			Global.save_resource.achievements.append(new)
