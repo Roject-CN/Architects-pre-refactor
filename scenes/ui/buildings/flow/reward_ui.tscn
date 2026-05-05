@@ -7,7 +7,6 @@
 [ext_resource type="Resource" uid="uid://krhig6fcmfj8" path="res://resource/building_resource/theme_resource/middle_2.tres" id="4_pximr"]
 [ext_resource type="Resource" uid="uid://dgasx2kjqmyfa" path="res://resource/building_resource/theme_resource/top_1.tres" id="6_clq5l"]
 [ext_resource type="Texture2D" uid="uid://beu1ovfagi6vh" path="res://sprits/buildings/pictures/庑殿顶干栏.png" id="7_pximr"]
-[ext_resource type="PackedScene" uid="uid://dth1qirgetj5n" path="res://scenes/buildings/achivement_manager.tscn" id="8_xi4aq"]
 
 [sub_resource type="Resource" id="Resource_sb6p6"]
 script = ExtResource("3_r6woy")
@@ -38,10 +37,7 @@ offset_top = 9.404999
 offset_right = 48.0
 offset_bottom = 43.40503
 
-[node name="Left" parent="." index="2" unique_id=1915760024]
-anchor_left = 0.2
-
-[node name="VBoxContainer" parent="Left" index="0" unique_id=153279391]
+[node name="VBoxContainer" parent="Left" parent_id_path=PackedInt32Array(1915760024) index="0" unique_id=153279391]
 custom_minimum_size = Vector2(150, 200)
 
 [node name="TextureRect" type="TextureRect" parent="Left/VBoxContainer" index="0" unique_id=489381789]
@@ -79,7 +75,5 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "确认"
-
-[node name="AchivementManager" parent="." index="5" unique_id=1552460596 instance=ExtResource("8_xi4aq")]
 
 [connection signal="pressed" from="Button/Assure" to="." method="_on_assure_pressed"]

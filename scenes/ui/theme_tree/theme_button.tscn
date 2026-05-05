@@ -10,6 +10,19 @@ outline_size = 2
 outline_color = Color(0.5364299, 0.6315404, 0.6742484, 1)
 shadow_size = 4
 
+[sub_resource type="Animation" id="Animation_mxbo1"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_ahdku"]
+resource_name = "animation"
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_epnqt"]
+_data = {
+&"RESET": SubResource("Animation_mxbo1"),
+&"animation": SubResource("Animation_ahdku")
+}
+
 [node name="ThemeButton" type="Control" unique_id=433211561]
 layout_mode = 3
 anchors_preset = 0
@@ -76,6 +89,9 @@ anchors_preset = 0
 [node name="Timer" type="Timer" parent="." unique_id=1747321786]
 wait_time = 0.5
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=214158229]
+libraries/ = SubResource("AnimationLibrary_epnqt")
 
 [connection signal="gui_input" from="Button" to="." method="_on_button_gui_input"]
 [connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]

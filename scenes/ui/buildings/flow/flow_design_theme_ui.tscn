@@ -18,18 +18,25 @@ test_middle_themes = Array[ExtResource("3_oyysq")]([ExtResource("5_lro6v"), ExtR
 test_buttom_themes = Array[ExtResource("3_oyysq")]([ExtResource("6_pvpef"), ExtResource("9_r4s6x")])
 building_resource = ExtResource("7_lro6v")
 
-[node name="Top" type="Button" parent="Left/VBoxContainer" parent_id_path=PackedInt32Array(153279391) index="0" unique_id=748078088]
+[node name="VBoxContainer" parent="Left" parent_id_path=PackedInt32Array(1915760024) index="0" unique_id=153279391]
+theme_override_constants/separation = 10
+
+[node name="Top" type="Button" parent="Left/VBoxContainer" index="0" unique_id=748078088]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 text = "上分"
 
-[node name="Middle" type="Button" parent="Left/VBoxContainer" parent_id_path=PackedInt32Array(153279391) index="1" unique_id=1857998298]
+[node name="Middle" type="Button" parent="Left/VBoxContainer" index="1" unique_id=1857998298]
 layout_mode = 2
 text = "中分"
 
-[node name="Buttom" type="Button" parent="Left/VBoxContainer" parent_id_path=PackedInt32Array(153279391) index="2" unique_id=1628516275]
+[node name="Buttom" type="Button" parent="Left/VBoxContainer" index="2" unique_id=1628516275]
 layout_mode = 2
 text = "下分"
+
+[node name="Right" parent="." index="3" unique_id=2119368726]
+anchor_top = 0.32
+anchor_bottom = 0.32
 
 [node name="Assure" type="Button" parent="Button" parent_id_path=PackedInt32Array(883134600) index="0" unique_id=325284990]
 custom_minimum_size = Vector2(100, 0)

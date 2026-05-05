@@ -7,6 +7,13 @@ class_name BuildUi
 @onready var texture_rect: TextureRect = $Left/VBoxContainer/TextureRect
 
 
+#占位成就
+const t_hold := preload("uid://r5mheice0i3f")
+const m_hold := preload("uid://dbxjxmnk7bhmr")
+const b_hold := preload("uid://c1c4gv32wmxhk")
+#
+@export var achievement_name : String
+@export var achievement_manager : AchivementManager
 
 @export var _progress_curve : Curve = preload("uid://c735f8cwhf5gy")
 
@@ -19,6 +26,8 @@ var value_pecent : float = 0.0 :
 		progress_bar.value = value_pecent	
 		if value_pecent >= 1.0:
 			assure.disabled = false
+			flow_achievement()
+var achieving := false		
 		
 @export var time : float = 5.0
 var craftsman_resource : CraftsmanResource
@@ -54,6 +63,7 @@ func ui_enter() -> void:
 func ui_process(delta: float) -> void:
 	if value_pecent >= 1.0:
 		return
+
 	value_pecent += (1.0 / time * delta * _progress_curve.sample(value_pecent))
 	
 	#prop_configs执行自己相应的逻辑
@@ -71,3 +81,16 @@ func animation_ui_add(prop : BaseResource.PROPERTY) -> void:
 func _on_assure_pressed() -> void:
 	request_next()
 	
+func flow_achievement() -> void:
+	#第一次流程的成就
+	if achieving:
+		return
+	achieving = true
+	var resource := BuildingResource.new()
+	resource.add_theme(ThemeResource.TYPE.上分, t_hold)
+	resource.add_theme(ThemeResource.TYPE.中分, m_hold)
+	resource.add_theme(ThemeResource.TYPE.下分, b_hold)
+	resource.name = achievement_name
+	for key in resource.values:
+		resource.values[key] = 2
+	achievement_manager.achieve(resource)

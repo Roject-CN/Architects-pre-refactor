@@ -25,17 +25,19 @@ func _ready():
 		top_themes.append(i)
 		i.request_close_tooltip.connect(close_tooltip)
 		i.request_open_tooltip.connect(open_tooltip)
+		$CanvasLayer/Quit.pressed.connect(i.cease_animation)
 	
 	for i : ThemeButton in middle.get_children():
 		middle_themes.append(i)
 		i.request_close_tooltip.connect(close_tooltip)
 		i.request_open_tooltip.connect(open_tooltip)
+		$CanvasLayer/Quit.pressed.connect(i.cease_animation)
 	
 	for i : ThemeButton in buttom.get_children():
 		buttom_themes.append(i)
 		i.request_close_tooltip.connect(close_tooltip)
 		i.request_open_tooltip.connect(open_tooltip)
-	
+		$CanvasLayer/Quit.pressed.connect(i.cease_animation)
 	#读取Global的数据 因为是按时间顺序解锁的，所以如果上分解锁了x个
 	#那么Global的相应数组就会有x个，而此时我们需要让 第 x + 1(索引值为x)个主题资源解锁
 	#绘制可以解锁的

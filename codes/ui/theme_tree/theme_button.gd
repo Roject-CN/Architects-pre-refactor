@@ -20,6 +20,7 @@ signal request_close_tooltip()
 
 var entering := false
 const tip_text := "%3s名气值 %3s金钱解锁"
+var tween : Tween
 
 func _ready() -> void:
 	label.text = theme_resource.name
@@ -97,10 +98,31 @@ func draw_dashed_bezier(start: Vector2, end: Vector2,
 
 func button_enable() -> void:
 	button.modulate = Color("ffffffff")
+	cease_animation()
+		
+	var blink_tween = get_tree().create_tween()
+	blink_tween.set_ease(Tween.EASE_IN_OUT)
+	blink_tween.set_trans(Tween.TRANS_SINE)
+
+	blink_tween.tween_property(button, "modulate:a", 0.7, 0.8)
+	blink_tween.parallel().tween_property(button, "scale", Vector2.ONE * 0.95, 0.8)
+
+	blink_tween.tween_property(button, "modulate:a", 1.0, 0.8)
+	blink_tween.parallel().tween_property(button, "scale", Vector2.ONE * 1.1, 0.8)
+
+	blink_tween.set_loops()
+	#blink_tween.tween_interval(0)
+	
+	tween = blink_tween
+	
 func button_disable() -> void:
+	cease_animation()
 	button.modulate = Color("595959ff")
+	button.scale = Vector2(1.0, 1.0)
 func button_pressed() -> void:
+	cease_animation()
 	button.modulate = Color("aeaeaeff")
+	button.scale = Vector2(1.0, 1.0)
 
 func _on_button_pressed() -> void:
 	
@@ -126,8 +148,9 @@ func _on_button_pressed() -> void:
 	if next_theme_button:
 		next_theme_button.button_enable()
 
-
-
+func cease_animation() -> void:
+	if tween and tween.is_valid():
+		tween.kill()
 
 func _on_button_mouse_entered() -> void:
 	var fame_str : String

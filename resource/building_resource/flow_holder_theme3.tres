@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ThemeResource" format=3 uid="uid://c1c4gv32wmxhk"]
+
+[ext_resource type="Script" uid="uid://ca1nftey11dbk" path="res://codes/buildings/theme/theme_resource.gd" id="1_yhmkf"]
+
+[resource]
+script = ExtResource("1_yhmkf")
+type = 2
+name = "占位"
+metadata/_custom_type_script = "uid://ca1nftey11dbk"

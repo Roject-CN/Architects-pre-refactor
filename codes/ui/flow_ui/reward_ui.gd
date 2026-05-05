@@ -5,7 +5,7 @@ class_name RewardUi
 @onready var progress_bar: ProgressBar = $Left/VBoxContainer/ProgressBar
 @onready var reward: Label = $Left/VBoxContainer/Reward
 @onready var reward_2: Label = $Left/VBoxContainer/Reward2
-@onready var achivement_manager: AchivementManager = $AchivementManager
+@export var achivement_manager: AchivementManager
 @onready var texture_rect: TextureRect = $Left/VBoxContainer/TextureRect
 var pick_pictures : PicturePick
 
@@ -27,7 +27,7 @@ var value_percent : float = 0.0 :
 		progress_bar.value = value_percent	
 		if value_percent >= 1.0:
 			assure.disabled = false
-			achivement_manager.achive(building_resource)
+			achivement_manager.achieve(building_resource)
 			
 
 @export var per_fame_need : int = 15
@@ -50,6 +50,10 @@ func _ready() -> void:
 	super()
 	assure.disabled = true
 	progress_bar.value = 0.0
+	
+	if not achivement_manager:
+		push_error("reward_ui achivement_manager is empty")
+		return
 	
 
 func ui_exit() -> void:

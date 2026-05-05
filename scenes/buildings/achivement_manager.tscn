@@ -19,13 +19,19 @@
 [ext_resource type="Resource" uid="uid://bln3d81v1l4yw" path="res://resource/building_resource/theme_resource/top_5.tres" id="15_jmfrl"]
 [ext_resource type="Resource" uid="uid://1nayo7p1gtok" path="res://resource/building_resource/theme_resource/middle_5.tres" id="16_0yqsg"]
 [ext_resource type="PackedScene" uid="uid://b5rxknicvviqi" path="res://scenes/ui/base_ui/pop_up_ui.tscn" id="17_cjkjp"]
+[ext_resource type="Texture2D" uid="uid://jxec72dqntvv" path="res://sprits/buildings/flow/勘探.png" id="19_43tue"]
+[ext_resource type="Resource" uid="uid://r5mheice0i3f" path="res://resource/building_resource/flow_holder_theme.tres" id="19_auajv"]
+[ext_resource type="Texture2D" uid="uid://dc40ay7kwysvv" path="res://sprits/buildings/flow/工料.png" id="20_537qg"]
+[ext_resource type="Resource" uid="uid://dbxjxmnk7bhmr" path="res://resource/building_resource/flow_holder_theme2.tres" id="20_jgl4y"]
+[ext_resource type="Texture2D" uid="uid://bjppo0vsnycml" path="res://sprits/buildings/flow/建造.png" id="21_kntpl"]
+[ext_resource type="Resource" uid="uid://c1c4gv32wmxhk" path="res://resource/building_resource/flow_holder_theme3.tres" id="21_nh3q8"]
 
 [node name="AchivementManager" type="Node" unique_id=1552460596]
 script = ExtResource("1_ft3rd")
 
-[node name="Container" type="Node" parent="." unique_id=2100262434]
+[node name="BuildingAchievement" type="Node" parent="." unique_id=2100262434]
 
-[node name="Achivement" type="Node" parent="Container" unique_id=1765454118]
+[node name="Achivement" type="Node" parent="BuildingAchievement" unique_id=1765454118]
 script = ExtResource("2_i17ke")
 achievement_name = "半坡遗风"
 top_theme = ExtResource("3_1leff")
@@ -35,7 +41,7 @@ description = "解锁了华夏大地上最原始的建筑形态之一。井干�
 compare = ExtResource("6_3sxko")
 metadata/_custom_type_script = "uid://bhs51v8mebwbt"
 
-[node name="Achivement2" type="Node" parent="Container" unique_id=1376368652]
+[node name="Achivement2" type="Node" parent="BuildingAchievement" unique_id=1376368652]
 script = ExtResource("2_i17ke")
 achievement_name = "河姆渡影"
 top_theme = ExtResource("3_1leff")
@@ -45,7 +51,7 @@ description = "再现了江南水乡的建筑先祖。下层架空的干栏式�
 compare = ExtResource("6_3sxko")
 metadata/_custom_type_script = "uid://bhs51v8mebwbt"
 
-[node name="Achivement3" type="Node" parent="Container" unique_id=483422127]
+[node name="Achivement3" type="Node" parent="BuildingAchievement" unique_id=483422127]
 script = ExtResource("2_i17ke")
 achievement_name = "南禅古韵"
 top_theme = ExtResource("7_575qu")
@@ -55,7 +61,7 @@ description = "重现了中国现存最古老的唐代木构建筑——山西�
 compare = ExtResource("11_jmfrl")
 metadata/_custom_type_script = "uid://bhs51v8mebwbt"
 
-[node name="Achivement4" type="Node" parent="Container" unique_id=403953906]
+[node name="Achivement4" type="Node" parent="BuildingAchievement" unique_id=403953906]
 script = ExtResource("2_i17ke")
 achievement_name = "佛光真容"
 top_theme = ExtResource("10_575qu")
@@ -65,65 +71,117 @@ description = "完美复刻了被梁思成先生誉为“中国第一国宝”�
 compare = ExtResource("11_jmfrl")
 metadata/_custom_type_script = "uid://bhs51v8mebwbt"
 
-[node name="Achivement5" type="Node" parent="Container" unique_id=2045674989]
+[node name="Achivement5" type="Node" parent="BuildingAchievement" unique_id=2045674989]
 script = ExtResource("2_i17ke")
 achievement_name = "长安坊墙"
 top_theme = ExtResource("11_tplhp")
 middle_theme = ExtResource("12_cjkjp")
 buttom_theme = ExtResource("9_l1g17")
-description = "致敬了唐代长安城中星罗棋布的里坊与民居。硬山顶与穿斗式构架的组合，是普通百姓最温暖的家，构成了当时世界上最繁华都市的底色。"
+description = "致敬了唐代长安城中星罗棋布的里坊与民居。硬山顶与穿斗式构架的组合，是普通百姓最温暖的家，构成了当时世界上最繁华都市的底色"
 compare = ExtResource("11_jmfrl")
 metadata/_custom_type_script = "uid://bhs51v8mebwbt"
 
-[node name="Achivement6" type="Node" parent="Container" unique_id=1866450593]
+[node name="Achivement6" type="Node" parent="BuildingAchievement" unique_id=1866450593]
 script = ExtResource("2_i17ke")
 achievement_name = "云冈佛光"
 top_theme = ExtResource("10_575qu")
 middle_theme = ExtResource("8_c60iy")
 buttom_theme = ExtResource("13_py1st")
-description = "灵感源于山西大同云冈石窟的窟檐建筑。石刻台基与木构屋顶的结合，象征佛教艺术与中国传统建筑的完美融合。"
+description = "灵感源于山西大同云冈石窟的窟檐建筑。石刻台基与木构屋顶的结合，象征佛教艺术与中国传统建筑的完美融合"
 compare = ExtResource("11_jmfrl")
 metadata/_custom_type_script = "uid://bhs51v8mebwbt"
 
-[node name="Achivement7" type="Node" parent="Container" unique_id=3793483]
+[node name="Achivement7" type="Node" parent="BuildingAchievement" unique_id=3793483]
 script = ExtResource("2_i17ke")
 achievement_name = "紫禁之巅"
 top_theme = ExtResource("10_575qu")
 middle_theme = ExtResource("8_c60iy")
 buttom_theme = ExtResource("14_3sxko")
-description = "解锁了至高无上的皇家气派。以北京故宫太和殿为蓝本，重檐庑殿顶立于三层汉白玉须弥座之上，是中国古代官式建筑的巅峰之作。"
+description = "解锁了至高无上的皇家气派。以北京故宫太和殿为蓝本，重檐庑殿顶立于三层汉白玉须弥座之上，是中国古代官式建筑的巅峰之作"
 compare = ExtResource("11_jmfrl")
 metadata/_custom_type_script = "uid://bhs51v8mebwbt"
 
-[node name="Achivement8" type="Node" parent="Container" unique_id=1601828317]
+[node name="Achivement8" type="Node" parent="BuildingAchievement" unique_id=1601828317]
 script = ExtResource("2_i17ke")
 achievement_name = "天坛祈年"
 top_theme = ExtResource("15_jmfrl")
 middle_theme = ExtResource("8_c60iy")
 buttom_theme = ExtResource("14_3sxko")
-description = "再现了北京天坛祈年殿的“天人合一”之境。三重檐圆形攒尖顶，立于层层须弥座之上，是古代帝王与上天对话的神圣场所。"
+description = "再现了北京天坛祈年殿的“天人合一”之境。三重檐圆形攒尖顶，立于层层须弥座之上，是古代帝王与上天对话的神圣场所"
 compare = ExtResource("11_jmfrl")
 metadata/_custom_type_script = "uid://bhs51v8mebwbt"
 
-[node name="Achivement9" type="Node" parent="Container" unique_id=1187574835]
+[node name="Achivement9" type="Node" parent="BuildingAchievement" unique_id=1187574835]
 script = ExtResource("2_i17ke")
 achievement_name = "滕王高阁"
 top_theme = ExtResource("7_575qu")
 middle_theme = ExtResource("16_0yqsg")
 buttom_theme = ExtResource("13_py1st")
-description = "重现了王勃笔下“层峦耸翠，上出重霄”的滕王阁盛景。歇山顶与穿梁结合的灵活构架，创造了复杂的多层楼阁，成就了千古名篇。"
+description = "重现了王勃笔下“层峦耸翠，上出重霄”的滕王阁盛景。歇山顶与穿梁结合的灵活构架，创造了复杂的多层楼阁，成就了千古名篇"
 compare = ExtResource("11_jmfrl")
 metadata/_custom_type_script = "uid://bhs51v8mebwbt"
 
-[node name="Achivement10" type="Node" parent="Container" unique_id=722230658]
+[node name="Achivement10" type="Node" parent="BuildingAchievement" unique_id=722230658]
 script = ExtResource("2_i17ke")
 achievement_name = "岳阳名楼"
 top_theme = ExtResource("15_jmfrl")
 middle_theme = ExtResource("8_c60iy")
 buttom_theme = ExtResource("13_py1st")
-description = "致敬了“洞庭天下水，岳阳天下楼”。其独特的盔顶是攒尖顶的华丽变体，气势恢宏，承载着范仲淹“先天下之忧而忧”的家国情怀。
+description = "致敬了“洞庭天下水，岳阳天下楼”。其独特的盔顶是攒尖顶的华丽变体，气势恢宏，承载着范仲淹“先天下之忧而忧”的家国情怀
 "
 compare = ExtResource("11_jmfrl")
+metadata/_custom_type_script = "uid://bhs51v8mebwbt"
+
+[node name="flow1" type="Node" parent="BuildingAchievement" unique_id=359055997]
+script = ExtResource("2_i17ke")
+achievement_name = "相地观山"
+top_theme = ExtResource("19_auajv")
+middle_theme = ExtResource("20_jgl4y")
+buttom_theme = ExtResource("21_nh3q8")
+description = "首次勘探地形，以罗盘辨方正位。东晋郭璞著《葬书》言：“风水之法，得水为上，藏风次之。”自此，你的每一栋建筑都有了立足的根基
+"
+texture = ExtResource("19_43tue")
+compare = ExtResource("6_3sxko")
+achievement_type = 1
+metadata/_custom_type_script = "uid://bhs51v8mebwbt"
+
+[node name="flow2" type="Node" parent="BuildingAchievement" unique_id=1480549722]
+script = ExtResource("2_i17ke")
+achievement_name = "三分定式"
+top_theme = ExtResource("19_auajv")
+middle_theme = ExtResource("20_jgl4y")
+buttom_theme = ExtResource("21_nh3q8")
+description = "首次敲定屋顶、屋身、台基的搭配。北宋喻皓《木经》有云：“凡屋有三分……自梁以上为上分，地以上为中分，阶为下分。”你继承的正是千年的营造法度
+"
+texture = ExtResource("20_537qg")
+compare = ExtResource("6_3sxko")
+achievement_type = 1
+metadata/_custom_type_script = "uid://bhs51v8mebwbt"
+
+[node name="flow3" type="Node" parent="BuildingAchievement" unique_id=275462811]
+script = ExtResource("2_i17ke")
+achievement_name = "毫厘成章"
+top_theme = ExtResource("19_auajv")
+middle_theme = ExtResource("20_jgl4y")
+buttom_theme = ExtResource("21_nh3q8")
+description = "首次核算建筑所需木石砖瓦与人工。李诫在《营造法式》中写：“凡构屋之制，皆以材为祖。”精准算料，是匠人从技艺走向艺术的必经之路
+"
+texture = ExtResource("20_537qg")
+compare = ExtResource("6_3sxko")
+achievement_type = 1
+metadata/_custom_type_script = "uid://bhs51v8mebwbt"
+
+[node name="flow4" type="Node" parent="BuildingAchievement" unique_id=1091005134]
+script = ExtResource("2_i17ke")
+achievement_name = "上梁大吉"
+top_theme = ExtResource("19_auajv")
+middle_theme = ExtResource("20_jgl4y")
+buttom_theme = ExtResource("21_nh3q8")
+description = "首次完成一座建筑的建造，立柱架梁，覆瓦筑基。古时上梁须择良辰、祭鲁班、披红绸，一锤定音，万丈高楼始于此
+"
+texture = ExtResource("21_kntpl")
+compare = ExtResource("6_3sxko")
+achievement_type = 1
 metadata/_custom_type_script = "uid://bhs51v8mebwbt"
 
 [node name="PopUpUi" parent="." unique_id=1238429742 instance=ExtResource("17_cjkjp")]

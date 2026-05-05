@@ -24,6 +24,7 @@ metadata/_custom_type_script = "uid://wguvxiry36og"
 
 [node name="BuildUi" unique_id=1059655934 instance=ExtResource("1_y3p7t")]
 script = ExtResource("2_3ygew")
+achievement_name = "相地观山"
 _progress_curve = ExtResource("3_d4udc")
 flow_pic = ExtResource("4_ayord")
 time = 5.0
