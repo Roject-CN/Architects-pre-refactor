@@ -24,7 +24,7 @@ var current_building : Building
 
 @export var pick_pictires : PicturePick
 # 场景引用
-const start_scene: PackedScene = preload("res://scenes/start.tscn")
+const start_scene: PackedScene = preload("uid://d1uh7vuy5se2p")
 
 
 func _ready() -> void:
@@ -69,7 +69,7 @@ func _on_employee_pressed() -> void:
 # 员工列表按钮按下
 func _on_craftsmen_list_pressed() -> void:
 	# 加载员工列表场景
-	var craftsmen_list_scene_path = "res://scenes/ui/craftsmen/craftsmen_list.tscn"
+	var craftsmen_list_scene_path = "uid://b8t0oyc17v6aq"
 	
 	# 检查场景文件是否存在
 	if not FileAccess.file_exists(craftsmen_list_scene_path):
@@ -145,7 +145,7 @@ func _on_building_pressed() -> void:
 
 func _on_review_pressed() -> void:
 	# 加载history场景
-	var history_scene_path = "res://scenes/ui/history.tscn"
+	var history_scene_path = "uid://c8ymf6abomyos"
 	
 	# 检查场景文件是否存在
 	if not FileAccess.file_exists(history_scene_path):
@@ -183,7 +183,7 @@ func _on_review_pressed() -> void:
 #主题科技树解锁
 func _on_theme_pressed() -> void:
 	button_menu.visible = false
-	var theme_tree := preload("res://scenes/ui/theme_tree/theme_tree.tscn").instantiate() as ThemeTree
+	var theme_tree := preload("uid://3un3f3lwldrm").instantiate() as ThemeTree
 	if not theme_tree.theme_tree_quit.is_connected(theme_tree_quited):
 		theme_tree.theme_tree_quit.connect(theme_tree_quited)
 	add_child(theme_tree)
@@ -249,7 +249,7 @@ func _on_quit_pressed() -> void:
 			Global.save_save_resource()
 			pop_up_ui.pop_up_information("游戏保存", "游戏进度已保存，即将返回主菜单")
 			pop_up_ui._pressed.connect(func() :
-				var start_scene_path = "res://scenes/start.tscn"
+				var start_scene_path = "uid://d1uh7vuy5se2p"
 				if FileAccess.file_exists(start_scene_path):
 					get_tree().change_scene_to_file(start_scene_path)
 				, CONNECT_ONE_SHOT)	

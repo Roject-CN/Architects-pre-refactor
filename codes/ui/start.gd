@@ -10,7 +10,7 @@ class_name StartScene
 @onready var pop_up_ui: PopUpUi = $PopUpUi
 
 # 场景引用
-const main_scene: PackedScene = preload("res://scenes/main.tscn")
+const main_scene: PackedScene = preload("uid://q0k0qyp1t1mw")
 var save_manager_scene: PackedScene
 
 # DeepSeek-V4-Pro，2026-04-30
@@ -36,7 +36,7 @@ func _ready() -> void:
 	pop_up_ui.hide()
 # 加载存档管理场景
 func _load_save_manager_scene() -> void:
-	var scene_path = "res://scenes/ui/save_manager.tscn"
+	var scene_path = "uid://bd2hhxhwus8r1"
 	
 	# 检查场景文件是否存在
 	if not FileAccess.file_exists(scene_path):
@@ -222,7 +222,7 @@ func _on_saves_pressed() -> void:
 # 设置按钮
 func _on_settings_pressed() -> void:
 	# 加载设置场景
-	var settings_scene_path = "res://scenes/ui/settings.tscn"
+	var settings_scene_path = "uid://bm2kg66g1nt4p"
 	
 	# 检查场景文件是否存在
 	if not FileAccess.file_exists(settings_scene_path):
