@@ -58,6 +58,7 @@ func show_theme_resources(resources : Array[ThemeResource]) -> void:
 	for resource in resources:
 		var button := Button.new()
 		button.text = resource.name
+		buttom.custom_minimum_size.x = 100
 		button.pressed.connect(assign_theme_resource.bind(resource.type, resource))
 		r_container.add_child(button)
 	

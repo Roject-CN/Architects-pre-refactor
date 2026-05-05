@@ -24,7 +24,6 @@ enum STATE {
 #临时表示名字
 @onready var label: Label = $VBoxContainer/Label
 
-
 const RED := preload("uid://dn6l2h4tj2ptl")
 const WHITE := preload("uid://18uncdjs64k6")
 

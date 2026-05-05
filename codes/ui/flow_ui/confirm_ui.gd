@@ -29,6 +29,7 @@ func ui_enter() -> void:
 	#生成左边容器的员工列表
 	for resource : CraftsmanResource in craftsmen_resource:
 		var button = Button.new()
+		button.custom_minimum_size.x = 100
 		button.text = resource.name 
 		button.pressed.connect(assign_new_craftman.bind(resource))
 		button.pressed.connect((func (b : Button): b.grab_focus()).bind(button))

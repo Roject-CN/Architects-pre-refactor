@@ -11,6 +11,8 @@ const _craftsman_character_scene := preload("uid://drpfqa35ayqn8")
 
 @export var _spawn_position : Marker2D
 @export var _workplace_position : Array[Marker2D]
+var _workplace_index : Array[bool]
+#为true时有人 false没人
 @export var main_time : MainTime
 var current_list : Array[CraftsmanCharacter]
 
@@ -18,7 +20,12 @@ var current_list : Array[CraftsmanCharacter]
 @onready var _max_amount := _workplace_position.size()
 
 #CraftsmanCharacter实体是添加到 CraftsmanManager节点下
-#signal current_list_changed()
+func _ready() -> void:
+		if _workplace_position and _workplace_position.size() > 0:
+			for i in _workplace_position:
+				_workplace_index.append(false)
+		else:
+			return
 #添加新的员工
 # immediate_sync: 是否立即同步到存档（默认为true，恢复数据时设为false）
 func append_new_craftsman(resource : CraftsmanResource, immediate_sync: bool = true) -> void:
@@ -38,28 +45,25 @@ func append_new_craftsman(resource : CraftsmanResource, immediate_sync: bool = t
 	add_child(craftsman_character)
 	
 	# 安全检查：确保位置引用不为空
-	if _workplace_position and _workplace_position.size() > 0:
-		craftsman_character.workplaces = _workplace_position
-		var index = find_character_index_by_resource(resource)
-		if index < _workplace_position.size():
-			craftsman_character.workplace = _workplace_position[index]
-		else:
-			push_warning("CraftsmanManager: workplace index out of bounds, using first position")
-			craftsman_character.workplace = _workplace_position[0]
-	else:
-		push_warning("CraftsmanManager: _workplace_position is empty")
+
+	craftsman_character.workplaces = _workplace_position
+	craftsman_character.restplace = _spawn_position
 	
-	if _spawn_position:
-		craftsman_character.restplace = _spawn_position
-	else:
-		push_warning("CraftsmanManager: _spawn_position is null")
-	
+	var index := _workplace_index.find(false)
+	_workplace_index[index] = true
+	craftsman_character.workplace = _workplace_position[index]
+	craftsman_character.tree_exited.connect(func():
+		_workplace_index[index] = false, CONNECT_ONE_SHOT
+		)
 	# 连接主时间信号
 	main_time.request_go_to_rest.connect(craftsman_character.go_to_rest)
 	main_time.request_go_to_work.connect(craftsman_character.go_to_work)
 	
 	# 让员工开始工作
-	craftsman_character.go_to_work()
+	if main_time.working:
+		craftsman_character.go_to_work()
+	else:
+		craftsman_character.go_to_rest()
 	
 	# 根据参数决定是否立即同步员工数据到全局存档
 	if immediate_sync:
@@ -75,7 +79,7 @@ func _sync_to_global_save() -> void:
 		for character in current_list:
 			if character.craftman_resource:
 				Global.save_resource.start_list.append(character.craftman_resource)
-		print(Global.save_resource.start_list.size())
+
 		# 立即保存到文件
 		Global.save_save_resource()
 	else:
@@ -88,10 +92,12 @@ func delete_craftsman(resource : CraftsmanResource) -> void:
 		var character = current_list[i]
 		if character.craftman_resource == resource:
 			# 从场景中移除角色节点
+			
 			if character.get_parent():
 				character.queue_free()
 			# 从列表中移除
 			current_list.remove_at(i)
+			
 			break  # 找到后立即退出循环
 
 #返回员工们当前的状态（在工作还是在休息中）
@@ -133,11 +139,3 @@ func craftsmans_character_process(delta : float) -> void:
 	for craftsman_character : CraftsmanCharacter in self.get_children():
 		#执行craftsman_character的逻辑 比如寻路导航 消耗精力值
 		craftsman_character.craftsman_character_process(delta)
-
-func find_character_index_by_resource(resource: CraftsmanResource) -> int:
-	for i in current_list.size():
-		var character:= current_list[i]
-		if character.craftman_resource == resource:
-			return i
-	assert(true, "character_index is -1")
-	return -1
