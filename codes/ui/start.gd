@@ -57,6 +57,7 @@ func _update_continue_button() -> void:
 	if latest_save:
 		continue_button.disabled = false
 		continue_button.tooltip_text = "继续游戏 - " + latest_save["name"]
+		continue_button.get_tooltip()
 	else:
 		continue_button.disabled = true
 		continue_button.tooltip_text = "没有找到存档文件"

@@ -113,12 +113,33 @@ func _create_save_item(save_data: Dictionary) -> HBoxContainer:
 	var button_container = HBoxContainer.new()
 	button_container.add_theme_constant_override("separation", 5)
 	
+	var delete_style = StyleBoxFlat.new()
+	delete_style.corner_radius_top_left = 4
+	delete_style.corner_radius_top_right = 4
+	delete_style.corner_radius_bottom_left = 4
+	delete_style.corner_radius_bottom_right = 4
+	
+	
+	
 	# 加载按钮
 	var load_button = Button.new()
 	load_button.text = "加载"
 	load_button.custom_minimum_size = Vector2(60, 30)
+	
+	delete_style.bg_color = Color(0.215, 0.563, 0.317, 1.0)
+	load_button.add_theme_stylebox_override("normal", delete_style.duplicate(true))
+	
+	delete_style.bg_color = Color(0.279, 0.725, 0.412, 1.0)
+	load_button.add_theme_stylebox_override("hover", delete_style.duplicate(true))
+	
+	delete_style.bg_color = Color(0.089, 0.269, 0.141, 1.0)
+	load_button.add_theme_stylebox_override("pressed", delete_style.duplicate(true))
+	
 	load_button.pressed.connect(_on_load_pressed.bind(save_data))
 	button_container.add_child(load_button)
+	
+	
+	
 	
 	# 删除按钮
 	var delete_button = Button.new()
@@ -126,13 +147,15 @@ func _create_save_item(save_data: Dictionary) -> HBoxContainer:
 	delete_button.custom_minimum_size = Vector2(60, 30)
 	
 	# 删除按钮样式（红色警示）
-	var delete_style = StyleBoxFlat.new()
-	delete_style.bg_color = Color(0.8, 0.3, 0.3)
-	delete_style.corner_radius_top_left = 4
-	delete_style.corner_radius_top_right = 4
-	delete_style.corner_radius_bottom_left = 4
-	delete_style.corner_radius_bottom_right = 4
-	delete_button.add_theme_stylebox_override("normal", delete_style)
+	delete_style.bg_color = Color(0.664, 0.226, 0.23, 1.0)
+	delete_button.add_theme_stylebox_override("normal", delete_style.duplicate(true))
+	
+	delete_style.bg_color = Color(0.94, 0.541, 0.522, 1.0)
+	delete_button.add_theme_stylebox_override("hover", delete_style.duplicate(true))
+	
+	delete_style.bg_color = Color(0.339, 0.094, 0.098, 1.0)
+	delete_button.add_theme_stylebox_override("pressed", delete_style.duplicate(true))
+	
 	
 	delete_button.pressed.connect(_on_delete_pressed.bind(save_data))
 	button_container.add_child(delete_button)
