@@ -4,14 +4,6 @@
 [ext_resource type="Script" uid="uid://div4uigqj6jh8" path="res://codes/ui/base_ui/pop_up_ui.gd" id="1_j1bxd"]
 [ext_resource type="Texture2D" uid="uid://bb1llwn0kn1pm" path="res://icon.svg" id="3_3wx5s"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3wx5s"]
-bg_color = Color(0.7921569, 0.5411765, 0.21176471, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.8261941, 0.7278278, 0.72312635, 1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_2hswq"]
 font_size = 12
 
@@ -38,7 +30,6 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3wx5s")
 
 [node name="Title" type="Label" parent="Panel" unique_id=1016933190]
 layout_mode = 1
@@ -70,19 +61,30 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Button" type="Button" parent="Panel" unique_id=1156323215]
-custom_minimum_size = Vector2(100, 0)
+[node name="Buttons" type="HBoxContainer" parent="Panel" unique_id=1003727234]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.95
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.95
-offset_left = -4.0
-offset_top = -8.0
-offset_right = 4.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+offset_right = 40.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="Cancel" type="Button" parent="Panel/Buttons" unique_id=300762755]
+visible = false
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "取消"
+
+[node name="Button" type="Button" parent="Panel/Buttons" unique_id=1156323215]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 4
 text = "确认"
 
 [node name="TextureRect" type="TextureRect" parent="Panel" unique_id=1538085291]
@@ -121,4 +123,5 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/Buttons/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="Panel/Buttons/Button" to="." method="_on_button_pressed"]

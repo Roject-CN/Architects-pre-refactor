@@ -43,4 +43,4 @@ func achive(resource : BuildingResource) -> void:
 		new.name = achivement.achievement_name
 		new.description = achivement.description
 		
-		Global.save_resource.achivements.append(new)
+		Global.save_resource.achievements.append(new)

@@ -5,6 +5,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_ev873"]
 font_size = 18
+font_color = Color(0, 0, 0, 1)
 
 [node name="InformationUi" type="Control" unique_id=206980941]
 layout_mode = 3

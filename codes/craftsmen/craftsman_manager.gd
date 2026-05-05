@@ -74,9 +74,8 @@ func _sync_to_global_save() -> void:
 		# 将当前员工列表同步到存档
 		for character in current_list:
 			if character.craftman_resource:
-				if Global.save_resource.start_list.has(character.craftman_resource):
-					Global.save_resource.start_list.append(character.craftman_resource)
-		
+				Global.save_resource.start_list.append(character.craftman_resource)
+		print(Global.save_resource.start_list.size())
 		# 立即保存到文件
 		Global.save_save_resource()
 	else:

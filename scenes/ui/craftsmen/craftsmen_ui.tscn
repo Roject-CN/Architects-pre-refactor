@@ -7,6 +7,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_c7lko"]
 font_size = 12
+font_color = Color(0, 0, 0, 1)
 
 [node name="CraftmenUi" unique_id=1059655934 instance=ExtResource("1_m7yh4")]
 offset_left = -1.0

@@ -53,7 +53,7 @@ func _show_empty_state(container: VBoxContainer) -> void:
 # 创建建筑项
 func _create_building_item(building: BuildingResource) -> Control:
 	var container = HBoxContainer.new()
-	container.add_theme_constant_override("separation", 15)
+	container.add_theme_constant_override("separation", 8)
 	
 	# 添加背景样式
 	var stylebox = StyleBoxFlat.new()

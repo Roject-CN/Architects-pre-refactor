@@ -7,6 +7,7 @@ class_name StartScene
 @onready var saves_button: Button = $VBoxContainer/Saves
 @onready var settings_button: Button = $VBoxContainer/Settings
 @onready var quit_button: Button = $VBoxContainer/Quit
+@onready var pop_up_ui: PopUpUi = $PopUpUi
 
 # 场景引用
 const main_scene: PackedScene = preload("res://scenes/main.tscn")
@@ -28,7 +29,8 @@ func _ready() -> void:
 	
 	# 扫描可用存档
 	_scan_available_saves()
-
+	
+	pop_up_ui.hide()
 # 加载存档管理场景
 func _load_save_manager_scene() -> void:
 	var scene_path = "res://scenes/ui/save_manager.tscn"
@@ -267,16 +269,10 @@ func _on_quit_pressed() -> void:
 
 # 显示退出确认对话框
 func _show_quit_confirmation() -> void:
-	var dialog = AcceptDialog.new()
-	dialog.title = "退出游戏"
-	dialog.dialog_text = "确定要退出游戏吗？"
-	
-	dialog.confirmed.connect(func():
-		get_tree().quit()
-	)
-	
-	add_child(dialog)
-	dialog.popup_centered()
+	pop_up_ui.pop_up_information("退出游戏", "确定要退出游戏吗？", false)
+	pop_up_ui._pressed.connect(func():
+		get_tree().quit(), CONNECT_ONE_SHOT)
+
 
 # 存档被选择
 func _on_save_selected(save_data: Dictionary) -> void:
@@ -351,15 +347,3 @@ func _clean_save_directory() -> void:
 	var dir = DirAccess.open("user://")
 	if dir and dir.dir_exists("saves"):
 		dir.remove("saves")
-
-# 显示确认对话框
-func _show_confirmation_dialog(title: String, message: String, callback: String) -> void:
-	# 这里可以添加自定义确认对话框
-	# 暂时直接调用回调
-	call(callback)
-
-# 显示错误对话框
-func _show_error_dialog(title: String, message: String) -> void:
-	# 这里可以添加自定义错误对话框
-	# 暂时使用控制台显示错误
-	push_error(title + ": " + message)

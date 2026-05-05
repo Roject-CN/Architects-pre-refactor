@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bd52ptm420lx6" path="res://codes/ui/start.gd" id="1_jaeev"]
 [ext_resource type="Texture2D" uid="uid://dfh8o71t0a8y2" path="res://sprits/game素材/start.jpg" id="1_u80x2"]
+[ext_resource type="PackedScene" uid="uid://b5rxknicvviqi" path="res://scenes/ui/base_ui/pop_up_ui.tscn" id="3_bodal"]
 
 [node name="Start" type="TextureRect" unique_id=1149516320]
 anchors_preset = 15
@@ -13,35 +14,46 @@ texture = ExtResource("1_u80x2")
 expand_mode = 2
 script = ExtResource("1_jaeev")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2003565978]
+[node name="VBoxContainer" type="HBoxContainer" parent="." unique_id=2025611535]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.9
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -28.0
-offset_top = -171.0
-offset_right = 28.0
+anchor_bottom = 0.9
+offset_left = -220.0
+offset_top = -30.0
+offset_right = 220.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_constants/separation = 10
+alignment = 1
 
 [node name="New" type="Button" parent="VBoxContainer" unique_id=1588916268]
+custom_minimum_size = Vector2(80, 30)
 layout_mode = 2
 text = "新游戏"
 
 [node name="Continue" type="Button" parent="VBoxContainer" unique_id=801479318]
+custom_minimum_size = Vector2(80, 30)
 layout_mode = 2
 text = "继续"
 
 [node name="Saves" type="Button" parent="VBoxContainer" unique_id=1143831947]
+custom_minimum_size = Vector2(80, 30)
 layout_mode = 2
 text = "存档"
 
 [node name="Settings" type="Button" parent="VBoxContainer" unique_id=385792474]
+custom_minimum_size = Vector2(80, 30)
 layout_mode = 2
 text = "设置"
 
 [node name="Quit" type="Button" parent="VBoxContainer" unique_id=1413217303]
+custom_minimum_size = Vector2(80, 30)
 layout_mode = 2
 text = "退出"
+
+[node name="PopUpUi" parent="." unique_id=1238429742 instance=ExtResource("3_bodal")]
+visible = false
+layout_mode = 1

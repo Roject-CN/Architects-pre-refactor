@@ -19,15 +19,22 @@ anchor_right = 0.9
 anchor_bottom = 0.9
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=2011748257]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=2011748258]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=2011748259]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "工匠列表"
 horizontal_alignment = 1
 
@@ -44,6 +51,7 @@ theme_override_constants/separation = 0
 layout_mode = 2
 
 [node name="HSeparator2" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer" unique_id=2011748265]
+visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=2011748262]

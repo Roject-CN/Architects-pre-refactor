@@ -17,6 +17,17 @@
 [ext_resource type="Resource" uid="uid://bl20l4gvpyqq4" path="res://resource/building_resource/theme_resource/buttom_2.tres" id="14_5udqs"]
 [ext_resource type="Resource" uid="uid://dtjs0gvuvirfy" path="res://resource/building_resource/theme_resource/buttom_3.tres" id="15_p73mq"]
 [ext_resource type="Resource" uid="uid://poweux62q54i" path="res://resource/building_resource/theme_resource/buttom_4.tres" id="16_j8o0d"]
+[ext_resource type="Texture2D" uid="uid://8lcjugl3a1jt" path="res://sprits/ui部分/通用选项界面.png" id="18_np6wx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2ifl"]
+atlas = ExtResource("18_np6wx")
+region = Rect2(270, 10, 2020, 1260)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_66vn4"]
+texture = SubResource("AtlasTexture_b2ifl")
+expand_margin_left = 20.0
+expand_margin_right = 20.0
+region_rect = Rect2(0, 0, 2020, 1260)
 
 [node name="ThemeTree" type="Control" unique_id=1238132458]
 layout_mode = 3
@@ -216,6 +227,7 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_66vn4")
 
 [node name="Label" type="Label" parent="CanvasLayer/Panel" unique_id=501164977]
 layout_mode = 1

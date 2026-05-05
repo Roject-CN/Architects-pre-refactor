@@ -1,68 +1,66 @@
 [gd_scene format=3 uid="uid://bd2hhxhwus8r1"]
 
-[ext_resource type="Script" path="res://codes/ui/save_manager.gd" id="1_abcde"]
-[ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://resource/global_theme.tres" id="2_theme"]
+[ext_resource type="Script" uid="uid://b4f86v7ucdjlw" path="res://codes/ui/save_manager.gd" id="1_abcde"]
 
 [node name="SaveManager" type="Control" unique_id=2011748255]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource("1_abcde")
 
-[node name="Panel" type="Panel" parent="." unique_id=2011748256]
-anchors_preset = 8
+[node name="Panel" type="Panel" parent="." unique_id=2055310899]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.1
 anchor_top = 0.1
 anchor_right = 0.9
 anchor_bottom = 0.9
-theme = ExtResource("2_theme")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=2011748257]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 20.0
-margin_right = -20.0
-margin_bottom = -20.0
+offset_top = -21.5
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 25
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=2011748258]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=2011748259]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "存档管理"
 horizontal_alignment = 1
-add_theme_font_size_override("font_size", 24)
-
-[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer" unique_id=2011748264]
-layout_mode = 0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=2011748260]
-layout_mode = 0
-size_flags_vertical = 3
 custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="SaveList" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer" unique_id=2011748261]
-anchors_preset = 0
-anchor_right = 1.0
-anchor_bottom = 0.0
+layout_mode = 2
 
 [node name="HSeparator2" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer" unique_id=2011748265]
-layout_mode = 0
+visible = false
+layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=2011748262]
-layout_mode = 0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Control" type="Control" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2011748266]
-layout_mode = 1
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Close" type="Button" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2011748263]
-layout_mode = 0
-text = "关闭"
 custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+text = "关闭"

@@ -1,63 +1,103 @@
 [gd_scene format=3 uid="uid://bm2kg66g1nt4p"]
 
 [ext_resource type="Script" uid="uid://br442a5yxybd" path="res://codes/ui/settings.gd" id="1_7pacj"]
-[ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://resource/global_theme.tres" id="2_h175o"]
+[ext_resource type="Theme" uid="uid://c73vty6o732sb" path="res://resource/ThemeResource/global_theme.tres" id="2_h175o"]
+[ext_resource type="Theme" uid="uid://dahqtbk5r31vu" path="res://resource/ThemeResource/godot_default.tres" id="3_h175o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h175o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ptynm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ncfhn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ob3hf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4xk3x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jw8st"]
 
 [node name="Settings" type="Control" unique_id=2011748255]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_7pacj")
 
-[node name="Panel" type="Panel" parent="." unique_id=2011748256]
-layout_mode = 0
+[node name="Panel" type="Panel" parent="." unique_id=1387510396]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.1
 anchor_top = 0.1
 anchor_right = 0.9
 anchor_bottom = 0.9
+offset_top = 16.0
+offset_bottom = 16.0
 theme = ExtResource("2_h175o")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=2011748257]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=2011748258]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=2011748259]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "设置"
 horizontal_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=2011748260]
-custom_minimum_size = Vector2(0, 300)
+custom_minimum_size = Vector2(0, 270)
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="settings" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer" unique_id=2011748261]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
 
-[node name="Music" type="Label" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/settings" unique_id=1502113923]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/settings" unique_id=189887427]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="Music" type="Label" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/settings/MarginContainer" unique_id=1502113923]
 layout_mode = 2
 text = "背景音乐"
 
-[node name="HSlider" type="HSlider" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/settings/Music" unique_id=548118326]
+[node name="HSlider" type="HSlider" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/settings/MarginContainer/Music" unique_id=548118326]
 layout_mode = 0
 offset_left = 109.0
 offset_top = 4.0
 offset_right = 254.0
 offset_bottom = 20.0
 
-[node name="Button" type="CheckButton" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/settings/Music" unique_id=2064416611]
+[node name="Button" type="CheckButton" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/settings/MarginContainer/Music" unique_id=1628046864]
 layout_mode = 0
 offset_left = 263.0
 offset_top = 1.0
 offset_right = 307.0
 offset_bottom = 25.0
+theme = ExtResource("3_h175o")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_h175o")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ptynm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ncfhn")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ob3hf")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_4xk3x")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jw8st")
 
 [node name="HSeparator2" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer" unique_id=2011748265]
+visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=2011748262]

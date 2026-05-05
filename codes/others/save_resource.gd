@@ -11,13 +11,13 @@ signal time_days_changed(value : int)
 #在Global类里加载SaveResource类资源 然后可全局获取
 
 #金钱值 初始金钱和当前金钱
-@export var init_money : int = 1000
+@export var init_money : int = 10000
 @export var current_money : int = 0 : 
 	set(value):
 		current_money = value
 		current_money_changed.emit(value)
 #名气值
-@export var fame : int = 0: 
+@export var fame : int = 100: 
 	set(value):
 		fame = value
 		fame_changed.emit(value)

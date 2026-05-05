@@ -2,9 +2,26 @@
 
 [ext_resource type="StyleBox" uid="uid://d27u4frgiytfp" path="res://resource/ThemeResource/button_normal.tres" id="1_l5f3i"]
 [ext_resource type="StyleBox" uid="uid://dxifysodfhjy7" path="res://resource/ThemeResource/panel.tres" id="2_of1th"]
+[ext_resource type="Texture2D" uid="uid://b2ehk72k50y5v" path="res://sprits/ui部分/通用按钮（亮边选择.png" id="2_q7bcu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3og6h"]
+atlas = ExtResource("2_q7bcu")
+region = Rect2(320, 25, 1925, 1230)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lik8o"]
+texture = SubResource("AtlasTexture_3og6h")
+expand_margin_left = 1.0
+expand_margin_top = 5.0
+expand_margin_right = 1.0
+expand_margin_bottom = 5.0
+region_rect = Rect2(0, 0, 1925, 1230)
 
 [resource]
 Button/styles/disabled = ExtResource("1_l5f3i")
+Button/styles/focus = SubResource("StyleBoxTexture_lik8o")
+Button/styles/hover = SubResource("StyleBoxTexture_lik8o")
 Button/styles/normal = ExtResource("1_l5f3i")
 Button/styles/pressed = ExtResource("1_l5f3i")
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
 Panel/styles/panel = ExtResource("2_of1th")

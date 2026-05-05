@@ -1,8 +1,6 @@
 extends Control
 class_name AchievementDisplay
 
-signal closed()
-
 @export var achievements: Array[Achivement]
 
 @onready var close_button: Button = $Panel/MarginContainer/VBoxContainer/HBoxContainer/Close
@@ -10,11 +8,14 @@ signal closed()
 
 func _ready() -> void:
 	close_button.pressed.connect(_on_close_pressed)
+	ui_enter()
 
 ## 加载已解锁成就
 func ui_enter() -> void:
+	show()
+	
 	achievements.clear()
-	for i : BuildingResource in Global.save_resource.achivements:
+	for i : BuildingResource in Global.save_resource.achievements:
 		var ach := Achivement.new()
 		ach.achievement_name = i.name
 		ach.description = i.description
@@ -32,12 +33,13 @@ func ui_enter() -> void:
 	for ach in achievements:
 		var item := _create_achievement_item(ach)
 		achievement_list.add_child(item)
+	
+	
 
 ## 显示空状态
 func _show_empty_state() -> void:
 	var empty_label = Label.new()
 	empty_label.text = "暂无已解锁成就"
-	empty_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	empty_label.add_theme_font_size_override("font_size", 16)
 	achievement_list.add_child(empty_label)
 
@@ -46,7 +48,7 @@ func _create_achievement_item(ach: Achivement) -> Control:
 	var container = HBoxContainer.new()
 	container.add_theme_constant_override("separation", 15)
 
-	# 背景样式（与History类似，深色半透明）
+
 	var stylebox = StyleBoxFlat.new()
 	stylebox.bg_color = Color(0.18, 0.18, 0.28, 0.8)
 	stylebox.content_margin_left = 10
@@ -65,17 +67,12 @@ func _create_achievement_item(ach: Achivement) -> Control:
 		icon_rect.texture = ach.texture
 	container.add_child(icon_rect)
 
-	# 右侧信息
-	var info_vbox = VBoxContainer.new()
-	info_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	info_vbox.add_theme_constant_override("separation", 5)
-
 	# 成就名称
 	var name_label = Label.new()
 	name_label.text = ach.achievement_name
 	name_label.add_theme_font_size_override("font_size", 16)
 	name_label.modulate = Color.WHITE
-	info_vbox.add_child(name_label)
+	container.add_child(name_label)
 
 	# 成就描述
 	var desc_label = Label.new()
@@ -84,14 +81,17 @@ func _create_achievement_item(ach: Achivement) -> Control:
 	desc_label.modulate = Color(0.9, 0.9, 0.9)
 	desc_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	desc_label.custom_minimum_size = Vector2(250, 0)
-	info_vbox.add_child(desc_label)
+	container.add_child(desc_label)
 
-	container.add_child(info_vbox)
 	return container
 
 func _on_close_pressed() -> void:
-	closed.emit()
-	call_deferred("queue_free")
+	# 获取父节点（CanvasLayer）并销毁它
+	var parent_node = get_parent()
+	if parent_node and parent_node is CanvasLayer:
+		parent_node.queue_free()
+	else:
+		queue_free()
 
 ## ESC键关闭
 func _input(event: InputEvent) -> void:

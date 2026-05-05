@@ -6,9 +6,9 @@ signal closed()
 
 # UI引用
 @onready var close_button: Button = $Panel/MarginContainer/VBoxContainer/HBoxContainer/Close
-@onready var music_slider: HSlider = $Panel/MarginContainer/VBoxContainer/ScrollContainer/settings/Music/HSlider
-@onready var music_label: Label = $Panel/MarginContainer/VBoxContainer/ScrollContainer/settings/Music
-@onready var music_toggle: CheckButton = $Panel/MarginContainer/VBoxContainer/ScrollContainer/settings/Music/Button
+@onready var music_slider: HSlider = $Panel/MarginContainer/VBoxContainer/ScrollContainer/settings/MarginContainer/Music/HSlider
+@onready var music_label: Label =$Panel/MarginContainer/VBoxContainer/ScrollContainer/settings/MarginContainer/Music
+@onready var music_toggle: CheckButton = $Panel/MarginContainer/VBoxContainer/ScrollContainer/settings/MarginContainer/Music/Button
 
 func _ready() -> void:
 	# 连接信号

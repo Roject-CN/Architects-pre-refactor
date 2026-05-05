@@ -61,23 +61,11 @@ func generate() -> void:
 	if craftsman_generator:
 		# 使用当前名气值生成工匠
 		var current_fame : int = Global.save_resource.fame
-		var target_count = craftsman_generator._calculate_worker_count(current_fame)
-		
-		# 计算需要补充的工匠数量
-		var current_count = craftsmen.size()
-		var need_to_generate = target_count - current_count
-		
-		# 如果当前工匠数量已经足够，不需要生成新的
-		if need_to_generate <= 0:
-			return
-		
 		# 生成需要补充的工匠
 		var generated_craftsmen = craftsman_generator.generate_craftsman(current_fame)
-		
-		# 只添加新生成的工匠，不删除已有的
-		var added_count = 0
+
 		for craftsman in generated_craftsmen:
-			if craftsman is CraftsmanResource and added_count < need_to_generate:
+			if craftsman is CraftsmanResource:
 				# 检查是否已经存在相同的工匠（避免重复）
 				var is_duplicate = false
 				for existing_craftsman in craftsmen:
@@ -87,14 +75,12 @@ func generate() -> void:
 				
 				if not is_duplicate:
 					craftsmen.append(craftsman)
-					added_count += 1
 		
 func _on_assure_pressed() -> void:
 	#雇佣成功扣钱
 	Global.subtract_money(current_craftmen.cost)
 	
 	craftsman_manager.append_new_craftsman(current_craftmen)
-	
 	# 从列表中移除被雇佣的工匠
 	craftsmen.erase(current_craftmen)
 	

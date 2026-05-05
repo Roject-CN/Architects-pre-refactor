@@ -2,6 +2,7 @@ extends Node
 
 const building_scene := preload("uid://vi2ktm4rx1n1")
 const employee_scene := preload("uid://5fkp6mfhsu0w")
+const achievement_scene := preload("uid://bt2uyax1vxjpb")
 
 @onready var function: Node = $Function
 #building_index 意味着建造建筑的序列，目前暂时为测试用
@@ -53,19 +54,20 @@ func _on_employee_pressed() -> void:
 		pop_up_ui.pop_up_information("提醒", "员工数量超过，需要您先辞退其他的员工")
 		return
 	
-	pop_up_ui.pop_up_information("提醒", "每次招募员工需花费100元")
-	
-	if Global.save_resource.current_money >= 100:
-		pop_up_ui._pressed.connect(func():
+	pop_up_ui.pop_up_information("提醒", "每次招募员工需花费100元", false)
+	pop_up_ui._pressed.connect(func():
+		if Global.save_resource.current_money >= 100:
 			Global.save_resource.current_money -= 100
 			var employee := employee_scene.instantiate() as CraftsmenUi
 			employee.craftsman_manager = craftsman_manager
 			
 			function.add_child(employee)
-			employee.ui_enter(), CONNECT_ONE_SHOT
-			)
-	else :
-		pop_up_ui.pop_up_information("提醒", "您的金钱少于100元，所以无法招募，赚够更多的钱再来吧")
+			employee.ui_enter()
+		else :
+			pop_up_ui.pop_up_information("提醒", "您的金钱少于100元，所以无法招募，赚够更多的钱再来吧")
+		, CONNECT_ONE_SHOT)
+	
+	
 
 # 员工列表按钮按下
 func _on_craftsmen_list_pressed() -> void:
@@ -100,9 +102,6 @@ func _on_craftsmen_list_pressed() -> void:
 	# 延迟设置背景尺寸以适应视口
 	call_deferred("_set_modal_background_size", modal_background)
 	
-	# 设置员工列表界面
-	craftsmen_list_instance.z_index = 10
-	craftsmen_list_instance.mouse_filter = Control.MOUSE_FILTER_STOP
 	canvas_layer.add_child(craftsmen_list_instance)
 	
 	# 连接关闭信号以移除整个CanvasLayer
@@ -171,6 +170,14 @@ func _on_review_pressed() -> void:
 	# 使用CanvasLayer确保界面始终在最上层
 	var canvas_layer = CanvasLayer.new()
 	canvas_layer.layer = 100
+	
+	# 添加模态背景效果
+	var modal_background = ColorRect.new()
+	modal_background.color = Color(0, 0, 0, 0.7)
+	modal_background.size = Vector2(1920, 1080)
+	modal_background.mouse_filter = Control.MOUSE_FILTER_STOP
+	canvas_layer.add_child(modal_background)
+
 	canvas_layer.add_child(history_ui)
 	
 	# 添加到场景树
@@ -233,26 +240,25 @@ func _get_craftsman_manager() -> CraftsmanManager:
 
 # 退出游戏按钮 - 返回主菜单并保存游戏
 func _on_quit_pressed() -> void:
-	# 同步员工数据到存档资源
-	_sync_craftsmen_to_save()
 	
-	# 更新存档名称为当前时间（用于按最后打开时间排序）
-	_update_save_name_with_timestamp()
+	pop_up_ui.pop_up_information("退出游戏", "确定要退出游戏吗？", false)
+	pop_up_ui._pressed.connect(
+		func():
+			# 同步员工数据到存档资源
+			_sync_craftsmen_to_save()
+			# 更新存档名称为当前时间（用于按最后打开时间排序）
+			_update_save_name_with_timestamp()
+			# 保存当前游戏进度（包括建筑历史）
+			Global.save_save_resource()
+			pop_up_ui.pop_up_information("游戏保存", "游戏进度已保存，即将返回主菜单")
+			pop_up_ui._pressed.connect(func() :
+				var start_scene_path = "res://scenes/start.tscn"
+				if FileAccess.file_exists(start_scene_path):
+					get_tree().change_scene_to_file(start_scene_path)
+				, CONNECT_ONE_SHOT)	
+	, CONNECT_ONE_SHOT)
 	
-	# 保存当前游戏进度（包括建筑历史）
-	Global.save_save_resource()
 	
-	# 显示保存成功提示
-	if pop_up_ui:
-		pop_up_ui.pop_up_information("游戏保存", "游戏进度已保存，即将返回主菜单")
-	
-	# 等待短暂时间让玩家看到提示
-	await get_tree().create_timer(1.0).timeout
-	
-	# 切换到开始场景
-	var start_scene_path = "res://scenes/start.tscn"
-	if FileAccess.file_exists(start_scene_path):
-		get_tree().change_scene_to_file(start_scene_path)
 
 # 更新存档名称为当前时间戳
 func _update_save_name_with_timestamp() -> void:
@@ -291,4 +297,21 @@ func _update_save_directory(old_name: String, new_name: String) -> void:
 
 
 func _on_achievement_pressed() -> void:
-	$AchievementDisplay.ui_enter()
+	
+	var ach_ui = achievement_scene.instantiate()
+		
+	# 使用CanvasLayer确保界面始终在最上层
+	var canvas_layer = CanvasLayer.new()
+	canvas_layer.layer = 100
+	
+	# 添加模态背景效果
+	var modal_background = ColorRect.new()
+	modal_background.color = Color(0, 0, 0, 0.7)
+	modal_background.size = Vector2(1920, 1080)
+	modal_background.mouse_filter = Control.MOUSE_FILTER_STOP
+	canvas_layer.add_child(modal_background)
+	
+	canvas_layer.add_child(ach_ui)
+	# 添加到场景树
+	get_tree().root.add_child(canvas_layer)
+	

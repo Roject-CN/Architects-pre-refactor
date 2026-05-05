@@ -24,23 +24,9 @@ func _ready() -> void:
 # 设置容器间距
 func _setup_container_spacing() -> void:
 	# 获取所有容器节点
-	var panel = $Panel
-	var margin_container = $Panel/MarginContainer
 	var vbox_container = $Panel/MarginContainer/VBoxContainer
 	var scroll_container = $Panel/MarginContainer/VBoxContainer/ScrollContainer
-	
-	# 设置Panel的填充为0
-	panel.add_theme_constant_override("content_margin_left", 0)
-	panel.add_theme_constant_override("content_margin_right", 0)
-	panel.add_theme_constant_override("content_margin_top", 0)
-	panel.add_theme_constant_override("content_margin_bottom", 0)
-	
-	# 设置MarginContainer的margin为0
-	margin_container.add_theme_constant_override("margin_left", 0)
-	margin_container.add_theme_constant_override("margin_right", 0)
-	margin_container.add_theme_constant_override("margin_top", 0)
-	margin_container.add_theme_constant_override("margin_bottom", 0)
-	
+
 	# 设置VBoxContainer（外层）的间距为0
 	vbox_container.add_theme_constant_override("separation", 0)
 	
@@ -151,7 +137,7 @@ func _create_craftsman_card(craftsman: CraftsmanResource) -> Control:
 	craftsman_name_label.text = craftsman.name
 	craftsman_name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	craftsman_name_label.add_theme_font_size_override("font_size", 16)
-	craftsman_name_label.add_theme_color_override("font_color", Color.WHITE)
+	craftsman_name_label.add_theme_color_override("font_color", Color.BLACK)
 	name_container.add_child(craftsman_name_label)
 	
 	# 等级标签
@@ -159,7 +145,7 @@ func _create_craftsman_card(craftsman: CraftsmanResource) -> Control:
 	level_label.text = "等级 " + str(craftsman.level) + "/" + str(CraftsmanResource._LEVEL_LIMIT)
 	level_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	level_label.add_theme_font_size_override("font_size", 12)
-	level_label.add_theme_color_override("font_color", Color(0.8, 0.8, 0.8))
+	level_label.add_theme_color_override("font_color", Color(0.205, 0.205, 0.205, 1.0))
 	name_container.add_child(level_label)
 	
 	card_container.add_child(name_container)
@@ -219,11 +205,11 @@ func _create_craftsman_card(craftsman: CraftsmanResource) -> Control:
 	var upgrade_cost_label = Label.new()
 	if craftsman.level >= CraftsmanResource._LEVEL_LIMIT:
 		upgrade_cost_label.text = "已满级"
-		upgrade_cost_label.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
+		upgrade_cost_label.add_theme_color_override("font_color", Color(0.311, 0.311, 0.311, 1.0))
 	else:
 		var upgrade_cost = craftsman.level * 100
 		upgrade_cost_label.text = "升级费用: " + str(upgrade_cost) + " 金币"
-		upgrade_cost_label.add_theme_color_override("font_color", Color(0.8, 0.8, 0.2))
+		upgrade_cost_label.add_theme_color_override("font_color", Color(0.446, 0.446, 0.099, 1.0))
 	upgrade_cost_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	upgrade_cost_label.add_theme_font_size_override("font_size", 12)
 	card_container.add_child(upgrade_cost_label)
@@ -257,23 +243,23 @@ func _create_craftsman_card(craftsman: CraftsmanResource) -> Control:
 	card_container.add_child(buttons_container)
 	
 	# 添加边框样式
-	var stylebox = StyleBoxFlat.new()
-	stylebox.bg_color = Color(0.2, 0.2, 0.2, 0.8)
-	stylebox.border_width_bottom = 2
-	stylebox.border_width_left = 2
-	stylebox.border_width_right = 2
-	stylebox.border_width_top = 2
-	stylebox.border_color = Color(0.5, 0.5, 0.5)
-	stylebox.corner_radius_top_left = 5
-	stylebox.corner_radius_top_right = 5
-	stylebox.corner_radius_bottom_left = 5
-	stylebox.corner_radius_bottom_right = 5
-	stylebox.content_margin_left = 10
-	stylebox.content_margin_right = 10
-	stylebox.content_margin_top = 10
-	stylebox.content_margin_bottom = 10
+	#var stylebox = StyleBoxFlat.new()
+	#stylebox.bg_color = Color(0.166, 0.166, 0.166, 0.8)
+	#stylebox.border_width_bottom = 2
+	#stylebox.border_width_left = 2
+	#stylebox.border_width_right = 2
+	#stylebox.border_width_top = 2
+	#stylebox.border_color = Color(0.0, 0.0, 0.0, 1.0)
+	#stylebox.corner_radius_top_left = 5
+	#stylebox.corner_radius_top_right = 5
+	#stylebox.corner_radius_bottom_left = 5
+	#stylebox.corner_radius_bottom_right = 5
+	#stylebox.content_margin_left = 10
+	#stylebox.content_margin_right = 10
+	#stylebox.content_margin_top = 10
+	#stylebox.content_margin_bottom = 10
 	
-	card_container.add_theme_stylebox_override("panel", stylebox)
+	#card_container.add_theme_stylebox_override("panel", stylebox)
 	
 	return card_container
 
