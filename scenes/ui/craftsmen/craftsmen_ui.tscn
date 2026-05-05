@@ -18,6 +18,12 @@ script = ExtResource("2_2o5a0")
 separation_rate = 0.75
 text = "招聘界面"
 
+[node name="Label" parent="." index="1" unique_id=1667586695]
+offset_left = -48.0
+offset_top = 8.040001
+offset_right = 48.0
+offset_bottom = 42.04007
+
 [node name="Introduction" type="Label" parent="Left/VBoxContainer" parent_id_path=PackedInt32Array(153279391) index="0" unique_id=1954015154]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2

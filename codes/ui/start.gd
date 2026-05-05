@@ -13,6 +13,9 @@ class_name StartScene
 const main_scene: PackedScene = preload("res://scenes/main.tscn")
 var save_manager_scene: PackedScene
 
+# DeepSeek-V4-Pro，2026-04-30
+# 信号复杂繁多，尝试使用国产新模型辅助
+
 func _ready() -> void:
 	# 连接按钮信号
 	new_button.pressed.connect(_on_new_pressed)

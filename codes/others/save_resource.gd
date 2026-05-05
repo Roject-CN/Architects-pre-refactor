@@ -85,7 +85,10 @@ func add_building_resource(resource : BuildingResource) -> void:
 	if save_building_resources.size() >= 10:
 		save_building_resources.pop_front()
 
-# === 完整存档功能 ===
+# AI辅助生成内容
+# DeekSeek-V4-Pro 2026-04-10
+
+# 完整存档功能
 
 # 获取存档目录路径
 func _get_save_directory() -> String:

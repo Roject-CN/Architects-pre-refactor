@@ -6,3 +6,9 @@
 [node name="PlaceHolderUi" unique_id=1059655934 instance=ExtResource("1_13pw6")]
 script = ExtResource("2_gbmsa")
 timer = 24.0
+
+[node name="Label" parent="." index="1" unique_id=1667586695]
+offset_left = -48.0
+offset_top = 7.510002
+offset_right = 48.0
+offset_bottom = 41.51007
