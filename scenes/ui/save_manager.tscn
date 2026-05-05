@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bd2hhxhwus8r1"]
 
 [ext_resource type="Script" uid="uid://b4f86v7ucdjlw" path="res://codes/ui/save_manager.gd" id="1_abcde"]
+[ext_resource type="PackedScene" uid="uid://b5rxknicvviqi" path="res://scenes/ui/base_ui/pop_up_ui.tscn" id="2_qabvu"]
 
 [node name="SaveManager" type="Control" unique_id=2011748255]
 layout_mode = 3
-anchors_preset = 15
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -22,7 +22,6 @@ anchor_bottom = 0.9
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=2011748257]
 layout_mode = 1
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -37,7 +36,6 @@ theme_override_constants/margin_bottom = 25
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=2011748258]
 layout_mode = 2
-layout_mode = 2
 
 [node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=2011748259]
 layout_mode = 2
@@ -49,11 +47,8 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_vertical = 3
-layout_mode = 2
-size_flags_vertical = 3
 
 [node name="SaveList" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer" unique_id=2011748261]
-layout_mode = 2
 layout_mode = 2
 
 [node name="HSeparator2" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer" unique_id=2011748265]
@@ -62,11 +57,9 @@ layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=2011748262]
 layout_mode = 2
-layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Control" type="Control" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2011748266]
-layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -75,5 +68,5 @@ custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 text = "关闭"
 
-layout_mode = 2
-text = "关闭"
+[node name="PopUpUi" parent="." unique_id=1238429742 instance=ExtResource("2_qabvu")]
+layout_mode = 1

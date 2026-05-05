@@ -12,6 +12,7 @@ var available_saves: Array = []
 # UI引用
 @onready var save_list: VBoxContainer = $Panel/MarginContainer/VBoxContainer/ScrollContainer/SaveList
 @onready var close_button: Button = $Panel/MarginContainer/VBoxContainer/HBoxContainer/Close
+@onready var pop_up_ui: PopUpUi = $PopUpUi
 
 func _ready() -> void:
 	# 连接信号
@@ -176,18 +177,12 @@ func _on_delete_pressed(save_data: Dictionary) -> void:
 
 # 显示删除确认
 func _show_delete_confirmation(save_data: Dictionary) -> void:
-	var dialog = AcceptDialog.new()
-	dialog.title = "确认删除"
-	dialog.dialog_text = "确定要删除存档 '%s' 吗？此操作不可恢复。" % save_data["name"]
 	
-	# 连接确认信号（使用闭包确保正确传递数据）
-	dialog.confirmed.connect(func():
-		_on_delete_confirmed(save_data)
-		dialog.queue_free()
+	pop_up_ui.pop_up_information("确认删除", "确定要删除存档 '%s' 吗？此操作不可恢复。" % save_data["name"] )
+	pop_up_ui._pressed.connect(func():
+		_on_delete_confirmed(save_data), CONNECT_ONE_SHOT
 	)
 	
-	add_child(dialog)
-	dialog.popup_centered()
 
 # 删除确认处理
 func _on_delete_confirmed(save_data: Dictionary) -> void:

@@ -26,8 +26,6 @@ func achieve(resource : BuildingResource) -> void:
 	
 	var achivement := return_achivement(resource)
 	if achivement :
-		print(achivement.achievement_name)
-		print(achivement.description)
 		pop_up_ui.pop_up_information("恭喜你解锁 %s 成就" % achivement.achievement_name, 
 		achivement.description)
 		pop_up_ui.visible = true
