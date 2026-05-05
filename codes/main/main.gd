@@ -72,7 +72,7 @@ func _on_craftsmen_list_pressed() -> void:
 	var craftsmen_list_scene_path = "uid://b8t0oyc17v6aq"
 	
 	# 检查场景文件是否存在
-	if not FileAccess.file_exists(craftsmen_list_scene_path):
+	if not ResourceLoader.exists(craftsmen_list_scene_path):
 		push_error("员工列表场景文件不存在: " + craftsmen_list_scene_path)
 		return
 	
@@ -148,7 +148,7 @@ func _on_review_pressed() -> void:
 	var history_scene_path = "uid://c8ymf6abomyos"
 	
 	# 检查场景文件是否存在
-	if not FileAccess.file_exists(history_scene_path):
+	if not ResourceLoader.exists(history_scene_path):
 		push_error("history场景文件不存在: " + history_scene_path)
 		return
 	
@@ -250,7 +250,8 @@ func _on_quit_pressed() -> void:
 			pop_up_ui.pop_up_information("游戏保存", "游戏进度已保存，即将返回主菜单")
 			pop_up_ui._pressed.connect(func() :
 				var start_scene_path = "uid://d1uh7vuy5se2p"
-				if FileAccess.file_exists(start_scene_path):
+				if ResourceLoader.exists(start_scene_path):
+					#self.tree_exited.connect(func(): self.call_deferred("queue_free"))
 					get_tree().change_scene_to_file(start_scene_path)
 				, CONNECT_ONE_SHOT)	
 	, CONNECT_ONE_SHOT)

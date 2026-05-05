@@ -47,7 +47,7 @@ func calculate_value(new_value : int) -> void:
 	label.text = text + " : " + str(value)
 
 func highlight() -> void:
-	label.modulate = Color.BLUE
+	label.add_theme_color_override("font_color", Color.BLUE)
 
 func return_size_y() -> int:
 	var size_y : int = 0

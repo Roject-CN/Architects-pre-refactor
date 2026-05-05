@@ -31,7 +31,6 @@ func _ready() -> void:
 
 #flow_manager再检测到已经运行到最后一个流程并结束的时候， 执行此函数
 func save_builiding_resource() -> void:
-	
 	Global.add_building_resource(building_resource)
 	
 	#使 MainTime开始计时

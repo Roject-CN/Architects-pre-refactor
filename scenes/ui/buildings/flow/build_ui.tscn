@@ -27,7 +27,7 @@ script = ExtResource("2_3ygew")
 achievement_name = "相地观山"
 _progress_curve = ExtResource("3_d4udc")
 flow_pic = ExtResource("4_ayord")
-time = 5.0
+time = 3.0
 building_resource = SubResource("Resource_cpt6n")
 
 [node name="VBoxContainer" parent="Left" parent_id_path=PackedInt32Array(1915760024) index="0" unique_id=153279391]

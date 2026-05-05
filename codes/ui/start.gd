@@ -39,7 +39,7 @@ func _load_save_manager_scene() -> void:
 	var scene_path = "uid://bd2hhxhwus8r1"
 	
 	# 检查场景文件是否存在
-	if not FileAccess.file_exists(scene_path):
+	if not ResourceLoader.exists(scene_path):
 		push_error("存档管理场景文件不存在: " + scene_path)
 		return
 	
@@ -225,7 +225,7 @@ func _on_settings_pressed() -> void:
 	var settings_scene_path = "uid://bm2kg66g1nt4p"
 	
 	# 检查场景文件是否存在
-	if not FileAccess.file_exists(settings_scene_path):
+	if not ResourceLoader.exists(settings_scene_path):
 		push_error("设置场景文件不存在: " + settings_scene_path)
 		return
 	

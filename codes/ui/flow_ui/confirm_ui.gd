@@ -1,7 +1,7 @@
 extends AttributionUi
 class_name ConfirmUi
 
-@onready var craftsmen_container: VBoxContainer = $Left/VBoxContainer/Scroll/VBoxContainer
+@onready var craftsmen_container: VBoxContainer = $Left/VBoxContainer/Scroll/MarginContainer/VBoxContainer
 
 #暂时的
 @onready var cancel: Button = $Button/Cancel

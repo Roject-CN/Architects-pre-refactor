@@ -32,7 +32,7 @@ func _load_history_data() -> void:
 		return
 	
 	# 获取建筑数据
-	var buildings = Global.save_resource.save_building_resources
+	var buildings = Global.save_resource.save_building_resources.duplicate(true)
 	if not buildings or buildings.is_empty():
 		_show_empty_state(history_list)
 		return

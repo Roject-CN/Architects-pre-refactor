@@ -3,10 +3,6 @@
 [ext_resource type="Script" uid="uid://b2xlfl41dap5f" path="res://codes/ui/base_ui/attribution_ui/information_ui.gd" id="1_ev873"]
 [ext_resource type="Texture2D" uid="uid://ove75076mxla" path="res://sprits/buildings/building_attributes/1769236032289.png" id="2_ev873"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_ev873"]
-font_size = 18
-font_color = Color(0, 0, 0, 1)
-
 [node name="InformationUi" type="Control" unique_id=206980941]
 layout_mode = 3
 anchors_preset = 0
@@ -26,8 +22,8 @@ expand_mode = 2
 
 [node name="Value" type="Label" parent="HBoxContainer" unique_id=1795977458]
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "数值 : xxx"
-label_settings = SubResource("LabelSettings_ev873")
 
 [node name="CenterContainer" type="CenterContainer" parent="HBoxContainer" unique_id=937068799]
 layout_mode = 2

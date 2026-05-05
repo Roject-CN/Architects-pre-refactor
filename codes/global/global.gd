@@ -111,7 +111,7 @@ func _load_background_music() -> void:
 	var music_stream: AudioStream
 	
 	for path in music_paths:
-			if FileAccess.file_exists(path):
+			if ResourceLoader.exists(path):
 				music_stream = load(path)
 				if music_stream:
 					break
