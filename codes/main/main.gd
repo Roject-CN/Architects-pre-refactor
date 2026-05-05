@@ -43,9 +43,6 @@ func _ready() -> void:
 	
 	#building退出后让按钮可用
 	Event.building_end.connect(func(): building_button.disabled = false	)
-	#读取Global的员工列表
-	for i : CraftsmanResource in Global.save_resource.start_list:
-		craftsman_manager.append_new_craftsman(i)
 	
 
 func _on_employee_pressed() -> void:
@@ -314,4 +311,3 @@ func _on_achievement_pressed() -> void:
 	canvas_layer.add_child(ach_ui)
 	# 添加到场景树
 	get_tree().root.add_child(canvas_layer)
-	
