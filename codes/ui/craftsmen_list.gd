@@ -169,7 +169,7 @@ func _create_craftsman_card(craftsman: CraftsmanResource) -> Control:
 		texture_rect.texture = craftsman.texture
 	else:
 		# 使用默认纹理
-		var default_texture = load("res://sprits/tile_0099.png")
+		var default_texture = load("uid://do77yn4lfgps7")
 		if default_texture:
 			texture_rect.texture = default_texture
 	

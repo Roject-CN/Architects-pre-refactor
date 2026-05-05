@@ -105,7 +105,7 @@ func _setup_background_music() -> void:
 # 加载背景音乐文件
 func _load_background_music() -> void:
 	var music_paths = [
-		"res://music/background.ogg"
+		"uid://bppjqapyelh1u"
 	]
 	
 	var music_stream: AudioStream

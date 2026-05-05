@@ -6,7 +6,7 @@ class_name InformationUI
 @onready var label: Label = $HBoxContainer/Value
 @onready var animation: Container = $HBoxContainer/CenterContainer/Animation
 
-var plus := preload("res://scenes/ui/base_ui/animation_ui.tscn")
+var plus := preload("uid://jyoxd75b8pl1")
 var value : int = 0
 
 @export var property : BaseResource.PROPERTY
