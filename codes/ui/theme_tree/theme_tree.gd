@@ -38,12 +38,23 @@ func _ready():
 	
 	#读取Global的数据 因为是按时间顺序解锁的，所以如果上分解锁了x个
 	#那么Global的相应数组就会有x个，而此时我们需要让 第 x + 1(索引值为x)个主题资源解锁
+	#绘制可以解锁的
 	if Global.save_resource.top_theme_resource.size() < top_themes.size():
 		top_themes[Global.save_resource.top_theme_resource.size()].button_enable()
 	if Global.save_resource.middle_theme_resource.size() < middle_themes.size():
 		middle_themes[Global.save_resource.middle_theme_resource.size()].button_enable()
 	if Global.save_resource.buttom_theme_resource.size() < buttom_themes.size():
 		buttom_themes[Global.save_resource.buttom_theme_resource.size()].button_enable()
+	
+	#这里的 i 是从0开始的 如果size为2 则循环到1就截止了
+	#这里是绘制已经解锁过的
+	for i in Global.save_resource.top_theme_resource.size():
+		top_themes[i].button_pressed()
+	for i in Global.save_resource.middle_theme_resource.size():
+		middle_themes[i].button_pressed()
+	for i in Global.save_resource.buttom_theme_resource.size():
+		buttom_themes[i].button_pressed()
+	
 		
 	close_tooltip()
 	
