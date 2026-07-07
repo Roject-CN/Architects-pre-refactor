@@ -37,7 +37,8 @@ achievement_name = "半坡遗风"
 top_theme = ExtResource("3_1leff")
 middle_theme = ExtResource("4_hmggy")
 buttom_theme = ExtResource("5_dt0e6")
-description = "解锁了华夏大地上最原始的建筑形态之一。井干式木墙与夯土基的搭配，可追溯至新石器时代的半坡遗址，是先民“构木为巢”的活化石"
+description = "解锁了华夏大地上最原始的建筑形态之一。井干式木墙与夯土基的搭配，可追溯至新石器时代的半坡遗址，是先民“构木为巢”的活化石
+"
 compare = ExtResource("6_3sxko")
 metadata/_custom_type_script = "uid://bhs51v8mebwbt"
 
@@ -47,7 +48,8 @@ achievement_name = "河姆渡影"
 top_theme = ExtResource("3_1leff")
 middle_theme = ExtResource("6_s3bct")
 buttom_theme = ExtResource("5_dt0e6")
-description = "再现了江南水乡的建筑先祖。下层架空的干栏式结构与悬山顶结合，映照着七千年前浙江河姆渡文化的智慧，完美适应潮湿环境，通风防蛇虫"
+description = "再现了江南水乡的建筑先祖。下层架空的干栏式结构与悬山顶结合，映照着七千年前浙江河姆渡文化的智慧，完美适应潮湿环境，通风防蛇虫
+"
 compare = ExtResource("6_3sxko")
 metadata/_custom_type_script = "uid://bhs51v8mebwbt"
 
@@ -57,7 +59,8 @@ achievement_name = "南禅古韵"
 top_theme = ExtResource("7_575qu")
 middle_theme = ExtResource("8_c60iy")
 buttom_theme = ExtResource("9_l1g17")
-description = "重现了中国现存最古老的唐代木构建筑——山西五台山南禅寺大殿。其单檐歇山顶与雄浑的抬梁式构架，历经千年风霜，依旧屹立，是唐代建筑的绝世孤例"
+description = "重现了中国现存最古老的唐代木构建筑——山西五台山南禅寺大殿。其单檐歇山顶与雄浑的抬梁式构架，历经千年风霜，依旧屹立，是唐代建筑的绝世孤例
+"
 compare = ExtResource("11_jmfrl")
 metadata/_custom_type_script = "uid://bhs51v8mebwbt"
 
@@ -67,7 +70,8 @@ achievement_name = "佛光真容"
 top_theme = ExtResource("10_575qu")
 middle_theme = ExtResource("8_c60iy")
 buttom_theme = ExtResource("9_l1g17")
-description = "完美复刻了被梁思成先生誉为“中国第一国宝”的山西五台山佛光寺东大殿。七开间的庑殿顶与宏大的殿堂式抬梁结构，打破了日本学者“中国无唐代木构”的断言"
+description = "完美复刻了被梁思成先生誉为“中国第一国宝”的山西五台山佛光寺东大殿。七开间的庑殿顶与宏大的殿堂式抬梁结构，打破了日本学者“中国无唐代木构”的断言
+"
 compare = ExtResource("11_jmfrl")
 metadata/_custom_type_script = "uid://bhs51v8mebwbt"
 
@@ -77,7 +81,8 @@ achievement_name = "长安坊墙"
 top_theme = ExtResource("11_tplhp")
 middle_theme = ExtResource("12_cjkjp")
 buttom_theme = ExtResource("9_l1g17")
-description = "致敬了唐代长安城中星罗棋布的里坊与民居。硬山顶与穿斗式构架的组合，是普通百姓最温暖的家，构成了当时世界上最繁华都市的底色"
+description = "致敬了唐代长安城中星罗棋布的里坊与民居。硬山顶与穿斗式构架的组合，是普通百姓最温暖的家，构成了当时世界上最繁华都市的底色
+"
 compare = ExtResource("11_jmfrl")
 metadata/_custom_type_script = "uid://bhs51v8mebwbt"
 
@@ -87,7 +92,8 @@ achievement_name = "云冈佛光"
 top_theme = ExtResource("10_575qu")
 middle_theme = ExtResource("8_c60iy")
 buttom_theme = ExtResource("13_py1st")
-description = "灵感源于山西大同云冈石窟的窟檐建筑。石刻台基与木构屋顶的结合，象征佛教艺术与中国传统建筑的完美融合"
+description = "灵感源于山西大同云冈石窟的窟檐建筑。石刻台基与木构屋顶的结合，象征佛教艺术与中国传统建筑的完美融合
+"
 compare = ExtResource("11_jmfrl")
 metadata/_custom_type_script = "uid://bhs51v8mebwbt"
 
@@ -97,7 +103,8 @@ achievement_name = "紫禁之巅"
 top_theme = ExtResource("10_575qu")
 middle_theme = ExtResource("8_c60iy")
 buttom_theme = ExtResource("14_3sxko")
-description = "解锁了至高无上的皇家气派。以北京故宫太和殿为蓝本，重檐庑殿顶立于三层汉白玉须弥座之上，是中国古代官式建筑的巅峰之作"
+description = "解锁了至高无上的皇家气派。以北京故宫太和殿为蓝本，重檐庑殿顶立于三层汉白玉须弥座之上，是中国古代官式建筑的巅峰之作
+"
 compare = ExtResource("11_jmfrl")
 metadata/_custom_type_script = "uid://bhs51v8mebwbt"
 
@@ -107,7 +114,8 @@ achievement_name = "天坛祈年"
 top_theme = ExtResource("15_jmfrl")
 middle_theme = ExtResource("8_c60iy")
 buttom_theme = ExtResource("14_3sxko")
-description = "再现了北京天坛祈年殿的“天人合一”之境。三重檐圆形攒尖顶，立于层层须弥座之上，是古代帝王与上天对话的神圣场所"
+description = "再现了北京天坛祈年殿的“天人合一”之境。三重檐圆形攒尖顶，立于层层须弥座之上，是古代帝王与上天对话的神圣场所
+"
 compare = ExtResource("11_jmfrl")
 metadata/_custom_type_script = "uid://bhs51v8mebwbt"
 
@@ -117,7 +125,8 @@ achievement_name = "滕王高阁"
 top_theme = ExtResource("7_575qu")
 middle_theme = ExtResource("16_0yqsg")
 buttom_theme = ExtResource("13_py1st")
-description = "重现了王勃笔下“层峦耸翠，上出重霄”的滕王阁盛景。歇山顶与穿梁结合的灵活构架，创造了复杂的多层楼阁，成就了千古名篇"
+description = "重现了王勃笔下“层峦耸翠，上出重霄”的滕王阁盛景。歇山顶与穿梁结合的灵活构架，创造了复杂的多层楼阁，成就了千古名篇
+"
 compare = ExtResource("11_jmfrl")
 metadata/_custom_type_script = "uid://bhs51v8mebwbt"
 

@@ -50,11 +50,11 @@ func _create_achievement_item(ach: Achivement) -> Control:
 
 
 	var stylebox = StyleBoxFlat.new()
-	stylebox.bg_color = Color(0.18, 0.18, 0.28, 0.8)
+	stylebox.bg_color = Color(0.039, 0.039, 0.078, 0.965)
 	stylebox.content_margin_left = 10
 	stylebox.content_margin_right = 10
-	stylebox.content_margin_top = 10
-	stylebox.content_margin_bottom = 10
+	stylebox.content_margin_top = 0
+	stylebox.content_margin_bottom = 0
 	container.add_theme_stylebox_override("panel", stylebox)
 
 	# 左侧图标区域
@@ -63,8 +63,8 @@ func _create_achievement_item(ach: Achivement) -> Control:
 	icon_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 	icon_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	# 如果以后Achivement有icon属性，可自动加载
-	if ach.texture:
-		icon_rect.texture = ach.texture
+	#if ach.texture:
+		#icon_rect.texture = ach.texture
 	container.add_child(icon_rect)
 
 	# 成就名称

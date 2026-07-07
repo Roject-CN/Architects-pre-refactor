@@ -133,15 +133,19 @@ func _on_new_pressed() -> void:
 
 # 开始新游戏（带存档名称）
 func _start_new_game(save_name: String = "新存档") -> void:
-	# 创建新的SaveResource
-	var new_save = SaveResource.create_new_save(save_name)
 	
-	# 设置全局存档并保存
-	Global.save_resource = new_save
-	Global.save_save_resource()
+	pop_up_ui.pop_up_information("创建新游戏", "确定要创建游戏吗？", false)
+	pop_up_ui._pressed.connect(func():
+		# 创建新的SaveResource
+		var new_save = SaveResource.create_new_save(save_name)
 	
-	# 切换到主场景
-	get_tree().change_scene_to_packed(main_scene)
+		# 设置全局存档并保存
+		Global.save_resource = new_save
+		Global.save_save_resource()
+		# 切换到主场景
+		get_tree().change_scene_to_packed(main_scene), CONNECT_ONE_SHOT)
+		
+	
 
 # 继续游戏按钮
 func _on_continue_pressed() -> void:
